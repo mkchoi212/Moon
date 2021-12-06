@@ -8,17 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
-		27F12CC5275CE07400D87182 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* ContentView.swift */; };
+		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
 		27F12CCA275CE07400D87182 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC9275CE07400D87182 /* Preview Assets.xcassets */; };
+		27F12CD1275CE0E600D87182 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CD0275CE0E600D87182 /* HomeView.swift */; };
+		27F12CD3275CE0F500D87182 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CD2275CE0F500D87182 /* NotificationView.swift */; };
+		27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CD4275CE12200D87182 /* SettingsView.swift */; };
+		27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CD6275CE42700D87182 /* Color+Extension.swift */; };
+		27F12CD9275CEB8800D87182 /* RuleCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CD8275CEB8800D87182 /* RuleCreatorView.swift */; };
+		27F12CE1275CF62000D87182 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 27F12CE0275CF62000D87182 /* BottomSheet */; };
+		27F12CE3275D700600D87182 /* ConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CE2275D700600D87182 /* ConditionsView.swift */; };
+		27F12CE5275D75CC00D87182 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CE4275D75CC00D87182 /* Condition.swift */; };
+		27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CE6275D7D7900D87182 /* Number+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
-		27F12CC4275CE07400D87182 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
 		27F12CC6275CE07400D87182 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27F12CC9275CE07400D87182 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		27F12CD0275CE0E600D87182 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		27F12CD2275CE0F500D87182 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		27F12CD4275CE12200D87182 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		27F12CD6275CE42700D87182 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		27F12CD8275CEB8800D87182 /* RuleCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCreatorView.swift; sourceTree = "<group>"; };
+		27F12CE2275D700600D87182 /* ConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsView.swift; sourceTree = "<group>"; };
+		27F12CE4275D75CC00D87182 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
+		27F12CE6275D7D7900D87182 /* Number+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27F12CE1275CF62000D87182 /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +70,14 @@
 			isa = PBXGroup;
 			children = (
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
-				27F12CC4275CE07400D87182 /* ContentView.swift */,
+				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
+				27F12CD0275CE0E600D87182 /* HomeView.swift */,
+				27F12CD8275CEB8800D87182 /* RuleCreatorView.swift */,
+				27F12CE2275D700600D87182 /* ConditionsView.swift */,
+				27F12CE4275D75CC00D87182 /* Condition.swift */,
+				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
+				27F12CD4275CE12200D87182 /* SettingsView.swift */,
+				27F12CE8275D91D100D87182 /* Extension */,
 				27F12CC6275CE07400D87182 /* Assets.xcassets */,
 				27F12CC8275CE07400D87182 /* Preview Content */,
 			);
@@ -65,6 +90,15 @@
 				27F12CC9275CE07400D87182 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		27F12CE8275D91D100D87182 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				27F12CE6275D7D7900D87182 /* Number+Extension.swift */,
+				27F12CD6275CE42700D87182 /* Color+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +117,9 @@
 			dependencies = (
 			);
 			name = Woof;
+			packageProductDependencies = (
+				27F12CE0275CF62000D87182 /* BottomSheet */,
+			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Woof.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +148,9 @@
 				Base,
 			);
 			mainGroup = 27F12CB6275CE07400D87182;
+			packageReferences = (
+				27F12CDF275CF62000D87182 /* XCRemoteSwiftPackageReference "BottomSheet" */,
+			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +177,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27F12CC5275CE07400D87182 /* ContentView.swift in Sources */,
+				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
+				27F12CE5275D75CC00D87182 /* Condition.swift in Sources */,
+				27F12CD9275CEB8800D87182 /* RuleCreatorView.swift in Sources */,
+				27F12CD1275CE0E600D87182 /* HomeView.swift in Sources */,
+				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
+				27F12CE3275D700600D87182 /* ConditionsView.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
+				27F12CD3275CE0F500D87182 /* NotificationView.swift in Sources */,
+				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
+				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +389,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		27F12CDF275CF62000D87182 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LucasMucGH/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		27F12CE0275CF62000D87182 /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27F12CDF275CF62000D87182 /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 27F12CB7275CE07400D87182 /* Project object */;
 }
