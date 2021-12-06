@@ -10,7 +10,7 @@ import SwiftUI
 struct IconSquare: View {
     var cornerRadius: CGFloat
     var color: Color
-    var icon: String
+    var icon: Image
     var iconFontSize: CGFloat
     
     var body: some View {
@@ -18,7 +18,7 @@ struct IconSquare: View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .foregroundColor(color)
             
-            Image(systemName: icon)
+            icon
                 .font(.system(size: iconFontSize, weight: .bold))
                 .foregroundColor(.white)
         }
@@ -26,30 +26,36 @@ struct IconSquare: View {
 }
 
 struct ActionAbbreviationRow: View {
+    var type: TypeRepresentable
+    
     var body: some View {
         HStack {
             IconSquare(cornerRadius: 4,
-                       color: .blue,
-                       icon: "circle",
+                       color: type.color,
+                       icon: type.icon ?? Image(systemName: "questionmark"),
                        iconFontSize: 12)
-                .frame(width: 20, height: 20, alignment: .center)
+                .frame(width: 22, height: 22, alignment: .center)
             
-            Text("ETH Gas")
+            Text(type.description)
                 .font(.system(size: 12, design: .rounded))
         }
     }
 }
 
 struct ActionAbbreviation: View {
+    var header: String
+    var types: [TypeRepresentable]
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Condition")
+            Text(header)
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundColor(.lightGray)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            ActionAbbreviationRow()
-            ActionAbbreviationRow()
+            ForEach(types, id: \.description) { type in
+                ActionAbbreviationRow(type: type)
+            }
         }
         .frame(maxWidth: .infinity)
     }
@@ -92,9 +98,13 @@ struct AutomationSummaryCell: View {
                 Spacer()
                 
                 HStack(alignment: .center) {
-                    ActionAbbreviation()
+                    ActionAbbreviation(header: "Conditions",
+                                       types: automation.condition.map(\.type))
+                    
                     Divider()
-                    ActionAbbreviation()
+                    
+                    ActionAbbreviation(header: "Actions",
+                                       types: automation.actions.map(\.type))
                     
                     Spacer()
                 }
@@ -108,6 +118,6 @@ struct AutomationSummaryCell: View {
 
 struct AutomationSummaryCell_Previews: PreviewProvider {
     static var previews: some View {
-        AutomationSummaryCell(automation:  Automation.dummy.first!)
+        AutomationSummaryCell(automation: Automation.dummy.first!)
     }
 }

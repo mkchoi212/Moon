@@ -93,7 +93,7 @@ struct RulePropertyRow: View {
             .modifier(RuleSheetHeaderModifier())
         
         HStack(spacing: 15) {
-            ForEach(Condition.allCases, id: \.self) { cond in
+            ForEach(ConditionType.allCases, id: \.self) { cond in
                 VStack(alignment: .center) {
                     RuleCell(image: AnyView(cond.icon
                                                 .foregroundColor(.white)
@@ -210,19 +210,19 @@ struct RuleCreatorView: View {
             ScrollView {
                 if tabSelection == RuleCreatorViewMode.condition.rawValue {
                     ActionList(actions: [
-                        Condition.percentageChange(.eth, .greater, 0.1),
-                        LogicalOperator.and,
-                        Condition.gasEth(.less, 100),
-                        LogicalOperator.and,
-                        Condition.wallet(Wallet(name: "Mike's Metamask", address: "0xf103eab10"), .eth, .greater, 1.45)
+                        PercentChange(crypto: .eth, comparator: .less, percentage: 0.1),
+                        And()
+//                        Condition.gasEth(.less, 100),
+//                        LogicalOperator.and,
+//                        Condition.wallet(Wallet(name: "Mike's Metamask", address: "0xf103eab10"), .eth, .greater, 1.45)
                     ])
                         .padding(.top, 15)
                 } else {
                     ActionList(actions: [
-                        Action.notification("foo"),
-                        Action.buy(.eth, 1.0)
+                        SendNotification(message: "foo"),
+                        Buy(crypto: .eth, amount: 1.0, wallet: .mike),
                     ])
-                        .padding(.top, 15)
+                    .padding(.top, 15)
                 }
             }
             .frame(maxHeight: .infinity)

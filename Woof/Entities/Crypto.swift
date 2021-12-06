@@ -8,7 +8,7 @@
 import Foundation
 
 enum Crypto: String {
-    case btc, eth
+    case btc, eth, ohm
     
     var description: String {
         rawValue.uppercased()

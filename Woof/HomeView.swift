@@ -11,13 +11,30 @@ struct Automation: Identifiable {
     let id = UUID()
     let title: String
     let color: Color
-    let icon: String
-    let condition: String
-    let actions: [String]
+    let icon: Image
+    let condition: [Condition]
+    let actions: [Action]
     
-    static let dummy: [Automation] = [
-        Automation(title: "Stake Olympus", color: .purple, icon: "wind", condition: "if gas price is lower than $100", actions: ["Buy 0.98741 ETH", "Text"]),
-        Automation(title: "Buy the dip", color: .red, icon: "arrow.down", condition: "if ETH price is lower than $4,000", actions: ["Buy 2 ETH", "Email"]),
+    static let dummy: [Automation] =
+    [
+        Automation(title: "Buy the dip", color: .red, icon: Image(systemName: "arrow.down"),
+                   condition: [
+                    TransactionFee(wallet: .mike, crypto: .eth, comparator: .less, price: 100),
+                    PriceChange(crypto: .eth, comparator: .less, price: 5000)
+                   ],
+                   actions: [
+                    SendNotification(message: ""),
+                    Buy(crypto: .eth, amount: 100, wallet: .mike)
+                   ]),
+        Automation(title: "Stake Olympus", color: .purple, icon: Image(systemName: "lock.fill"),
+                   condition: [
+                    TransactionFee(wallet: .mike, crypto: .eth, comparator: .less, price: 100),
+                    PriceChange(crypto: .eth, comparator: .less, price: 5000)
+                   ],
+                   actions: [
+                    SendNotification(message: ""),
+                    Swap(wallet: .mike, fromCrypto: .eth, toCrypto: .ohm, amount: 4)
+                   ])
     ]
 }
 
