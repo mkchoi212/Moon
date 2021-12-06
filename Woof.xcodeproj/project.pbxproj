@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2730DFFC275DB59B0082BE45 /* CalendarRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFB275DB59B0082BE45 /* CalendarRule.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
 		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2730DFFB275DB59B0082BE45 /* CalendarRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRule.swift; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				27F12CD8275CEB8800D87182 /* RuleCreatorView.swift */,
 				27F12CE2275D700600D87182 /* ConditionsView.swift */,
 				27F12CE4275D75CC00D87182 /* Condition.swift */,
+				2730DFFB275DB59B0082BE45 /* CalendarRule.swift */,
 				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
 				27F12CD4275CE12200D87182 /* SettingsView.swift */,
 				27F12CE8275D91D100D87182 /* Extension */,
@@ -184,6 +187,7 @@
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				27F12CE3275D700600D87182 /* ConditionsView.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
+				2730DFFC275DB59B0082BE45 /* CalendarRule.swift in Sources */,
 				27F12CD3275CE0F500D87182 /* NotificationView.swift in Sources */,
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,

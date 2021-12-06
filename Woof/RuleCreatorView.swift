@@ -18,6 +18,146 @@ enum CustomBottomSheetPosition: CGFloat, CaseIterable {
     case bottom = 0.125
 }
 
+struct RuleCreatorSheetHeader: View {
+    @Binding var searchText: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+            TextField("Search for actions", text: $searchText)
+        }
+        .foregroundColor(Color(uiColor: .secondaryLabel))
+        .padding(.vertical, 8)
+        .padding(.horizontal, 5)
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .tertiarySystemFill)))
+        .padding(.bottom)
+    }
+}
+
+struct RuleCell: View {
+    var image: AnyView
+    var color: Color
+    
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundColor(color)
+                .frame(width: 60, height: 60)
+            
+            image
+        }
+    }
+}
+
+struct RuleSheetHeaderModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color(uiColor: .secondaryLabel))
+            .font(.system(size: 15, weight: .semibold, design: .rounded))
+    }
+}
+
+struct RuleSheetDescriptionLabelModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 14, weight: .regular))
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+    }
+}
+
+struct RuleOperatorRow: View {
+    var body: some View {
+        Text("Logical operators")
+            .modifier(RuleSheetHeaderModifier())
+        
+        HStack(spacing: 15) {
+            ForEach(LogicalOperator.allCases, id: \.self) { op in
+                VStack {
+                    RuleCell(image: AnyView(Text(op.description)
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 17, weight: .bold, design: .monospaced))),
+                             color: op.color)
+                    
+                    Text(op.rawValue.capitalized)
+                        .modifier(RuleSheetDescriptionLabelModifier())
+                }
+            }
+        }
+    }
+}
+
+struct RulePropertyRow: View {
+    var body: some View {
+        Text("Property")
+            .modifier(RuleSheetHeaderModifier())
+        
+        HStack(spacing: 15) {
+            ForEach(Condition.allCases, id: \.self) { cond in
+                VStack(alignment: .center) {
+                    RuleCell(image: AnyView(cond.icon
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 24, weight: .bold))),
+                             color: cond.color)
+
+                    Text(cond.description)
+                        .modifier(RuleSheetDescriptionLabelModifier())
+                    
+                    Spacer()
+                }
+            }
+        }
+    }
+}
+
+struct RuleCalendarRow: View {
+    var body: some View {
+        Text("Calendar")
+            .modifier(RuleSheetHeaderModifier())
+        
+        HStack(spacing: 15) {
+            ForEach(CalendarRule.allCases, id: \.self) { op in
+                VStack(alignment: .center) {
+                    RuleCell(image: AnyView(Text(op.abbreviation)
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 24, weight: .bold, design: .rounded))),
+                             color: op.color)
+
+                    Text(op.description)
+                        .modifier(RuleSheetDescriptionLabelModifier())
+                    
+                    Spacer()
+                }
+            }
+        }
+    }
+}
+
+struct RuleCreatorSheet: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            RuleOperatorRow()
+            Divider()
+            RulePropertyRow()
+            Divider()
+            RuleCalendarRow()
+            Divider()
+            
+            Button {
+            } label: {
+                Label("Add suggestions", systemImage: "plus.circle.fill")
+                    .font(.system(size: 18, weight: .medium))
+                    .padding()
+                    .tint(.blue)
+                    .frame(maxWidth: .infinity)
+                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(Color(hex: "e3e6f5")))
+            }
+            .padding(.trailing)
+        }
+        .padding(.leading)
+    }
+}
+
 struct RuleCreatorView: View {
     @Environment(\.presentationMode) var presentationMode
     
@@ -79,20 +219,15 @@ struct RuleCreatorView: View {
             
         }
         .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, options: [.appleScrollBehavior, .background(AnyView(Color(uiColor: .systemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.4))], headerContent: {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                TextField("Search for actions", text: self.$searchText)
-            }
-            .foregroundColor(Color(uiColor: .secondaryLabel))
-            .padding(.vertical, 8)
-            .padding(.horizontal, 5)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .tertiarySystemFill)))
-            .padding(.bottom)
-            .onTapGesture {
-                self.bottomSheetPosition = .top
-            }
+            RuleCreatorSheetHeader(searchText: $searchText)
+                .onTapGesture {
+                    self.bottomSheetPosition = .top
+                }
         }) {
-            Text("sadf")
+            RuleCreatorSheet()
+                .frame(width: .infinity, height: .infinity, alignment: .leading)
+                .transition(.opacity)
+                .animation(.easeInOut)
         }
     }
 }

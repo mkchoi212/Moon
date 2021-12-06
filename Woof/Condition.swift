@@ -49,7 +49,7 @@ protocol ConditionDisplayable {
     var id: String { get }
 }
 
-enum LogicalOperator: String, ConditionDisplayable {
+enum LogicalOperator: String, CaseIterable, ConditionDisplayable {
     case and, or
     
     var description: String {
@@ -59,9 +59,22 @@ enum LogicalOperator: String, ConditionDisplayable {
     var id: String {
         String(hashValue)
     }
+    
+    var color: Color {
+        Color(uiColor: .lightGray)
+    }
 }
 
 enum Condition: ConditionDisplayable, Equatable, Hashable {
+    
+    static let allCases: [Condition] = [
+        .percentageChange(.btc, .less, 0),
+        .price(.btc, .less, 0),
+        .gasEth(.equal, 0),
+        .marketCap(.btc, .equal, 0),
+        .wallet(.init(name: "foo", address: "bar"), .btc, .equal, 0)
+    ]
+    
     case percentageChange(Crypto, Comparator, Double)
     
     case price(Crypto, Comparator, Double)
@@ -75,7 +88,7 @@ enum Condition: ConditionDisplayable, Equatable, Hashable {
     var description: String {
         switch self {
             case .percentageChange(_, _, _):
-                return "Percentage Change"
+                return "% Change"
             case .price(_, _, _):
                 return "Price"
             case .gasEth(_, _):
