@@ -21,64 +21,15 @@ struct Automation: Identifiable {
     ]
 }
 
-struct AutomationSummaryCell: View {
-    let automation: Automation
-    
-    var body: some View {
-        ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundColor(.white)
-                .shadow(color: .black.opacity(0.08), radius: 20, x: 5, y: 5)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .foregroundColor(automation.color)
-                            .frame(width: 30, height: 30, alignment: .center)
-                        
-                        Image(systemName: automation.icon)
-                            .foregroundColor(.white)
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "ellipsis.circle.fill")
-                            .resizable()
-                            .foregroundColor(.accentColor)
-                    }
-                    .frame(width: 24, height: 24)
-                }
-                
-                Spacer()
-
-                Text(automation.title)
-                    .font(.system(size: 18, weight: .semibold))
-                    .lineLimit(2)
-                
-                Text("\(automation.actions.count) actions")
-                    .font(.system(size: 15, weight: .regular, design: .rounded))
-                    .foregroundColor(Color(uiColor: .secondaryLabel))
-            }
-            .padding()
-        }
-        .frame(height: 140)
-    }
-}
-
 struct HomeView: View {
     
     let automations: [Automation]
-    let gridItemLayout = [GridItem(.flexible()), GridItem(.flexible())]
     @State var presentCreator = false
     
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: gridItemLayout, spacing: 15) {
+                VStack(spacing: 30) {
                     ForEach(automations) { automation in
                         NavigationLink {
                             Text("asdf")
@@ -89,6 +40,7 @@ struct HomeView: View {
                     }
                 }
                 .padding(.horizontal, 15)
+                .padding(.top, 15)
             }
             .navigationTitle("Home")
             .toolbar {

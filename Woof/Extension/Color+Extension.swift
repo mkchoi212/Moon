@@ -33,3 +33,9 @@ extension Color {
         )
     }
 }
+
+extension Color {
+    static var lightGray: Color {
+        Color(uiColor: .lightGray)
+    }
+}

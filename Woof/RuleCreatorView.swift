@@ -99,7 +99,7 @@ struct RulePropertyRow: View {
                                                 .foregroundColor(.white)
                                                 .font(.system(size: 24, weight: .bold))),
                              color: cond.color)
-
+                    
                     Text(cond.description)
                         .modifier(RuleSheetDescriptionLabelModifier())
                     
@@ -122,7 +122,7 @@ struct RuleCalendarRow: View {
                                                 .foregroundColor(.white)
                                                 .font(.system(size: 24, weight: .bold, design: .rounded))),
                              color: op.color)
-
+                    
                     Text(op.description)
                         .modifier(RuleSheetDescriptionLabelModifier())
                     
@@ -209,10 +209,20 @@ struct RuleCreatorView: View {
             
             ScrollView {
                 if tabSelection == RuleCreatorViewMode.condition.rawValue {
-                    ConditionView()
+                    ActionList(actions: [
+                        Condition.percentageChange(.eth, .greater, 0.1),
+                        LogicalOperator.and,
+                        Condition.gasEth(.less, 100),
+                        LogicalOperator.and,
+                        Condition.wallet(Wallet(name: "Mike's Metamask", address: "0xf103eab10"), .eth, .greater, 1.45)
+                    ])
                         .padding(.top, 15)
                 } else {
-                    Text("action")
+                    ActionList(actions: [
+                        Action.notification("foo"),
+                        Action.buy(.eth, 1.0)
+                    ])
+                        .padding(.top, 15)
                 }
             }
             .frame(maxHeight: .infinity)

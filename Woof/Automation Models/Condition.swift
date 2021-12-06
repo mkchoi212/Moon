@@ -7,62 +7,8 @@
 
 import SwiftUI
 
-enum Crypto: String {
-    case btc, eth
-    
-    var description: String {
-        rawValue.uppercased()
-    }
-}
-
-struct Wallet: Hashable {
-    let name: String
-    let address: String
-}
-
-enum Comparator: String {
-    case greater, less, equal
-    
-    var comparatorDescription: String {
-        switch self {
-            case .greater:
-                return "greater than"
-            case .less:
-                return "less than"
-            case .equal:
-                return "is"
-        }
-    }
-    var actionDescription: String {
-        switch self {
-            case .greater:
-                return "increases"
-            case .less:
-                return "decreases"
-            case .equal:
-                return "is"
-        }
-    }
-}
-
 protocol ConditionDisplayable {
     var id: String { get }
-}
-
-enum LogicalOperator: String, CaseIterable, ConditionDisplayable {
-    case and, or
-    
-    var description: String {
-        rawValue.uppercased()
-    }
-    
-    var id: String {
-        String(hashValue)
-    }
-    
-    var color: Color {
-        Color(uiColor: .lightGray)
-    }
 }
 
 enum Condition: ConditionDisplayable, Equatable, Hashable {
@@ -165,15 +111,5 @@ enum Condition: ConditionDisplayable, Equatable, Hashable {
     
     var id: String {
         String(hashValue)
-    }
-}
-
-struct Highlighter: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .background(.blue)
-            .foregroundColor(.white)
-            .font(.system(size: 15, weight: .medium))
-            .cornerRadius(4)
     }
 }
