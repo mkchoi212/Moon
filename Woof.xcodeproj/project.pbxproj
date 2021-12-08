@@ -28,6 +28,7 @@
 		2730E027275DD1340082BE45 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E026275DD1340082BE45 /* Transfer.swift */; };
 		2730E029275DD15B0082BE45 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E028275DD15B0082BE45 /* Swap.swift */; };
 		2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02A275DD2030082BE45 /* ConditionType.swift */; };
+		2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02C275DE9AC0082BE45 /* Automation.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
 		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 		2730E026275DD1340082BE45 /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		2730E028275DD15B0082BE45 /* Swap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		2730E02A275DD2030082BE45 /* ConditionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionType.swift; sourceTree = "<group>"; };
+		2730E02C275DE9AC0082BE45 /* Automation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Automation.swift; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			children = (
 				2730E004275DBBA80082BE45 /* Crypto.swift */,
 				2730E007275DBBBA0082BE45 /* Wallet.swift */,
+				2730E02C275DE9AC0082BE45 /* Automation.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */,
 				27F12CE3275D700600D87182 /* ActionList.swift in Sources */,
+				2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */,
 				2730E01D275DCF010082BE45 /* SendNotification.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,

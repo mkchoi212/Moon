@@ -56,6 +56,8 @@ struct ActionAbbreviation: View {
             ForEach(types, id: \.description) { type in
                 ActionAbbreviationRow(type: type)
             }
+            //
+            Spacer()
         }
         .frame(maxWidth: .infinity)
     }
@@ -67,7 +69,7 @@ struct AutomationSummaryCell: View {
     var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 12)
-                .foregroundColor(.white)
+                .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
                 .shadow(color: .black.opacity(0.08), radius: 20, x: 5, y: 5)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -84,15 +86,20 @@ struct AutomationSummaryCell: View {
                     
                     Spacer()
                     
-                    Button {
-                        
+                    Menu {
+                        Button(action: share) {
+                            Label("Share", systemImage: "square.and.arrow.up")
+                        }
+                        Button(role: .destructive, action: delete) {
+                            Label("Delete", systemImage: "trash.fill")
+                                .foregroundColor(.red)
+                        }
                     } label: {
                         Image(systemName: "ellipsis.circle.fill")
                             .resizable()
                             .foregroundColor(.accentColor)
+                            .frame(width: 24, height: 24)
                     }
-                    .frame(width: 24, height: 24)
-                    
                 }
                 
                 Spacer()
@@ -114,10 +121,22 @@ struct AutomationSummaryCell: View {
         }
         .frame(height: 140)
     }
+    
+    func delete() {
+        
+    }
+    
+    func share() {
+        
+    }
 }
 
 struct AutomationSummaryCell_Previews: PreviewProvider {
     static var previews: some View {
         AutomationSummaryCell(automation: Automation.dummy.first!)
+            .preferredColorScheme(.dark)
+        
+        AutomationSummaryCell(automation: Automation.dummy.first!)
+            .preferredColorScheme(.light)
     }
 }

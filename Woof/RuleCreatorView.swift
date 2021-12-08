@@ -37,14 +37,20 @@ struct RuleCreatorSheetHeader: View {
 struct RuleCell: View {
     var image: AnyView
     var color: Color
+    var title: String
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundColor(color)
-                .frame(width: 60, height: 60)
+        VStack(alignment: .center, spacing: 8) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .foregroundColor(color)
+                    .frame(width: 60, height: 60)
+                
+                image
+            }
             
-            image
+            Text(title)
+                .modifier(RuleSheetDescriptionLabelModifier())
         }
     }
 }
@@ -60,9 +66,9 @@ struct RuleSheetHeaderModifier: ViewModifier {
 struct RuleSheetDescriptionLabelModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
+            .lineLimit(2)
             .font(.system(size: 14, weight: .regular))
             .multilineTextAlignment(.center)
-            .lineLimit(2)
     }
 }
 
@@ -77,10 +83,8 @@ struct RuleOperatorRow: View {
                     RuleCell(image: AnyView(Text(op.description)
                                                 .foregroundColor(.white)
                                                 .font(.system(size: 17, weight: .bold, design: .monospaced))),
-                             color: op.color)
-                    
-                    Text(op.rawValue.capitalized)
-                        .modifier(RuleSheetDescriptionLabelModifier())
+                             color: op.color,
+                             title: op.rawValue.capitalized)
                 }
             }
         }
@@ -92,18 +96,18 @@ struct RulePropertyRow: View {
         Text("Property")
             .modifier(RuleSheetHeaderModifier())
         
-        HStack(spacing: 15) {
-            ForEach(ConditionType.allCases, id: \.self) { cond in
-                VStack(alignment: .center) {
-                    RuleCell(image: AnyView(cond.icon
-                                                .foregroundColor(.white)
-                                                .font(.system(size: 24, weight: .bold))),
-                             color: cond.color)
-                    
-                    Text(cond.description)
-                        .modifier(RuleSheetDescriptionLabelModifier())
-                    
-                    Spacer()
+        ScrollView {
+            HStack(spacing: 15) {
+                ForEach(ConditionType.allCases, id: \.self) { cond in
+                    VStack(alignment: .center) {
+                        RuleCell(image: AnyView(cond.icon
+                                                    .foregroundColor(.white)
+                                                    .font(.system(size: 24, weight: .bold))),
+                                 color: cond.color,
+                                 title: cond.description)
+                        
+                        Spacer()
+                    }
                 }
             }
         }
@@ -121,10 +125,8 @@ struct RuleCalendarRow: View {
                     RuleCell(image: AnyView(Text(op.abbreviation)
                                                 .foregroundColor(.white)
                                                 .font(.system(size: 24, weight: .bold, design: .rounded))),
-                             color: op.color)
-                    
-                    Text(op.description)
-                        .modifier(RuleSheetDescriptionLabelModifier())
+                             color: op.color,
+                             title: op.description)
                     
                     Spacer()
                 }
@@ -162,10 +164,17 @@ struct RuleCreatorView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var tabSelection = 0
-    @State var name: String = ""
+    @State var name: String
     @State var imageName = "moon.fill"
     @State var searchText = ""
     @State var bottomSheetPosition: CustomBottomSheetPosition = .bottom
+    
+    var automation: Automation?
+    
+    init(automation: Automation?) {
+        _name = State(initialValue: automation?.title ?? "")
+        self.automation = automation
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -187,6 +196,7 @@ struct RuleCreatorView: View {
                     }
                     
                     TextField("Action name", text: $name)
+                        .font(.system(size: 20, weight: .semibold))
                     
                     Button {
                         presentationMode.wrappedValue.dismiss()
@@ -209,41 +219,32 @@ struct RuleCreatorView: View {
             
             ScrollView {
                 if tabSelection == RuleCreatorViewMode.condition.rawValue {
-                    ActionList(actions: [
-                        PercentChange(crypto: .eth, comparator: .less, percentage: 0.1),
-                        And()
-//                        Condition.gasEth(.less, 100),
-//                        LogicalOperator.and,
-//                        Condition.wallet(Wallet(name: "Mike's Metamask", address: "0xf103eab10"), .eth, .greater, 1.45)
-                    ])
+                    ActionList(actions: automation?.condition as? [CardRepresentable] ?? [])
                         .padding(.top, 15)
                 } else {
-                    ActionList(actions: [
-                        SendNotification(message: "foo"),
-                        Buy(crypto: .eth, amount: 1.0, wallet: .mike),
-                    ])
+                    ActionList(actions: automation?.actions as? [CardRepresentable] ?? [])
                     .padding(.top, 15)
                 }
             }
             .frame(maxHeight: .infinity)
             
         }
-        .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, options: [.appleScrollBehavior, .background(AnyView(Color(uiColor: .systemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.4))], headerContent: {
+        .bottomSheet(bottomSheetPosition: $bottomSheetPosition, options: [.appleScrollBehavior, .background(AnyView(Color(uiColor: .systemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.4))], headerContent: {
             RuleCreatorSheetHeader(searchText: $searchText)
                 .onTapGesture {
                     self.bottomSheetPosition = .top
                 }
         }) {
             RuleCreatorSheet()
-                .frame(width: .infinity, height: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 .transition(.opacity)
-                .animation(.easeInOut)
+                .animation(.easeInOut, value: bottomSheetPosition)
         }
     }
 }
 
 struct RuleCreatorView_Previews: PreviewProvider {
     static var previews: some View {
-        RuleCreatorView()
+        RuleCreatorView(automation: .dummy.first)
     }
 }

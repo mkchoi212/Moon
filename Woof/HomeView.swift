@@ -7,53 +7,22 @@
 
 import SwiftUI
 
-struct Automation: Identifiable {
-    let id = UUID()
-    let title: String
-    let color: Color
-    let icon: Image
-    let condition: [Condition]
-    let actions: [Action]
-    
-    static let dummy: [Automation] =
-    [
-        Automation(title: "Buy the dip", color: .red, icon: Image(systemName: "arrow.down"),
-                   condition: [
-                    TransactionFee(wallet: .mike, crypto: .eth, comparator: .less, price: 100),
-                    PriceChange(crypto: .eth, comparator: .less, price: 5000)
-                   ],
-                   actions: [
-                    SendNotification(message: ""),
-                    Buy(crypto: .eth, amount: 100, wallet: .mike)
-                   ]),
-        Automation(title: "Stake Olympus", color: .purple, icon: Image(systemName: "lock.fill"),
-                   condition: [
-                    TransactionFee(wallet: .mike, crypto: .eth, comparator: .less, price: 100),
-                    PriceChange(crypto: .eth, comparator: .less, price: 5000)
-                   ],
-                   actions: [
-                    SendNotification(message: ""),
-                    Swap(wallet: .mike, fromCrypto: .eth, toCrypto: .ohm, amount: 4)
-                   ])
-    ]
-}
-
 struct HomeView: View {
-    
     let automations: [Automation]
-    @State var presentCreator = false
+    @State var presentedAutomation: Automation? = nil
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 30) {
+                VStack(spacing: 15) {
                     ForEach(automations) { automation in
-                        NavigationLink {
-                            Text("asdf")
+                        Button {
+                            presentedAutomation = automation
                         } label: {
                             AutomationSummaryCell(automation: automation)
                         }
                         .buttonStyle(.plain)
+                        .padding(.vertical)
                     }
                 }
                 .padding(.horizontal, 15)
@@ -63,16 +32,28 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
-                        presentCreator = true
+                        presentedAutomation = .empty
                     } label: {
-                        Image(systemName: "plus")
+                        HStack(spacing: 4) {
+                            Image(systemName: "plus")
+                                .tint(.blue)
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                            
+                            Text("New")
+                                .foregroundColor(.blue)
+                                .font(.system(size: 15, weight: .semibold))
+                        }
+                        .padding(6)
+                        .background(Color(hex: "e3e6f5"))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                 }
             }
         }
-        .fullScreenCover(isPresented: $presentCreator) {
-        } content: {
-            RuleCreatorView()
+        .fullScreenCover(item: $presentedAutomation, onDismiss: {
+            presentedAutomation = nil
+        }) { automation in
+            RuleCreatorView(automation: automation)
         }
     }
 }
