@@ -29,6 +29,9 @@
 		2730E029275DD15B0082BE45 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E028275DD15B0082BE45 /* Swap.swift */; };
 		2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02A275DD2030082BE45 /* ConditionType.swift */; };
 		2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02C275DE9AC0082BE45 /* Automation.swift */; };
+		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
+		274BA3A127622AF600B1E2D3 /* RuleCreatorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* RuleCreatorSheet.swift */; };
+		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
 		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
@@ -67,6 +70,9 @@
 		2730E028275DD15B0082BE45 /* Swap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		2730E02A275DD2030082BE45 /* ConditionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionType.swift; sourceTree = "<group>"; };
 		2730E02C275DE9AC0082BE45 /* Automation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Automation.swift; sourceTree = "<group>"; };
+		274BA39E2760DC8700B1E2D3 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
+		274BA3A027622AF600B1E2D3 /* RuleCreatorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCreatorSheet.swift; sourceTree = "<group>"; };
+		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
@@ -154,6 +160,16 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
+		274BA3A227622AF800B1E2D3 /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+				274BA3A327622B4000B1E2D3 /* RuleCell.swift */,
+				274BA3A027622AF600B1E2D3 /* RuleCreatorSheet.swift */,
+				27F12CD8275CEB8800D87182 /* RuleCreatorView.swift */,
+			);
+			path = Composer;
+			sourceTree = "<group>";
+		};
 		27F12CB6275CE07400D87182 = {
 			isa = PBXGroup;
 			children = (
@@ -176,7 +192,8 @@
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
 				27F12CD0275CE0E600D87182 /* HomeView.swift */,
-				27F12CD8275CEB8800D87182 /* RuleCreatorView.swift */,
+				274BA3A227622AF800B1E2D3 /* Composer */,
+				274BA39E2760DC8700B1E2D3 /* IconPicker.swift */,
 				2730E006275DBBAD0082BE45 /* Entities */,
 				2730E003275DBB8E0082BE45 /* Automation Models */,
 				2730E00B275DBC070082BE45 /* UI Components */,
@@ -285,6 +302,7 @@
 			files = (
 				2730E023275DD0BF0082BE45 /* Buy.swift in Sources */,
 				2730E008275DBBBA0082BE45 /* Wallet.swift in Sources */,
+				274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */,
 				2730E018275DCD630082BE45 /* TransactionFee.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
 				27F12CE5275D75CC00D87182 /* CardRepresentable.swift in Sources */,
@@ -292,6 +310,8 @@
 				27F12CD1275CE0E600D87182 /* HomeView.swift in Sources */,
 				2730E00F275DC45A0082BE45 /* AutomationSummaryCell.swift in Sources */,
 				2730E016275DCC8E0082BE45 /* WalletBalance.swift in Sources */,
+				274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */,
+				274BA3A127622AF600B1E2D3 /* RuleCreatorSheet.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */,
 				27F12CE3275D700600D87182 /* ActionList.swift in Sources */,

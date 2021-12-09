@@ -11,10 +11,12 @@ struct HomeView: View {
     let automations: [Automation]
     @State var presentedAutomation: Automation? = nil
     
+    let column = [GridItem(.flexible())]
+    
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 15) {
+                LazyVGrid(columns: column, spacing: 15) {
                     ForEach(automations) { automation in
                         Button {
                             presentedAutomation = automation

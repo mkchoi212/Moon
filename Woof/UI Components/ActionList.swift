@@ -25,7 +25,8 @@ struct ActionList: View {
                     GenericActionCell(icon: action.type.icon,
                                       color: action.type.color,
                                       title: action.type.description,
-                                      description: action.description)
+                                      description: action.description,
+                                      backgroundColor: Color(uiColor: .secondarySystemGroupedBackground))
                 }
             }
         }

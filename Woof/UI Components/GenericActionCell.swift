@@ -12,6 +12,7 @@ struct GenericActionCell: View {
     var color: Color
     var title: String
     var description: Text
+    var backgroundColor: Color?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -52,7 +53,7 @@ struct GenericActionCell: View {
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12)
-                        .foregroundColor(Color(.systemBackground))
+                        .foregroundColor(backgroundColor ?? Color(.systemBackground))
                         .shadow(color: .black.opacity(0.1), radius: 25, x: 8, y: 8))
         .padding(.horizontal)
     }
