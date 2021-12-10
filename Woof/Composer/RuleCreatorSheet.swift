@@ -41,6 +41,7 @@ struct RuleSheetDescriptionLabelModifier: ViewModifier {
 }
 
 struct RuleOperatorRow: View {
+        
     var body: some View {
         Text("Logical operators")
             .modifier(RuleSheetHeaderModifier())
@@ -104,6 +105,7 @@ struct RuleCalendarRow: View {
 }
 
 struct RuleCreatorSheet: View {
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             RuleOperatorRow()
@@ -120,7 +122,7 @@ struct RuleCreatorSheet: View {
                     .padding()
                     .tint(.blue)
                     .frame(maxWidth: .infinity)
-                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(Color(hex: "e3e6f5")))
+                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(.lightBlue))
             }
             .padding(.trailing)
         }

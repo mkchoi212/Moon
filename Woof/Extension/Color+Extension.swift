@@ -38,4 +38,8 @@ extension Color {
     static var lightGray: Color {
         Color(uiColor: .lightGray)
     }
+    
+    static var lightBlue: Color {
+        Color.blue.opacity(0.15)
+    }
 }

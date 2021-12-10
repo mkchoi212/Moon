@@ -108,7 +108,9 @@ struct RuleCreatorView: View {
             
         }
         .background(Color(uiColor: .systemGroupedBackground))
-        .bottomSheet(bottomSheetPosition: $bottomSheetPosition, options: [.appleScrollBehavior, .background(AnyView(Color(uiColor: .secondarySystemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.4))], headerContent: {
+        .bottomSheet(bottomSheetPosition: $bottomSheetPosition,
+                     options: [.appleScrollBehavior, .background(AnyView(Color(uiColor: .secondarySystemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.4))],
+                     headerContent: {
             RuleCreatorSheetHeader(searchText: $searchText)
                 .onTapGesture {
                     self.bottomSheetPosition = .top
