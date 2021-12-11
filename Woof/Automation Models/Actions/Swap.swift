@@ -34,3 +34,12 @@ struct Swap: CardRepresentable, Action {
             .font(.system(size: 18, weight: .semibold))
     }
 }
+
+extension Swap: Equatable {
+    static func ==(lft: Swap, rht: Swap) -> Bool {
+        lft.wallet == rht.wallet &&
+        lft.fromCrypto == rht.fromCrypto &&
+        lft.toCrypto == rht.toCrypto &&
+        lft.amount == rht.amount
+    }
+}

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActionList: View {
     
-    var actions: [CardRepresentable]
+    @Binding var actions: [CardRepresentable]
     
     var body: some View {
         VStack(spacing: 18) {
@@ -22,7 +22,7 @@ struct ActionList: View {
                         .background(RoundedRectangle(cornerRadius: 4)
                                         .foregroundColor(Color(uiColor: .lightGray)))
                 } else {
-                    GenericActionCell(icon: action.type.icon,
+                    GenericActionCell(iconName: action.type.iconName,
                                       color: action.type.color,
                                       title: action.type.description,
                                       description: action.description,
@@ -36,9 +36,9 @@ struct ActionList: View {
 
 struct ActionList_Previews: PreviewProvider {
     static var previews: some View {
-        ActionList(actions: [And(), Or()])
+        ActionList(actions: .constant([And(), Or()]))
         
-        RuleCreatorView(automation: nil)
+        RuleCreatorView(automation: .empty)
     }
 }
 

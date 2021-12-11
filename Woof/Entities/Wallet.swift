@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Wallet: Hashable {
+struct Wallet: Equatable, Hashable {
     let name: String
     let address: String
     

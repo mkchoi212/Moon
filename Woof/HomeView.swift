@@ -13,7 +13,7 @@ struct EmptyHomeView: View {
     var body: some View {
         VStack(spacing: 18) {
             Image(systemName: "plus.square.dashed")
-                .font(.system(size: 44, weight: .medium))
+                .font(.system(size: 44, weight: .regular))
                 .foregroundColor(.lightGray)
 
             Text("No automations")

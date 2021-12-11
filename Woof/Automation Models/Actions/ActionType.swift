@@ -7,9 +7,44 @@
 
 import SwiftUI
 
-protocol Action {
+protocol Action: CardRepresentable {
     var type: TypeRepresentable { get }
+    func isEqualTo(_ other: Action) -> Bool
 }
+
+extension Action where Self: Equatable {
+    func isEqualTo(_ other: Action) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self == other
+    }
+}
+
+struct AnyEquatableAction: Action {
+    let action: Action
+    
+    var id: UUID {
+        action.id
+    }
+    
+    var description: Text {
+        action.description
+    }
+    
+    var type: TypeRepresentable {
+        action.type
+    }
+    
+    func isEqualTo(_ other: Action) -> Bool {
+        action.isEqualTo(other)
+    }
+}
+
+extension AnyEquatableAction: Equatable {
+    static func ==(lhs: AnyEquatableAction, rhs: AnyEquatableAction) -> Bool {
+        return lhs.action.isEqualTo(rhs.action)
+    }
+}
+
 
 enum ActionType: TypeRepresentable {
     case notification
@@ -20,22 +55,22 @@ enum ActionType: TypeRepresentable {
     case transfer
     case swap
     
-    var icon: Image? {
+    var iconName: String? {
         switch self {
             case .notification:
-                return Image(systemName: "bell.badge.fill")
+                return "bell.badge.fill"
             case .text:
-                return Image(systemName: "message.fill")
+                return "message.fill"
             case .email:
-                return Image(systemName: "envelope.fill")
+                return "envelope.fill"
             case .buy:
-                return Image(systemName: "cart.fill")
+                return "cart.fill"
             case .sell:
-                return Image(systemName: "sparkle")
+                return "sparkle"
             case .transfer:
-                return Image(systemName: "arrow.left")
+                return "arrow.left"
             case .swap:
-                return Image(systemName: "arrow.left.arrow.right")
+                return "arrow.left.arrow.right"
         }
     }
     

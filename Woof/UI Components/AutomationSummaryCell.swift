@@ -10,7 +10,7 @@ import SwiftUI
 struct IconSquare: View {
     var cornerRadius: CGFloat
     var color: Color
-    var icon: Image
+    var iconName: String
     var iconFontSize: CGFloat
     
     var body: some View {
@@ -18,7 +18,7 @@ struct IconSquare: View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .foregroundColor(color)
             
-            icon
+            Image(systemName: iconName)
                 .font(.system(size: iconFontSize, weight: .bold))
                 .foregroundColor(.white)
         }
@@ -32,7 +32,7 @@ struct ActionAbbreviationRow: View {
         HStack {
             IconSquare(cornerRadius: 4,
                        color: type.color,
-                       icon: type.icon ?? Image(systemName: "questionmark"),
+                       iconName: type.iconName ?? "questionmark",
                        iconFontSize: 12)
                 .frame(width: 22, height: 22, alignment: .center)
             
@@ -76,7 +76,7 @@ struct AutomationSummaryCell: View {
                 HStack {
                     IconSquare(cornerRadius: 8,
                                color: automation.color,
-                               icon: automation.icon,
+                               iconName: automation.iconName,
                                iconFontSize: 20)
                         .frame(width: 30, height: 30, alignment: .center)
                     
@@ -106,7 +106,7 @@ struct AutomationSummaryCell: View {
                 
                 HStack(alignment: .center) {
                     ActionAbbreviation(header: "Conditions",
-                                       types: automation.condition.map(\.type))
+                                       types: automation.conditions.map(\.type))
                     
                     Divider()
                     

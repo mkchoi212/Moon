@@ -7,9 +7,44 @@
 
 import SwiftUI
 
-protocol Condition {
+protocol Condition: CardRepresentable {
     var type: TypeRepresentable { get }
+    func isEqualTo(_ other: Condition) -> Bool
 }
+
+extension Condition where Self: Equatable {
+    func isEqualTo(_ other: Condition) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self == other
+    }
+}
+
+struct AnyEquatableCondition: Condition {
+    var condition: Condition
+    
+    var id: UUID {
+        condition.id
+    }
+    
+    var description: Text {
+        condition.description
+    }
+    
+    var type: TypeRepresentable {
+        condition.type
+    }
+    
+    func isEqualTo(_ other: Condition) -> Bool {
+        condition.isEqualTo(other)
+    }
+}
+
+extension AnyEquatableCondition: Equatable {
+    static func ==(lhs: AnyEquatableCondition, rhs: AnyEquatableCondition) -> Bool {
+        return lhs.condition.isEqualTo(rhs.condition)
+    }
+}
+
 
 enum ConditionType: String, CaseIterable, TypeRepresentable {
     case percentChange
@@ -33,18 +68,18 @@ enum ConditionType: String, CaseIterable, TypeRepresentable {
         }
     }
     
-    var icon: Image? {
+    var iconName: String? {
         switch self {
             case .percentChange:
-                return Image(systemName: "percent")
+                return "percent"
             case .priceChange:
-                return Image(systemName: "chart.bar.fill")
+                return "chart.bar.fill"
             case .transactionFee:
-                return Image(systemName: "wind")
+                return "wind"
             case .marketCap:
-                return Image(systemName: "magnifyingglass")
+                return "magnifyingglass"
             case .walletBalance:
-                return Image(systemName: "wallet.pass")
+                return "wallet.pass"
         }
     }
     

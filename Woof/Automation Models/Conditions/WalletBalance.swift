@@ -26,3 +26,12 @@ struct WalletBalance: CardRepresentable, Condition {
             .font(.system(size: 18, weight: .semibold, design: .rounded))
     }
 }
+
+extension WalletBalance: Equatable {
+    static func ==(lft: WalletBalance, rht: WalletBalance) -> Bool {
+        lft.wallet == rht.wallet &&
+        lft.crypto == rht.crypto &&
+        lft.comparator == rht.comparator &&
+        lft.price == rht.price
+    }
+}

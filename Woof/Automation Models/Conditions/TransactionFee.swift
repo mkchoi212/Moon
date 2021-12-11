@@ -23,3 +23,12 @@ struct TransactionFee: CardRepresentable, Condition {
             .font(.system(size: 18, weight: .semibold, design: .rounded))
     }
 }
+
+extension TransactionFee: Equatable {
+    static func ==(lft: TransactionFee, rht: TransactionFee) -> Bool {
+        lft.wallet == rht.wallet &&
+        lft.crypto == rht.crypto &&
+        lft.comparator == rht.comparator &&
+        lft.price == rht.price
+    }
+}

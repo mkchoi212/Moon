@@ -32,6 +32,8 @@
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* RuleCreatorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* RuleCreatorSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
+		27DA33FC276374F20035C7B0 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA33FB276374F20035C7B0 /* PersistanceController.swift */; };
+		27DA340127642F480035C7B0 /* RuleCreatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340027642F480035C7B0 /* RuleCreatorViewModel.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
 		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
@@ -73,6 +75,8 @@
 		274BA39E2760DC8700B1E2D3 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		274BA3A027622AF600B1E2D3 /* RuleCreatorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCreatorSheet.swift; sourceTree = "<group>"; };
 		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
+		27DA33FB276374F20035C7B0 /* PersistanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
+		27DA340027642F480035C7B0 /* RuleCreatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCreatorViewModel.swift; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
@@ -163,9 +167,11 @@
 		274BA3A227622AF800B1E2D3 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
+				274BA39E2760DC8700B1E2D3 /* IconPicker.swift */,
 				274BA3A327622B4000B1E2D3 /* RuleCell.swift */,
 				274BA3A027622AF600B1E2D3 /* RuleCreatorSheet.swift */,
 				27F12CD8275CEB8800D87182 /* RuleCreatorView.swift */,
+				27DA340027642F480035C7B0 /* RuleCreatorViewModel.swift */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -189,20 +195,20 @@
 		27F12CC1275CE07400D87182 /* Woof */ = {
 			isa = PBXGroup;
 			children = (
+				27DA33FB276374F20035C7B0 /* PersistanceController.swift */,
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
 				27F12CD0275CE0E600D87182 /* HomeView.swift */,
 				274BA3A227622AF800B1E2D3 /* Composer */,
-				274BA39E2760DC8700B1E2D3 /* IconPicker.swift */,
 				2730E006275DBBAD0082BE45 /* Entities */,
 				2730E003275DBB8E0082BE45 /* Automation Models */,
 				2730E00B275DBC070082BE45 /* UI Components */,
+				27F12CE8275D91D100D87182 /* Extension */,
+				27F12CC8275CE07400D87182 /* Preview Content */,
 				2730DFFB275DB59B0082BE45 /* CalendarRule.swift */,
 				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
 				27F12CD4275CE12200D87182 /* SettingsView.swift */,
-				27F12CE8275D91D100D87182 /* Extension */,
 				27F12CC6275CE07400D87182 /* Assets.xcassets */,
-				27F12CC8275CE07400D87182 /* Preview Content */,
 			);
 			path = Woof;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 				2730E023275DD0BF0082BE45 /* Buy.swift in Sources */,
 				2730E008275DBBBA0082BE45 /* Wallet.swift in Sources */,
 				274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */,
+				27DA340127642F480035C7B0 /* RuleCreatorViewModel.swift in Sources */,
 				2730E018275DCD630082BE45 /* TransactionFee.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
 				27F12CE5275D75CC00D87182 /* CardRepresentable.swift in Sources */,
@@ -335,6 +342,7 @@
 				2730E00A275DBBCE0082BE45 /* GenericActionCell.swift in Sources */,
 				2730E005275DBBA80082BE45 /* Crypto.swift in Sources */,
 				2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */,
+				27DA33FC276374F20035C7B0 /* PersistanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

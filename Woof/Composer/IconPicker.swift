@@ -118,7 +118,7 @@ struct IconPicker: View {
     
     var body: some View {
         VStack {
-            IconSquare(cornerRadius: 24, color: selectedColor, icon: Image(systemName: selectedIconName), iconFontSize: 60)
+            IconSquare(cornerRadius: 24, color: selectedColor, iconName: selectedIconName, iconFontSize: 60)
                 .frame(width: 110, height: 110, alignment: .center)
                 .padding()
             

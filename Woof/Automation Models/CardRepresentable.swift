@@ -14,10 +14,9 @@ protocol CardRepresentable {
 }
 
 protocol TypeRepresentable {
-    var icon: Image? { get }
+    var iconName: String? { get }
     var color: Color { get }
     var description: String { get }
 }
 
 protocol ConditionRepresentable { }
-

@@ -19,3 +19,11 @@ struct MarketCapChange: CardRepresentable, Condition {
         return Text("\(crypto.description) market cap is \(comparator.comparatorDescription) \(price.price)\(crypto.description)")
     }
 }
+
+extension MarketCapChange: Equatable {
+    static func ==(lft: MarketCapChange, rht: MarketCapChange) -> Bool {
+        lft.crypto == rht.crypto &&
+        lft.comparator == rht.comparator &&
+        lft.price == rht.price
+    }
+}

@@ -23,3 +23,11 @@ struct Sell: CardRepresentable, Condition {
             .font(.system(size: 18, weight: .semibold))
     }
 }
+
+extension Sell: Equatable {
+    static func ==(lft: Sell, rht: Sell) -> Bool {
+        lft.crypto == rht.crypto &&
+        lft.amount == rht.amount &&
+        lft.wallet == rht.wallet
+    }
+}

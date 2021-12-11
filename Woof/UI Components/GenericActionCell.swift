@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GenericActionCell: View {
-    var icon: Image?
+    var iconName: String?
     var color: Color
     var title: String
     var description: Text
@@ -19,10 +19,10 @@ struct GenericActionCell: View {
             HStack(spacing: 12) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 6)
-                                    .foregroundColor(color)
+                        .foregroundColor(color)
                     
-                    if let icon = icon {
-                        icon
+                    if let iconName = iconName {
+                        Image(systemName: iconName)
                             .resizable()
                             .foregroundColor(.white)
                             .aspectRatio(contentMode: .fit)
@@ -63,7 +63,7 @@ struct GenericActionCell_Previews: PreviewProvider {
     static let dummyCondition = MarketCapChange(crypto: .eth, comparator: .less, price: 1000)
     
     static var previews: some View {
-        GenericActionCell(icon: dummyCondition.type.icon,
+        GenericActionCell(iconName: dummyCondition.type.iconName,
                           color: dummyCondition.type.color,
                           title: dummyCondition.type.description,
                           description: dummyCondition.description)

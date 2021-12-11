@@ -21,3 +21,10 @@ struct SendEmail: CardRepresentable, Action {
             .font(.system(size: 18, weight: .semibold))
     }
 }
+
+extension SendEmail: Equatable {
+    static func ==(lft: SendEmail, rht: SendEmail) -> Bool {
+        lft.email == rht.email
+    }
+}
+

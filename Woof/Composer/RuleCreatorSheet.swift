@@ -69,7 +69,7 @@ struct RulePropertyRow: View {
             HStack(spacing: 15) {
                 ForEach(ConditionType.allCases, id: \.self) { cond in
                     VStack(alignment: .center) {
-                        RuleCell(image: AnyView(cond.icon
+                        RuleCell(image: AnyView(Image(systemName: cond.iconName ?? "questionmark")
                                                     .foregroundColor(.white)
                                                     .font(.system(size: 24, weight: .bold))),
                                  color: cond.color,

@@ -18,3 +18,9 @@ struct SendNotification: CardRepresentable, Action {
             .font(.system(size: 18))
     }
 }
+
+extension SendNotification: Equatable {
+    static func ==(lft: SendNotification, rht: SendNotification) -> Bool {
+        lft.message == rht.message
+    }
+}

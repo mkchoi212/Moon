@@ -21,3 +21,9 @@ struct SendText: CardRepresentable, Action {
             .font(.system(size: 18, weight: .semibold))
     }
 }
+
+extension SendText: Equatable {
+    static func ==(lft: SendText, rht: SendText) -> Bool {
+        lft.phoneNumber == rht.phoneNumber
+    }
+}

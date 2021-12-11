@@ -34,3 +34,12 @@ struct Transfer: CardRepresentable, Condition {
             .font(.system(size: 18, weight: .semibold))
     }
 }
+
+extension Transfer: Equatable {
+    static func ==(lft: Transfer, rht: Transfer) -> Bool {
+        lft.crypto == rht.crypto &&
+        lft.fromWallet == rht.fromWallet &&
+        lft.toWallet == rht.toWallet &&
+        lft.amount == rht.amount
+    }
+}

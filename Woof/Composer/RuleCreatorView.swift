@@ -21,10 +21,10 @@ enum CustomBottomSheetPosition: CGFloat, CaseIterable {
 struct RuleCreatorHeaderView: View {
     @Binding var name: String
     @Binding var iconColor: Color
-    @Binding var imageName: String
-    @Environment(\.presentationMode) var presentationMode
-    
+    @Binding var iconName: String
     @State var showIconSelector = false
+    
+    var dismiss: () -> ()
     
     var body: some View {
         HStack(spacing: 12) {
@@ -36,7 +36,7 @@ struct RuleCreatorHeaderView: View {
                         .frame(width: 32, height: 32)
                         .foregroundColor(iconColor)
                     
-                    Image(systemName: imageName)
+                    Image(systemName: iconName)
                         .tint(.white)
                 }.padding(2)
                     .overlay {
@@ -49,7 +49,7 @@ struct RuleCreatorHeaderView: View {
                 .font(.system(size: 20, weight: .semibold))
             
             Button {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             } label: {
                 Image(systemName: "xmark.circle.fill")
                     .resizable()
@@ -59,7 +59,7 @@ struct RuleCreatorHeaderView: View {
         }
         .sheet(isPresented: $showIconSelector) {
             NavigationView {
-                IconPicker(selectedColor: $iconColor, selectedIconName: $imageName)
+                IconPicker(selectedColor: $iconColor, selectedIconName: $iconName)
                     .navigationBarTitleDisplayMode(.inline)
             }
         }
@@ -68,23 +68,18 @@ struct RuleCreatorHeaderView: View {
 
 struct RuleCreatorView: View {
     @State var tabSelection = 0
-    @State var name: String
-    @State var iconColor: Color = .blue
-    @State var imageName = "moon.fill"
     @State var searchText = ""
     @State var bottomSheetPosition: CustomBottomSheetPosition = .bottom
+    @StateObject var viewModel = RuleCreatorViewModel()
     
-    var automation: Automation?
-    
-    init(automation: Automation?) {
-        _name = State(initialValue: automation?.title ?? "")
-        self.automation = automation
-    }
+    var automation: Automation
     
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 12) {
-                RuleCreatorHeaderView(name: $name, iconColor: $iconColor, imageName: $imageName)
+                RuleCreatorHeaderView(name: $viewModel.name, iconColor: $viewModel.iconColor, iconName: $viewModel.iconName) {
+                    
+                }
                 
                 Picker("View mode", selection: $tabSelection) {
                     Text("Condition").tag(0)
@@ -97,16 +92,19 @@ struct RuleCreatorView: View {
             
             ScrollView {
                 if tabSelection == RuleCreatorViewMode.condition.rawValue {
-                    ActionList(actions: automation?.condition as? [CardRepresentable] ?? [])
+                    ActionList(actions: $viewModel.conditions)
                         .padding(.top, 15)
                 } else {
-                    ActionList(actions: automation?.actions as? [CardRepresentable] ?? [])
+                    ActionList(actions: $viewModel.actions)
                         .padding(.top, 15)
                 }
             }
             .frame(maxHeight: .infinity)
             
         }
+        .onAppear(perform: {
+            viewModel.set(automation: automation)
+        })
         .background(Color(uiColor: .systemGroupedBackground))
         .bottomSheet(bottomSheetPosition: $bottomSheetPosition,
                      options: [.appleScrollBehavior, .background(AnyView(Color(uiColor: .secondarySystemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.4))],
@@ -126,10 +124,10 @@ struct RuleCreatorView: View {
 
 struct RuleCreatorView_Previews: PreviewProvider {
     static var previews: some View {
-        RuleCreatorView(automation: .dummy.first)
+        RuleCreatorView(automation: .empty)
             .preferredColorScheme(.dark)
         
-        RuleCreatorView(automation: .dummy.first)
+        RuleCreatorView(automation: .empty)
             .preferredColorScheme(.light)
     }
 }

@@ -43,7 +43,7 @@ enum LogicalOperator: String, TypeRepresentable, CaseIterable {
         Color(uiColor: .lightGray)
     }
     
-    var icon: Image? {
+    var iconName: String? {
         nil
     }
 }

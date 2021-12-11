@@ -26,3 +26,11 @@ struct PercentChange: CardRepresentable, Condition {
             .font(.system(size: 18, weight: .semibold))
     }
 }
+
+extension PercentChange: Equatable {
+    static func ==(lft: PercentChange, rht: PercentChange) -> Bool {
+        lft.crypto == rht.crypto &&
+        lft.comparator == rht.comparator &&
+        lft.percentage == rht.percentage
+    }
+}

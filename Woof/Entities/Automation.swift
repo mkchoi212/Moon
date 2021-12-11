@@ -11,11 +11,11 @@ struct Automation: Identifiable {
     let id = UUID()
     let title: String
     let color: Color
-    let icon: Image
-    let condition: [Condition]
-    let actions: [Action]
+    let iconName: String
+    let conditions: [AnyEquatableCondition]
+    let actions: [AnyEquatableAction]
     
-    static let empty = Automation(title: "", color: .blue, icon: Image(systemName: "moon"), condition: [], actions: [])
+    static let empty = Automation(title: "", color: .blue, iconName: "moon.fill", conditions: [], actions: [])
     
     static let dummy: [Automation] = []
 //    [
