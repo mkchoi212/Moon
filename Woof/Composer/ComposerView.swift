@@ -83,14 +83,24 @@ struct ComposerView: View {
         })
         .background(Color(uiColor: .systemGroupedBackground))
         .modifier(BottomSheetModifier(searchText: $searchText, bottomSheetPosition: $bottomSheetPosition))
+        .actionSheet(isPresented: $showDismissConfirmation) {
+            ActionSheet(title: Text("Discard changes?"), buttons: [
+                .destructive(Text("Discard"), action: forceDismiss),
+                .cancel(Text("Cancel"))
+            ])
+         }
     }
     
     func dismiss() {
         if !viewModel.hasChanges() {
-            presentationMode.wrappedValue.dismiss()
+            forceDismiss()
         } else {
            showDismissConfirmation = true
         }
+    }
+    
+    func forceDismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
