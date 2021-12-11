@@ -1,5 +1,5 @@
 //
-//  RuleCreatorSheet.swift
+//  ComposerSheet.swift
 //  Woof
 //
 //  Created by Mike Choi on 12/9/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RuleCreatorSheetHeader: View {
+struct ComposerSheetHeader: View {
     @Binding var searchText: String
     
     var body: some View {
@@ -104,7 +104,7 @@ struct RuleCalendarRow: View {
     }
 }
 
-struct RuleCreatorSheet: View {
+struct ComposerSheet: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -130,8 +130,8 @@ struct RuleCreatorSheet: View {
     }
 }
 
-struct RuleCreatorSheet_Previews: PreviewProvider {
+struct ComposerSheet_Previews: PreviewProvider {
     static var previews: some View {
-        RuleCreatorSheet()
+        ComposerSheet()
     }
 }

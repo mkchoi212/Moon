@@ -1,5 +1,5 @@
 //
-//  RuleCreatorViewModel.swift
+//  ComposerViewModel.swift
 //  Woof
 //
 //  Created by Mike Choi on 12/11/21.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class RuleCreatorViewModel: ObservableObject {
+final class ComposerViewModel: ObservableObject {
     var original: Automation = .empty
     
     @Published var name: String = ""
@@ -27,11 +27,11 @@ final class RuleCreatorViewModel: ObservableObject {
         actions = automation.actions.map(AnyEquatableAction.init)
     }
     
-    func diff() -> Bool {
-        original.title == name &&
+    func hasChanges() -> Bool {
+        !(original.title == name &&
         original.iconName == iconName &&
         original.color == iconColor &&
         original.conditions == conditions.compactMap { $0 as? Condition }.map(AnyEquatableCondition.init) &&
-        original.actions == actions.compactMap { $0 as? Action }.map(AnyEquatableAction.init)
+        original.actions == actions.compactMap { $0 as? Action }.map(AnyEquatableAction.init))
     }
 }

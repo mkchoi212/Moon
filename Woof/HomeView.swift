@@ -87,7 +87,7 @@ struct HomeView: View {
         .fullScreenCover(item: $presentedAutomation, onDismiss: {
             presentedAutomation = nil
         }) { automation in
-            RuleCreatorView(automation: automation)
+            ComposerView(automation: automation)
         }
     }
 }

@@ -38,7 +38,7 @@ struct ActionList_Previews: PreviewProvider {
     static var previews: some View {
         ActionList(actions: .constant([And(), Or()]))
         
-        RuleCreatorView(automation: .empty)
+        ComposerView(automation: .empty)
     }
 }
 
