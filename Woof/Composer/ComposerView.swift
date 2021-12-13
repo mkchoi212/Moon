@@ -14,7 +14,7 @@ enum ComposerViewMode: Int {
 
 enum CustomBottomSheetPosition: CGFloat, CaseIterable {
     case top = 0.99
-    case middle = 0.4
+//    case middle = 0.4
     case bottom = 0.125
 }
 
@@ -22,10 +22,12 @@ struct BottomSheetModifier: ViewModifier {
     @Binding var searchText: String
     @Binding var bottomSheetPosition: CustomBottomSheetPosition
     
+    @ObservedObject var viewModel: ComposerViewModel
+    
     func body(content: Content) -> some View {
         content
             .bottomSheet(bottomSheetPosition: $bottomSheetPosition,
-                         options: [.appleScrollBehavior, .background(AnyView(Color(uiColor: .secondarySystemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.4))],
+                         options: [.appleScrollBehavior, .allowContentDrag, .background(AnyView(Color(uiColor: .secondarySystemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.1))],
                          headerContent: {
                 ComposerSheetHeader(searchText: $searchText)
                     .onTapGesture {
@@ -33,6 +35,7 @@ struct BottomSheetModifier: ViewModifier {
                     }
             }) {
                 ComposerSheet()
+                    .environmentObject(viewModel)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .transition(.opacity)
                     .animation(.easeInOut, value: bottomSheetPosition)
@@ -45,6 +48,7 @@ struct ComposerView: View {
     @State var searchText = ""
     @State var bottomSheetPosition: CustomBottomSheetPosition = .bottom
     @State var showDismissConfirmation = false
+    
     @StateObject var viewModel = ComposerViewModel()
     
     var automation: Automation
@@ -82,7 +86,7 @@ struct ComposerView: View {
             viewModel.set(automation: automation)
         })
         .background(Color(uiColor: .systemGroupedBackground))
-        .modifier(BottomSheetModifier(searchText: $searchText, bottomSheetPosition: $bottomSheetPosition))
+        .modifier(BottomSheetModifier(searchText: $searchText, bottomSheetPosition: $bottomSheetPosition, viewModel: viewModel))
         .actionSheet(isPresented: $showDismissConfirmation) {
             ActionSheet(title: Text("Discard changes?"), buttons: [
                 .destructive(Text("Discard"), action: forceDismiss),
@@ -106,9 +110,6 @@ struct ComposerView: View {
 
 struct ComposerView_Previews: PreviewProvider {
     static var previews: some View {
-        ComposerView(automation: .empty)
-            .preferredColorScheme(.dark)
-        
         ComposerView(automation: .empty)
             .preferredColorScheme(.light)
     }

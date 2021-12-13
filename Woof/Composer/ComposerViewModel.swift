@@ -34,4 +34,8 @@ final class ComposerViewModel: ObservableObject {
         original.conditions == conditions.compactMap { $0 as? Condition }.map(AnyEquatableCondition.init) &&
         original.actions == actions.compactMap { $0 as? Action }.map(AnyEquatableAction.init))
     }
+    
+    func addCondition(_ condition: TypeRepresentable) {
+        print(condition)
+    }
 }

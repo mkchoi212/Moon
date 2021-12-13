@@ -35,76 +35,92 @@ struct RuleSheetDescriptionLabelModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .lineLimit(2)
-            .font(.system(size: 14, weight: .regular))
+            .font(.system(size: 13, weight: .regular))
             .multilineTextAlignment(.center)
     }
 }
 
 struct RuleOperatorRow: View {
-        
+    @EnvironmentObject var viewModel: ComposerViewModel
+    
     var body: some View {
         Text("Logical operators")
             .modifier(RuleSheetHeaderModifier())
         
-        HStack(spacing: 15) {
+        HStack(alignment: .top, spacing: 15) {
             ForEach(LogicalOperator.allCases, id: \.self) { op in
-                VStack {
-                    RuleCell(image: AnyView(Text(op.description)
-                                                .foregroundColor(.white)
-                                                .font(.system(size: 17, weight: .bold, design: .monospaced))),
-                             color: op.color,
-                             title: op.rawValue.capitalized)
+                Button {
+                    viewModel.addCondition(op)
+                } label: {
+                    VStack {
+                        RuleCell(image: AnyView(Text(op.description)
+                                                    .foregroundColor(.white)
+                                                    .font(.system(size: 17, weight: .bold, design: .monospaced))),
+                                 color: op.color,
+                                 title: op.rawValue.capitalized)
+                    }
                 }
+                .buttonStyle(.plain)
             }
         }
     }
 }
 
 struct RulePropertyRow: View {
+    @EnvironmentObject var viewModel: ComposerViewModel
+
     var body: some View {
         Text("Property")
             .modifier(RuleSheetHeaderModifier())
         
-        ScrollView {
-            HStack(spacing: 15) {
-                ForEach(ConditionType.allCases, id: \.self) { cond in
+        HStack(alignment: .top, spacing: 15) {
+            ForEach(ConditionType.allCases, id: \.self) { cond in
+                Button {
+                    viewModel.addCondition(cond)
+                } label: {
                     VStack(alignment: .center) {
                         RuleCell(image: AnyView(Image(systemName: cond.iconName ?? "questionmark")
                                                     .foregroundColor(.white)
                                                     .font(.system(size: 24, weight: .bold))),
                                  color: cond.color,
                                  title: cond.description)
-                        
-                        Spacer()
                     }
                 }
+                .buttonStyle(.plain)
             }
         }
     }
 }
 
 struct RuleCalendarRow: View {
+    @EnvironmentObject var viewModel: ComposerViewModel
+
     var body: some View {
         Text("Calendar")
             .modifier(RuleSheetHeaderModifier())
         
-        HStack(spacing: 15) {
+        HStack(alignment: .top, spacing: 15) {
             ForEach(CalendarRule.allCases, id: \.self) { op in
-                VStack(alignment: .center) {
-                    RuleCell(image: AnyView(Text(op.abbreviation)
-                                                .foregroundColor(.white)
-                                                .font(.system(size: 24, weight: .bold, design: .rounded))),
-                             color: op.color,
-                             title: op.description)
-                    
-                    Spacer()
+                Button {
+                    viewModel.addCondition(op)
+                } label: {
+                    VStack(alignment: .center) {
+                        RuleCell(image: AnyView(Text(op.abbreviation)
+                                                    .foregroundColor(.white)
+                                                    .font(.system(size: 24, weight: .bold, design: .rounded))),
+                                 color: op.color,
+                                 title: op.description)
+                    }
                 }
+                .buttonStyle(.plain)
             }
         }
     }
 }
 
 struct ComposerSheet: View {
+    
+    @EnvironmentObject var viewModel: ComposerViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -133,5 +149,6 @@ struct ComposerSheet: View {
 struct ComposerSheet_Previews: PreviewProvider {
     static var previews: some View {
         ComposerSheet()
+        ComposerView(bottomSheetPosition: .top, automation: .empty)
     }
 }
