@@ -11,20 +11,18 @@ struct TransactionFee: CardRepresentable, Condition {
     let type = ConditionType.transactionFee
     
     let id: UUID = .init()
-    let wallet: Wallet
-    let crypto: Crypto
-    let comparator: Comparator
-    let price: Double
+    let wallet: Wallet?
+    let crypto: Crypto?
+    let comparator: Comparator?
+    let price: Double?
    
     var entities: [TextEntity] {
-        []
-    }
-    
-    var description: Text {
-        return Text("Average \(crypto.description) transaction fee is").font(.system(size: 18)) +
-        Text(" \(comparator.comparatorDescription) \(price.price)\(crypto.description)")
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold, design: .rounded))
+        [
+            TextEntity(text: "Average transaction fee for"),
+            TextEntity(text: crypto?.description, action: .cryptoType),
+            TextEntity(text: "is"),
+            TextEntity(thresholdPrice: price, crypto: crypto)
+        ]
     }
 }
 

@@ -19,8 +19,7 @@ struct Transfer: CardRepresentable, Action {
     var entities: [TextEntity] {
         [
             TextEntity(text: "Transfer"),
-            TextEntity(text: amount?.price, action: .cryptoAmount),
-            TextEntity(text: crypto?.description, action: .cryptoType),
+            TextEntity(thresholdPrice: amount, crypto: crypto),
             TextEntity(text: "from"),
             TextEntity(text: fromWallet?.name, action: .wallet),
             TextEntity(text: "to"),

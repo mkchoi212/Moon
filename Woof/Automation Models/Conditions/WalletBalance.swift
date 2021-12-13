@@ -11,23 +11,19 @@ struct WalletBalance: CardRepresentable, Condition {
     let type = ConditionType.walletBalance
     
     let id: UUID = .init()
-    let wallet: Wallet
-    let crypto: Crypto
-    let comparator: Comparator
-    let price: Double
+    let wallet: Wallet?
+    let crypto: Crypto?
+    let comparator: Comparator?
+    let price: Double?
     
     var entities: [TextEntity] {
-        []
-    }
-    
-    var description: Text {
-        return Text(wallet.name + " \(crypto.description)")
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold, design: .rounded))
-        + Text(" balance is ") +
-        Text("\(comparator.comparatorDescription) \(price.price)\(crypto.description)")
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold, design: .rounded))
+        [
+            TextEntity(text: "Balance of"),
+            TextEntity(text: wallet?.name, action: .wallet),
+            TextEntity(text: "is"),
+            TextEntity(text: comparator?.comparatorDescription, action: .comparator),
+            TextEntity(thresholdPrice: price, crypto: crypto)
+        ]
     }
 }
 

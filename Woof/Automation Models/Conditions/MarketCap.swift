@@ -11,16 +11,18 @@ struct MarketCapChange: CardRepresentable, Condition {
     let type = ConditionType.marketCap
     
     let id: UUID = .init()
-    let crypto: Crypto
-    let comparator: Comparator
-    let price: Double
+    let crypto: Crypto?
+    let comparator: Comparator?
+    let price: Double?
    
     var entities: [TextEntity] {
-        []
-    }
-    
-    var description: Text {
-        return Text("\(crypto.description) market cap is \(comparator.comparatorDescription) \(price.price)\(crypto.description)")
+        [
+            TextEntity(text: "Market cap of"),
+            TextEntity(text: crypto?.description, action: .cryptoType),
+            TextEntity(text: "is"),
+            TextEntity(text: comparator?.comparatorDescription, action: .comparator),
+            TextEntity(thresholdPrice: price, crypto: crypto)
+        ]
     }
 }
 

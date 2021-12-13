@@ -115,4 +115,19 @@ enum ConditionType: String, CaseIterable {
                 return .purple
         }
     }
+    
+    func makeEntity() -> Condition {
+        switch self {
+            case .percentChange:
+                return PercentChange(crypto: nil, comparator: nil, percentage: nil)
+            case .priceChange:
+                return PriceChange(crypto: nil, comparator: nil, price: nil)
+            case .walletBalance:
+                return WalletBalance(wallet: nil, crypto: nil, comparator: nil, price: nil)
+            case .transactionFee:
+                return TransactionFee(wallet: nil, crypto: nil, comparator: nil, price: nil)
+            case .marketCap:
+                return MarketCapChange(crypto: nil, comparator: nil, price: nil)
+        }
+    }
 }

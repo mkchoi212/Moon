@@ -13,6 +13,7 @@ struct GenericActionCell: View {
     var title: String
     var description: AttributedString
     var backgroundColor: Color?
+    var didTapDelete : (() -> ())?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -40,6 +41,9 @@ struct GenericActionCell: View {
                 Spacer()
                 
                 Button {
+                    withAnimation {
+                        didTapDelete?()
+                    }
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .resizable()
@@ -66,6 +70,7 @@ struct GenericActionCell_Previews: PreviewProvider {
         GenericActionCell(iconName: dummyCondition.type.iconName,
                           color: dummyCondition.type.color,
                           title: dummyCondition.type.description,
-                          description: AttributedString(dummyCondition.description))
+                          description: AttributedString(dummyCondition.description),
+                          didTapDelete: nil)
     }
 }

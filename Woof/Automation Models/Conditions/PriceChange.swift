@@ -11,16 +11,15 @@ struct PriceChange: CardRepresentable, Condition {
     let type = ConditionType.priceChange
     
     let id: UUID = .init()
-    let crypto: Crypto
-    let comparator: Comparator
-    let price: Double
+    let crypto: Crypto?
+    let comparator: Comparator?
+    let price: Double?
     
     var entities: [TextEntity] {
         [
-            TextEntity(text: crypto.description, action: .cryptoType),
-            TextEntity(text: comparator.comparatorDescription, action: .comparator),
-            TextEntity(text: price.price, action: .cryptoAmount),
-            TextEntity(text: crypto.description, action: .cryptoType),
+            TextEntity(text: crypto?.description, action: .cryptoType),
+            TextEntity(text: comparator?.comparatorDescription, action: .comparator),
+            TextEntity(thresholdPrice: price, crypto: crypto)
         ]
     }
 }

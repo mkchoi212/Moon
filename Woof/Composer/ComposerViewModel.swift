@@ -35,7 +35,7 @@ final class ComposerViewModel: ObservableObject {
         original.actions == actions.compactMap { $0 as? Action }.map(AnyEquatableAction.init))
     }
     
-    func addCondition(_ condition: Condition) {
-        print(condition)
+    func addCondition(_ condition: ConditionType) {
+        conditions.append(condition.makeEntity())
     }
 }

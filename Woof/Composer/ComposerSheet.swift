@@ -76,6 +76,7 @@ struct RulePropertyRow: View {
         HStack(alignment: .top, spacing: 15) {
             ForEach(ConditionType.allCases, id: \.self) { cond in
                 Button {
+                    viewModel.addCondition(cond)
                 } label: {
                     VStack(alignment: .center) {
                         RuleCell(image: AnyView(Image(systemName: cond.iconName ?? "questionmark")

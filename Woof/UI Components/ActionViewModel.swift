@@ -40,4 +40,12 @@ extension TextEntity {
     init(text: String) {
         self.init(text: text, action: nil)
     }
+    
+    init(thresholdPrice: Double?, crypto: Crypto?) {
+        if let price = thresholdPrice, let crypto = crypto {
+            self.init(text: "\(price.price)\(crypto.description)", action: .cryptoAmount)
+        } else {
+            self.init(text: nil, action: .cryptoAmount)
+        }
+    }
 }
