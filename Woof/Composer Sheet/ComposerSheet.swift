@@ -35,7 +35,7 @@ struct RuleOperatorRow: View {
         HStack(alignment: .top, spacing: 15) {
             ForEach(OperatorType.allCases, id: \.self) { op in
                 Button {
-//                                        viewModel.addCondition(op)
+//                    viewModel.addCondition(op)
                 } label: {
                     VStack {
                         RuleCell(image: AnyView(Text(op.description)
@@ -87,7 +87,7 @@ struct RuleCalendarRow: View {
         HStack(alignment: .top, spacing: 15) {
             ForEach(CalendarRule.allCases, id: \.self) { op in
                 Button {
-                    //                    viewModel.addCondition(op)
+//                    viewModel.addCondition(op)
                 } label: {
                     VStack(alignment: .center) {
                         RuleCell(image: AnyView(Text(op.abbreviation)
@@ -105,6 +105,7 @@ struct RuleCalendarRow: View {
 
 struct ComposerSheet: View {
     @EnvironmentObject var viewModel: ComposerViewModel
+    @Binding var mode: Int
     @State private var searchText = ""
     @State private var isShowingCancelButton = false
     var proxy: FloatingPanelProxy?
@@ -113,7 +114,7 @@ struct ComposerSheet: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 SearchBar(
-                    "Search for an action",
+                    "Search for \(mode == 0 ? "a condition" : "an action")",
                     text: $searchText,
                     isShowingCancelButton: $isShowingCancelButton
                 ) { isFocused in
@@ -125,11 +126,15 @@ struct ComposerSheet: View {
                 
                 VStack(alignment: .leading, spacing: 12) {
                     RuleOperatorRow()
-                    Divider()
-                    RulePropertyRow()
-                    Divider()
-                    RuleCalendarRow()
-                    Divider()
+                    
+                    if mode == ComposerViewMode.condition.rawValue {
+                        Divider()
+                        RulePropertyRow()
+                        Divider()
+                        RuleCalendarRow()
+                        Divider()
+                    } else {
+                    }
                     
                     Button {
                     } label: {
@@ -149,14 +154,18 @@ struct ComposerSheet: View {
             proxy?.track(scrollView: scrollView)
         }
         .padding(.top, 6)
-        .background(.background)
+        .background(Color(uiColor: .tertiarySystemBackground))
         .ignoresSafeArea()
     }
 }
 
 struct ComposerSheet_Previews: PreviewProvider {
     static var previews: some View {
-        ComposerSheet(proxy: nil)
-        ComposerView(automation: .empty)
+        ComposerView(viewModel: ComposerViewModel(automation: .empty))
+            .preferredColorScheme(.dark)
+        
+        ComposerView(viewModel: ComposerViewModel(automation: .empty))
+            .preferredColorScheme(.light)
+        
     }
 }

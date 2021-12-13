@@ -12,14 +12,10 @@ enum ComposerViewMode: Int {
     case condition, action
 }
 
-struct ComposerView: View {
-    @State var tabSelection = 0
-    @State var showDismissConfirmation = false
-    @StateObject var viewModel = ComposerViewModel()
-    let panelDelegate = PanelDelegate()
-    var automation: Automation
-    
-    @Environment(\.presentationMode) var presentationMode
+struct ComposerContentView: View {
+    @Binding var mode: Int
+    @EnvironmentObject var viewModel: ComposerViewModel
+    var dismiss: () -> ()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -28,7 +24,7 @@ struct ComposerView: View {
                     dismiss()
                 }
                 
-                Picker("View mode", selection: $tabSelection) {
+                Picker("View mode", selection: $mode) {
                     Text("Condition").tag(0)
                     Text("Action").tag(1)
                 }
@@ -38,7 +34,7 @@ struct ComposerView: View {
             .background(.thinMaterial)
             
             ScrollView {
-                if tabSelection == ComposerViewMode.condition.rawValue {
+                if mode == ComposerViewMode.condition.rawValue {
                     ActionList(actions: $viewModel.conditions)
                         .padding(.top, 15)
                 } else {
@@ -46,30 +42,42 @@ struct ComposerView: View {
                         .padding(.top, 15)
                 }
             }
-            .frame(maxHeight: .infinity)
         }
-        .floatingPanel(delegate: panelDelegate) { proxy in
-            ComposerSheet(proxy: proxy)
-                .environmentObject(viewModel)
-        }
-        .floatingPanelSurfaceAppearance(.phone)
-        .onAppear(perform: {
-            viewModel.set(automation: automation)
-        })
         .background(Color(uiColor: .systemGroupedBackground))
-        .actionSheet(isPresented: $showDismissConfirmation) {
-            ActionSheet(title: Text("Discard changes?"), buttons: [
-                .destructive(Text("Discard"), action: forceDismiss),
-                .cancel(Text("Cancel"))
-            ])
-         }
+    }
+    
+}
+
+struct ComposerView: View {
+    @State var mode: Int = 0
+    @StateObject var viewModel: ComposerViewModel
+    @State var showDismissConfirmation = false
+    let panelDelegate = PanelDelegate()
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        ComposerContentView(mode: $mode, dismiss: dismiss)
+            .environmentObject(viewModel)
+            .floatingPanel(delegate: panelDelegate) { proxy in
+                ComposerSheet(mode: $mode, proxy: proxy)
+                    .environmentObject(viewModel)
+            }
+            .floatingPanelSurfaceAppearance(.phone)
+            .actionSheet(isPresented: $showDismissConfirmation) {
+                ActionSheet(title: Text("Discard changes?"), buttons: [
+                    .destructive(Text("Discard"), action: forceDismiss),
+                    .cancel(Text("Cancel"))
+                ])
+            }
+        
     }
     
     func dismiss() {
         if !viewModel.hasChanges() {
             forceDismiss()
         } else {
-           showDismissConfirmation = true
+            showDismissConfirmation = true
         }
     }
     
@@ -80,7 +88,7 @@ struct ComposerView: View {
 
 struct ComposerView_Previews: PreviewProvider {
     static var previews: some View {
-        ComposerView(automation: Automation.dummy[0])
+        ComposerView(viewModel: ComposerViewModel(automation: Automation.dummy[0]))
             .preferredColorScheme(.light)
     }
 }

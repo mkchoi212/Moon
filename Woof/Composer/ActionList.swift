@@ -21,7 +21,11 @@ struct ActionViewModel {
                     sub.backgroundColor = .lightBlue
                     sub.font = .system(size: 18, weight: .semibold, design: .rounded)
                 } else {
-                    sub = AttributedString(action.placeholder)
+                    var placeholder = action.placeholder
+                    if i > 0 {
+                        placeholder = placeholder.lowercased()
+                    }
+                    sub = AttributedString(placeholder)
                     sub.foregroundColor = .gray
                     sub.backgroundColor = .lightBlue
                     sub.font = .system(size: 18, weight: .medium, design: .rounded)

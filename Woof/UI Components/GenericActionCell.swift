@@ -17,7 +17,7 @@ struct GenericActionCell: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(spacing: 12) {
+            HStack(spacing: 6) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 6)
                         .foregroundColor(color)

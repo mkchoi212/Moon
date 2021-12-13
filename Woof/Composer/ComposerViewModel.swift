@@ -16,8 +16,8 @@ final class ComposerViewModel: ObservableObject {
     @Published var iconColor: Color = .blue
     @Published var conditions: [CardRepresentable] = []
     @Published var actions: [CardRepresentable] = []
-    
-    func set(automation: Automation) {
+   
+    init(automation: Automation) {
         self.original = automation
         
         name = automation.title
@@ -36,6 +36,6 @@ final class ComposerViewModel: ObservableObject {
     }
     
     func addCondition(_ condition: ConditionType) {
-        conditions.append(condition.makeEntity())
+        conditions.append(AnyEquatableCondition(condition: condition.makeEntity()))
     }
 }
