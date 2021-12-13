@@ -11,7 +11,7 @@ struct GenericActionCell: View {
     var iconName: String?
     var color: Color
     var title: String
-    var description: Text
+    var description: AttributedString
     var backgroundColor: Color?
     
     var body: some View {
@@ -49,7 +49,7 @@ struct GenericActionCell: View {
                 }
             }
             
-            description
+            Text(description)
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12)
@@ -66,6 +66,6 @@ struct GenericActionCell_Previews: PreviewProvider {
         GenericActionCell(iconName: dummyCondition.type.iconName,
                           color: dummyCondition.type.color,
                           title: dummyCondition.type.description,
-                          description: dummyCondition.description)
+                          description: AttributedString(dummyCondition.description))
     }
 }

@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct Swap: CardRepresentable, Action {
-    let type: TypeRepresentable = ActionType.swap
+    let type = ActionType.swap
     
     let id: UUID = .init()
     let wallet: Wallet
     let fromCrypto: Crypto
     let toCrypto: Crypto
     let amount: Double
+   
+    var entities: [TextEntity] {
+        []
+    }
     
     var description: Text {
         return Text("Swap ")

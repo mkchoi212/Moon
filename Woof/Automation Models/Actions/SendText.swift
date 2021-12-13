@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct SendText: CardRepresentable, Action {
-    let type: TypeRepresentable = ActionType.text
+    let type = ActionType.text
     
     let id: UUID = .init()
     let phoneNumber: String
+    
+    var entities: [TextEntity] {
+        []
+    }
     
     var description: Text {
         return Text("Text ")

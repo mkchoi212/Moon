@@ -17,12 +17,12 @@ struct Automation: Identifiable {
     
     static let empty = Automation(title: "", color: .blue, iconName: "moon.fill", conditions: [], actions: [])
     
-    static let dummy: [Automation] = []
-//    [
-//        Automation(title: "Buy the dip", color: .red, icon: Image(systemName: "arrow.down"),
-//                   condition: [
-//                    PriceChange(crypto: .btc, comparator: .less, price: 69000)
-//                   ],
+    static let dummy: [Automation] =
+    [
+        Automation(title: "Buy the dip", color: .red, iconName: "arrow.down",
+                   conditions: [
+                    AnyEquatableCondition(condition: PriceChange(crypto: .btc, comparator: .less, price: 69000))
+                   ], actions: [])
 //                   actions: [
 //                    SendNotification(message: ""),
 //                    Buy(crypto: .eth, amount: 100, wallet: .mike)
@@ -35,5 +35,5 @@ struct Automation: Identifiable {
 //                    SendNotification(message: ""),
 //                    Swap(wallet: .mike, fromCrypto: .eth, toCrypto: .ohm, amount: 4)
 //                   ])
-//    ]
+    ]
 }

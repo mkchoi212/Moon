@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum CalendarRule: TypeRepresentable, Hashable {
+enum CalendarRule: Hashable {
     
     static let allCases: [CalendarRule] = [.everyHour(0), .everyDay(0), .everyMonth(0)]
     // Every day at 12am

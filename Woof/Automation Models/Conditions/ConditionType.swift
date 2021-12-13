@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol Condition: CardRepresentable {
-    var type: TypeRepresentable { get }
+    var type: ConditionType { get }
     func isEqualTo(_ other: Condition) -> Bool
 }
 
@@ -19,6 +19,20 @@ extension Condition where Self: Equatable {
     }
 }
 
+extension Condition {
+    var iconName: String? {
+        type.iconName
+    }
+    
+    var color: Color {
+        type.color
+    }
+    
+    var description: String {
+        type.description
+    }
+}
+
 struct AnyEquatableCondition: Condition {
     var condition: Condition
     
@@ -26,12 +40,16 @@ struct AnyEquatableCondition: Condition {
         condition.id
     }
     
-    var description: Text {
+    var description: String {
         condition.description
     }
     
-    var type: TypeRepresentable {
+    var type: ConditionType {
         condition.type
+    }
+    
+    var entities: [TextEntity] {
+        condition.entities
     }
     
     func isEqualTo(_ other: Condition) -> Bool {
@@ -46,7 +64,7 @@ extension AnyEquatableCondition: Equatable {
 }
 
 
-enum ConditionType: String, CaseIterable, TypeRepresentable {
+enum ConditionType: String, CaseIterable {
     case percentChange
     case priceChange
     case walletBalance

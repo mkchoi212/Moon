@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct Buy: Action, CardRepresentable {
-    let type: TypeRepresentable = ActionType.buy
+    let type = ActionType.buy
     
     let id: UUID = .init()
     let crypto: Crypto
     let amount: Double
     let wallet: Wallet
+   
+    var entities: [TextEntity] {
+        []
+    }
     
     var description: Text {
         return Text("Buy ")

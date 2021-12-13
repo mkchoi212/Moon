@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct TransactionFee: CardRepresentable, Condition {
-    let type: TypeRepresentable = ConditionType.transactionFee
+    let type = ConditionType.transactionFee
     
     let id: UUID = .init()
     let wallet: Wallet
     let crypto: Crypto
     let comparator: Comparator
     let price: Double
+   
+    var entities: [TextEntity] {
+        []
+    }
     
     var description: Text {
         return Text("Average \(crypto.description) transaction fee is").font(.system(size: 18)) +

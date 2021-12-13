@@ -110,7 +110,7 @@ struct ComposerView: View {
 
 struct ComposerView_Previews: PreviewProvider {
     static var previews: some View {
-        ComposerView(automation: .empty)
+        ComposerView(automation: Automation.dummy[0])
             .preferredColorScheme(.light)
     }
 }

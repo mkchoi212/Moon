@@ -48,9 +48,9 @@ struct RuleOperatorRow: View {
             .modifier(RuleSheetHeaderModifier())
         
         HStack(alignment: .top, spacing: 15) {
-            ForEach(LogicalOperator.allCases, id: \.self) { op in
+            ForEach(OperatorType.allCases, id: \.self) { op in
                 Button {
-                    viewModel.addCondition(op)
+//                    viewModel.addCondition(op)
                 } label: {
                     VStack {
                         RuleCell(image: AnyView(Text(op.description)
@@ -76,7 +76,6 @@ struct RulePropertyRow: View {
         HStack(alignment: .top, spacing: 15) {
             ForEach(ConditionType.allCases, id: \.self) { cond in
                 Button {
-                    viewModel.addCondition(cond)
                 } label: {
                     VStack(alignment: .center) {
                         RuleCell(image: AnyView(Image(systemName: cond.iconName ?? "questionmark")
@@ -102,7 +101,7 @@ struct RuleCalendarRow: View {
         HStack(alignment: .top, spacing: 15) {
             ForEach(CalendarRule.allCases, id: \.self) { op in
                 Button {
-                    viewModel.addCondition(op)
+//                    viewModel.addCondition(op)
                 } label: {
                     VStack(alignment: .center) {
                         RuleCell(image: AnyView(Text(op.abbreviation)

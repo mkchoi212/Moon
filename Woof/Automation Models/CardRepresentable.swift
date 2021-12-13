@@ -9,14 +9,8 @@ import SwiftUI
 
 protocol CardRepresentable {
     var id: UUID { get }
-    var type: TypeRepresentable { get }
-    var description: Text { get }
-}
-
-protocol TypeRepresentable {
     var iconName: String? { get }
     var color: Color { get }
     var description: String { get }
+    var entities: [TextEntity] { get }
 }
-
-protocol ConditionRepresentable { }

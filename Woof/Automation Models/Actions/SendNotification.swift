@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct SendNotification: CardRepresentable, Action {
-    let type: TypeRepresentable = ActionType.notification
+    let type = ActionType.notification
     
     let id: UUID = .init()
     let message: String
     
-    var description: Text {
-        return Text("Send notification")
-            .font(.system(size: 18))
+    var entities: [TextEntity] {
+        [TextEntity(text: "Send notification")]
     }
 }
 

@@ -7,13 +7,17 @@
 
 import SwiftUI
 
-struct Sell: CardRepresentable, Condition {
-    let type: TypeRepresentable = ActionType.sell
+struct Sell: CardRepresentable, Action {
+    let type = ActionType.sell
     
     let id: UUID = .init()
     let crypto: Crypto
     let amount: Double
     let wallet: Wallet
+   
+    var entities: [TextEntity] {
+        []
+    }
     
     var description: Text {
         return Text("Sell ")

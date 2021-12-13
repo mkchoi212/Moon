@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct PriceChange: CardRepresentable, Condition {
-    let type: TypeRepresentable = ConditionType.priceChange
+    let type = ConditionType.priceChange
     
     let id: UUID = .init()
     let crypto: Crypto
     let comparator: Comparator
     let price: Double
     
-    var description: Text {
-        return Text("\(crypto.description) \(comparator.comparatorDescription) \(price.price)\(crypto.description)")
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold, design: .rounded))
+    var entities: [TextEntity] {
+        [
+            TextEntity(text: crypto.description, action: .cryptoType),
+            TextEntity(text: comparator.comparatorDescription, action: .comparator),
+            TextEntity(text: price.price, action: .cryptoAmount),
+            TextEntity(text: crypto.description, action: .cryptoType),
+        ]
     }
 }
 

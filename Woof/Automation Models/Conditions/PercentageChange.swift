@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct PercentChange: CardRepresentable, Condition {
-    let type: TypeRepresentable = ConditionType.percentChange
+    let type = ConditionType.percentChange
     
     let id: UUID = .init()
-    let crypto: Crypto
-    let comparator: Comparator
-    let percentage: Double
+    let crypto: Crypto?
+    let comparator: Comparator?
+    let percentage: Double?
     
-    var description: Text {
-        return Text("\(crypto.description) \(comparator.actionDescription) \(percentage.percentage)")
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold, design: .rounded))
-        + Text(" in a ")
-            .font(.system(size: 18))
-        + Text("day")
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold))
+    var entities: [TextEntity] {
+        [
+        TextEntity(text: crypto?.description, action: .cryptoType),
+        TextEntity(text: comparator?.actionDescription, action: .comparator),
+        TextEntity(text: percentage?.percentage, action: .percentage),
+        ]
     }
 }
 

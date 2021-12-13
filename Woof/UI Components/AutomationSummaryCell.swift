@@ -26,17 +26,19 @@ struct IconSquare: View {
 }
 
 struct ActionAbbreviationRow: View {
-    var type: TypeRepresentable
+    var color: Color
+    var iconName: String?
+    var description: String
     
     var body: some View {
         HStack {
             IconSquare(cornerRadius: 4,
-                       color: type.color,
-                       iconName: type.iconName ?? "questionmark",
+                       color: color,
+                       iconName: iconName ?? "questionmark",
                        iconFontSize: 12)
                 .frame(width: 22, height: 22, alignment: .center)
             
-            Text(type.description)
+            Text(description)
                 .font(.system(size: 12, design: .rounded))
         }
     }
@@ -44,7 +46,7 @@ struct ActionAbbreviationRow: View {
 
 struct ActionAbbreviation: View {
     var header: String
-    var types: [TypeRepresentable]
+    var entities: [CardRepresentable]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -53,10 +55,12 @@ struct ActionAbbreviation: View {
                 .foregroundColor(.lightGray)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            ForEach(types, id: \.description) { type in
-                ActionAbbreviationRow(type: type)
+            ForEach(entities, id: \.id) { entity in
+                ActionAbbreviationRow(color: entity.color,
+                                      iconName: entity.iconName,
+                                      description: entity.description)
             }
-            //
+            
             Spacer()
         }
         .frame(maxWidth: .infinity)
@@ -106,12 +110,12 @@ struct AutomationSummaryCell: View {
                 
                 HStack(alignment: .center) {
                     ActionAbbreviation(header: "Conditions",
-                                       types: automation.conditions.map(\.type))
+                                       entities: automation.conditions)
                     
                     Divider()
                     
                     ActionAbbreviation(header: "Actions",
-                                       types: automation.actions.map(\.type))
+                                       entities: automation.actions)
                     
                     Spacer()
                 }

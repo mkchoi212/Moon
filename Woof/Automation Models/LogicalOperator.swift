@@ -7,28 +7,45 @@
 
 import SwiftUI
 
-protocol OperatorRepresentable { }
+protocol Operator: CardRepresentable {
+    var type: OperatorType { get }
+    var id: UUID { get }
+}
 
-struct Or: CardRepresentable, OperatorRepresentable {
-    let id: UUID = .init()
-    var type: TypeRepresentable = LogicalOperator.or
+extension Operator {
+    var iconName: String? {
+        nil
+    }
     
-    var description: Text {
-        Text("or")
+    var color: Color {
+        type.color
+    }
+    
+    var description: String {
+        type.description
     }
 }
 
-struct And: CardRepresentable, OperatorRepresentable {
+struct Or: CardRepresentable, Operator {
     let id: UUID = .init()
-    var type: TypeRepresentable = LogicalOperator.and
+    var type = OperatorType.or
+
+    var entities: [TextEntity] {
+        [TextEntity(text: "or")]
+    }
+}
+
+struct And: CardRepresentable, Operator {
+    let id: UUID = .init()
+    var type = OperatorType.and
     
-    var description: Text {
-        Text("and")
+    var entities: [TextEntity] {
+        [TextEntity(text: "and")]
     }
 }
 
 
-enum LogicalOperator: String, TypeRepresentable, CaseIterable {
+enum OperatorType: String, CaseIterable {
     case and, or
     
     var description: String {

@@ -35,6 +35,7 @@
 		27DA33FC276374F20035C7B0 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA33FB276374F20035C7B0 /* PersistanceController.swift */; };
 		27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340027642F480035C7B0 /* ComposerViewModel.swift */; };
 		27DA340327643E2E0035C7B0 /* ComposerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340227643E2E0035C7B0 /* ComposerHeader.swift */; };
+		27DA34052766D0970035C7B0 /* ActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA34042766D0970035C7B0 /* ActionViewModel.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
 		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2702418A27670A26003084E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2730DFFB275DB59B0082BE45 /* CalendarRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRule.swift; sourceTree = "<group>"; };
 		2730DFFF275DBB770082BE45 /* Comparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparator.swift; sourceTree = "<group>"; };
 		2730E001275DBB840082BE45 /* LogicalOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalOperator.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		27DA33FB276374F20035C7B0 /* PersistanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		27DA340027642F480035C7B0 /* ComposerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewModel.swift; sourceTree = "<group>"; };
 		27DA340227643E2E0035C7B0 /* ComposerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerHeader.swift; sourceTree = "<group>"; };
+		27DA34042766D0970035C7B0 /* ActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewModel.swift; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 				2730E00E275DC45A0082BE45 /* AutomationSummaryCell.swift */,
 				2730E009275DBBCE0082BE45 /* GenericActionCell.swift */,
 				27F12CE2275D700600D87182 /* ActionList.swift */,
+				27DA34042766D0970035C7B0 /* ActionViewModel.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -198,6 +202,7 @@
 		27F12CC1275CE07400D87182 /* Woof */ = {
 			isa = PBXGroup;
 			children = (
+				2702418A27670A26003084E5 /* Info.plist */,
 				27DA33FB276374F20035C7B0 /* PersistanceController.swift */,
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
@@ -337,6 +342,7 @@
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
 				2730E014275DCC310082BE45 /* PriceChange.swift in Sources */,
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
+				27DA34052766D0970035C7B0 /* ActionViewModel.swift in Sources */,
 				2730E011275DCC1B0082BE45 /* PercentageChange.swift in Sources */,
 				2730E000275DBB770082BE45 /* Comparator.swift in Sources */,
 				2730E021275DD0920082BE45 /* SendEmail.swift in Sources */,
@@ -480,6 +486,7 @@
 				DEVELOPMENT_TEAM = 7J57M62A98;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Woof/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -509,6 +516,7 @@
 				DEVELOPMENT_TEAM = 7J57M62A98;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Woof/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol Action: CardRepresentable {
-    var type: TypeRepresentable { get }
+    var type: ActionType { get }
     func isEqualTo(_ other: Action) -> Bool
 }
 
@@ -19,6 +19,20 @@ extension Action where Self: Equatable {
     }
 }
 
+extension Action {
+    var iconName: String? {
+        type.iconName
+    }
+    
+    var color: Color {
+        type.color
+    }
+    
+    var description: String {
+        type.description
+    }
+}
+
 struct AnyEquatableAction: Action {
     let action: Action
     
@@ -26,12 +40,16 @@ struct AnyEquatableAction: Action {
         action.id
     }
     
-    var description: Text {
+    var description: String {
         action.description
     }
     
-    var type: TypeRepresentable {
+    var type: ActionType {
         action.type
+    }
+    
+    var entities: [TextEntity] {
+        action.entities
     }
     
     func isEqualTo(_ other: Action) -> Bool {
@@ -46,7 +64,7 @@ extension AnyEquatableAction: Equatable {
 }
 
 
-enum ActionType: TypeRepresentable {
+enum ActionType: Hashable {
     case notification
     case text
     case email

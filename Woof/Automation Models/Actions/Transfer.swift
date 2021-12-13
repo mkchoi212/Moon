@@ -7,31 +7,25 @@
 
 import SwiftUI
 
-struct Transfer: CardRepresentable, Condition {
-    let type: TypeRepresentable = ActionType.transfer
+struct Transfer: CardRepresentable, Action {
+    let type = ActionType.transfer
     
     let id: UUID = .init()
-    let crypto: Crypto
-    let fromWallet: Wallet
-    let toWallet: Wallet
-    let amount: Double
+    let crypto: Crypto?
+    let fromWallet: Wallet?
+    let toWallet: Wallet?
+    let amount: Double?
     
-    var description: Text {
-        return Text("Transfer ")
-            .font(.system(size: 18))
-        + Text("\(amount.price) \(crypto.description)")
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold))
-        + Text(" from ")
-            .font(.system(size: 18))
-        +  Text(fromWallet.name)
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold))
-        + Text(" to ")
-            .font(.system(size: 18))
-        +  Text(toWallet.name)
-            .foregroundColor(.blue)
-            .font(.system(size: 18, weight: .semibold))
+    var entities: [TextEntity] {
+        [
+            TextEntity(text: "Transfer"),
+            TextEntity(text: amount?.price, action: .cryptoAmount),
+            TextEntity(text: crypto?.description, action: .cryptoType),
+            TextEntity(text: "from"),
+            TextEntity(text: fromWallet?.name, action: .wallet),
+            TextEntity(text: "to"),
+            TextEntity(text: toWallet?.name, action: .wallet)
+        ]
     }
 }
 
