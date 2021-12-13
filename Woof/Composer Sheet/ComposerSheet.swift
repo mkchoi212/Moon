@@ -16,15 +16,6 @@ struct RuleSheetHeaderModifier: ViewModifier {
     }
 }
 
-struct RuleSheetDescriptionLabelModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .lineLimit(2)
-            .font(.system(size: 13, weight: .regular))
-            .multilineTextAlignment(.center)
-    }
-}
-
 struct RuleOperatorRow: View {
     @EnvironmentObject var viewModel: ComposerViewModel
     
@@ -134,6 +125,7 @@ struct ComposerSheet: View {
                         RuleCalendarRow()
                         Divider()
                     } else {
+                        
                     }
                     
                     Button {

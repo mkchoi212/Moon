@@ -51,7 +51,6 @@ struct ComposerContentView: View {
 struct ComposerView: View {
     @State var mode: Int = 0
     @StateObject var viewModel: ComposerViewModel
-    @State var showDismissConfirmation = false
     let panelDelegate = PanelDelegate()
     
     @Environment(\.presentationMode) var presentationMode
@@ -64,24 +63,9 @@ struct ComposerView: View {
                     .environmentObject(viewModel)
             }
             .floatingPanelSurfaceAppearance(.phone)
-            .actionSheet(isPresented: $showDismissConfirmation) {
-                ActionSheet(title: Text("Discard changes?"), buttons: [
-                    .destructive(Text("Discard"), action: forceDismiss),
-                    .cancel(Text("Cancel"))
-                ])
-            }
-        
     }
     
     func dismiss() {
-        if !viewModel.hasChanges() {
-            forceDismiss()
-        } else {
-            showDismissConfirmation = true
-        }
-    }
-    
-    func forceDismiss() {
         presentationMode.wrappedValue.dismiss()
     }
 }

@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+struct RuleSheetDescriptionLabelModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .lineLimit(2)
+            .font(.system(size: 13, weight: .regular))
+            .multilineTextAlignment(.center)
+    }
+}
+
 struct RuleCell: View {
     var image: AnyView
     var color: Color
