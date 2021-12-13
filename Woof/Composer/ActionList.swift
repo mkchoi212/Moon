@@ -24,7 +24,7 @@ struct ActionViewModel {
                     sub = AttributedString(action.placeholder)
                     sub.foregroundColor = .gray
                     sub.backgroundColor = .lightBlue
-                    sub.font = .system(size: 18, design: .rounded)
+                    sub.font = .system(size: 18, weight: .medium, design: .rounded)
                 }
                 
                 sub.link = URL(string: "woof://\(action.rawValue)")!

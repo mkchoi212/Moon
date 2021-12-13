@@ -1,5 +1,5 @@
 //
-//  ActionViewModel.swift
+//  TextEntity.swift
 //  Woof
 //
 //  Created by Mike Choi on 12/13/21.

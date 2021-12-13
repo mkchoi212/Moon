@@ -6,22 +6,7 @@
 //
 
 import SwiftUI
-
-struct ComposerSheetHeader: View {
-    @Binding var searchText: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-            TextField("Search for actions", text: $searchText)
-        }
-        .foregroundColor(Color(uiColor: .secondaryLabel))
-        .padding(.vertical, 8)
-        .padding(.horizontal, 5)
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(uiColor: .tertiarySystemFill)))
-        .padding(.bottom)
-    }
-}
+import Introspect
 
 struct RuleSheetHeaderModifier: ViewModifier {
     func body(content: Content) -> some View {
@@ -50,7 +35,7 @@ struct RuleOperatorRow: View {
         HStack(alignment: .top, spacing: 15) {
             ForEach(OperatorType.allCases, id: \.self) { op in
                 Button {
-//                    viewModel.addCondition(op)
+//                                        viewModel.addCondition(op)
                 } label: {
                     VStack {
                         RuleCell(image: AnyView(Text(op.description)
@@ -68,7 +53,7 @@ struct RuleOperatorRow: View {
 
 struct RulePropertyRow: View {
     @EnvironmentObject var viewModel: ComposerViewModel
-
+    
     var body: some View {
         Text("Property")
             .modifier(RuleSheetHeaderModifier())
@@ -94,7 +79,7 @@ struct RulePropertyRow: View {
 
 struct RuleCalendarRow: View {
     @EnvironmentObject var viewModel: ComposerViewModel
-
+    
     var body: some View {
         Text("Calendar")
             .modifier(RuleSheetHeaderModifier())
@@ -102,7 +87,7 @@ struct RuleCalendarRow: View {
         HStack(alignment: .top, spacing: 15) {
             ForEach(CalendarRule.allCases, id: \.self) { op in
                 Button {
-//                    viewModel.addCondition(op)
+                    //                    viewModel.addCondition(op)
                 } label: {
                     VStack(alignment: .center) {
                         RuleCell(image: AnyView(Text(op.abbreviation)
@@ -119,36 +104,59 @@ struct RuleCalendarRow: View {
 }
 
 struct ComposerSheet: View {
-    
     @EnvironmentObject var viewModel: ComposerViewModel
+    @State private var searchText = ""
+    @State private var isShowingCancelButton = false
+    var proxy: FloatingPanelProxy?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            RuleOperatorRow()
-            Divider()
-            RulePropertyRow()
-            Divider()
-            RuleCalendarRow()
-            Divider()
-            
-            Button {
-            } label: {
-                Label("Add suggestions", systemImage: "plus.circle.fill")
-                    .font(.system(size: 18, weight: .medium))
-                    .padding()
-                    .tint(.blue)
-                    .frame(maxWidth: .infinity)
-                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(.lightBlue))
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                SearchBar(
+                    "Search for an action",
+                    text: $searchText,
+                    isShowingCancelButton: $isShowingCancelButton
+                ) { isFocused in
+                    proxy?.move(to: isFocused ? .full : .half, animated: true)
+                    isShowingCancelButton = isFocused
+                } onCancel: {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    RuleOperatorRow()
+                    Divider()
+                    RulePropertyRow()
+                    Divider()
+                    RuleCalendarRow()
+                    Divider()
+                    
+                    Button {
+                    } label: {
+                        Label("Add suggestions", systemImage: "plus.circle.fill")
+                            .font(.system(size: 18, weight: .medium))
+                            .padding()
+                            .tint(.blue)
+                            .frame(maxWidth: .infinity)
+                            .background(RoundedRectangle(cornerRadius: 12).foregroundColor(.lightBlue))
+                    }
+                    .padding(.trailing)
+                }
+                .padding(.leading)
             }
-            .padding(.trailing)
         }
-        .padding(.leading)
+        .introspectScrollView { scrollView in
+            proxy?.track(scrollView: scrollView)
+        }
+        .padding(.top, 6)
+        .background(.background)
+        .ignoresSafeArea()
     }
 }
 
 struct ComposerSheet_Previews: PreviewProvider {
     static var previews: some View {
-        ComposerSheet()
-        ComposerView(bottomSheetPosition: .top, automation: .empty)
+        ComposerSheet(proxy: nil)
+        ComposerView(automation: .empty)
     }
 }

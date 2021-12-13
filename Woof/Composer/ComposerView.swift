@@ -6,51 +6,17 @@
 //
 
 import SwiftUI
-import BottomSheet
+import FloatingPanel
 
 enum ComposerViewMode: Int {
     case condition, action
 }
 
-enum CustomBottomSheetPosition: CGFloat, CaseIterable {
-    case top = 0.99
-//    case middle = 0.4
-    case bottom = 0.125
-}
-
-struct BottomSheetModifier: ViewModifier {
-    @Binding var searchText: String
-    @Binding var bottomSheetPosition: CustomBottomSheetPosition
-    
-    @ObservedObject var viewModel: ComposerViewModel
-    
-    func body(content: Content) -> some View {
-        content
-            .bottomSheet(bottomSheetPosition: $bottomSheetPosition,
-                         options: [.appleScrollBehavior, .allowContentDrag, .background(AnyView(Color(uiColor: .secondarySystemGroupedBackground))), .animation(.spring(response: 0.2, dampingFraction: 1, blendDuration: 0.1))],
-                         headerContent: {
-                ComposerSheetHeader(searchText: $searchText)
-                    .onTapGesture {
-                        self.bottomSheetPosition = .top
-                    }
-            }) {
-                ComposerSheet()
-                    .environmentObject(viewModel)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                    .transition(.opacity)
-                    .animation(.easeInOut, value: bottomSheetPosition)
-            }
-    }
-}
-
 struct ComposerView: View {
     @State var tabSelection = 0
-    @State var searchText = ""
-    @State var bottomSheetPosition: CustomBottomSheetPosition = .bottom
     @State var showDismissConfirmation = false
-    
     @StateObject var viewModel = ComposerViewModel()
-    
+    let panelDelegate = PanelDelegate()
     var automation: Automation
     
     @Environment(\.presentationMode) var presentationMode
@@ -82,11 +48,15 @@ struct ComposerView: View {
             }
             .frame(maxHeight: .infinity)
         }
+        .floatingPanel(delegate: panelDelegate) { proxy in
+            ComposerSheet(proxy: proxy)
+                .environmentObject(viewModel)
+        }
+        .floatingPanelSurfaceAppearance(.phone)
         .onAppear(perform: {
             viewModel.set(automation: automation)
         })
         .background(Color(uiColor: .systemGroupedBackground))
-        .modifier(BottomSheetModifier(searchText: $searchText, bottomSheetPosition: $bottomSheetPosition, viewModel: viewModel))
         .actionSheet(isPresented: $showDismissConfirmation) {
             ActionSheet(title: Text("Discard changes?"), buttons: [
                 .destructive(Text("Discard"), action: forceDismiss),

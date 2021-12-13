@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
-        "package": "BottomSheet",
-        "repositoryURL": "https://github.com/LucasMucGH/BottomSheet",
+        "package": "FloatingPanel",
+        "repositoryURL": "https://github.com/scenee/FloatingPanel",
+        "state": {
+          "branch": "master",
+          "revision": "e39f634d348110bcb7fd555e5a6bc97ceaa58de7",
+          "version": null
+        }
+      },
+      {
+        "package": "Introspect",
+        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect",
         "state": {
           "branch": null,
-          "revision": "953c9a53d05ed7b61ae50a476758a97b7291da0a",
-          "version": "2.4.0"
+          "revision": "2e09be8af614401bc9f87d40093ec19ce56ccaf2",
+          "version": "0.1.3"
         }
       }
     ]

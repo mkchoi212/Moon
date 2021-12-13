@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419127672DE9003084E5 /* View+floatingPanel.swift */; };
+		2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419227672DE9003084E5 /* View+floatingPanelContentMode.swift */; };
+		2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419327672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift */; };
+		2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419427672DE9003084E5 /* FloatingPanelView.swift */; };
+		2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419527672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift */; };
+		2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419627672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift */; };
+		2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419727672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift */; };
+		270241A127672EC1003084E5 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 270241A027672EC1003084E5 /* FloatingPanel */; };
+		270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */; };
+		270241A62767301B003084E5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A42767301B003084E5 /* SearchBar.swift */; };
+		270241AA276731E0003084E5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 270241A9276731E0003084E5 /* Introspect */; };
+		270241AC27673812003084E5 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241AB27673812003084E5 /* PanelDelegate.swift */; };
 		2730DFFC275DB59B0082BE45 /* CalendarRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFB275DB59B0082BE45 /* CalendarRule.swift */; };
 		2730E000275DBB770082BE45 /* Comparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFF275DBB770082BE45 /* Comparator.swift */; };
 		2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E001275DBB840082BE45 /* LogicalOperator.swift */; };
@@ -35,7 +47,7 @@
 		27DA33FC276374F20035C7B0 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA33FB276374F20035C7B0 /* PersistanceController.swift */; };
 		27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340027642F480035C7B0 /* ComposerViewModel.swift */; };
 		27DA340327643E2E0035C7B0 /* ComposerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340227643E2E0035C7B0 /* ComposerHeader.swift */; };
-		27DA34052766D0970035C7B0 /* ActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA34042766D0970035C7B0 /* ActionViewModel.swift */; };
+		27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA34042766D0970035C7B0 /* TextEntity.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
 		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
@@ -45,7 +57,6 @@
 		27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CD4275CE12200D87182 /* SettingsView.swift */; };
 		27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CD6275CE42700D87182 /* Color+Extension.swift */; };
 		27F12CD9275CEB8800D87182 /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CD8275CEB8800D87182 /* ComposerView.swift */; };
-		27F12CE1275CF62000D87182 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 27F12CE0275CF62000D87182 /* BottomSheet */; };
 		27F12CE3275D700600D87182 /* ActionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CE2275D700600D87182 /* ActionList.swift */; };
 		27F12CE5275D75CC00D87182 /* CardRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CE4275D75CC00D87182 /* CardRepresentable.swift */; };
 		27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CE6275D7D7900D87182 /* Number+Extension.swift */; };
@@ -53,6 +64,16 @@
 
 /* Begin PBXFileReference section */
 		2702418A27670A26003084E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2702419127672DE9003084E5 /* View+floatingPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanel.swift"; sourceTree = "<group>"; };
+		2702419227672DE9003084E5 /* View+floatingPanelContentMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanelContentMode.swift"; sourceTree = "<group>"; };
+		2702419327672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanelSurfaceAppearance.swift"; sourceTree = "<group>"; };
+		2702419427672DE9003084E5 /* FloatingPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPanelView.swift; sourceTree = "<group>"; };
+		2702419527672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIHostingController+ignoreKeyboard.swift"; sourceTree = "<group>"; };
+		2702419627672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanelGrabberHandlePadding.swift"; sourceTree = "<group>"; };
+		2702419727672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanelContentInsetAdjustmentBehavior.swift"; sourceTree = "<group>"; };
+		270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SurfaceAppearance+phone.swift"; sourceTree = "<group>"; };
+		270241A42767301B003084E5 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		270241AB27673812003084E5 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
 		2730DFFB275DB59B0082BE45 /* CalendarRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRule.swift; sourceTree = "<group>"; };
 		2730DFFF275DBB770082BE45 /* Comparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparator.swift; sourceTree = "<group>"; };
 		2730E001275DBB840082BE45 /* LogicalOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalOperator.swift; sourceTree = "<group>"; };
@@ -81,7 +102,7 @@
 		27DA33FB276374F20035C7B0 /* PersistanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		27DA340027642F480035C7B0 /* ComposerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewModel.swift; sourceTree = "<group>"; };
 		27DA340227643E2E0035C7B0 /* ComposerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerHeader.swift; sourceTree = "<group>"; };
-		27DA34042766D0970035C7B0 /* ActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewModel.swift; sourceTree = "<group>"; };
+		27DA34042766D0970035C7B0 /* TextEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEntity.swift; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
@@ -102,13 +123,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27F12CE1275CF62000D87182 /* BottomSheet in Frameworks */,
+				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
+				270241AA276731E0003084E5 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2702419027672DAD003084E5 /* Floating Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				2702419427672DE9003084E5 /* FloatingPanelView.swift */,
+				270241AB27673812003084E5 /* PanelDelegate.swift */,
+				270241A42767301B003084E5 /* SearchBar.swift */,
+				2702419527672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift */,
+				2702419127672DE9003084E5 /* View+floatingPanel.swift */,
+				2702419727672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift */,
+				2702419227672DE9003084E5 /* View+floatingPanelContentMode.swift */,
+				2702419627672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift */,
+				2702419327672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift */,
+				270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */,
+			);
+			path = "Floating Sheet";
+			sourceTree = "<group>";
+		};
+		270241AD2767387E003084E5 /* Composer Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */,
+			);
+			path = "Composer Sheet";
+			sourceTree = "<group>";
+		};
 		2730E003275DBB8E0082BE45 /* Automation Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +164,7 @@
 				27F12CE4275D75CC00D87182 /* CardRepresentable.swift */,
 				2730E001275DBB840082BE45 /* LogicalOperator.swift */,
 				2730DFFF275DBB770082BE45 /* Comparator.swift */,
+				2730DFFB275DB59B0082BE45 /* CalendarRule.swift */,
 			);
 			path = "Automation Models";
 			sourceTree = "<group>";
@@ -136,8 +184,6 @@
 			children = (
 				2730E00E275DC45A0082BE45 /* AutomationSummaryCell.swift */,
 				2730E009275DBBCE0082BE45 /* GenericActionCell.swift */,
-				27F12CE2275D700600D87182 /* ActionList.swift */,
-				27DA34042766D0970035C7B0 /* ActionViewModel.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -175,10 +221,11 @@
 			children = (
 				274BA39E2760DC8700B1E2D3 /* IconPicker.swift */,
 				274BA3A327622B4000B1E2D3 /* RuleCell.swift */,
-				274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */,
 				27F12CD8275CEB8800D87182 /* ComposerView.swift */,
 				27DA340227643E2E0035C7B0 /* ComposerHeader.swift */,
 				27DA340027642F480035C7B0 /* ComposerViewModel.swift */,
+				27DA34042766D0970035C7B0 /* TextEntity.swift */,
+				27F12CE2275D700600D87182 /* ActionList.swift */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -209,11 +256,12 @@
 				27F12CD0275CE0E600D87182 /* HomeView.swift */,
 				2730E006275DBBAD0082BE45 /* Entities */,
 				274BA3A227622AF800B1E2D3 /* Composer */,
+				270241AD2767387E003084E5 /* Composer Sheet */,
 				2730E003275DBB8E0082BE45 /* Automation Models */,
 				2730E00B275DBC070082BE45 /* UI Components */,
 				27F12CE8275D91D100D87182 /* Extension */,
 				27F12CC8275CE07400D87182 /* Preview Content */,
-				2730DFFB275DB59B0082BE45 /* CalendarRule.swift */,
+				2702419027672DAD003084E5 /* Floating Sheet */,
 				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
 				27F12CD4275CE12200D87182 /* SettingsView.swift */,
 				27F12CC6275CE07400D87182 /* Assets.xcassets */,
@@ -255,7 +303,8 @@
 			);
 			name = Woof;
 			packageProductDependencies = (
-				27F12CE0275CF62000D87182 /* BottomSheet */,
+				270241A027672EC1003084E5 /* FloatingPanel */,
+				270241A9276731E0003084E5 /* Introspect */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Woof.app */;
@@ -286,7 +335,8 @@
 			);
 			mainGroup = 27F12CB6275CE07400D87182;
 			packageReferences = (
-				27F12CDF275CF62000D87182 /* XCRemoteSwiftPackageReference "BottomSheet" */,
+				2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				270241A8276731E0003084E5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -319,12 +369,17 @@
 				274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */,
 				27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */,
 				2730E018275DCD630082BE45 /* TransactionFee.swift in Sources */,
+				270241A62767301B003084E5 /* SearchBar.swift in Sources */,
+				2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
 				27F12CE5275D75CC00D87182 /* CardRepresentable.swift in Sources */,
 				27F12CD9275CEB8800D87182 /* ComposerView.swift in Sources */,
+				270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */,
 				27F12CD1275CE0E600D87182 /* HomeView.swift in Sources */,
 				2730E00F275DC45A0082BE45 /* AutomationSummaryCell.swift in Sources */,
+				2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */,
 				2730E016275DCC8E0082BE45 /* WalletBalance.swift in Sources */,
+				2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */,
 				274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */,
 				274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
@@ -335,16 +390,20 @@
 				2730E01D275DCF010082BE45 /* SendNotification.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,
+				270241AC27673812003084E5 /* PanelDelegate.swift in Sources */,
 				2730E029275DD15B0082BE45 /* Swap.swift in Sources */,
 				2730DFFC275DB59B0082BE45 /* CalendarRule.swift in Sources */,
 				2730E00D275DBD930082BE45 /* ActionType.swift in Sources */,
 				27F12CD3275CE0F500D87182 /* NotificationView.swift in Sources */,
+				2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */,
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
 				2730E014275DCC310082BE45 /* PriceChange.swift in Sources */,
+				2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */,
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
-				27DA34052766D0970035C7B0 /* ActionViewModel.swift in Sources */,
+				27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */,
 				2730E011275DCC1B0082BE45 /* PercentageChange.swift in Sources */,
 				2730E000275DBB770082BE45 /* Comparator.swift in Sources */,
+				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,
 				2730E021275DD0920082BE45 /* SendEmail.swift in Sources */,
 				2730E01F275DD0570082BE45 /* SendText.swift in Sources */,
 				2730E027275DD1340082BE45 /* Transfer.swift in Sources */,
@@ -352,6 +411,7 @@
 				2730E00A275DBBCE0082BE45 /* GenericActionCell.swift in Sources */,
 				2730E005275DBBA80082BE45 /* Crypto.swift in Sources */,
 				2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */,
+				2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */,
 				27DA33FC276374F20035C7B0 /* PersistanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,21 +619,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		27F12CDF275CF62000D87182 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+		2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LucasMucGH/BottomSheet";
+			repositoryURL = "https://github.com/scenee/FloatingPanel";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		270241A8276731E0003084E5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 0.1.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		27F12CE0275CF62000D87182 /* BottomSheet */ = {
+		270241A027672EC1003084E5 /* FloatingPanel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 27F12CDF275CF62000D87182 /* XCRemoteSwiftPackageReference "BottomSheet" */;
-			productName = BottomSheet;
+			package = 2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
+		270241A9276731E0003084E5 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 270241A8276731E0003084E5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
