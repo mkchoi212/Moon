@@ -18,7 +18,7 @@ struct PriceChange: CardRepresentable, Condition {
     var entities: [TextEntity] {
         [
             TextEntity(text: crypto?.description, action: .cryptoType),
-            TextEntity(text: comparator?.comparatorDescription, action: .comparator),
+            TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
             TextEntity(thresholdPrice: price, crypto: crypto)
         ]
     }

@@ -7,11 +7,15 @@
 
 import SwiftUI
 
-struct ActionViewModel {
+final class ActionViewModel: ObservableObject {
+    var entityMap: [String: TextEntity] = [:]
+    
     func description(for action: CardRepresentable) -> AttributedString {
         var res = AttributedString()
         
         action.entities.enumerated().forEach { (i, entity) in
+            let uuid = entity.id.uuidString
+            
             if let action = entity.action {
                 var sub: AttributedString
                 
@@ -31,13 +35,15 @@ struct ActionViewModel {
                     sub.font = .system(size: 18, weight: .medium, design: .rounded)
                 }
                 
-                sub.link = URL(string: "woof://\(action.rawValue)")!
+                sub.link = URL(string: "woof://\(uuid)")!
                 res += sub
             } else {
                 var sub = AttributedString(entity.text ?? "")
                 sub.font = .system(size: 18)
                 res += sub
             }
+            
+            entityMap[uuid] = entity
             
             if i < action.entities.count - 1 {
                 res += AttributedString(" ")
@@ -46,11 +52,50 @@ struct ActionViewModel {
         
         return res
     }
+    
+    func resolve(deeplink: URL) -> TextEntity? {
+        if let id = deeplink.host {
+            return entityMap[id]
+        } else {
+            return nil
+        }
+    }
+}
+
+struct ActionCell: View {
+    let action: CardRepresentable
+    @Binding var selectedEntity: TextEntity?
+    var remove: () -> ()
+    
+    @EnvironmentObject var viewModel: ActionViewModel
+    
+    var body: some View {
+        GenericActionCell(iconName: action.iconName,
+                          color: action.color,
+                          title: action.description,
+                          description: viewModel.description(for: action),
+                          backgroundColor: Color(uiColor: .secondarySystemGroupedBackground)) {
+            remove()
+        }
+        .onOpenURL(perform: didOpenURL(url:))
+    }
+
+    func didOpenURL(url: URL) {
+        guard let entity = viewModel.resolve(deeplink: url) else {
+            return
+        }
+        
+        selectedEntity = entity
+    }
 }
 
 struct ActionList: View {
+    @Binding var mode: Int
     @Binding var actions: [CardRepresentable]
-    let viewModel = ActionViewModel()
+    @StateObject var viewModel = ActionViewModel()
+    
+    @State var selectedEntity: TextEntity?
+    
     let columns = [GridItem(.flexible())]
     
     var body: some View {
@@ -62,25 +107,22 @@ struct ActionList: View {
                             .font(.system(size: 13, weight: .bold, design: .monospaced))
                             .foregroundColor(.white)
                             .padding(6)
-                            .background(RoundedRectangle(cornerRadius: 4)
-                                            .foregroundColor(Color(uiColor: .lightGray)))
+                            .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color(uiColor: .lightGray)))
                     } else {
-                        GenericActionCell(iconName: action.iconName,
-                                          color: action.color,
-                                          title: action.description,
-                                          description: viewModel.description(for: action),
-                                          backgroundColor: Color(uiColor: .secondarySystemGroupedBackground)) {
+                        ActionCell(action: action, selectedEntity: $selectedEntity) {
                             remove(action: action)
                         }
+                        .environmentObject(viewModel)
                     }
                 }
             }
+            .padding(.top, 15)
         }
-        .onOpenURL { url in
-            print(url)
-        }
+        .bottomSheet(item: $selectedEntity, detents: [.medium()], prefersGrabberVisible: true, contentView: {
+            Text(selectedEntity.debugDescription)
+        })
     }
-    
+ 
     func remove(action: CardRepresentable) {
         if let idx = actions.firstIndex(where: { $0.id == action.id }) {
             actions.remove(at: idx)
@@ -91,7 +133,7 @@ struct ActionList: View {
 
 struct ActionList_Previews: PreviewProvider {
     static var previews: some View {
-        ActionList(actions: .constant([Transfer(crypto: .eth, fromWallet: nil, toWallet: .mike, amount: 50), And()]))
+        ActionList(mode: .constant(0), actions: .constant([Transfer(crypto: .eth, fromWallet: nil, toWallet: .mike, amount: 50), And()]))
     }
 }
 

@@ -21,7 +21,7 @@ struct WalletBalance: CardRepresentable, Condition {
             TextEntity(text: "Balance of"),
             TextEntity(text: wallet?.name, action: .wallet),
             TextEntity(text: "is"),
-            TextEntity(text: comparator?.comparatorDescription, action: .comparator),
+            TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
             TextEntity(thresholdPrice: price, crypto: crypto)
         ]
     }

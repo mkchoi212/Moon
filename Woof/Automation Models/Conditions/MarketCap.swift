@@ -20,7 +20,7 @@ struct MarketCapChange: CardRepresentable, Condition {
             TextEntity(text: "Market cap of"),
             TextEntity(text: crypto?.description, action: .cryptoType),
             TextEntity(text: "is"),
-            TextEntity(text: comparator?.comparatorDescription, action: .comparator),
+            TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
             TextEntity(thresholdPrice: price, crypto: crypto)
         ]
     }

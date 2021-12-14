@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-enum EditAction: String {
+enum EditAction {
     case cryptoType, cryptoAmount, wallet
-    case comparator
+    case comparator(Comparator?)
     case percentage
     case email
     
@@ -31,9 +31,11 @@ enum EditAction: String {
     }
 }
 
-struct TextEntity {
+struct TextEntity: Identifiable {
     var text: String?
     var action: EditAction?
+    
+    let id = UUID()
 }
 
 extension TextEntity {

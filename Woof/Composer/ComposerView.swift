@@ -33,15 +33,9 @@ struct ComposerContentView: View {
             .padding()
             .background(.thinMaterial)
             
-            ScrollView {
-                if mode == ComposerViewMode.condition.rawValue {
-                    ActionList(actions: $viewModel.conditions)
-                        .padding(.top, 15)
-                } else {
-                    ActionList(actions: $viewModel.actions)
-                        .padding(.top, 15)
-                }
-            }
+            ActionList(mode: $mode,
+                       actions: mode == ComposerViewMode.condition.rawValue ?
+                       $viewModel.conditions : $viewModel.actions)
         }
         .background(Color(uiColor: .systemGroupedBackground))
     }

@@ -19,6 +19,8 @@
 		270241A62767301B003084E5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A42767301B003084E5 /* SearchBar.swift */; };
 		270241AA276731E0003084E5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 270241A9276731E0003084E5 /* Introspect */; };
 		270241AC27673812003084E5 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241AB27673812003084E5 /* PanelDelegate.swift */; };
+		270241B327687040003084E5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B127687040003084E5 /* BottomSheet.swift */; };
+		270241B427687040003084E5 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B227687040003084E5 /* BottomSheetViewController.swift */; };
 		2730DFFC275DB59B0082BE45 /* CalendarRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFB275DB59B0082BE45 /* CalendarRule.swift */; };
 		2730E000275DBB770082BE45 /* Comparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFF275DBB770082BE45 /* Comparator.swift */; };
 		2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E001275DBB840082BE45 /* LogicalOperator.swift */; };
@@ -74,6 +76,8 @@
 		270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SurfaceAppearance+phone.swift"; sourceTree = "<group>"; };
 		270241A42767301B003084E5 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		270241AB27673812003084E5 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
+		270241B127687040003084E5 /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		270241B227687040003084E5 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		2730DFFB275DB59B0082BE45 /* CalendarRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRule.swift; sourceTree = "<group>"; };
 		2730DFFF275DBB770082BE45 /* Comparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparator.swift; sourceTree = "<group>"; };
 		2730E001275DBB840082BE45 /* LogicalOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalOperator.swift; sourceTree = "<group>"; };
@@ -154,6 +158,15 @@
 				274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */,
 			);
 			path = "Composer Sheet";
+			sourceTree = "<group>";
+		};
+		270241B527687043003084E5 /* Native Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				270241B127687040003084E5 /* BottomSheet.swift */,
+				270241B227687040003084E5 /* BottomSheetViewController.swift */,
+			);
+			path = "Native Sheet";
 			sourceTree = "<group>";
 		};
 		2730E003275DBB8E0082BE45 /* Automation Models */ = {
@@ -263,6 +276,7 @@
 				27F12CC8275CE07400D87182 /* Preview Content */,
 				2702419027672DAD003084E5 /* Floating Sheet */,
 				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
+				270241B527687043003084E5 /* Native Sheet */,
 				27F12CD4275CE12200D87182 /* SettingsView.swift */,
 				27F12CC6275CE07400D87182 /* Assets.xcassets */,
 			);
@@ -400,6 +414,7 @@
 				2730E014275DCC310082BE45 /* PriceChange.swift in Sources */,
 				2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */,
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
+				270241B327687040003084E5 /* BottomSheet.swift in Sources */,
 				27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */,
 				2730E011275DCC1B0082BE45 /* PercentageChange.swift in Sources */,
 				2730E000275DBB770082BE45 /* Comparator.swift in Sources */,
@@ -409,6 +424,7 @@
 				2730E027275DD1340082BE45 /* Transfer.swift in Sources */,
 				2730E01A275DCDF60082BE45 /* MarketCap.swift in Sources */,
 				2730E00A275DBBCE0082BE45 /* GenericActionCell.swift in Sources */,
+				270241B427687040003084E5 /* BottomSheetViewController.swift in Sources */,
 				2730E005275DBBA80082BE45 /* Crypto.swift in Sources */,
 				2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */,
 				2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */,
