@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct TransactionFee: CardRepresentable, Condition {
     let type = ConditionType.transactionFee
@@ -23,6 +24,10 @@ struct TransactionFee: CardRepresentable, Condition {
             TextEntity(text: "is"),
             TextEntity(thresholdPrice: price, crypto: crypto)
         ]
+    }
+    
+    func coreDataModel(with context: NSManagedObjectContext) -> ConditionEntity {
+        ConditionEntity()
     }
 }
 

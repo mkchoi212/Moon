@@ -64,7 +64,7 @@ extension AnyEquatableAction: Equatable {
 }
 
 
-enum ActionType: Hashable {
+enum ActionType: String, Hashable {
     case notification
     case text
     case email

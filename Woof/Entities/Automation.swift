@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct Automation: Identifiable {
-    let id = UUID()
+    let id: UUID
     let title: String
     let color: Color
     let iconName: String
     let conditions: [AnyEquatableCondition]
     let actions: [AnyEquatableAction]
     
-    static let empty = Automation(title: "", color: .blue, iconName: "moon.fill", conditions: [], actions: [])
+    static let empty = Automation(id: UUID(), title: "", color: .blue, iconName: "moon.fill", conditions: [], actions: [])
     
     static let dummy: [Automation] =
     [
-        Automation(title: "Buy the dip", color: .red, iconName: "arrow.down",
+        Automation(id: UUID(), title: "Buy the dip", color: .red, iconName: "arrow.down",
                    conditions: [
                     AnyEquatableCondition(condition: PriceChange(crypto: .btc, comparator: .less, price: 69000))
                    ], actions: [])

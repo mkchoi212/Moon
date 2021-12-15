@@ -49,10 +49,15 @@
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
-		27DA33FC276374F20035C7B0 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA33FB276374F20035C7B0 /* PersistanceController.swift */; };
 		27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340027642F480035C7B0 /* ComposerViewModel.swift */; };
 		27DA340327643E2E0035C7B0 /* ComposerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340227643E2E0035C7B0 /* ComposerHeader.swift */; };
 		27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA34042766D0970035C7B0 /* TextEntity.swift */; };
+		27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2082769AF3E00EBB552 /* Model.xcdatamodeld */; };
+		27E9E20D2769B06E00EBB552 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E20C2769B06E00EBB552 /* PersistanceController.swift */; };
+		27E9E20F2769B5CB00EBB552 /* Automation+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E20E2769B5CB00EBB552 /* Automation+CoreData.swift */; };
+		27E9E2132769B64900EBB552 /* Color+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2122769B64900EBB552 /* Color+CoreData.swift */; };
+		27E9E2152769B6A500EBB552 /* Condition+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2142769B6A500EBB552 /* Condition+CoreData.swift */; };
+		27E9E2172769B70700EBB552 /* Action+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2162769B70700EBB552 /* Action+CoreData.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
 		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
@@ -111,10 +116,15 @@
 		274BA39E2760DC8700B1E2D3 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerSheet.swift; sourceTree = "<group>"; };
 		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
-		27DA33FB276374F20035C7B0 /* PersistanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		27DA340027642F480035C7B0 /* ComposerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewModel.swift; sourceTree = "<group>"; };
 		27DA340227643E2E0035C7B0 /* ComposerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerHeader.swift; sourceTree = "<group>"; };
 		27DA34042766D0970035C7B0 /* TextEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEntity.swift; sourceTree = "<group>"; };
+		27E9E2092769AF3E00EBB552 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		27E9E20C2769B06E00EBB552 /* PersistanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
+		27E9E20E2769B5CB00EBB552 /* Automation+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Automation+CoreData.swift"; sourceTree = "<group>"; };
+		27E9E2122769B64900EBB552 /* Color+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CoreData.swift"; sourceTree = "<group>"; };
+		27E9E2142769B6A500EBB552 /* Condition+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Condition+CoreData.swift"; sourceTree = "<group>"; };
+		27E9E2162769B70700EBB552 /* Action+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Action+CoreData.swift"; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
@@ -260,6 +270,40 @@
 			path = Composer;
 			sourceTree = "<group>";
 		};
+		27E9E2062769AF0C00EBB552 /* Editor Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				27F12CD4275CE12200D87182 /* SettingsView.swift */,
+				270241C727698E43003084E5 /* BottomSheet.swift */,
+				270241C627698E43003084E5 /* RoundedCorner.swift */,
+				270241C827698E43003084E5 /* ViewExtension.swift */,
+			);
+			path = "Editor Sheet";
+			sourceTree = "<group>";
+		};
+		27E9E2072769AF1200EBB552 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				2702419027672DAD003084E5 /* Floating Sheet */,
+				270241B527687043003084E5 /* Native Sheet */,
+				27E9E2062769AF0C00EBB552 /* Editor Sheet */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		27E9E20B2769B05E00EBB552 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				27E9E2082769AF3E00EBB552 /* Model.xcdatamodeld */,
+				27E9E20C2769B06E00EBB552 /* PersistanceController.swift */,
+				27E9E20E2769B5CB00EBB552 /* Automation+CoreData.swift */,
+				27E9E2142769B6A500EBB552 /* Condition+CoreData.swift */,
+				27E9E2162769B70700EBB552 /* Action+CoreData.swift */,
+				27E9E2122769B64900EBB552 /* Color+CoreData.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		27F12CB6275CE07400D87182 = {
 			isa = PBXGroup;
 			children = (
@@ -280,7 +324,6 @@
 			isa = PBXGroup;
 			children = (
 				2702418A27670A26003084E5 /* Info.plist */,
-				27DA33FB276374F20035C7B0 /* PersistanceController.swift */,
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
 				27F12CD0275CE0E600D87182 /* HomeView.swift */,
@@ -291,13 +334,9 @@
 				2730E003275DBB8E0082BE45 /* Automation Models */,
 				2730E00B275DBC070082BE45 /* UI Components */,
 				27F12CC8275CE07400D87182 /* Preview Content */,
-				2702419027672DAD003084E5 /* Floating Sheet */,
-				270241B527687043003084E5 /* Native Sheet */,
+				27E9E2072769AF1200EBB552 /* Sheets */,
 				27F12CE8275D91D100D87182 /* Extension */,
-				27F12CD4275CE12200D87182 /* SettingsView.swift */,
-				270241C727698E43003084E5 /* BottomSheet.swift */,
-				270241C627698E43003084E5 /* RoundedCorner.swift */,
-				270241C827698E43003084E5 /* ViewExtension.swift */,
+				27E9E20B2769B05E00EBB552 /* Core Data */,
 				27F12CC6275CE07400D87182 /* Assets.xcassets */,
 			);
 			path = Woof;
@@ -418,14 +457,18 @@
 				2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */,
 				274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */,
 				274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */,
+				27E9E20F2769B5CB00EBB552 /* Automation+CoreData.swift in Sources */,
+				27E9E2152769B6A500EBB552 /* Condition+CoreData.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */,
+				27E9E2172769B70700EBB552 /* Action+CoreData.swift in Sources */,
 				27F12CE3275D700600D87182 /* ActionList.swift in Sources */,
 				2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */,
 				27DA340327643E2E0035C7B0 /* ComposerHeader.swift in Sources */,
 				270241BA27698A36003084E5 /* String+Extension.swift in Sources */,
 				2730E01D275DCF010082BE45 /* SendNotification.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
+				27E9E20D2769B06E00EBB552 /* PersistanceController.swift in Sources */,
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,
 				270241AC27673812003084E5 /* PanelDelegate.swift in Sources */,
 				2730E029275DD15B0082BE45 /* Swap.swift in Sources */,
@@ -441,6 +484,7 @@
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
 				27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */,
 				2730E011275DCC1B0082BE45 /* PercentageChange.swift in Sources */,
+				27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */,
 				2730E000275DBB770082BE45 /* Comparator.swift in Sources */,
 				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,
 				2730E021275DD0920082BE45 /* SendEmail.swift in Sources */,
@@ -448,11 +492,11 @@
 				2730E027275DD1340082BE45 /* Transfer.swift in Sources */,
 				2730E01A275DCDF60082BE45 /* MarketCap.swift in Sources */,
 				2730E00A275DBBCE0082BE45 /* GenericActionCell.swift in Sources */,
+				27E9E2132769B64900EBB552 /* Color+CoreData.swift in Sources */,
 				2730E005275DBBA80082BE45 /* Crypto.swift in Sources */,
 				270241CA27698E43003084E5 /* BottomSheet.swift in Sources */,
 				2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */,
 				2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */,
-				27DA33FC276374F20035C7B0 /* PersistanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +733,19 @@
 			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		27E9E2082769AF3E00EBB552 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				27E9E2092769AF3E00EBB552 /* Model.xcdatamodel */,
+			);
+			currentVersion = 27E9E2092769AF3E00EBB552 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 27F12CB7275CE07400D87182 /* Project object */;
 }

@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct WoofTabView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \AutomationContract.date, ascending: true)],
+                  animation: .default)
+    var automations: FetchedResults<AutomationContract>
+    
     var body: some View {
         TabView {
-            HomeView(automations: Automation.dummy)
+            HomeView(automations: automations.map(\.automation))
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }

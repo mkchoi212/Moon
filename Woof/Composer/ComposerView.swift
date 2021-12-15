@@ -53,12 +53,12 @@ final class EditorSheetViewModel: ObservableObject {
 
 struct ComposerView: View {
     @State var mode: Int = 0
-    
     @StateObject var viewModel: ComposerViewModel
     @StateObject var editorViewModel = EditorSheetViewModel()
     let panelDelegate = PanelDelegate()
     
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var viewContext
     
     var body: some View {
         ComposerContentView(mode: $mode, dismiss: dismiss)
@@ -76,7 +76,23 @@ struct ComposerView: View {
     }
     
     func dismiss() {
-        presentationMode.wrappedValue.dismiss()
+        if let err = save() {
+            print(err)
+        } else {
+            presentationMode.wrappedValue.dismiss()
+        }
+    }
+    
+    func save() -> Error? {
+        let automation = viewModel.newAutomation
+        let _ = automation.coreDataModel(with: viewContext)
+        
+        do {
+            try viewContext.save()
+            return nil
+        } catch let err {
+            return err
+        }
     }
 }
 

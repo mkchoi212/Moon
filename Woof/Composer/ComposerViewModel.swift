@@ -5,7 +5,7 @@
 //  Created by Mike Choi on 12/11/21.
 //
 
-import Foundation
+import CoreData
 import SwiftUI
 
 final class ComposerViewModel: ObservableObject {
@@ -16,6 +16,23 @@ final class ComposerViewModel: ObservableObject {
     @Published var iconColor: Color = .blue
     @Published var conditions: [CardRepresentable] = []
     @Published var actions: [CardRepresentable] = []
+   
+    var equatableConditions: [AnyEquatableCondition] {
+        conditions.compactMap { $0 as? Condition }.map(AnyEquatableCondition.init)
+    }
+    
+    var equatableActions: [AnyEquatableAction] {
+        actions.compactMap { $0 as? Action }.map(AnyEquatableAction.init)
+    }
+    
+    var newAutomation: Automation {
+        Automation(id: original.id,
+                   title: "foo",
+                   color: iconColor,
+                   iconName: iconName,
+                   conditions: equatableConditions,
+                   actions:equatableActions)
+    }
     
     init(automation: Automation) {
         self.original = automation
@@ -31,8 +48,8 @@ final class ComposerViewModel: ObservableObject {
         !(original.title == name &&
         original.iconName == iconName &&
         original.color == iconColor &&
-        original.conditions == conditions.compactMap { $0 as? Condition }.map(AnyEquatableCondition.init) &&
-        original.actions == actions.compactMap { $0 as? Action }.map(AnyEquatableAction.init))
+        original.conditions == equatableConditions &&
+        original.actions == equatableActions)
     }
     
     func addCondition(_ condition: ConditionType) {

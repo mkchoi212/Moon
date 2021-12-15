@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 protocol Condition: CardRepresentable {
     var type: ConditionType { get }
     func isEqualTo(_ other: Condition) -> Bool
+    func coreDataModel(with context: NSManagedObjectContext) -> ConditionEntity
 }
 
 extension Condition where Self: Equatable {
@@ -54,6 +56,10 @@ struct AnyEquatableCondition: Condition {
     
     func isEqualTo(_ other: Condition) -> Bool {
         condition.isEqualTo(other)
+    }
+    
+    func coreDataModel(with context: NSManagedObjectContext) -> ConditionEntity {
+        condition.coreDataModel(with: context)
     }
 }
 

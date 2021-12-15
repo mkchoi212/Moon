@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct WoofApp: App {
+    let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
             WoofTabView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

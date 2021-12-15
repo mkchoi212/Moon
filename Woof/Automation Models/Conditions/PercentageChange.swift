@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct PercentChange: CardRepresentable, Condition {
     let type = ConditionType.percentChange
@@ -21,6 +22,10 @@ struct PercentChange: CardRepresentable, Condition {
             TextEntity(text: comparator?.actionDescription, action: .comparator(comparator)),
             TextEntity(text: percentage?.percentage, action: .percentage),
         ]
+    }
+    
+    func coreDataModel(with context: NSManagedObjectContext) -> ConditionEntity {
+        ConditionEntity()
     }
 }
 

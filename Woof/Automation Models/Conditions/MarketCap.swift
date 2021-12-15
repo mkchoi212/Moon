@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MarketCapChange: CardRepresentable, Condition {
     let type = ConditionType.marketCap
@@ -23,6 +24,10 @@ struct MarketCapChange: CardRepresentable, Condition {
             TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
             TextEntity(thresholdPrice: price, crypto: crypto)
         ]
+    }
+    
+    func coreDataModel(with context: NSManagedObjectContext) -> ConditionEntity {
+        ConditionEntity()
     }
 }
 

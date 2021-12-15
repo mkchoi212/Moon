@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ActionEntity" representedClassName="ActionEntity" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="AutomationContract" representedClassName="AutomationContract" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="Binary"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="iconName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="actions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ActionEntity"/>
+        <relationship name="conditions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ConditionEntity"/>
+    </entity>
+    <entity name="ConditionEntity" representedClassName="ConditionEntity" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PriceChangeEntity" representedClassName="PriceChangeEntity" parentEntity="ConditionEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="comparator" optional="YES" attributeType="String"/>
+        <attribute name="crypto" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="ConditionEntity" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="PriceChangeEntity" positionX="-45" positionY="9" width="128" height="74"/>
+        <element name="AutomationContract" positionX="-18" positionY="36" width="128" height="134"/>
+        <element name="ActionEntity" positionX="9" positionY="99" width="128" height="44"/>
+    </elements>
+</model>
