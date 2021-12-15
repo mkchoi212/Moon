@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 protocol Condition: CardRepresentable {
+    var entity: ConditionEntity? { get }
     var type: ConditionType { get }
     func isEqualTo(_ other: Condition) -> Bool
     func coreDataModel(with context: NSManagedObjectContext) -> ConditionEntity
@@ -40,6 +41,10 @@ struct AnyEquatableCondition: Condition {
     
     var id: UUID {
         condition.id
+    }
+    
+    var entity: ConditionEntity? {
+        condition.entity
     }
     
     var description: String {
@@ -127,7 +132,7 @@ enum ConditionType: String, CaseIterable {
             case .percentChange:
                 return PercentChange(crypto: nil, comparator: nil, percentage: nil)
             case .priceChange:
-                return PriceChange(crypto: nil, comparator: nil, price: nil)
+                return PriceChange(id: UUID(), crypto: nil, comparator: nil, price: nil)
             case .walletBalance:
                 return WalletBalance(wallet: nil, crypto: nil, comparator: nil, price: nil)
             case .transactionFee:

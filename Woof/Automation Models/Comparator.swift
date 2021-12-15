@@ -51,3 +51,13 @@ enum Comparator: String, CaseIterable {
         }
     }
 }
+
+extension Comparator {
+    init?(rawValue: String?) {
+        if let rawValue = rawValue {
+            self.init(rawValue: rawValue)
+        } else {
+            return nil
+        }
+    }
+}

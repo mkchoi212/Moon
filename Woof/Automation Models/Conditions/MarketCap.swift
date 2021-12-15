@@ -15,7 +15,8 @@ struct MarketCapChange: CardRepresentable, Condition {
     let crypto: Crypto?
     let comparator: Comparator?
     let price: Double?
-   
+    var entity: ConditionEntity?
+    
     var entities: [TextEntity] {
         [
             TextEntity(text: "Market cap of"),

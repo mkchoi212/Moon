@@ -14,8 +14,12 @@ extension ConditionEntity {
                   return nil
               }
         
-        print(type)
-        return nil
+        switch type {
+            case .priceChange:
+                return PriceChange(entity: self as? PriceChangeEntity)
+            default:
+                return nil
+        }
     }
 }
 

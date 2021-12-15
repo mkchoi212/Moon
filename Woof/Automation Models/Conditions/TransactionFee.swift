@@ -16,6 +16,7 @@ struct TransactionFee: CardRepresentable, Condition {
     let crypto: Crypto?
     let comparator: Comparator?
     let price: Double?
+    var entity: ConditionEntity?
    
     var entities: [TextEntity] {
         [

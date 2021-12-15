@@ -9,12 +9,14 @@ import SwiftUI
 import CoreData
 
 struct PercentChange: CardRepresentable, Condition {
+    
     let type = ConditionType.percentChange
     
     let id: UUID = .init()
     let crypto: Crypto?
     let comparator: Comparator?
     let percentage: Double?
+    var entity: ConditionEntity?
     
     var entities: [TextEntity] {
         [

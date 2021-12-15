@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ActionEntity" representedClassName="ActionEntity" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="ofAutomation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AutomationContract" inverseName="actions" inverseEntity="AutomationContract"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="AutomationContract" representedClassName="AutomationContract" syncable="YES" codeGenerationType="class">
         <attribute name="color" optional="YES" attributeType="Binary"/>
@@ -9,11 +16,24 @@
         <attribute name="iconName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="actions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ActionEntity"/>
-        <relationship name="conditions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ConditionEntity"/>
+        <relationship name="actions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ActionEntity" inverseName="ofAutomation" inverseEntity="ActionEntity"/>
+        <relationship name="conditions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ConditionEntity" inverseName="ofAutomation" inverseEntity="ConditionEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
+    <entity name="BuyActionEntity" representedClassName="BuyActionEntity" parentEntity="ActionEntity" syncable="YES" codeGenerationType="class"/>
     <entity name="ConditionEntity" representedClassName="ConditionEntity" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="ofAutomation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AutomationContract" inverseName="conditions" inverseEntity="AutomationContract"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="PriceChangeEntity" representedClassName="PriceChangeEntity" parentEntity="ConditionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="comparator" optional="YES" attributeType="String"/>
@@ -21,9 +41,10 @@
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="ConditionEntity" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="PriceChangeEntity" positionX="-45" positionY="9" width="128" height="74"/>
-        <element name="AutomationContract" positionX="-18" positionY="36" width="128" height="134"/>
-        <element name="ActionEntity" positionX="9" positionY="99" width="128" height="44"/>
+        <element name="ActionEntity" positionX="-168.1328125" positionY="319.265625" width="128" height="88"/>
+        <element name="AutomationContract" positionX="-372.1015625" positionY="67.30859375" width="128" height="134"/>
+        <element name="BuyActionEntity" positionX="-117" positionY="189" width="128" height="29"/>
+        <element name="ConditionEntity" positionX="-165.26953125" positionY="38.203125" width="128" height="88"/>
+        <element name="PriceChangeEntity" positionX="33.32421875" positionY="-28.8515625" width="128" height="74"/>
     </elements>
 </model>

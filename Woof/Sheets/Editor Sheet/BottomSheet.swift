@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct BottomSheet<Content: View>: View {
+public struct BottomSheet<Content: View>: View {
     
     private var dragToDismissThreshold: CGFloat { height * 0.2 }
     private var grayBackgroundOpacity: Double { isPresented ? (0.4 - Double(draggedOffset)/600) : 0 }
@@ -57,15 +57,14 @@ struct BottomSheet<Content: View>: View {
                     self.topBar(geometry: geometry)
                     VStack(spacing: -8) {
                         Spacer()
-                        content
-                            .padding(.bottom, geometry.safeAreaInsets.bottom)
+                        self.content.padding(.bottom, geometry.safeAreaInsets.bottom)
                         Spacer()
                     }
                 }
                 .frame(height: self.height - min(self.draggedOffset*2, 0))
                 .background(contentBackgroundColor)
                 .cornerRadius(topBarCornerRadius, corners: [.topLeft, .topRight])
-                .animation(.interactiveSpring(), value: topBarCornerRadius)
+                .animation(.interactiveSpring())
                 .offset(y: isPresented ? (geometry.size.height/2 - height/2 + geometry.safeAreaInsets.bottom + draggedOffset) : (geometry.size.height/2 + height/2 + geometry.safeAreaInsets.bottom))
             }
         }
@@ -76,7 +75,7 @@ struct BottomSheet<Content: View>: View {
             .black
             .opacity(grayBackgroundOpacity)
             .edgesIgnoringSafeArea(.all)
-            .animation(.interactiveSpring(), value: grayBackgroundOpacity)
+            .animation(.interactiveSpring())
             .onTapGesture { self.isPresented = false }
     }
     

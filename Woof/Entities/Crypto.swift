@@ -14,3 +14,13 @@ enum Crypto: String {
         rawValue.uppercased()
     }
 }
+
+extension Crypto {
+    init?(rawValue: String?) {
+        if let rawValue = rawValue {
+            self.init(rawValue: rawValue)
+        } else {
+            return nil
+        }
+    }
+}

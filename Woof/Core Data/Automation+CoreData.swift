@@ -40,7 +40,10 @@ extension Automation {
         automation.id = id
         automation.title = title
         
-        let actions = actions.map(\.action)
+        let conditionEntities = conditions.map(\.condition).map {
+            $0.coreDataModel(with: context)
+        }
+        automation.conditions = NSOrderedSet(array: conditionEntities)
         return automation
     }
 }

@@ -105,6 +105,7 @@ struct ActionList: View {
     @Binding var actions: [CardRepresentable]
     @StateObject var viewModel = ActionViewModel()
     @EnvironmentObject var editorViewModel: EditorSheetViewModel
+    @Environment(\.managedObjectContext) private var viewContext
     
     let columns = [GridItem(.flexible())]
     
@@ -132,8 +133,17 @@ struct ActionList: View {
     }
  
     func remove(action: CardRepresentable) {
-        if let idx = actions.firstIndex(where: { $0.id == action.id }) {
+        if let idx = actions.firstIndex(where: { $0.id == action.id }),
+           let action = actions[idx] as? Condition {
             actions.remove(at: idx)
+            
+            do {
+                viewContext.delete(action.entity!)
+                try viewContext.save()
+            }
+            catch let err {
+                print(err)
+            }
         }
     }
 }
