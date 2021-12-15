@@ -19,8 +19,11 @@
 		270241A62767301B003084E5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A42767301B003084E5 /* SearchBar.swift */; };
 		270241AA276731E0003084E5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 270241A9276731E0003084E5 /* Introspect */; };
 		270241AC27673812003084E5 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241AB27673812003084E5 /* PanelDelegate.swift */; };
-		270241B327687040003084E5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B127687040003084E5 /* BottomSheet.swift */; };
-		270241B427687040003084E5 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B227687040003084E5 /* BottomSheetViewController.swift */; };
+		270241B72768723E003084E5 /* ComparatorEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B62768723E003084E5 /* ComparatorEditor.swift */; };
+		270241BA27698A36003084E5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B927698A36003084E5 /* String+Extension.swift */; };
+		270241C927698E43003084E5 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
+		270241CA27698E43003084E5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C727698E43003084E5 /* BottomSheet.swift */; };
+		270241CB27698E43003084E5 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
 		2730DFFC275DB59B0082BE45 /* CalendarRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFB275DB59B0082BE45 /* CalendarRule.swift */; };
 		2730E000275DBB770082BE45 /* Comparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFF275DBB770082BE45 /* Comparator.swift */; };
 		2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E001275DBB840082BE45 /* LogicalOperator.swift */; };
@@ -78,6 +81,11 @@
 		270241AB27673812003084E5 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
 		270241B127687040003084E5 /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		270241B227687040003084E5 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		270241B62768723E003084E5 /* ComparatorEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparatorEditor.swift; sourceTree = "<group>"; };
+		270241B927698A36003084E5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		270241C627698E43003084E5 /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		270241C727698E43003084E5 /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		270241C827698E43003084E5 /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		2730DFFB275DB59B0082BE45 /* CalendarRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRule.swift; sourceTree = "<group>"; };
 		2730DFFF275DBB770082BE45 /* Comparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparator.swift; sourceTree = "<group>"; };
 		2730E001275DBB840082BE45 /* LogicalOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalOperator.swift; sourceTree = "<group>"; };
@@ -163,10 +171,19 @@
 		270241B527687043003084E5 /* Native Sheet */ = {
 			isa = PBXGroup;
 			children = (
+				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
 				270241B127687040003084E5 /* BottomSheet.swift */,
 				270241B227687040003084E5 /* BottomSheetViewController.swift */,
 			);
 			path = "Native Sheet";
+			sourceTree = "<group>";
+		};
+		270241B827687250003084E5 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				270241B62768723E003084E5 /* ComparatorEditor.swift */,
+			);
+			path = Editor;
 			sourceTree = "<group>";
 		};
 		2730E003275DBB8E0082BE45 /* Automation Models */ = {
@@ -270,14 +287,17 @@
 				2730E006275DBBAD0082BE45 /* Entities */,
 				274BA3A227622AF800B1E2D3 /* Composer */,
 				270241AD2767387E003084E5 /* Composer Sheet */,
+				270241B827687250003084E5 /* Editor */,
 				2730E003275DBB8E0082BE45 /* Automation Models */,
 				2730E00B275DBC070082BE45 /* UI Components */,
-				27F12CE8275D91D100D87182 /* Extension */,
 				27F12CC8275CE07400D87182 /* Preview Content */,
 				2702419027672DAD003084E5 /* Floating Sheet */,
-				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
 				270241B527687043003084E5 /* Native Sheet */,
+				27F12CE8275D91D100D87182 /* Extension */,
 				27F12CD4275CE12200D87182 /* SettingsView.swift */,
+				270241C727698E43003084E5 /* BottomSheet.swift */,
+				270241C627698E43003084E5 /* RoundedCorner.swift */,
+				270241C827698E43003084E5 /* ViewExtension.swift */,
 				27F12CC6275CE07400D87182 /* Assets.xcassets */,
 			);
 			path = Woof;
@@ -296,6 +316,7 @@
 			children = (
 				27F12CE6275D7D7900D87182 /* Number+Extension.swift */,
 				27F12CD6275CE42700D87182 /* Color+Extension.swift */,
+				270241B927698A36003084E5 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -382,6 +403,7 @@
 				2730E008275DBBBA0082BE45 /* Wallet.swift in Sources */,
 				274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */,
 				27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */,
+				270241C927698E43003084E5 /* RoundedCorner.swift in Sources */,
 				2730E018275DCD630082BE45 /* TransactionFee.swift in Sources */,
 				270241A62767301B003084E5 /* SearchBar.swift in Sources */,
 				2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */,
@@ -401,6 +423,7 @@
 				27F12CE3275D700600D87182 /* ActionList.swift in Sources */,
 				2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */,
 				27DA340327643E2E0035C7B0 /* ComposerHeader.swift in Sources */,
+				270241BA27698A36003084E5 /* String+Extension.swift in Sources */,
 				2730E01D275DCF010082BE45 /* SendNotification.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,
@@ -410,11 +433,12 @@
 				2730E00D275DBD930082BE45 /* ActionType.swift in Sources */,
 				27F12CD3275CE0F500D87182 /* NotificationView.swift in Sources */,
 				2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */,
+				270241B72768723E003084E5 /* ComparatorEditor.swift in Sources */,
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
+				270241CB27698E43003084E5 /* ViewExtension.swift in Sources */,
 				2730E014275DCC310082BE45 /* PriceChange.swift in Sources */,
 				2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */,
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
-				270241B327687040003084E5 /* BottomSheet.swift in Sources */,
 				27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */,
 				2730E011275DCC1B0082BE45 /* PercentageChange.swift in Sources */,
 				2730E000275DBB770082BE45 /* Comparator.swift in Sources */,
@@ -424,8 +448,8 @@
 				2730E027275DD1340082BE45 /* Transfer.swift in Sources */,
 				2730E01A275DCDF60082BE45 /* MarketCap.swift in Sources */,
 				2730E00A275DBBCE0082BE45 /* GenericActionCell.swift in Sources */,
-				270241B427687040003084E5 /* BottomSheetViewController.swift in Sources */,
 				2730E005275DBBA80082BE45 /* Crypto.swift in Sources */,
+				270241CA27698E43003084E5 /* BottomSheet.swift in Sources */,
 				2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */,
 				2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */,
 				27DA33FC276374F20035C7B0 /* PersistanceController.swift in Sources */,

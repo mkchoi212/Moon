@@ -12,6 +12,7 @@ struct IconSquare: View {
     var color: Color
     var iconName: String
     var iconFontSize: CGFloat
+    var iconTint: Color = .white
     
     var body: some View {
         ZStack {
@@ -20,7 +21,7 @@ struct IconSquare: View {
             
             Image(systemName: iconName)
                 .font(.system(size: iconFontSize, weight: .bold))
-                .foregroundColor(.white)
+                .foregroundColor(iconTint)
         }
     }
 }

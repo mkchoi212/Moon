@@ -7,8 +7,17 @@
 
 import Foundation
 
-enum Comparator: String {
+enum Comparator: String, CaseIterable {
     case greater, less, equal
+    
+    var description: String {
+        switch self {
+            case .equal:
+                return "equal to"
+            default:
+                return comparatorDescription
+        }
+    }
     
     var comparatorDescription: String {
         switch self {
@@ -28,6 +37,17 @@ enum Comparator: String {
                 return "decreases"
             case .equal:
                 return "is"
+        }
+    }
+    
+    var imageName: String {
+        switch self {
+            case .greater:
+                return "greaterthan"
+            case .less:
+                return "lessthan"
+            case .equal:
+                return "equal"
         }
     }
 }

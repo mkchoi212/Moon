@@ -60,14 +60,23 @@ final class ActionViewModel: ObservableObject {
             return nil
         }
     }
+    
+    func editor(for entity: TextEntity) -> AnyView {
+        switch entity.action {
+            case .comparator(let comp):
+                return AnyView(ComparatorEditor(selectedComparator: comp ?? .equal))
+            default:
+                return AnyView(EmptyView())
+        }
+    }
 }
 
 struct ActionCell: View {
     let action: CardRepresentable
-    @Binding var selectedEntity: TextEntity?
     var remove: () -> ()
     
     @EnvironmentObject var viewModel: ActionViewModel
+    @EnvironmentObject var editorViewModel: EditorSheetViewModel
     
     var body: some View {
         GenericActionCell(iconName: action.iconName,
@@ -84,8 +93,10 @@ struct ActionCell: View {
         guard let entity = viewModel.resolve(deeplink: url) else {
             return
         }
-        
-        selectedEntity = entity
+   
+        editorViewModel.height = 340
+        editorViewModel.content = viewModel.editor(for: entity)
+        editorViewModel.presentSheet = true
     }
 }
 
@@ -93,8 +104,7 @@ struct ActionList: View {
     @Binding var mode: Int
     @Binding var actions: [CardRepresentable]
     @StateObject var viewModel = ActionViewModel()
-    
-    @State var selectedEntity: TextEntity?
+    @EnvironmentObject var editorViewModel: EditorSheetViewModel
     
     let columns = [GridItem(.flexible())]
     
@@ -109,18 +119,16 @@ struct ActionList: View {
                             .padding(6)
                             .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color(uiColor: .lightGray)))
                     } else {
-                        ActionCell(action: action, selectedEntity: $selectedEntity) {
+                        ActionCell(action: action) {
                             remove(action: action)
                         }
                         .environmentObject(viewModel)
+                        .environmentObject(editorViewModel)
                     }
                 }
             }
             .padding(.top, 15)
         }
-        .bottomSheet(item: $selectedEntity, detents: [.medium()], prefersGrabberVisible: true, contentView: {
-            Text(selectedEntity.debugDescription)
-        })
     }
  
     func remove(action: CardRepresentable) {

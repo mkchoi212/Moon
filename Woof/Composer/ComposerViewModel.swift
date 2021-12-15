@@ -16,7 +16,7 @@ final class ComposerViewModel: ObservableObject {
     @Published var iconColor: Color = .blue
     @Published var conditions: [CardRepresentable] = []
     @Published var actions: [CardRepresentable] = []
-   
+    
     init(automation: Automation) {
         self.original = automation
         
