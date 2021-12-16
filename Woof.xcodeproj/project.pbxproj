@@ -49,6 +49,7 @@
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
+		277387F6276A2725009A424A /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277387F5276A2725009A424A /* KeyboardHelper.swift */; };
 		27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340027642F480035C7B0 /* ComposerViewModel.swift */; };
 		27DA340327643E2E0035C7B0 /* ComposerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340227643E2E0035C7B0 /* ComposerHeader.swift */; };
 		27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA34042766D0970035C7B0 /* TextEntity.swift */; };
@@ -58,6 +59,8 @@
 		27E9E2132769B64900EBB552 /* Color+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2122769B64900EBB552 /* Color+CoreData.swift */; };
 		27E9E2152769B6A500EBB552 /* Condition+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2142769B6A500EBB552 /* Condition+CoreData.swift */; };
 		27E9E2172769B70700EBB552 /* Action+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2162769B70700EBB552 /* Action+CoreData.swift */; };
+		27E9E2192769E85800EBB552 /* PercentageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2182769E85800EBB552 /* PercentageEditor.swift */; };
+		27E9E21B2769E8A000EBB552 /* EditorHeaderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E21A2769E8A000EBB552 /* EditorHeaderModifier.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
 		27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC4275CE07400D87182 /* WoofTabView.swift */; };
 		27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27F12CC6275CE07400D87182 /* Assets.xcassets */; };
@@ -116,6 +119,7 @@
 		274BA39E2760DC8700B1E2D3 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerSheet.swift; sourceTree = "<group>"; };
 		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
+		277387F5276A2725009A424A /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		27DA340027642F480035C7B0 /* ComposerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewModel.swift; sourceTree = "<group>"; };
 		27DA340227643E2E0035C7B0 /* ComposerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerHeader.swift; sourceTree = "<group>"; };
 		27DA34042766D0970035C7B0 /* TextEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEntity.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 		27E9E2122769B64900EBB552 /* Color+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CoreData.swift"; sourceTree = "<group>"; };
 		27E9E2142769B6A500EBB552 /* Condition+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Condition+CoreData.swift"; sourceTree = "<group>"; };
 		27E9E2162769B70700EBB552 /* Action+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Action+CoreData.swift"; sourceTree = "<group>"; };
+		27E9E2182769E85800EBB552 /* PercentageEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageEditor.swift; sourceTree = "<group>"; };
+		27E9E21A2769E8A000EBB552 /* EditorHeaderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorHeaderModifier.swift; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
@@ -191,7 +197,9 @@
 		270241B827687250003084E5 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				27E9E21A2769E8A000EBB552 /* EditorHeaderModifier.swift */,
 				270241B62768723E003084E5 /* ComparatorEditor.swift */,
+				27E9E2182769E85800EBB552 /* PercentageEditor.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -308,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				27F12CC1275CE07400D87182 /* Woof */,
+				277387F5276A2725009A424A /* KeyboardHelper.swift */,
 				27F12CC0275CE07400D87182 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -451,6 +460,7 @@
 				27F12CD9275CEB8800D87182 /* ComposerView.swift in Sources */,
 				270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */,
 				27F12CD1275CE0E600D87182 /* HomeView.swift in Sources */,
+				27E9E21B2769E8A000EBB552 /* EditorHeaderModifier.swift in Sources */,
 				2730E00F275DC45A0082BE45 /* AutomationSummaryCell.swift in Sources */,
 				2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */,
 				2730E016275DCC8E0082BE45 /* WalletBalance.swift in Sources */,
@@ -468,6 +478,7 @@
 				270241BA27698A36003084E5 /* String+Extension.swift in Sources */,
 				2730E01D275DCF010082BE45 /* SendNotification.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
+				27E9E2192769E85800EBB552 /* PercentageEditor.swift in Sources */,
 				27E9E20D2769B06E00EBB552 /* PersistanceController.swift in Sources */,
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,
 				270241AC27673812003084E5 /* PanelDelegate.swift in Sources */,
@@ -484,6 +495,7 @@
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
 				27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */,
 				2730E011275DCC1B0082BE45 /* PercentageChange.swift in Sources */,
+				277387F6276A2725009A424A /* KeyboardHelper.swift in Sources */,
 				27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */,
 				2730E000275DBB770082BE45 /* Comparator.swift in Sources */,
 				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,

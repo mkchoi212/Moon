@@ -65,8 +65,21 @@ final class ActionViewModel: ObservableObject {
         switch entity.action {
             case .comparator(let comp):
                 return AnyView(ComparatorEditor(selectedComparator: comp ?? .equal))
+            case .percentage(let percentage):
+                return AnyView(PercentageEditor(percentage: percentage))
             default:
                 return AnyView(EmptyView())
+        }
+    }
+    
+    func height(for entity: TextEntity) -> CGFloat {
+        switch entity.action {
+            case .comparator(_):
+                return 340
+            case .percentage(_):
+                return 240
+            default:
+                return 0
         }
     }
 }
@@ -94,9 +107,10 @@ struct ActionCell: View {
             return
         }
    
-        editorViewModel.height = 340
+        editorViewModel.height = viewModel.height(for: entity)
         editorViewModel.content = viewModel.editor(for: entity)
         editorViewModel.presentSheet = true
+        editorViewModel.usesKeyboard = true
     }
 }
 

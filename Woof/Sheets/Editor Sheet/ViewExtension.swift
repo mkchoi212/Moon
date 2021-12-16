@@ -11,6 +11,7 @@ import SwiftUI
 public extension View {
     func bottomSheet<Content: View>(
         isPresented: Binding<Bool>,
+        usesKeyboard: Bool,
         height: CGFloat,
         topBarHeight: CGFloat = 30,
         topBarCornerRadius: CGFloat? = nil,
@@ -22,6 +23,7 @@ public extension View {
         ZStack {
             self
             BottomSheet(isPresented: isPresented,
+                        usesKeyboard: usesKeyboard,
                         height: height,
                         topBarHeight: topBarHeight,
                         topBarCornerRadius: topBarCornerRadius,

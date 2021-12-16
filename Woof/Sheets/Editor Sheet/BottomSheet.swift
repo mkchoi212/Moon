@@ -17,7 +17,8 @@ public struct BottomSheet<Content: View>: View {
     @State private var previousDragValue: DragGesture.Value?
 
     @Binding var isPresented: Bool
-    private let height: CGFloat
+    private let usesKeyboard: Bool
+    private let _height: CGFloat
     private let topBarHeight: CGFloat
     private let topBarCornerRadius: CGFloat
     private let content: Content
@@ -25,8 +26,15 @@ public struct BottomSheet<Content: View>: View {
     private let topBarBackgroundColor: Color
     private let showTopIndicator: Bool
     
+    @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
+    
+    var height: CGFloat {
+        _height + self.keyboardHeightHelper.keyboardHeight
+    }
+    
     public init(
         isPresented: Binding<Bool>,
+        usesKeyboard: Bool,
         height: CGFloat,
         topBarHeight: CGFloat = 30,
         topBarCornerRadius: CGFloat? = nil,
@@ -37,8 +45,9 @@ public struct BottomSheet<Content: View>: View {
     ) {
         self.topBarBackgroundColor = topBarBackgroundColor
         self.contentBackgroundColor = contentBackgroundColor
+        self.usesKeyboard = usesKeyboard
         self._isPresented = isPresented
-        self.height = height
+        self._height = height
         self.topBarHeight = topBarHeight
         if let topBarCornerRadius = topBarCornerRadius {
             self.topBarCornerRadius = topBarCornerRadius

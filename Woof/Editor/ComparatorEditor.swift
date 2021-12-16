@@ -38,7 +38,7 @@ struct ComparatorEditor: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Choose a comparator")
-                .font(.system(size: 22, weight: .semibold, design: .rounded))
+                .modifier(EditorHeaderModifier())
             
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(Comparator.allCases, id: \.rawValue) { comp in

@@ -10,7 +10,7 @@ import SwiftUI
 enum EditAction {
     case cryptoType, cryptoAmount, wallet
     case comparator(Comparator?)
-    case percentage
+    case percentage(Double)
     case email
     
     var placeholder: String {

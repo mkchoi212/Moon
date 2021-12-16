@@ -48,6 +48,7 @@ struct ComposerContentView: View {
 final class EditorSheetViewModel: ObservableObject {
     @Published var presentSheet = false
     @Published var height: CGFloat?
+    @Published var usesKeyboard = false
     var content: AnyView?
 }
 
@@ -70,7 +71,7 @@ struct ComposerView: View {
                     .environmentObject(editorViewModel)
             }
             .floatingPanelSurfaceAppearance(.phone)
-            .bottomSheet(isPresented: $editorViewModel.presentSheet, height: editorViewModel.height ?? 0) {
+            .bottomSheet(isPresented: $editorViewModel.presentSheet, usesKeyboard: editorViewModel.usesKeyboard, height: editorViewModel.height ?? 0) {
                 editorViewModel.content ?? AnyView(EmptyView())
             }
     }
