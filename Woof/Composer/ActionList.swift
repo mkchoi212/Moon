@@ -7,6 +7,42 @@
 
 import SwiftUI
 
+final class EditorSheetViewModel: ObservableObject {
+    @Published var selectedEntity: TextEntity? {
+        willSet {
+            if let newValue = newValue {
+                detents = detents(for: newValue)
+            }
+        }
+    }
+    
+    @Published var detents: [UISheetPresentationController.Detent] = [.medium()]
+    
+    func editor(for entity: TextEntity) -> AnyView {
+        switch entity.action {
+            case .comparator(let comp):
+                return AnyView(ComparatorEditor(selectedComparator: comp ?? .equal))
+            case .percentage(let percentage):
+                return AnyView(PercentageEditor(percentage: percentage))
+            default:
+                return AnyView(EmptyView())
+        }
+    }
+    
+    func detents(for entity: TextEntity?) -> [UISheetPresentationController.Detent] {
+        guard let entity = entity else {
+            return []
+        }
+
+        switch entity.action {
+            case .comparator(_):
+                return [.medium()]
+            default:
+                return [.medium(), .large()]
+        }
+    }
+}
+
 final class ActionViewModel: ObservableObject {
     var entityMap: [String: TextEntity] = [:]
     
@@ -60,28 +96,6 @@ final class ActionViewModel: ObservableObject {
             return nil
         }
     }
-    
-    func editor(for entity: TextEntity) -> AnyView {
-        switch entity.action {
-            case .comparator(let comp):
-                return AnyView(ComparatorEditor(selectedComparator: comp ?? .equal))
-            case .percentage(let percentage):
-                return AnyView(PercentageEditor(percentage: percentage))
-            default:
-                return AnyView(EmptyView())
-        }
-    }
-    
-    func height(for entity: TextEntity) -> CGFloat {
-        switch entity.action {
-            case .comparator(_):
-                return 340
-            case .percentage(_):
-                return 240
-            default:
-                return 0
-        }
-    }
 }
 
 struct ActionCell: View {
@@ -107,10 +121,7 @@ struct ActionCell: View {
             return
         }
    
-        editorViewModel.height = viewModel.height(for: entity)
-        editorViewModel.content = viewModel.editor(for: entity)
-        editorViewModel.presentSheet = true
-        editorViewModel.usesKeyboard = true
+        editorViewModel.selectedEntity = entity
     }
 }
 
@@ -118,7 +129,8 @@ struct ActionList: View {
     @Binding var mode: Int
     @Binding var actions: [CardRepresentable]
     @StateObject var viewModel = ActionViewModel()
-    @EnvironmentObject var editorViewModel: EditorSheetViewModel
+    @StateObject var editorViewModel = EditorSheetViewModel()
+
     @Environment(\.managedObjectContext) private var viewContext
     
     let columns = [GridItem(.flexible())]
@@ -144,20 +156,33 @@ struct ActionList: View {
             }
             .padding(.top, 15)
         }
+        .bottomSheet(item: $editorViewModel.selectedEntity,
+                     detents: $editorViewModel.detents,
+                     prefersGrabberVisible: true,
+                     prefersScrollingExpandsWhenScrolledToEdge: true,
+                     isModalInPresentation: false) {
+            if let entity = editorViewModel.selectedEntity {
+                editorViewModel.editor(for: entity)
+            }
+        }
     }
  
     func remove(action: CardRepresentable) {
-        if let idx = actions.firstIndex(where: { $0.id == action.id }),
-           let action = actions[idx] as? Condition {
-            actions.remove(at: idx)
-            
-            do {
-                viewContext.delete(action.entity!)
+        guard let idx = actions.firstIndex(where: { $0.id == action.id }) else {
+            return
+        }
+        
+        let action = actions[idx]
+        actions.remove(at: idx)
+       
+        do {
+            if let entity = (action as? Condition)?.entity {
+                viewContext.delete(entity)
                 try viewContext.save()
             }
-            catch let err {
-                print(err)
-            }
+        }
+        catch let err {
+            print(err)
         }
     }
 }

@@ -10,8 +10,8 @@ import SwiftUI
 @available(iOS 15, *)
 struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
     @Binding private var isPresented: Bool
+    @Binding private var detents: [UISheetPresentationController.Detent]
     
-    private let detents: [UISheetPresentationController.Detent]
     private let largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
     private let prefersGrabberVisible: Bool
     private let prefersScrollingExpandsWhenScrolledToEdge: Bool
@@ -25,7 +25,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
 
     init(
         isPresented: Binding<Bool>,
-        detents: [UISheetPresentationController.Detent] = [.medium(), .large()],
+        detents: Binding<[UISheetPresentationController.Detent]>,
         largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier? = nil,
         prefersGrabberVisible: Bool = false,
         prefersScrollingExpandsWhenScrolledToEdge: Bool = true,
@@ -36,7 +36,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         @ViewBuilder contentView: @escaping () -> ContentView
     ) {
         _isPresented = isPresented
-        self.detents = detents
+        _detents = detents
         self.largestUndimmedDetentIdentifier = largestUndimmedDetentIdentifier
         self.prefersGrabberVisible = prefersGrabberVisible
         self.prefersScrollingExpandsWhenScrolledToEdge = prefersScrollingExpandsWhenScrolledToEdge
@@ -49,7 +49,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
     
     init(
         item: Binding<T?>,
-        detents: [UISheetPresentationController.Detent] = [.medium(), .large()],
+        detents: Binding<[UISheetPresentationController.Detent]>,
         largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier? = nil,
         prefersGrabberVisible: Bool = false,
         prefersScrollingExpandsWhenScrolledToEdge: Bool = true,
@@ -64,7 +64,8 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         }, set: { newValue in
             item.wrappedValue = nil
         })
-        self.detents = detents
+        
+        self._detents = detents
         self.largestUndimmedDetentIdentifier = largestUndimmedDetentIdentifier
         self.prefersGrabberVisible = prefersGrabberVisible
         self.prefersScrollingExpandsWhenScrolledToEdge = prefersScrollingExpandsWhenScrolledToEdge
@@ -94,7 +95,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         if isPresented {
             bottomSheetViewController = BottomSheetViewController(
                 isPresented: $isPresented,
-                detents: detents,
+                detents: $detents,
                 largestUndimmedDetentIdentifier: largestUndimmedDetentIdentifier,
                 prefersGrabberVisible: prefersGrabberVisible,
                 prefersScrollingExpandsWhenScrolledToEdge: prefersScrollingExpandsWhenScrolledToEdge,
@@ -131,7 +132,7 @@ extension View {
     ///   - contentView: A closure that returns the content of the sheet.
     public func bottomSheet<ContentView: View>(
         isPresented: Binding<Bool>,
-        detents: [UISheetPresentationController.Detent] = [.medium(), .large()],
+        detents: Binding<[UISheetPresentationController.Detent]>,
         largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier? = nil,
         prefersGrabberVisible: Bool = false,
         prefersScrollingExpandsWhenScrolledToEdge: Bool = true,
@@ -171,7 +172,7 @@ extension View {
     ///   - contentView: A closure that returns the content of the sheet.
     public func bottomSheet<T: Any, ContentView: View>(
         item: Binding<T?>,
-        detents: [UISheetPresentationController.Detent] = [.medium(), .large()],
+        detents: Binding<[UISheetPresentationController.Detent]>,
         largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier? = nil,
         prefersGrabberVisible: Bool = false,
         prefersScrollingExpandsWhenScrolledToEdge: Bool = true,

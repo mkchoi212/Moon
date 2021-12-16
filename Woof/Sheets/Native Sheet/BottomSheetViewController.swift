@@ -13,7 +13,7 @@ import Combine
 class BottomSheetViewController<Content: View>: UIViewController, UISheetPresentationControllerDelegate {
     @Binding private var isPresented: Bool
 
-    private let detents: [UISheetPresentationController.Detent]
+    @Binding private var detents: [UISheetPresentationController.Detent]
     private let largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
     private let prefersGrabberVisible: Bool
     private let prefersScrollingExpandsWhenScrolledToEdge: Bool
@@ -24,7 +24,7 @@ class BottomSheetViewController<Content: View>: UIViewController, UISheetPresent
 
     init(
         isPresented: Binding<Bool>,
-        detents: [UISheetPresentationController.Detent] = [.medium(), .large()],
+        detents: Binding<[UISheetPresentationController.Detent]>,
         largestUndimmedDetentIdentifier:  UISheetPresentationController.Detent.Identifier? = nil,
         prefersGrabberVisible: Bool = false,
         prefersScrollingExpandsWhenScrolledToEdge: Bool = true,
@@ -34,8 +34,8 @@ class BottomSheetViewController<Content: View>: UIViewController, UISheetPresent
         content: Content
     ) {
         _isPresented = isPresented
-
-        self.detents = detents
+        _detents = detents
+        
         self.largestUndimmedDetentIdentifier = largestUndimmedDetentIdentifier
         self.prefersGrabberVisible = prefersGrabberVisible
         self.prefersScrollingExpandsWhenScrolledToEdge = prefersScrollingExpandsWhenScrolledToEdge

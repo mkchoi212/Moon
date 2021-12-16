@@ -17,13 +17,9 @@
 		270241A127672EC1003084E5 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 270241A027672EC1003084E5 /* FloatingPanel */; };
 		270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */; };
 		270241A62767301B003084E5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A42767301B003084E5 /* SearchBar.swift */; };
-		270241AA276731E0003084E5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 270241A9276731E0003084E5 /* Introspect */; };
 		270241AC27673812003084E5 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241AB27673812003084E5 /* PanelDelegate.swift */; };
 		270241B72768723E003084E5 /* ComparatorEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B62768723E003084E5 /* ComparatorEditor.swift */; };
 		270241BA27698A36003084E5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B927698A36003084E5 /* String+Extension.swift */; };
-		270241C927698E43003084E5 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
-		270241CA27698E43003084E5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C727698E43003084E5 /* BottomSheet.swift */; };
-		270241CB27698E43003084E5 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
 		2730DFFC275DB59B0082BE45 /* CalendarRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFB275DB59B0082BE45 /* CalendarRule.swift */; };
 		2730E000275DBB770082BE45 /* Comparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730DFFF275DBB770082BE45 /* Comparator.swift */; };
 		2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E001275DBB840082BE45 /* LogicalOperator.swift */; };
@@ -46,10 +42,12 @@
 		2730E029275DD15B0082BE45 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E028275DD15B0082BE45 /* Swap.swift */; };
 		2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02A275DD2030082BE45 /* ConditionType.swift */; };
 		2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02C275DE9AC0082BE45 /* Automation.swift */; };
+		27410768276B0B8900E77A00 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 27410767276B0B8900E77A00 /* Introspect */; };
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
-		277387F6276A2725009A424A /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277387F5276A2725009A424A /* KeyboardHelper.swift */; };
+		27557D90276B068A0044A864 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B127687040003084E5 /* BottomSheet.swift */; };
+		27557D91276B068A0044A864 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B227687040003084E5 /* BottomSheetViewController.swift */; };
 		27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340027642F480035C7B0 /* ComposerViewModel.swift */; };
 		27DA340327643E2E0035C7B0 /* ComposerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA340227643E2E0035C7B0 /* ComposerHeader.swift */; };
 		27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA34042766D0970035C7B0 /* TextEntity.swift */; };
@@ -152,7 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
-				270241AA276731E0003084E5 /* Introspect in Frameworks */,
+				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +185,6 @@
 		270241B527687043003084E5 /* Native Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
 				270241B127687040003084E5 /* BottomSheet.swift */,
 				270241B227687040003084E5 /* BottomSheetViewController.swift */,
 			);
@@ -281,7 +278,7 @@
 		27E9E2062769AF0C00EBB552 /* Editor Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				27F12CD4275CE12200D87182 /* SettingsView.swift */,
+				277387F5276A2725009A424A /* KeyboardHelper.swift */,
 				270241C727698E43003084E5 /* BottomSheet.swift */,
 				270241C627698E43003084E5 /* RoundedCorner.swift */,
 				270241C827698E43003084E5 /* ViewExtension.swift */,
@@ -316,7 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				27F12CC1275CE07400D87182 /* Woof */,
-				277387F5276A2725009A424A /* KeyboardHelper.swift */,
+				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
+				27F12CD4275CE12200D87182 /* SettingsView.swift */,
 				27F12CC0275CE07400D87182 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -387,7 +385,7 @@
 			name = Woof;
 			packageProductDependencies = (
 				270241A027672EC1003084E5 /* FloatingPanel */,
-				270241A9276731E0003084E5 /* Introspect */,
+				27410767276B0B8900E77A00 /* Introspect */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Woof.app */;
@@ -419,7 +417,7 @@
 			mainGroup = 27F12CB6275CE07400D87182;
 			packageReferences = (
 				2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
-				270241A8276731E0003084E5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				27410766276B0B8900E77A00 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -451,7 +449,6 @@
 				2730E008275DBBBA0082BE45 /* Wallet.swift in Sources */,
 				274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */,
 				27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */,
-				270241C927698E43003084E5 /* RoundedCorner.swift in Sources */,
 				2730E018275DCD630082BE45 /* TransactionFee.swift in Sources */,
 				270241A62767301B003084E5 /* SearchBar.swift in Sources */,
 				2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */,
@@ -489,13 +486,13 @@
 				2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */,
 				270241B72768723E003084E5 /* ComparatorEditor.swift in Sources */,
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
-				270241CB27698E43003084E5 /* ViewExtension.swift in Sources */,
 				2730E014275DCC310082BE45 /* PriceChange.swift in Sources */,
 				2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */,
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
 				27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */,
 				2730E011275DCC1B0082BE45 /* PercentageChange.swift in Sources */,
-				277387F6276A2725009A424A /* KeyboardHelper.swift in Sources */,
+				27557D90276B068A0044A864 /* BottomSheet.swift in Sources */,
+				27557D91276B068A0044A864 /* BottomSheetViewController.swift in Sources */,
 				27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */,
 				2730E000275DBB770082BE45 /* Comparator.swift in Sources */,
 				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,
@@ -506,7 +503,6 @@
 				2730E00A275DBBCE0082BE45 /* GenericActionCell.swift in Sources */,
 				27E9E2132769B64900EBB552 /* Color+CoreData.swift in Sources */,
 				2730E005275DBBA80082BE45 /* Crypto.swift in Sources */,
-				270241CA27698E43003084E5 /* BottomSheet.swift in Sources */,
 				2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */,
 				2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */,
 			);
@@ -723,12 +719,12 @@
 				kind = branch;
 			};
 		};
-		270241A8276731E0003084E5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+		27410766276B0B8900E77A00 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -739,9 +735,9 @@
 			package = 2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
 		};
-		270241A9276731E0003084E5 /* Introspect */ = {
+		27410767276B0B8900E77A00 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 270241A8276731E0003084E5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			package = 27410766276B0B8900E77A00 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
