@@ -14,6 +14,13 @@ extension NumberFormatter {
         nf.maximumFractionDigits = 1
         return nf
     }()
+    
+    static let pureDouble: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.maximumFractionDigits = 2
+        return nf
+    }()
 }
 
 extension Double {

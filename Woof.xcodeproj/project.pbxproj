@@ -43,6 +43,8 @@
 		2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02A275DD2030082BE45 /* ConditionType.swift */; };
 		2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02C275DE9AC0082BE45 /* Automation.swift */; };
 		27410768276B0B8900E77A00 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 27410767276B0B8900E77A00 /* Introspect */; };
+		2741076A276B255200E77A00 /* SaveButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410769276B255200E77A00 /* SaveButtonModifier.swift */; };
+		2741076C276B26AA00E77A00 /* CryptoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741076B276B26AA00E77A00 /* CryptoEditor.swift */; };
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
@@ -114,6 +116,8 @@
 		2730E028275DD15B0082BE45 /* Swap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		2730E02A275DD2030082BE45 /* ConditionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionType.swift; sourceTree = "<group>"; };
 		2730E02C275DE9AC0082BE45 /* Automation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Automation.swift; sourceTree = "<group>"; };
+		27410769276B255200E77A00 /* SaveButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonModifier.swift; sourceTree = "<group>"; };
+		2741076B276B26AA00E77A00 /* CryptoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoEditor.swift; sourceTree = "<group>"; };
 		274BA39E2760DC8700B1E2D3 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerSheet.swift; sourceTree = "<group>"; };
 		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 				27E9E21A2769E8A000EBB552 /* EditorHeaderModifier.swift */,
 				270241B62768723E003084E5 /* ComparatorEditor.swift */,
 				27E9E2182769E85800EBB552 /* PercentageEditor.swift */,
+				2741076B276B26AA00E77A00 /* CryptoEditor.swift */,
+				27410769276B255200E77A00 /* SaveButtonModifier.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -464,6 +470,8 @@
 				2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */,
 				274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */,
 				274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */,
+				2741076C276B26AA00E77A00 /* CryptoEditor.swift in Sources */,
+				2741076A276B255200E77A00 /* SaveButtonModifier.swift in Sources */,
 				27E9E20F2769B5CB00EBB552 /* Automation+CoreData.swift in Sources */,
 				27E9E2152769B6A500EBB552 /* Condition+CoreData.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,

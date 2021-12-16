@@ -34,6 +34,7 @@ struct ComparatorRow: View {
 struct ComparatorEditor: View {
     let columns = [GridItem(.flexible())]
     @State var selectedComparator: Comparator = .equal
+    var save: (() -> ())?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -48,6 +49,15 @@ struct ComparatorEditor: View {
                         }
                 }
             }
+            
+            Spacer()
+            
+            Button {
+                save?()
+            } label: {
+                Text("Save")
+                    .modifier(SaveButtonModifier())
+            }
         }
         .padding()
     }
@@ -55,6 +65,6 @@ struct ComparatorEditor: View {
 
 struct ComparatorEditor_Previews: PreviewProvider {
     static var previews: some View {
-        ComparatorEditor()
+        ComparatorEditor(save: nil)
     }
 }

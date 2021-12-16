@@ -5,43 +5,34 @@
 //  Created by Mike Choi on 12/15/21.
 //
 
-import Foundation
+import Combine
 import SwiftUI
+import Introspect
 
-struct TestTextfield: UIViewRepresentable {
-    @Binding var text: String
-    var keyType: UIKeyboardType
+final class TextFieldToolbarState: ObservableObject {
+    @Published var showMinus = false
+    @Published var isInputActive = true
+    var sinks = Set<AnyCancellable>()
     
-    func makeUIView(context: Context) -> UITextField {
-        let textfield = UITextField()
-        textfield.keyboardType = keyType
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textfield.frame.size.width, height: 44))
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(textfield.doneButtonTapped(button:)))
-        toolBar.items = [doneButton]
-        toolBar.setItems([doneButton], animated: true)
-        textfield.inputAccessoryView = toolBar
-        return textfield
+    @objc func didPressDone() {
+        isInputActive = false
     }
     
-    func updateUIView(_ uiView: UITextField, context: Context) {
-        uiView.text = text
+    @objc func didPressSignToggle() {
+        showMinus.toggle()
     }
-}
-
-extension  UITextField{
-    @objc func doneButtonTapped(button:UIBarButtonItem) -> Void {
-        self.resignFirstResponder()
-    }
-    
 }
 
 struct PercentageEditor: View {
-    var percentage: Double
     @State var percentageString: String
+    var percentage: Double
+    @State var didTapNegate = false
+    @FocusState var isInputActive: Bool
+    @StateObject var toolbarState = TextFieldToolbarState()
     
     init(percentage: Double) {
-        _percentageString = State(initialValue: percentage.percentage)
         self.percentage = percentage
+        _percentageString = State(initialValue: String(percentage.percentage.dropLast()))
     }
     
     var body: some View {
@@ -49,15 +40,62 @@ struct PercentageEditor: View {
             Text("Enter a percentage")
                 .modifier(EditorHeaderModifier())
             
+            Spacer()
+            
             HStack(alignment: .center, spacing: 1) {
-                TestTextfield(text: $percentageString, keyType: .numbersAndPunctuation)
+                Spacer()
+                TextField("0", text: $percentageString)
                     .font(.system(size: 32, weight: .semibold, design: .rounded))
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.center)
-                    .textFieldStyle(.roundedBorder)
+                    .focused($isInputActive)
+                    .introspectTextField { textField in
+                        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: toolbarState, action: #selector(toolbarState.didPressDone))
+                        let toggleSignButton = UIBarButtonItem(title: "+/-", style: .plain, target: toolbarState, action: #selector(toolbarState.didPressSignToggle))
+                        
+                        let flexibleSpace = UIBarButtonItem.flexibleSpace()
+                        toolBar.items = [doneButton, flexibleSpace, toggleSignButton]
+                        textField.inputAccessoryView = toolBar
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                
+                Text("%")
+                    .font(.system(size: 32, weight: .semibold, design: .rounded))
+                
+                Spacer()
+            }
+            
+            Spacer()
+            
+            Button {
+            } label: {
+                Text("Save")
+                    .modifier(SaveButtonModifier())
             }
         }
         .padding()
+        .onAppear {
+            isInputActive = true
+            
+            toolbarState.$isInputActive
+                .assign(to: \.isInputActive, on: self)
+                .store(in: &toolbarState.sinks)
+            
+             toolbarState.$showMinus
+                .sink(receiveValue: { negate in
+                    if negate, !percentageString.contains("-") {
+                        percentageString = "-\(percentageString)"
+                    } else if !negate {
+                        percentageString = percentageString.filter { $0 != "-" && $0 != "." }
+                    }
+                })
+                .store(in: &toolbarState.sinks)
+        }
+    }
+    
+    func didPressDone() {
+        isInputActive = false
     }
 }
 
