@@ -21,7 +21,7 @@ struct Automation: Identifiable {
     [
         Automation(id: UUID(), title: "Buy the dip", color: .red, iconName: "arrow.down",
                    conditions: [
-                    AnyEquatableCondition(condition: PriceChange(id: UUID(), crypto: .btc, comparator: .less, price: 69000))
+                    AnyEquatableCondition(condition: PriceChange(id: UUID(), cryptoSymbol: "BTC", comparator: .less, price: 69000))
                    ], actions: [])
 //                   actions: [
 //                    SendNotification(message: ""),

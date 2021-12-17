@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum EditAction {
-    case cryptoType, cryptoAmount, wallet
+    case cryptoType(String?), cryptoAmount, wallet
     case comparator(Comparator?)
     case percentage(Double)
     case email
@@ -31,21 +31,26 @@ enum EditAction {
     }
 }
 
-struct TextEntity: Identifiable {
+final class TextEntity: Identifiable {
     var text: String?
     var action: EditAction?
     
     let id = UUID()
+    
+    init(text: String?, action: EditAction?) {
+        self.text = text
+        self.action = action
+    }
 }
 
 extension TextEntity {
-    init(text: String) {
+    convenience init(text: String) {
         self.init(text: text, action: nil)
     }
     
-    init(thresholdPrice: Double?, crypto: Crypto?) {
-        if let price = thresholdPrice, let crypto = crypto {
-            self.init(text: "\(price.price)\(crypto.description)", action: .cryptoAmount)
+    convenience init(thresholdPrice: Double?, cryptoSymbol: String?) {
+        if let price = thresholdPrice, let crypto = cryptoSymbol {
+            self.init(text: "\(price.price)\(crypto)", action: .cryptoAmount)
         } else {
             self.init(text: nil, action: .cryptoAmount)
         }

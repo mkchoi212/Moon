@@ -13,7 +13,7 @@ struct TransactionFee: CardRepresentable, Condition {
     
     let id: UUID = .init()
     let wallet: Wallet?
-    let crypto: Crypto?
+    let cryptoSymbol: String?
     let comparator: Comparator?
     let price: Double?
     var entity: ConditionEntity?
@@ -21,9 +21,9 @@ struct TransactionFee: CardRepresentable, Condition {
     var entities: [TextEntity] {
         [
             TextEntity(text: "Average transaction fee for"),
-            TextEntity(text: crypto?.description, action: .cryptoType),
+            TextEntity(text: cryptoSymbol, action: .cryptoType(cryptoSymbol)),
             TextEntity(text: "is"),
-            TextEntity(thresholdPrice: price, crypto: crypto)
+            TextEntity(thresholdPrice: price, cryptoSymbol: cryptoSymbol)
         ]
     }
     
@@ -35,7 +35,7 @@ struct TransactionFee: CardRepresentable, Condition {
 extension TransactionFee: Equatable {
     static func ==(lft: TransactionFee, rht: TransactionFee) -> Bool {
         lft.wallet == rht.wallet &&
-        lft.crypto == rht.crypto &&
+        lft.cryptoSymbol == rht.cryptoSymbol &&
         lft.comparator == rht.comparator &&
         lft.price == rht.price
     }

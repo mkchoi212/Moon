@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Crypto: String {
+enum Crypto: String, CaseIterable {
     case btc, eth, ohm
     
     var description: String {

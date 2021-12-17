@@ -12,7 +12,7 @@ struct MarketCapChange: CardRepresentable, Condition {
     let type = ConditionType.marketCap
     
     let id: UUID = .init()
-    let crypto: Crypto?
+    let cryptoSymbol: String?
     let comparator: Comparator?
     let price: Double?
     var entity: ConditionEntity?
@@ -20,10 +20,10 @@ struct MarketCapChange: CardRepresentable, Condition {
     var entities: [TextEntity] {
         [
             TextEntity(text: "Market cap of"),
-            TextEntity(text: crypto?.description, action: .cryptoType),
+            TextEntity(text: cryptoSymbol, action: .cryptoType(cryptoSymbol)),
             TextEntity(text: "is"),
             TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
-            TextEntity(thresholdPrice: price, crypto: crypto)
+            TextEntity(thresholdPrice: price, cryptoSymbol: cryptoSymbol)
         ]
     }
     
@@ -34,7 +34,7 @@ struct MarketCapChange: CardRepresentable, Condition {
 
 extension MarketCapChange: Equatable {
     static func ==(lft: MarketCapChange, rht: MarketCapChange) -> Bool {
-        lft.crypto == rht.crypto &&
+        lft.cryptoSymbol == rht.cryptoSymbol &&
         lft.comparator == rht.comparator &&
         lft.price == rht.price
     }

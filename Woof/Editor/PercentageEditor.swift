@@ -37,8 +37,12 @@ struct PercentageEditor: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            Text("Enter a percentage")
-                .modifier(EditorHeaderModifier())
+            HStack {
+                Text("Enter a percentage")
+                    .modifier(EditorHeaderModifier())
+                Spacer()
+                BigXButton()
+            }
             
             Spacer()
             

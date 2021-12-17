@@ -15,6 +15,7 @@ enum ComposerViewMode: Int {
 struct ComposerContentView: View {
     @Binding var mode: Int
     @EnvironmentObject var viewModel: ComposerViewModel
+    @EnvironmentObject var editorViewModel: EditorSheetViewModel
 
     var dismiss: () -> ()
     
@@ -37,6 +38,7 @@ struct ComposerContentView: View {
             ActionList(mode: $mode,
                        actions: mode == ComposerViewMode.condition.rawValue ?
                        $viewModel.conditions : $viewModel.actions)
+                .environmentObject(editorViewModel)
         }
         .background(Color(uiColor: .systemGroupedBackground))
     }
@@ -45,6 +47,8 @@ struct ComposerContentView: View {
 struct ComposerView: View {
     @State var mode: Int = 0
     @StateObject var viewModel: ComposerViewModel
+    @StateObject var editorViewModel = EditorSheetViewModel()
+    
     let panelDelegate = PanelDelegate()
     
     @Environment(\.presentationMode) var presentationMode
@@ -53,6 +57,7 @@ struct ComposerView: View {
     var body: some View {
         ComposerContentView(mode: $mode, dismiss: dismiss)
             .environmentObject(viewModel)
+            .environmentObject(editorViewModel)
             .floatingPanel(delegate: panelDelegate) { proxy in
                 ComposerSheet(mode: $mode, proxy: proxy)
                     .environmentObject(viewModel)

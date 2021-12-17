@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension NumberFormatter {
     static let percentage: NumberFormatter = {
         let nf = NumberFormatter()
         nf.numberStyle = .percent
-        nf.maximumFractionDigits = 1
+        nf.maximumFractionDigits = 2
         return nf
     }()
     
@@ -21,6 +22,16 @@ extension NumberFormatter {
         nf.maximumFractionDigits = 2
         return nf
     }()
+    
+    static let currency: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .currency
+        nf.locale = .current
+        nf.usesGroupingSeparator = true
+        nf.minimumFractionDigits = 2
+        nf.maximumFractionDigits = 6
+        return nf
+    }()
 }
 
 extension Double {
@@ -28,7 +39,32 @@ extension Double {
         NumberFormatter.percentage.string(from: NSNumber(value: self)) ?? ""
     }
     
+    /**
+     For numbers already x 100
+     */
+    var signedPercentage: String {
+        if self > 0 {
+            return "+\((self / 100).percentage)"
+        } else {
+            return (self/100).percentage
+        }
+    }
+    
     var price: String {
         String(format: "%.2f", self)
+    }
+    
+    var currencyFormatted: String {
+        NumberFormatter.currency.string(from: NSNumber(value: self)) ?? ""
+    }
+    
+    var percentageColor: Color {
+        if self > 0 {
+            return .green
+        } else if self < 0 {
+            return .red
+        } else {
+            return .gray
+        }
     }
 }

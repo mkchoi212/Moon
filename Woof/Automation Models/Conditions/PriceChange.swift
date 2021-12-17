@@ -12,16 +12,16 @@ struct PriceChange: CardRepresentable, Condition {
     let type = ConditionType.priceChange
     
     let id: UUID
-    let crypto: Crypto?
+    let cryptoSymbol: String?
     let comparator: Comparator?
     let price: Double?
     var entity: ConditionEntity?
     
     var entities: [TextEntity] {
         [
-            TextEntity(text: crypto?.description, action: .cryptoType),
+            TextEntity(text: cryptoSymbol, action: .cryptoType(cryptoSymbol)),
             TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
-            TextEntity(thresholdPrice: price, crypto: crypto)
+            TextEntity(thresholdPrice: price, cryptoSymbol: cryptoSymbol)
         ]
     }
     
@@ -29,7 +29,7 @@ struct PriceChange: CardRepresentable, Condition {
         let entity = PriceChangeEntity(context: context)
         entity.id = id
         entity.type = type.rawValue
-        entity.crypto = crypto?.rawValue
+        entity.cryptoSymbol = cryptoSymbol
         entity.comparator = comparator?.rawValue
         entity.price = price ?? .nan
         return entity
@@ -38,7 +38,7 @@ struct PriceChange: CardRepresentable, Condition {
 
 extension PriceChange: Equatable {
     static func ==(lft: PriceChange, rht: PriceChange) -> Bool {
-        lft.crypto == rht.crypto &&
+        lft.cryptoSymbol == rht.cryptoSymbol &&
         lft.comparator == rht.comparator &&
         lft.price == rht.price
     }
@@ -53,7 +53,7 @@ extension PriceChange {
         }
 
         self.init(id: id,
-                  crypto: Crypto(rawValue: entity.crypto),
+                  cryptoSymbol: entity.cryptoSymbol,
                   comparator: Comparator(rawValue: entity.comparator),
                   price: entity.price,
                   entity: entity)

@@ -33,31 +33,41 @@ struct ComparatorRow: View {
 
 struct ComparatorEditor: View {
     let columns = [GridItem(.flexible())]
-    @State var selectedComparator: Comparator = .equal
-    var save: (() -> ())?
+    @State var selectedComparator: Comparator
+    @EnvironmentObject var viewModel: ActionViewModel
+    
+    let entity: TextEntity
+    
+    init(entity: TextEntity) {
+        self.entity = entity
+        
+        if case .comparator(let comp) = entity.action {
+            selectedComparator = comp ?? .equal
+        } else {
+            selectedComparator = .equal
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Choose a comparator")
-                .modifier(EditorHeaderModifier())
+            HStack {
+                Text("Choose a comparator")
+                    .modifier(EditorHeaderModifier())
+                Spacer()
+                BigXButton()
+            }
             
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(Comparator.allCases, id: \.rawValue) { comp in
                     ComparatorRow(comparator: comp, selectedComparator: $selectedComparator)
                         .onTapGesture {
                             selectedComparator = comp
+                            viewModel.entityMap[entity.id.uuidString] = TextEntity(text: comp.description, action: .comparator(comp))
                         }
                 }
             }
             
             Spacer()
-            
-            Button {
-                save?()
-            } label: {
-                Text("Save")
-                    .modifier(SaveButtonModifier())
-            }
         }
         .padding()
     }
@@ -65,6 +75,6 @@ struct ComparatorEditor: View {
 
 struct ComparatorEditor_Previews: PreviewProvider {
     static var previews: some View {
-        ComparatorEditor(save: nil)
+        ComparatorEditor(entity: TextEntity(text: "Comparator", action: .comparator(.less)))
     }
 }

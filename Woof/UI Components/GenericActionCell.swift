@@ -11,7 +11,7 @@ struct GenericActionCell: View {
     var iconName: String?
     var color: Color
     var title: String
-    var description: AttributedString
+    @Binding var description: AttributedString
     var backgroundColor: Color?
     var didTapDelete : (() -> ())?
     
@@ -64,13 +64,13 @@ struct GenericActionCell: View {
 }
 
 struct GenericActionCell_Previews: PreviewProvider {
-    static let dummyCondition = MarketCapChange(crypto: .eth, comparator: .less, price: 1000)
+    static let dummyCondition = MarketCapChange(cryptoSymbol: "ETH", comparator: .less, price: 1000)
     
     static var previews: some View {
         GenericActionCell(iconName: dummyCondition.type.iconName,
                           color: dummyCondition.type.color,
                           title: dummyCondition.type.description,
-                          description: AttributedString(dummyCondition.description),
+                          description: .constant(AttributedString(dummyCondition.description)),
                           didTapDelete: nil)
     }
 }

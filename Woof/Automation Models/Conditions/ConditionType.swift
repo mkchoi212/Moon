@@ -130,15 +130,15 @@ enum ConditionType: String, CaseIterable {
     func makeEntity() -> Condition {
         switch self {
             case .percentChange:
-                return PercentChange(crypto: nil, comparator: nil, percentage: nil)
+                return PercentChange(cryptoSymbol: nil, comparator: nil, percentage: nil)
             case .priceChange:
-                return PriceChange(id: UUID(), crypto: nil, comparator: nil, price: nil)
+                return PriceChange(id: UUID(), cryptoSymbol: nil, comparator: nil, price: nil)
             case .walletBalance:
-                return WalletBalance(wallet: nil, crypto: nil, comparator: nil, price: nil)
+                return WalletBalance(wallet: nil, cryptoSymbol: nil, comparator: nil, price: nil)
             case .transactionFee:
-                return TransactionFee(wallet: nil, crypto: nil, comparator: nil, price: nil)
+                return TransactionFee(wallet: nil, cryptoSymbol: nil, comparator: nil, price: nil)
             case .marketCap:
-                return MarketCapChange(crypto: nil, comparator: nil, price: nil)
+                return MarketCapChange(cryptoSymbol: nil, comparator: nil, price: nil)
         }
     }
 }
