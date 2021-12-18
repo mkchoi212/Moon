@@ -31,7 +31,7 @@ final class ComposerViewModel: ObservableObject {
                    color: iconColor,
                    iconName: iconName,
                    conditions: equatableConditions,
-                   actions:equatableActions)
+                   actions: equatableActions)
     }
     
     init(automation: Automation) {

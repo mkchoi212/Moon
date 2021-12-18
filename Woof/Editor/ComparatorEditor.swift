@@ -40,7 +40,7 @@ struct ComparatorEditor: View {
     
     init(property: ComparatorProperty) {
         propertyId = property.id
-        selectedComparator = property.comparator ?? .equal
+        selectedComparator = property.value ?? .equal
     }
     
     var body: some View {
@@ -57,8 +57,9 @@ struct ComparatorEditor: View {
                     ComparatorRow(comparator: comp, selectedComparator: $selectedComparator)
                         .onTapGesture {
                             selectedComparator = comp
-                            viewModel.set(property: ComparatorProperty(comparator: selectedComparator),
-                                          for: propertyId)
+                            
+                            ((viewModel.action as? AnyEquatableCondition)?.condition as? PercentChange)?.comparator.value = comp
+                            viewModel.generateDescription()
                         }
                 }
             }
@@ -71,6 +72,6 @@ struct ComparatorEditor: View {
 
 struct ComparatorEditor_Previews: PreviewProvider {
     static var previews: some View {
-        ComparatorEditor(property: .init(comparator: .less))
+        ComparatorEditor(property: .init(value: .less))
     }
 }

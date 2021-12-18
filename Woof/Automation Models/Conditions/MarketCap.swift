@@ -21,7 +21,7 @@ struct MarketCapChange: CardRepresentable, Condition {
             StaticText(text: "Market cap of"),
             CryptoTypeProperty(cryptoSymbol: cryptoSymbol),
             StaticText(text: "is"),
-            ComparatorProperty(comparator: comparator),
+            ComparatorProperty(value: comparator),
             CryptoAmountProperty(cryptoSymbol: cryptoSymbol, amount: price)
         ]
     }

@@ -43,6 +43,11 @@ extension Automation {
         let conditionEntities = conditions.map(\.condition).map {
             $0.coreDataModel(with: context)
         }
+        
+        conditionEntities.forEach {
+            $0.ofAutomation = automation
+        }
+        
         automation.conditions = NSOrderedSet(array: conditionEntities)
         return automation
     }

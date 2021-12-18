@@ -89,11 +89,11 @@ struct WalletEntityProperty: CardProperty {
 
 struct ComparatorProperty: CardProperty {
     let id = UUID()
-    var comparator: Comparator?
+    var value: Comparator?
     let action: EditAction = .comparator
     
     var description: String? {
-        comparator?.actionDescription
+        value?.actionDescription
     }
 }
 

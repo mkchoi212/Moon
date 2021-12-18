@@ -9,31 +9,24 @@ import SwiftUI
 import OrderedCollections
 
 final class ActionViewModel: ObservableObject {
-    private var action: CardRepresentable
-    var propMap: OrderedDictionary<String, CardProperty> = [:] {
-        didSet {
-            attributedString = description()
-        }
-    }
+    var action: CardRepresentable
     
     @Published var attributedString = AttributedString()
     
     init(action: CardRepresentable) {
         self.action = action
-        self.propMap = OrderedDictionary(uniqueKeysWithValues: action.properties.map { prop in
-            (prop.id.uuidString, prop)
-        })
         self.attributedString = self.description()
     }
     
-    func set(property: CardProperty, for uuid: UUID) {
-        propMap[uuid.uuidString] = property
+    func generateDescription() {
+        attributedString = description()
     }
     
     func description() -> AttributedString {
         var res = AttributedString()
+        let properties = action.properties
         
-        propMap.values.enumerated().forEach { (i, prop) in
+        properties.enumerated().forEach { (i, prop) in
             let uuid = prop.id.uuidString
             let action = prop.action
             
@@ -64,7 +57,7 @@ final class ActionViewModel: ObservableObject {
                 res += sub
             }
             
-            if i < propMap.count - 1 {
+            if i < properties.count - 1 {
                 res += AttributedString(" ")
             }
         }
@@ -74,7 +67,7 @@ final class ActionViewModel: ObservableObject {
     
     func resolve(deeplink: URL) -> CardProperty? {
         if let id = deeplink.host {
-            return propMap[id]
+            return action.properties.first { $0.id.uuidString == id }
         } else {
             return nil
         }

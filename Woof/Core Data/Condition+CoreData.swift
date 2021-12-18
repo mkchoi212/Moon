@@ -17,8 +17,10 @@ extension ConditionEntity {
         switch type {
             case .priceChange:
                 return PriceChange(entity: self as? PriceChangeEntity)
+            case .percentChange:
+                return PercentChange(entity: self as? PercentChangeEntity)
             default:
-                return nil
+                fatalError("couldn't parse \(self)")
         }
     }
 }
