@@ -52,6 +52,7 @@
 		27410779276C320600E77A00 /* BigXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410778276C320600E77A00 /* BigXButton.swift */; };
 		2741077C276C972000E77A00 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2741077B276C972000E77A00 /* OrderedCollections */; };
 		2741077E276D682700E77A00 /* ActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741077D276D682700E77A00 /* ActionViewModel.swift */; };
+		27410780276DA70E00E77A00 /* PercentChangeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741077F276DA70E00E77A00 /* PercentChangeable.swift */; };
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
@@ -131,6 +132,7 @@
 		27410776276C250800E77A00 /* CoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewModel.swift; sourceTree = "<group>"; };
 		27410778276C320600E77A00 /* BigXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigXButton.swift; sourceTree = "<group>"; };
 		2741077D276D682700E77A00 /* ActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewModel.swift; sourceTree = "<group>"; };
+		2741077F276DA70E00E77A00 /* PercentChangeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentChangeable.swift; sourceTree = "<group>"; };
 		274BA39E2760DC8700B1E2D3 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerSheet.swift; sourceTree = "<group>"; };
 		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				27E9E21A2769E8A000EBB552 /* EditorHeaderModifier.swift */,
 				27410769276B255200E77A00 /* SaveButtonModifier.swift */,
 				27410772276C1F2A00E77A00 /* EditorSheetViewModel.swift */,
+				2741077F276DA70E00E77A00 /* PercentChangeable.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				2730E00D275DBD930082BE45 /* ActionType.swift in Sources */,
 				27F12CD3275CE0F500D87182 /* NotificationView.swift in Sources */,
 				2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */,
+				27410780276DA70E00E77A00 /* PercentChangeable.swift in Sources */,
 				270241B72768723E003084E5 /* ComparatorEditor.swift in Sources */,
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
 				2730E014275DCC310082BE45 /* PriceChange.swift in Sources */,

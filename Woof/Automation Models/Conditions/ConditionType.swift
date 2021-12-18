@@ -129,7 +129,7 @@ enum ConditionType: String, CaseIterable {
             case .priceChange:
                 return PriceChange(id: UUID(), cryptoSymbol: nil, comparator: nil, price: nil)
             case .walletBalance:
-                return WalletBalance(wallet: nil, cryptoSymbol: nil, comparator: nil, price: nil)
+                return WalletBalance(id: UUID(), wallet: nil, cryptoSymbol: nil, comparator: nil, price: nil)
             case .transactionFee:
                 return TransactionFee(wallet: nil, cryptoSymbol: nil, comparator: nil, price: nil)
             case .marketCap:

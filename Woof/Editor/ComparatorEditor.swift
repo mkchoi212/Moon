@@ -58,7 +58,7 @@ struct ComparatorEditor: View {
                         .onTapGesture {
                             selectedComparator = comp
                             
-                            ((viewModel.action as? AnyEquatableCondition)?.condition as? PercentChange)?.comparator.value = comp
+                            ((viewModel.action as? AnyEquatableCondition)?.condition as? ComparatorSettable)?.set(comparator: comp, for: propertyId)
                             viewModel.generateDescription()
                         }
                 }

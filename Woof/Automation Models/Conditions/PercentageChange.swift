@@ -39,6 +39,12 @@ final class PercentChange: CardRepresentable, Condition {
     }
 }
 
+extension PercentChange: ComparatorSettable {
+    func set(comparator: Comparator, for propertyId: UUID) {
+        self.comparator.value = comparator
+    }
+}
+
 // MARK: - CoreData
 
 extension PercentChange {
