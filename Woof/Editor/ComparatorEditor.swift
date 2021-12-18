@@ -62,7 +62,8 @@ struct ComparatorEditor: View {
                     ComparatorRow(comparator: comp, selectedComparator: $selectedComparator)
                         .onTapGesture {
                             selectedComparator = comp
-                            viewModel.entityMap[entity.id.uuidString] = TextEntity(text: comp.description, action: .comparator(comp))
+                            viewModel.set(entity: .init(text: comp.description, action: .comparator(comp)),
+                                          for: entity.id)
                         }
                 }
             }

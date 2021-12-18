@@ -15,7 +15,6 @@ struct PriceChange: CardRepresentable, Condition {
     let cryptoSymbol: String?
     let comparator: Comparator?
     let price: Double?
-    var entity: ConditionEntity?
     
     var entities: [TextEntity] {
         [
@@ -55,7 +54,6 @@ extension PriceChange {
         self.init(id: id,
                   cryptoSymbol: entity.cryptoSymbol,
                   comparator: Comparator(rawValue: entity.comparator),
-                  price: entity.price,
-                  entity: entity)
+                  price: entity.price)
     }
 }

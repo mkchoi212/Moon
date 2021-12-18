@@ -19,7 +19,7 @@ final class EditorSheetViewModel: ObservableObject {
         }
     }
     @Published var detents: [UISheetPresentationController.Detent] = [.medium()]
-    @Published var actionViewModels: [UUID:ActionViewModel] = [:]
+    @Published var actionViewModels: [UUID : ActionViewModel] = [:]
     
     func setActions(actions: [CardRepresentable]) {
         actions.forEach { action in

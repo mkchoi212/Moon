@@ -16,7 +16,6 @@ struct WalletBalance: CardRepresentable, Condition {
     let cryptoSymbol: String?
     let comparator: Comparator?
     let price: Double?
-    var entity: ConditionEntity?
     
     var entities: [TextEntity] {
         [

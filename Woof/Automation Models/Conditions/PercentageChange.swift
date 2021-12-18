@@ -16,7 +16,6 @@ struct PercentChange: CardRepresentable, Condition {
     let cryptoSymbol: String?
     let comparator: Comparator?
     let percentage: Double?
-    var entity: ConditionEntity?
     
     var entities: [TextEntity] {
         [
@@ -25,6 +24,13 @@ struct PercentChange: CardRepresentable, Condition {
             TextEntity(text: percentage?.percentage, action: .percentage(percentage ?? 0)),
         ]
     }
+    
+//    static func make(with entities: [TextEntity]) -> CardRepresentable {
+//        PercentChange(cryptoSymbol: <#T##String?#>,
+//                      comparator: <#T##Comparator?#>,
+//                      percentage: <#T##Double?#>,
+//                      entity: <#T##ConditionEntity?#>)
+//    }
     
     func coreDataModel(with context: NSManagedObjectContext) -> ConditionEntity {
         ConditionEntity()

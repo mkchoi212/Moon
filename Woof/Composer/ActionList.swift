@@ -6,75 +6,6 @@
 //
 
 import SwiftUI
-import OrderedCollections
-
-final class ActionViewModel: ObservableObject {
-    private var action: CardRepresentable
-    var entityMap: OrderedDictionary<String, TextEntity> = [:] {
-        didSet {
-            attributedString = description(for: action)
-        }
-    }
-    
-    @Published var attributedString = AttributedString()
-    
-    init(action: CardRepresentable) {
-        self.action = action
-        self.entityMap = OrderedDictionary(uniqueKeysWithValues: action.entities.map { entity in
-            (entity.id.uuidString, entity)
-        })
-        self.attributedString = description(for: action)
-    }
-    
-    func description(for action: CardRepresentable) -> AttributedString {
-        var res = AttributedString()
-        
-        entityMap.values.enumerated().forEach { (i, entity) in
-            let uuid = entity.id.uuidString
-            
-            if let action = entity.action {
-                var sub: AttributedString
-                
-                if let filledText = entity.text {
-                    sub = AttributedString(filledText)
-                    sub.foregroundColor = .blue
-                    sub.backgroundColor = .lightBlue
-                    sub.font = .system(size: 18, weight: .semibold, design: .rounded)
-                } else {
-                    var placeholder = action.placeholder
-                    if i > 0 {
-                        placeholder = placeholder.lowercased()
-                    }
-                    sub = AttributedString(placeholder)
-                    sub.foregroundColor = .gray
-                    sub.backgroundColor = .lightBlue
-                    sub.font = .system(size: 18, weight: .medium, design: .rounded)
-                }
-                
-                sub.link = URL(string: "woof://\(uuid)")!
-                res += sub
-            } else {
-                var sub = AttributedString(entity.text ?? "")
-                sub.font = .system(size: 18)
-                res += sub
-            }
-            
-            if i < action.entities.count - 1 {
-                res += AttributedString(" ")
-            }
-        }
-        
-        return res
-    }
-    
-    func resolve(deeplink: URL) -> TextEntity? {
-        if let id = deeplink.host {
-            return entityMap[id]
-        } else {
-            return nil
-        }
-    }
-}
 
 struct ActionCell: View {
     let action: CardRepresentable
@@ -91,7 +22,7 @@ struct ActionCell: View {
                           backgroundColor: Color(uiColor: .secondarySystemGroupedBackground)) {
             remove()
         }
-                          .onOpenURL(perform: didOpenURL(url:))
+        .onOpenURL(perform: didOpenURL(url:))
     }
     
     func didOpenURL(url: URL) {
@@ -107,7 +38,7 @@ struct ActionCell: View {
 struct ActionList: View {
     @Binding var mode: Int
     @Binding var actions: [CardRepresentable]
-    @EnvironmentObject var editorViewModel:  EditorSheetViewModel
+    @EnvironmentObject var editorViewModel: EditorSheetViewModel
     
     @Environment(\.managedObjectContext) private var viewContext
     let columns = [GridItem(.flexible())]
@@ -149,9 +80,6 @@ struct ActionList: View {
                     .environmentObject(editorViewModel.actionViewModel(for: action))
             }
         }
-         .onAppear {
-             editorViewModel.setActions(actions: actions)
-         }
     }
     
     func remove(action: CardRepresentable) {
@@ -163,8 +91,7 @@ struct ActionList: View {
         actions.remove(at: idx)
         
         do {
-            if let entity = (action as? Condition)?.entity {
-                viewContext.delete(entity)
+            if (action as? Condition)?.coreDataModel(with: viewContext) != nil {
                 try viewContext.save()
             }
         }

@@ -29,6 +29,14 @@ enum EditAction {
                 return "Email"
         }
     }
+    
+    var cryptoType: String? {
+        if case .cryptoType(let type) = self {
+            return type
+        } else {
+            return nil
+        }
+    }
 }
 
 final class TextEntity: Identifiable {

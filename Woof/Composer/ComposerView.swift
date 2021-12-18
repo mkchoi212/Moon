@@ -56,13 +56,16 @@ struct ComposerView: View {
     
     var body: some View {
         ComposerContentView(mode: $mode, dismiss: dismiss)
-            .environmentObject(viewModel)
-            .environmentObject(editorViewModel)
+            .floatingPanelSurfaceAppearance(.phone)
             .floatingPanel(delegate: panelDelegate) { proxy in
                 ComposerSheet(mode: $mode, proxy: proxy)
                     .environmentObject(viewModel)
             }
-            .floatingPanelSurfaceAppearance(.phone)
+            .onAppear {
+                editorViewModel.setActions(actions: viewModel.actions)
+            }
+            .environmentObject(viewModel)
+            .environmentObject(editorViewModel)
     }
     
     func dismiss() {

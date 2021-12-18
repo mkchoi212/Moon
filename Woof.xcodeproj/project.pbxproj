@@ -51,6 +51,7 @@
 		27410777276C250800E77A00 /* CoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410776276C250800E77A00 /* CoinViewModel.swift */; };
 		27410779276C320600E77A00 /* BigXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410778276C320600E77A00 /* BigXButton.swift */; };
 		2741077C276C972000E77A00 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2741077B276C972000E77A00 /* OrderedCollections */; };
+		2741077E276D682700E77A00 /* ActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741077D276D682700E77A00 /* ActionViewModel.swift */; };
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
@@ -129,6 +130,7 @@
 		27410774276C22B900E77A00 /* CoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataService.swift; sourceTree = "<group>"; };
 		27410776276C250800E77A00 /* CoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewModel.swift; sourceTree = "<group>"; };
 		27410778276C320600E77A00 /* BigXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigXButton.swift; sourceTree = "<group>"; };
+		2741077D276D682700E77A00 /* ActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewModel.swift; sourceTree = "<group>"; };
 		274BA39E2760DC8700B1E2D3 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerSheet.swift; sourceTree = "<group>"; };
 		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				27DA340027642F480035C7B0 /* ComposerViewModel.swift */,
 				27DA34042766D0970035C7B0 /* TextEntity.swift */,
 				27F12CE2275D700600D87182 /* ActionList.swift */,
+				2741077D276D682700E77A00 /* ActionViewModel.swift */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
 				27E9E2192769E85800EBB552 /* PercentageEditor.swift in Sources */,
 				27E9E20D2769B06E00EBB552 /* PersistanceController.swift in Sources */,
+				2741077E276D682700E77A00 /* ActionViewModel.swift in Sources */,
 				27410773276C1F2A00E77A00 /* EditorSheetViewModel.swift in Sources */,
 				2741076E276B333200E77A00 /* CoinModel.swift in Sources */,
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,
