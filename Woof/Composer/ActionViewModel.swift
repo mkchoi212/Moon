@@ -10,7 +10,7 @@ import OrderedCollections
 
 final class ActionViewModel: ObservableObject {
     private var action: CardRepresentable
-    var entityMap: OrderedDictionary<String, TextEntity> = [:] {
+    var propMap: OrderedDictionary<String, CardProperty> = [:] {
         didSet {
             attributedString = description()
         }
@@ -20,26 +20,31 @@ final class ActionViewModel: ObservableObject {
     
     init(action: CardRepresentable) {
         self.action = action
-        self.entityMap = OrderedDictionary(uniqueKeysWithValues: action.entities.map { entity in
-            (entity.id.uuidString, entity)
+        self.propMap = OrderedDictionary(uniqueKeysWithValues: action.properties.map { prop in
+            (prop.id.uuidString, prop)
         })
         self.attributedString = self.description()
     }
     
-    func set(entity: TextEntity, for uuid: UUID) {
-        entityMap[uuid.uuidString] = entity
+    func set(property: CardProperty, for uuid: UUID) {
+        propMap[uuid.uuidString] = property
     }
     
     func description() -> AttributedString {
         var res = AttributedString()
         
-        entityMap.values.enumerated().forEach { (i, entity) in
-            let uuid = entity.id.uuidString
+        propMap.values.enumerated().forEach { (i, prop) in
+            let uuid = prop.id.uuidString
+            let action = prop.action
             
-            if let action = entity.action {
+            if action == .staticText {
+                var sub = AttributedString(prop.description ?? "")
+                sub.font = .system(size: 18)
+                res += sub
+            } else {
                 var sub: AttributedString
                 
-                if let filledText = entity.text {
+                if let filledText = prop.description {
                     sub = AttributedString(filledText)
                     sub.foregroundColor = .blue
                     sub.backgroundColor = .lightBlue
@@ -57,13 +62,9 @@ final class ActionViewModel: ObservableObject {
                 
                 sub.link = URL(string: "woof://\(uuid)")!
                 res += sub
-            } else {
-                var sub = AttributedString(entity.text ?? "")
-                sub.font = .system(size: 18)
-                res += sub
             }
             
-            if i < entityMap.count - 1 {
+            if i < propMap.count - 1 {
                 res += AttributedString(" ")
             }
         }
@@ -71,9 +72,9 @@ final class ActionViewModel: ObservableObject {
         return res
     }
     
-    func resolve(deeplink: URL) -> TextEntity? {
+    func resolve(deeplink: URL) -> CardProperty? {
         if let id = deeplink.host {
-            return entityMap[id]
+            return propMap[id]
         } else {
             return nil
         }

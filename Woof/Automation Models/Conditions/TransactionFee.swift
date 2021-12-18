@@ -16,13 +16,13 @@ struct TransactionFee: CardRepresentable, Condition {
     let cryptoSymbol: String?
     let comparator: Comparator?
     let price: Double?
-   
-    var entities: [TextEntity] {
+  
+    var properties: [CardProperty] {
         [
-            TextEntity(text: "Average transaction fee for"),
-            TextEntity(text: cryptoSymbol, action: .cryptoType(cryptoSymbol)),
-            TextEntity(text: "is"),
-            TextEntity(thresholdPrice: price, cryptoSymbol: cryptoSymbol)
+            StaticText(text: "Average transaction fee for"),
+//            TextEntity(text: cryptoSymbol, action: .cryptoType(cryptoSymbol)),
+            StaticText(text: "is"),
+//            TextEntity(thresholdPrice: price, cryptoSymbol: cryptoSymbol)
         ]
     }
     

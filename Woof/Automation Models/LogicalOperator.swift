@@ -30,8 +30,8 @@ struct Or: CardRepresentable, Operator {
     let id: UUID = .init()
     var type = OperatorType.or
 
-    var entities: [TextEntity] {
-        [TextEntity(text: "or")]
+    var properties: [CardProperty] {
+        [StaticText(text: "or")]
     }
 }
 
@@ -39,8 +39,8 @@ struct And: CardRepresentable, Operator {
     let id: UUID = .init()
     var type = OperatorType.and
     
-    var entities: [TextEntity] {
-        [TextEntity(text: "and")]
+    var properties: [CardProperty] {
+        [StaticText(text: "and")]
     }
 }
 

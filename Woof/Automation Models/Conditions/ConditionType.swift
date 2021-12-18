@@ -49,9 +49,9 @@ struct AnyEquatableCondition: Condition {
     var type: ConditionType {
         condition.type
     }
-    
-    var entities: [TextEntity] {
-        condition.entities
+   
+    var properties: [CardProperty] {
+        condition.properties
     }
     
     func isEqualTo(_ other: Condition) -> Bool {

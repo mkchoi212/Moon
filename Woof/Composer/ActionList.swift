@@ -26,12 +26,12 @@ struct ActionCell: View {
     }
     
     func didOpenURL(url: URL) {
-        guard let entity = viewModel.resolve(deeplink: url) else {
+        guard let property = viewModel.resolve(deeplink: url) else {
             return
         }
         
         editorViewModel.selectedAction = action
-        editorViewModel.selectedEntity = entity
+        editorViewModel.selectedProperty = property
     }
 }
 
@@ -69,14 +69,14 @@ struct ActionList: View {
             }
             .padding(.top, 15)
         }
-        .bottomSheet(item: $editorViewModel.selectedEntity,
+        .bottomSheet(item: $editorViewModel.selectedProperty,
                      detents: $editorViewModel.detents,
                      prefersGrabberVisible: true,
                      prefersScrollingExpandsWhenScrolledToEdge: true,
                      isModalInPresentation: false) {
-            if let entity = editorViewModel.selectedEntity,
+            if let property = editorViewModel.selectedProperty,
                let action = editorViewModel.selectedAction {
-                editorViewModel.editor(for: entity)
+                editorViewModel.editor(for: property)
                     .environmentObject(editorViewModel.actionViewModel(for: action))
             }
         }

@@ -8,10 +8,11 @@
 import SwiftUI
 
 enum EditAction {
-    case cryptoType(String?), cryptoAmount, wallet
-    case comparator(Comparator?)
-    case percentage(Double)
+    case cryptoType, cryptoAmount, wallet
+    case comparator
+    case percentage
     case email
+    case staticText
     
     var placeholder: String {
         switch self {
@@ -27,40 +28,92 @@ enum EditAction {
                 return "Percentage"
             case .email:
                 return "Email"
+            default:
+                return ""
         }
     }
+}
+
+protocol CardProperty {
+    var id: UUID { get }
+    var action: EditAction { get }
+    var description: String? { get }
+}
+
+// MARK: -
+
+struct StaticText: CardProperty {
+    let id = UUID()
+    let action: EditAction = .staticText
+    let text: String
     
-    var cryptoType: String? {
-        if case .cryptoType(let type) = self {
-            return type
+    var description: String? {
+        text
+    }
+}
+
+struct CryptoTypeProperty: CardProperty {
+    let id = UUID()
+    let cryptoSymbol: String?
+    let action: EditAction = .cryptoType
+    
+    var description: String? {
+        cryptoSymbol?.capitalized
+    }
+}
+
+struct CryptoAmountProperty: CardProperty {
+    let id = UUID()
+    let cryptoSymbol: String?
+    let amount: Double?
+    let action: EditAction = .cryptoAmount
+    
+    var description: String? {
+        if let price = amount?.price {
+            return "\(price)\(cryptoSymbol ?? "")"
         } else {
             return nil
         }
     }
 }
 
-final class TextEntity: Identifiable {
-    var text: String?
-    var action: EditAction?
-    
+struct WalletEntityProperty: CardProperty {
     let id = UUID()
+    let wallet: Wallet?
+    let action: EditAction = .wallet
     
-    init(text: String?, action: EditAction?) {
-        self.text = text
-        self.action = action
+    var description: String? {
+        wallet?.name
     }
 }
 
-extension TextEntity {
-    convenience init(text: String) {
-        self.init(text: text, action: nil)
-    }
+struct ComparatorProperty: CardProperty {
+    let id = UUID()
+    var comparator: Comparator?
+    let action: EditAction = .comparator
     
-    convenience init(thresholdPrice: Double?, cryptoSymbol: String?) {
-        if let price = thresholdPrice, let crypto = cryptoSymbol {
-            self.init(text: "\(price.price)\(crypto)", action: .cryptoAmount)
-        } else {
-            self.init(text: nil, action: .cryptoAmount)
-        }
+    var description: String? {
+        comparator?.actionDescription
     }
 }
+
+struct PercentageProperty: CardProperty {
+    let id = UUID()
+    var percentage: Double?
+    let action: EditAction = .percentage
+    
+    var description: String? {
+        percentage?.percentage
+    }
+}
+
+struct EmailProperty: CardProperty {
+    let id = UUID()
+    var email: String?
+    let action: EditAction = .email
+    
+    var description: String? {
+        email
+    }
+}
+

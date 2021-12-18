@@ -16,14 +16,11 @@ struct Transfer: CardRepresentable, Action {
     let toWallet: Wallet?
     let amount: Double?
     
-    var entities: [TextEntity] {
+    var properties: [CardProperty] {
         [
-            TextEntity(text: "Transfer"),
-            TextEntity(thresholdPrice: amount, cryptoSymbol: cryptoSymbol),
-            TextEntity(text: "from"),
-            TextEntity(text: fromWallet?.name, action: .wallet),
-            TextEntity(text: "to"),
-            TextEntity(text: toWallet?.name, action: .wallet)
+            StaticText(text: "Transfer"),
+            StaticText(text: "from"),
+            StaticText(text: "to")
         ]
     }
 }

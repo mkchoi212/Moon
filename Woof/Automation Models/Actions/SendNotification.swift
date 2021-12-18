@@ -13,8 +13,10 @@ struct SendNotification: CardRepresentable, Action {
     let id: UUID = .init()
     let message: String
     
-    var entities: [TextEntity] {
-        [TextEntity(text: "Send notification")]
+    var properties: [CardProperty] {
+        [
+            StaticText(text: "Send notification")
+        ]
     }
 }
 

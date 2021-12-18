@@ -17,11 +17,11 @@ struct PercentChange: CardRepresentable, Condition {
     let comparator: Comparator?
     let percentage: Double?
     
-    var entities: [TextEntity] {
+    var properties: [CardProperty] {
         [
-            TextEntity(text: cryptoSymbol, action: .cryptoType(cryptoSymbol)),
-            TextEntity(text: comparator?.actionDescription, action: .comparator(comparator)),
-            TextEntity(text: percentage?.percentage, action: .percentage(percentage ?? 0)),
+            CryptoTypeProperty(cryptoSymbol: cryptoSymbol),
+            ComparatorProperty(comparator: comparator),
+            PercentageProperty(percentage: percentage)
         ]
     }
     

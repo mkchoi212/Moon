@@ -48,8 +48,8 @@ struct AnyEquatableAction: Action {
         action.type
     }
     
-    var entities: [TextEntity] {
-        action.entities
+    var properties: [CardProperty] {
+        action.properties
     }
     
     func isEqualTo(_ other: Action) -> Bool {

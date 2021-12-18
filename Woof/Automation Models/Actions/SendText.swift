@@ -13,7 +13,7 @@ struct SendText: CardRepresentable, Action {
     let id: UUID = .init()
     let phoneNumber: String
     
-    var entities: [TextEntity] {
+    var properties: [CardProperty] {
         []
     }
     

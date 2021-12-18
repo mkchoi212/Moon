@@ -12,5 +12,5 @@ protocol CardRepresentable {
     var iconName: String? { get }
     var color: Color { get }
     var description: String { get }
-    var entities: [TextEntity] { get }
+    var properties: [CardProperty] { get }
 }

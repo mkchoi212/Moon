@@ -16,14 +16,14 @@ struct WalletBalance: CardRepresentable, Condition {
     let cryptoSymbol: String?
     let comparator: Comparator?
     let price: Double?
-    
-    var entities: [TextEntity] {
+   
+    var properties: [CardProperty] {
         [
-            TextEntity(text: "Balance of"),
-            TextEntity(text: wallet?.name, action: .wallet),
-            TextEntity(text: "is"),
-            TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
-            TextEntity(thresholdPrice: price, cryptoSymbol: cryptoSymbol)
+            StaticText(text: "Balance of"),
+//            TextEntity(text: wallet?.name, action: .wallet),
+            StaticText(text: "is"),
+//            TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
+//            TextEntity(thresholdPrice: price, cryptoSymbol: cryptoSymbol)
         ]
     }
     

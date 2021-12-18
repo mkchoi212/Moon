@@ -16,7 +16,7 @@ struct Swap: CardRepresentable, Action {
     let toCrypto: Crypto
     let amount: Double
    
-    var entities: [TextEntity] {
+    var properties: [CardProperty] {
         []
     }
     

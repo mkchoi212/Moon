@@ -11,7 +11,7 @@ import SwiftUI
 final class EditorSheetViewModel: ObservableObject {
     @Published var viewModel = CoinViewModel()
     @Published var selectedAction: CardRepresentable?
-    @Published var selectedEntity: TextEntity? {
+    @Published var selectedProperty: CardProperty? {
         willSet {
             if let newValue = newValue {
                 detents = detents(for: newValue)
@@ -37,28 +37,28 @@ final class EditorSheetViewModel: ObservableObject {
         }
     }
     
-    func editor(for entity: TextEntity) -> AnyView {
+    func editor(for entity: CardProperty) -> AnyView {
         switch entity.action {
-            case .comparator(_):
-                return AnyView(ComparatorEditor(entity: entity))
-            case .percentage(let percentage):
-                return AnyView(PercentageEditor(percentage: percentage))
-            case .cryptoType(let cryptoSymbol):
+            case .comparator:
+                return AnyView(ComparatorEditor(property: entity as! ComparatorProperty))
+            case .percentage:
+                return AnyView(PercentageEditor(percentage: (entity as? PercentageProperty)?.percentage ?? 0))
+            case .cryptoType:
                 viewModel.fetchCoinData()
-                return AnyView(CoinSelector(selectedCryptoSymbol: cryptoSymbol)
+                return AnyView(CoinSelector(selectedCryptoSymbol: (entity as? CryptoTypeProperty)?.cryptoSymbol)
                                 .environmentObject(viewModel))
             default:
                 return AnyView(EmptyView())
         }
     }
     
-    func detents(for entity: TextEntity?) -> [UISheetPresentationController.Detent] {
+    func detents(for entity: CardProperty?) -> [UISheetPresentationController.Detent] {
         guard let entity = entity else {
             return []
         }
 
         switch entity.action {
-            case .comparator(_):
+            case .comparator:
                 return [.medium()]
             default:
                 return [.medium(), .large()]

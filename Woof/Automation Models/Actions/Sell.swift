@@ -15,7 +15,7 @@ struct Sell: CardRepresentable, Action {
     let amount: Double
     let wallet: Wallet
    
-    var entities: [TextEntity] {
+    var properties: [CardProperty] {
         []
     }
     

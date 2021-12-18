@@ -33,19 +33,14 @@ struct ComparatorRow: View {
 
 struct ComparatorEditor: View {
     let columns = [GridItem(.flexible())]
-    @State var selectedComparator: Comparator
+    @State var selectedComparator: Comparator = .equal
     @EnvironmentObject var viewModel: ActionViewModel
     
-    let entity: TextEntity
+    let propertyId: UUID
     
-    init(entity: TextEntity) {
-        self.entity = entity
-        
-        if case .comparator(let comp) = entity.action {
-            selectedComparator = comp ?? .equal
-        } else {
-            selectedComparator = .equal
-        }
+    init(property: ComparatorProperty) {
+        propertyId = property.id
+        selectedComparator = property.comparator ?? .equal
     }
     
     var body: some View {
@@ -62,8 +57,8 @@ struct ComparatorEditor: View {
                     ComparatorRow(comparator: comp, selectedComparator: $selectedComparator)
                         .onTapGesture {
                             selectedComparator = comp
-                            viewModel.set(entity: .init(text: comp.description, action: .comparator(comp)),
-                                          for: entity.id)
+                            viewModel.set(property: ComparatorProperty(comparator: selectedComparator),
+                                          for: propertyId)
                         }
                 }
             }
@@ -76,6 +71,6 @@ struct ComparatorEditor: View {
 
 struct ComparatorEditor_Previews: PreviewProvider {
     static var previews: some View {
-        ComparatorEditor(entity: TextEntity(text: "Comparator", action: .comparator(.less)))
+        ComparatorEditor(property: .init(comparator: .less))
     }
 }

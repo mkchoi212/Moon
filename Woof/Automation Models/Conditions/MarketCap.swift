@@ -16,13 +16,13 @@ struct MarketCapChange: CardRepresentable, Condition {
     let comparator: Comparator?
     let price: Double?
     
-    var entities: [TextEntity] {
+    var properties: [CardProperty] {
         [
-            TextEntity(text: "Market cap of"),
-            TextEntity(text: cryptoSymbol, action: .cryptoType(cryptoSymbol)),
-            TextEntity(text: "is"),
-            TextEntity(text: comparator?.comparatorDescription, action: .comparator(comparator)),
-            TextEntity(thresholdPrice: price, cryptoSymbol: cryptoSymbol)
+            StaticText(text: "Market cap of"),
+            CryptoTypeProperty(cryptoSymbol: cryptoSymbol),
+            StaticText(text: "is"),
+            ComparatorProperty(comparator: comparator),
+            CryptoAmountProperty(cryptoSymbol: cryptoSymbol, amount: price)
         ]
     }
     

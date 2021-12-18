@@ -13,10 +13,10 @@ struct SendEmail: CardRepresentable, Action {
     let id: UUID = .init()
     let email: String
     
-    var entities: [TextEntity] {
+    var properties: [CardProperty] {
         [
-            TextEntity(text: "Send mail to "),
-            TextEntity(text: email, action: .email)
+            StaticText(text: "Send mail to "),
+            EmailProperty(email: email)
         ]
     }
 }
