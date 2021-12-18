@@ -35,7 +35,6 @@ struct ComparatorEditor: View {
     let columns = [GridItem(.flexible())]
     @State var selectedComparator: Comparator = .equal
     @EnvironmentObject var viewModel: ActionViewModel
-    
     let propertyId: UUID
     
     init(property: ComparatorProperty) {

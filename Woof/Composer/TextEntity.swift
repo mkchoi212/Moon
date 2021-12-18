@@ -99,11 +99,11 @@ struct ComparatorProperty: CardProperty {
 
 struct PercentageProperty: CardProperty {
     let id = UUID()
-    var percentage: Double?
+    var value: Double?
     let action: EditAction = .percentage
     
     var description: String? {
-        percentage?.percentage
+        value?.percentage
     }
 }
 

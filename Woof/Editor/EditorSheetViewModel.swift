@@ -42,7 +42,7 @@ final class EditorSheetViewModel: ObservableObject {
             case .comparator:
                 return AnyView(ComparatorEditor(property: entity as! ComparatorProperty))
             case .percentage:
-                return AnyView(PercentageEditor(percentage: (entity as? PercentageProperty)?.percentage ?? 0))
+                return AnyView(PercentageEditor(property: entity as! PercentageProperty))
             case .cryptoType:
                 viewModel.fetchCoinData()
                 return AnyView(CoinSelector(selectedCryptoSymbol: (entity as? CryptoTypeProperty)?.cryptoSymbol)

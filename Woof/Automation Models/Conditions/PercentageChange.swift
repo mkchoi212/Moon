@@ -14,18 +14,16 @@ final class PercentChange: CardRepresentable, Condition {
     
     let id: UUID
     var cryptoSymbol: CryptoTypeProperty
-    var comparator: ComparatorProperty
     var percentage: PercentageProperty
     
     var properties: [CardProperty] {
-        [ cryptoSymbol, comparator, percentage ]
+        [ cryptoSymbol, StaticText(text: "changes by"), percentage ]
     }
     
-    init(id: UUID, cryptoSymbol: String?, comparator: Comparator?, percentage: Double?) {
+    init(id: UUID, cryptoSymbol: String?, percentage: Double?) {
         self.id = id
         self.cryptoSymbol = CryptoTypeProperty(cryptoSymbol: cryptoSymbol)
-        self.comparator = ComparatorProperty(value: comparator)
-        self.percentage = PercentageProperty(percentage: percentage)
+        self.percentage = PercentageProperty(value: percentage)
     }
     
     func coreDataModel(with context: NSManagedObjectContext) -> ConditionEntity {
@@ -33,15 +31,14 @@ final class PercentChange: CardRepresentable, Condition {
         entity.type = type.rawValue
         entity.id = id
         entity.cryptoSymbol = cryptoSymbol.cryptoSymbol
-        entity.comparator = comparator.value?.rawValue
-        entity.percentage = percentage.percentage ?? .nan
+        entity.percentage = percentage.value ?? .nan
         return entity
     }
 }
 
-extension PercentChange: ComparatorSettable {
-    func set(comparator: Comparator, for propertyId: UUID) {
-        self.comparator.value = comparator
+extension PercentChange: PercentSettable {
+    func set(percent: Double, for propertyId: UUID) {
+        self.percentage.value = percent
     }
 }
 
@@ -55,7 +52,6 @@ extension PercentChange {
         
         self.init(id: id,
                   cryptoSymbol: entity.cryptoSymbol,
-                  comparator: Comparator(rawValue: entity.comparator),
                   percentage: entity.percentage)
     }
 }
@@ -64,7 +60,6 @@ extension PercentChange {
 extension PercentChange: Equatable {
     static func ==(lft: PercentChange, rht: PercentChange) -> Bool {
         lft.cryptoSymbol.cryptoSymbol == rht.cryptoSymbol.cryptoSymbol &&
-        lft.comparator.value == rht.comparator.value &&
-        lft.percentage.percentage == rht.percentage.percentage
+        lft.percentage.value == rht.percentage.value
     }
 }

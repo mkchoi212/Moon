@@ -26,13 +26,15 @@ struct RuleCell: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
                     .foregroundColor(color)
-                    .frame(width: 60, height: 60)
+                    .frame(width: 68, height: 68)
                 
                 image
             }
             
             Text(title)
                 .modifier(RuleSheetDescriptionLabelModifier())
+            
+            Spacer()
         }
     }
 }

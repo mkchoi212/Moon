@@ -45,11 +45,13 @@ struct RuleOperatorRow: View {
 struct RulePropertyRow: View {
     @EnvironmentObject var viewModel: ComposerViewModel
     
+    let columns = Array(repeating: GridItem(.flexible()), count: 4)
+    
     var body: some View {
         Text("Property")
             .modifier(RuleSheetHeaderModifier())
         
-        HStack(alignment: .top, spacing: 15) {
+        LazyVGrid(columns: columns, alignment: .leading, spacing: 0) {
             ForEach(ConditionType.allCases, id: \.self) { cond in
                 Button {
                     viewModel.addCondition(cond)
@@ -60,6 +62,7 @@ struct RulePropertyRow: View {
                                                     .font(.system(size: 24, weight: .bold))),
                                  color: cond.color,
                                  title: cond.description)
+                            .frame(height: 124)
                     }
                 }
                 .buttonStyle(.plain)
@@ -116,10 +119,7 @@ struct ComposerSheet: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    RuleOperatorRow()
-                    
                     if mode == ComposerViewMode.condition.rawValue {
-                        Divider()
                         RulePropertyRow()
                         Divider()
                         RuleCalendarRow()

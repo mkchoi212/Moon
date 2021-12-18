@@ -10,13 +10,14 @@ import SwiftUI
 struct CoinTable: View {
     @EnvironmentObject var viewModel: CoinViewModel
     @Binding var selectedCryptoSymbol: String?
+    let feedback = UISelectionFeedbackGenerator()
     
     var body: some View {
         List {
             ForEach(viewModel.coins, id: \.id) { coin in
                 HStack(spacing: 12) {
                     let url = URL(string: coin.image)
-                    
+                   
                     AsyncImage(url: url) { image in
                         image
                             .resizable()
@@ -45,8 +46,19 @@ struct CoinTable: View {
                             .font(.system(size: 14, design: .rounded))
                             .foregroundColor(coin.priceChangePercentage24H?.percentageColor ?? .secondary)
                     }
+                    
+                    if selectedCryptoSymbol?.lowercased() == coin.symbol {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundColor(.blue)
+                    }
                 }
                 .padding(.vertical, 6)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    feedback.selectionChanged()
+                    selectedCryptoSymbol = coin.symbol
+                }
             }
         }
         .listStyle(.inset)
@@ -106,7 +118,7 @@ struct CoinSelector: View {
 struct CoinSelector_Previews: PreviewProvider {
     static var previews: some View {
         let vm = CoinViewModel()
-        CoinSelector(selectedCryptoSymbol: "BTC")
+        CoinSelector(selectedCryptoSymbol: "btc")
             .environmentObject(vm)
     }
 }

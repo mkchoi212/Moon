@@ -125,7 +125,7 @@ enum ConditionType: String, CaseIterable {
     func makeEntity() -> Condition {
         switch self {
             case .percentChange:
-                return PercentChange(id: UUID(), cryptoSymbol: nil, comparator: nil, percentage: nil)
+                return PercentChange(id: UUID(), cryptoSymbol: nil, percentage: nil)
             case .priceChange:
                 return PriceChange(id: UUID(), cryptoSymbol: nil, comparator: nil, price: nil)
             case .walletBalance:
