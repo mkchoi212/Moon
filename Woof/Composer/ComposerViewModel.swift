@@ -27,7 +27,7 @@ final class ComposerViewModel: ObservableObject {
     
     var newAutomation: Automation {
         Automation(id: original.id,
-                   title: "foo",
+                   title: name,
                    color: iconColor,
                    iconName: iconName,
                    conditions: equatableConditions,
