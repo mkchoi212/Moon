@@ -20,9 +20,9 @@ final class PercentChange: CardRepresentable, Condition {
         [ cryptoSymbol, StaticText(text: "changes by"), percentage ]
     }
     
-    init(id: UUID, cryptoSymbol: String?, percentage: Double?) {
+    init(id: UUID, symbol: String?, percentage: Double?) {
         self.id = id
-        self.cryptoSymbol = CryptoTypeProperty(cryptoSymbol: cryptoSymbol)
+        self.cryptoSymbol = CryptoTypeProperty(symbol: symbol)
         self.percentage = PercentageProperty(value: percentage)
     }
     
@@ -30,15 +30,19 @@ final class PercentChange: CardRepresentable, Condition {
         let entity = PercentChangeEntity(context: context)
         entity.type = type.rawValue
         entity.id = id
-        entity.cryptoSymbol = cryptoSymbol.cryptoSymbol
+        entity.symbol = cryptoSymbol.symbol
         entity.percentage = percentage.value ?? .nan
         return entity
     }
 }
 
-extension PercentChange: PercentSettable {
+extension PercentChange: PercentSettable, CoinSettable {
     func set(percent: Double, for propertyId: UUID) {
         self.percentage.value = percent
+    }
+    
+    func set(symbol: String, for propertyId: UUID) {
+        self.cryptoSymbol.symbol = symbol
     }
 }
 
@@ -51,7 +55,7 @@ extension PercentChange {
         }
         
         self.init(id: id,
-                  cryptoSymbol: entity.cryptoSymbol,
+                  symbol: entity.symbol,
                   percentage: entity.percentage)
     }
 }
@@ -59,7 +63,7 @@ extension PercentChange {
 
 extension PercentChange: Equatable {
     static func ==(lft: PercentChange, rht: PercentChange) -> Bool {
-        lft.cryptoSymbol.cryptoSymbol == rht.cryptoSymbol.cryptoSymbol &&
+        lft.cryptoSymbol.symbol == rht.cryptoSymbol.symbol &&
         lft.percentage.value == rht.percentage.value
     }
 }

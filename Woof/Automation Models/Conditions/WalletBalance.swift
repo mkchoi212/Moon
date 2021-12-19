@@ -32,7 +32,7 @@ final class WalletBalance: CardRepresentable, Condition {
     init(id: UUID, wallet: Wallet?, cryptoSymbol: String?, comparator: Comparator?, price: Double?) {
         self.id = id
         self.wallet = WalletEntityProperty(wallet: wallet)
-        self.cryptoSymbol = CryptoTypeProperty(cryptoSymbol: cryptoSymbol)
+        self.cryptoSymbol = CryptoTypeProperty(symbol: cryptoSymbol)
         self.comparator = ComparatorProperty(value: comparator)
         self.price = CryptoAmountProperty(cryptoSymbol: cryptoSymbol, amount: price)
     }
@@ -42,7 +42,7 @@ final class WalletBalance: CardRepresentable, Condition {
         entity.id = id
         entity.type = type.rawValue
         entity.wallet = wallet.wallet?.address
-        entity.cryptoSymbol = cryptoSymbol.cryptoSymbol
+        entity.cryptoSymbol = cryptoSymbol.symbol
         entity.comparator = comparator.value?.rawValue
         entity.price = price.amount ?? .nan
         return entity
@@ -58,7 +58,7 @@ extension WalletBalance: ComparatorSettable {
 extension WalletBalance: Equatable {
     static func ==(lft: WalletBalance, rht: WalletBalance) -> Bool {
         lft.wallet.wallet == rht.wallet.wallet &&
-        lft.cryptoSymbol.cryptoSymbol == rht.cryptoSymbol.cryptoSymbol &&
+        lft.cryptoSymbol.symbol == rht.cryptoSymbol.symbol &&
         lft.comparator.value == rht.comparator.value &&
         lft.price.amount == rht.price.amount
     }

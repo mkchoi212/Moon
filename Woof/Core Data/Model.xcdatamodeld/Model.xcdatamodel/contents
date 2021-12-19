@@ -36,8 +36,8 @@
         </uniquenessConstraints>
     </entity>
     <entity name="PercentChangeEntity" representedClassName="PercentChangeEntity" parentEntity="ConditionEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="cryptoSymbol" optional="YES" attributeType="String"/>
         <attribute name="percentage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String"/>
     </entity>
     <entity name="PriceChangeEntity" representedClassName="PriceChangeEntity" parentEntity="ConditionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="comparator" optional="YES" attributeType="String"/>

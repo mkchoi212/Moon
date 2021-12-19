@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 final class EditorSheetViewModel: ObservableObject {
-    @Published var viewModel = CoinViewModel()
+    @Published var viewModel = CoinViewModel.shared
     @Published var selectedAction: CardRepresentable?
     @Published var selectedProperty: CardProperty? {
         willSet {
@@ -45,7 +45,7 @@ final class EditorSheetViewModel: ObservableObject {
                 return AnyView(PercentageEditor(property: entity as! PercentageProperty))
             case .cryptoType:
                 viewModel.fetchCoinData()
-                return AnyView(CoinSelector(selectedCryptoSymbol: (entity as? CryptoTypeProperty)?.cryptoSymbol)
+                return AnyView(CoinSelector(property: entity as! CryptoTypeProperty)
                                 .environmentObject(viewModel))
             default:
                 return AnyView(EmptyView())

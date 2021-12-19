@@ -19,7 +19,7 @@ struct MarketCapChange: CardRepresentable, Condition {
     var properties: [CardProperty] {
         [
             StaticText(text: "Market cap of"),
-            CryptoTypeProperty(cryptoSymbol: cryptoSymbol),
+            CryptoTypeProperty(symbol: cryptoSymbol),
             StaticText(text: "is"),
             ComparatorProperty(value: comparator),
             CryptoAmountProperty(cryptoSymbol: cryptoSymbol, amount: price)

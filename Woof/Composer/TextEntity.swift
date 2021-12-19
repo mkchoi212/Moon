@@ -54,11 +54,15 @@ struct StaticText: CardProperty {
 
 struct CryptoTypeProperty: CardProperty {
     let id = UUID()
-    let cryptoSymbol: String?
+    var symbol: String?
     let action: EditAction = .cryptoType
     
     var description: String? {
-        cryptoSymbol?.capitalized
+        if let symbol = symbol {
+            return CoinViewModel.shared.name(for: symbol.lowercased())
+        } else {
+            return nil
+        }
     }
 }
 

@@ -12,6 +12,8 @@ struct CoinTable: View {
     @Binding var selectedCryptoSymbol: String?
     let feedback = UISelectionFeedbackGenerator()
     
+    var didSelect: (String) -> ()
+    
     var body: some View {
         List {
             ForEach(viewModel.coins, id: \.id) { coin in
@@ -58,6 +60,7 @@ struct CoinTable: View {
                 .onTapGesture {
                     feedback.selectionChanged()
                     selectedCryptoSymbol = coin.symbol
+                    didSelect(coin.symbol)
                 }
             }
         }
@@ -65,26 +68,22 @@ struct CoinTable: View {
     }
 }
 
-struct ActivityIndicator: UIViewRepresentable {
-    @Binding var isAnimating: Bool
-    let style: UIActivityIndicatorView.Style
-    
-    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView(style: style)
-    }
-    
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
-        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
-    }
-}
-
 struct CoinSelector: View {
-    @EnvironmentObject var viewModel: CoinViewModel
     @State var selectedCryptoSymbol: String?
+    let propertyId: UUID
+    
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: ActionViewModel
+    @EnvironmentObject var coinViewModel: CoinViewModel
+
+    init(property: CryptoTypeProperty) {
+        self.propertyId = property.id
+        self.selectedCryptoSymbol = property.symbol?.lowercased()
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            if viewModel.coins.isEmpty {
+            if coinViewModel.coins.isEmpty {
                 Spacer()
                 
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
@@ -107,7 +106,10 @@ struct CoinSelector: View {
                 }
                 .padding(.horizontal)
                 
-                CoinTable(selectedCryptoSymbol: $selectedCryptoSymbol)
+                CoinTable(selectedCryptoSymbol: $selectedCryptoSymbol) { symbol in
+                    ((viewModel.action as? AnyEquatableCondition)?.condition as? CoinSettable)?.set(symbol: symbol, for: propertyId)
+                    viewModel.generateDescription()
+                }
             }
         }
         .padding(.top)
@@ -118,7 +120,7 @@ struct CoinSelector: View {
 struct CoinSelector_Previews: PreviewProvider {
     static var previews: some View {
         let vm = CoinViewModel()
-        CoinSelector(selectedCryptoSymbol: "btc")
+        CoinSelector(property: .init(symbol: "btc"))
             .environmentObject(vm)
     }
 }

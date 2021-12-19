@@ -14,3 +14,7 @@ protocol PercentSettable {
 protocol ComparatorSettable {
     func set(comparator: Comparator, for propertyId: UUID)
 }
+
+protocol CoinSettable {
+    func set(symbol: String, for propertyId: UUID)
+}
