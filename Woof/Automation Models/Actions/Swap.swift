@@ -33,7 +33,7 @@ struct Swap: CardRepresentable, Action {
             .font(.system(size: 18, weight: .semibold))
         + Text(" in ")
             .font(.system(size: 18))
-        +  Text(wallet.name)
+        +  Text(wallet.address.prefix(10))
             .foregroundColor(.blue)
             .font(.system(size: 18, weight: .semibold))
     }

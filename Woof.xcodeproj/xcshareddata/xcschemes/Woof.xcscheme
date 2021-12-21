@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27F12CBE275CE07400D87182"
-               BuildableName = "Woof.app"
+               BuildableName = "Moon.app"
                BlueprintName = "Woof"
                ReferencedContainer = "container:Woof.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27F12CBE275CE07400D87182"
-            BuildableName = "Woof.app"
+            BuildableName = "Moon.app"
             BlueprintName = "Woof"
             ReferencedContainer = "container:Woof.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27F12CBE275CE07400D87182"
-            BuildableName = "Woof.app"
+            BuildableName = "Moon.app"
             BlueprintName = "Woof"
             ReferencedContainer = "container:Woof.xcodeproj">
          </BuildableReference>

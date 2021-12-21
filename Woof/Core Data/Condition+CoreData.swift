@@ -19,6 +19,8 @@ extension ConditionEntity {
                 return PriceChange(entity: self as? PriceChangeEntity)
             case .percentChange:
                 return PercentChange(entity: self as? PercentChangeEntity)
+            case .walletBalance:
+                return WalletBalance(entity: self as? WalletBalanceEntity)
             default:
                 fatalError("couldn't parse \(self)")
         }

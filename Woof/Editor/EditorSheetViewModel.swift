@@ -39,6 +39,8 @@ final class EditorSheetViewModel: ObservableObject {
     
     func editor(for entity: CardProperty) -> AnyView {
         switch entity.action {
+            case .wallet:
+                return AnyView(WalletSelector())
             case .comparator:
                 return AnyView(ComparatorEditor(property: entity as! ComparatorProperty))
             case .percentage:

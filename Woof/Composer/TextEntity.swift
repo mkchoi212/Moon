@@ -87,7 +87,7 @@ struct WalletEntityProperty: CardProperty {
     let action: EditAction = .wallet
     
     var description: String? {
-        wallet?.name
+        wallet?.address
     }
 }
 

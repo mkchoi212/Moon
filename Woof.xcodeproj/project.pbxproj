@@ -42,6 +42,10 @@
 		2730E029275DD15B0082BE45 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E028275DD15B0082BE45 /* Swap.swift */; };
 		2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02A275DD2030082BE45 /* ConditionType.swift */; };
 		2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2730E02C275DE9AC0082BE45 /* Automation.swift */; };
+		273157BA2771A04500256151 /* WalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157B92771A04500256151 /* WalletConnect.swift */; };
+		273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 273157BC2771A06B00256151 /* WalletConnectSwift */; };
+		273157BF2771D46A00256151 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157BE2771D46A00256151 /* UserDefaults+Extension.swift */; };
+		273157C12771D55B00256151 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157C02771D55B00256151 /* UserDefault.swift */; };
 		27410768276B0B8900E77A00 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 27410767276B0B8900E77A00 /* Introspect */; };
 		2741076A276B255200E77A00 /* SaveButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410769276B255200E77A00 /* SaveButtonModifier.swift */; };
 		2741076E276B333200E77A00 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741076D276B333200E77A00 /* CoinModel.swift */; };
@@ -55,6 +59,8 @@
 		27410780276DA70E00E77A00 /* PercentChangeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741077F276DA70E00E77A00 /* PercentChangeable.swift */; };
 		27410782276DAAE100E77A00 /* PriceEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410781276DAAE100E77A00 /* PriceEditor.swift */; };
 		27410784276DBDAC00E77A00 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410783276DBDAC00E77A00 /* ActivityIndicator.swift */; };
+		27410787276EE0A900E77A00 /* Auth+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410786276EE0A900E77A00 /* Auth+Extension.swift */; };
+		274107892770343B00E77A00 /* WalletSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274107882770343B00E77A00 /* WalletSelector.swift */; };
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
@@ -126,6 +132,9 @@
 		2730E028275DD15B0082BE45 /* Swap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		2730E02A275DD2030082BE45 /* ConditionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionType.swift; sourceTree = "<group>"; };
 		2730E02C275DE9AC0082BE45 /* Automation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Automation.swift; sourceTree = "<group>"; };
+		273157B92771A04500256151 /* WalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnect.swift; sourceTree = "<group>"; };
+		273157BE2771D46A00256151 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		273157C02771D55B00256151 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		27410769276B255200E77A00 /* SaveButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonModifier.swift; sourceTree = "<group>"; };
 		2741076D276B333200E77A00 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		27410770276B33FE00E77A00 /* CoinSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelector.swift; sourceTree = "<group>"; };
@@ -137,6 +146,8 @@
 		2741077F276DA70E00E77A00 /* PercentChangeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentChangeable.swift; sourceTree = "<group>"; };
 		27410781276DAAE100E77A00 /* PriceEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceEditor.swift; sourceTree = "<group>"; };
 		27410783276DBDAC00E77A00 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		27410786276EE0A900E77A00 /* Auth+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Extension.swift"; sourceTree = "<group>"; };
+		274107882770343B00E77A00 /* WalletSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSelector.swift; sourceTree = "<group>"; };
 		274BA39E2760DC8700B1E2D3 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerSheet.swift; sourceTree = "<group>"; };
 		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
@@ -152,7 +163,7 @@
 		27E9E2162769B70700EBB552 /* Action+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Action+CoreData.swift"; sourceTree = "<group>"; };
 		27E9E2182769E85800EBB552 /* PercentageEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageEditor.swift; sourceTree = "<group>"; };
 		27E9E21A2769E8A000EBB552 /* EditorHeaderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorHeaderModifier.swift; sourceTree = "<group>"; };
-		27F12CBF275CE07400D87182 /* Woof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woof.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27F12CBF275CE07400D87182 /* Moon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F12CC2275CE07400D87182 /* WoofApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofApp.swift; sourceTree = "<group>"; };
 		27F12CC4275CE07400D87182 /* WoofTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoofTabView.swift; sourceTree = "<group>"; };
 		27F12CC6275CE07400D87182 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +185,7 @@
 			files = (
 				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
 				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
+				273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */,
 				2741077C276C972000E77A00 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +238,7 @@
 				27410769276B255200E77A00 /* SaveButtonModifier.swift */,
 				27410772276C1F2A00E77A00 /* EditorSheetViewModel.swift */,
 				2741077F276DA70E00E77A00 /* PercentChangeable.swift */,
+				273157B827718E9700256151 /* Wallet */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -292,6 +305,15 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
+		273157B827718E9700256151 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				274107882770343B00E77A00 /* WalletSelector.swift */,
+				273157B92771A04500256151 /* WalletConnect.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
 		2741076F276B333500E77A00 /* Crypto Market */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +322,14 @@
 				27410776276C250800E77A00 /* CoinViewModel.swift */,
 			);
 			path = "Crypto Market";
+			sourceTree = "<group>";
+		};
+		27410785276EDB6F00E77A00 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				27F12CD4275CE12200D87182 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		274BA3A227622AF800B1E2D3 /* Composer */ = {
@@ -356,7 +386,7 @@
 			children = (
 				27F12CC1275CE07400D87182 /* Woof */,
 				27F12CD2275CE0F500D87182 /* NotificationView.swift */,
-				27F12CD4275CE12200D87182 /* SettingsView.swift */,
+				27410785276EDB6F00E77A00 /* Settings */,
 				27F12CC0275CE07400D87182 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -364,7 +394,7 @@
 		27F12CC0275CE07400D87182 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27F12CBF275CE07400D87182 /* Woof.app */,
+				27F12CBF275CE07400D87182 /* Moon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -406,6 +436,9 @@
 				27F12CE6275D7D7900D87182 /* Number+Extension.swift */,
 				27F12CD6275CE42700D87182 /* Color+Extension.swift */,
 				270241B927698A36003084E5 /* String+Extension.swift */,
+				273157C02771D55B00256151 /* UserDefault.swift */,
+				273157BE2771D46A00256151 /* UserDefaults+Extension.swift */,
+				27410786276EE0A900E77A00 /* Auth+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -430,9 +463,10 @@
 				270241A027672EC1003084E5 /* FloatingPanel */,
 				27410767276B0B8900E77A00 /* Introspect */,
 				2741077B276C972000E77A00 /* OrderedCollections */,
+				273157BC2771A06B00256151 /* WalletConnectSwift */,
 			);
 			productName = Woof;
-			productReference = 27F12CBF275CE07400D87182 /* Woof.app */;
+			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -463,6 +497,7 @@
 				2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				27410766276B0B8900E77A00 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				2741077A276C972000E77A00 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -491,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2730E023275DD0BF0082BE45 /* Buy.swift in Sources */,
+				27410787276EE0A900E77A00 /* Auth+Extension.swift in Sources */,
 				2730E008275DBBBA0082BE45 /* Wallet.swift in Sources */,
 				274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */,
 				27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */,
@@ -532,13 +568,16 @@
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,
 				270241AC27673812003084E5 /* PanelDelegate.swift in Sources */,
 				2730E029275DD15B0082BE45 /* Swap.swift in Sources */,
+				273157BA2771A04500256151 /* WalletConnect.swift in Sources */,
 				2730DFFC275DB59B0082BE45 /* CalendarRule.swift in Sources */,
+				274107892770343B00E77A00 /* WalletSelector.swift in Sources */,
 				2730E00D275DBD930082BE45 /* ActionType.swift in Sources */,
 				27F12CD3275CE0F500D87182 /* NotificationView.swift in Sources */,
 				2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */,
 				27410780276DA70E00E77A00 /* PercentChangeable.swift in Sources */,
 				270241B72768723E003084E5 /* ComparatorEditor.swift in Sources */,
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
+				273157C12771D55B00256151 /* UserDefault.swift in Sources */,
 				2730E014275DCC310082BE45 /* PriceChange.swift in Sources */,
 				2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */,
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
@@ -560,6 +599,7 @@
 				27410775276C22B900E77A00 /* CoinDataService.swift in Sources */,
 				27410777276C250800E77A00 /* CoinViewModel.swift in Sources */,
 				2730E002275DBB840082BE45 /* LogicalOperator.swift in Sources */,
+				273157BF2771D46A00256151 /* UserDefaults+Extension.swift in Sources */,
 				2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -706,7 +746,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mjc.Woof;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Moon;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -736,7 +776,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mjc.Woof;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Moon;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -775,6 +815,14 @@
 				kind = branch;
 			};
 		};
+		273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WalletConnect/WalletConnectSwift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		27410766276B0B8900E77A00 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
@@ -798,6 +846,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		273157BC2771A06B00256151 /* WalletConnectSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */;
+			productName = WalletConnectSwift;
 		};
 		27410767276B0B8900E77A00 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;

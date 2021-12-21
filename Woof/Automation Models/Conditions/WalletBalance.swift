@@ -49,6 +49,23 @@ final class WalletBalance: CardRepresentable, Condition {
     }
 }
 
+
+// MARK: - CoreData
+
+extension WalletBalance {
+    convenience init?(entity: WalletBalanceEntity?) {
+        guard let entity = entity, let id = entity.id else {
+            return nil
+        }
+        
+        self.init(id: id,
+                  wallet: Wallet(address: entity.wallet),
+                  cryptoSymbol: entity.cryptoSymbol,
+                  comparator: Comparator(rawValue: entity.comparator),
+                  price: entity.price)
+    }
+}
+
 extension WalletBalance: ComparatorSettable {
     func set(comparator: Comparator, for propertyId: UUID) {
         self.comparator.value = comparator
