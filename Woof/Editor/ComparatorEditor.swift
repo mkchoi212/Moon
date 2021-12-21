@@ -20,7 +20,7 @@ struct ComparatorRow: View {
             Spacer()
             
             Image(systemName: "checkmark")
-                .font(.system(size: 15, weight: .semibold))
+                .font(.system(size: 17, weight: .semibold))
                 .foregroundColor(.blue)
                 .opacity(comparator == selectedComparator ? 1 : 0)
         }
