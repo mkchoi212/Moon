@@ -14,7 +14,7 @@ extension LAContext {
         guard self.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
             return .none
         }
-        
-        return self.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) ? .touchID : .none
+    
+        return self.biometryType
     }
 }

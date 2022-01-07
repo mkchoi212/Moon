@@ -36,7 +36,7 @@ enum Setting: String, CaseIterable, Identifiable {
     var image: Image {
         switch self {
             case .myWallets:
-                return Image(uiImage: .init(named: "wallet")!)
+                return Image(systemName: "wallet.pass.fill")
             case .biometrics:
                 let type = LAContext().biometricType
                 if type == .none {
@@ -90,40 +90,45 @@ struct SettingRow: View {
 
 struct SettingsView: View {
     var body: some View {
-        List {
-            Section {
-                NavigationLink {
-                } label: {
-                    SettingRow(setting: .myWallets)
+        NavigationView {
+            List {
+                Section {
+                    NavigationLink {
+                        SettingsWalletListView()
+                            .navigationTitle("Wallets")
+                            .navigationBarTitleDisplayMode(.inline)
+                    } label: {
+                        SettingRow(setting: .myWallets)
+                    }
                 }
-            }
-            
-            Section {
-                SettingRow(setting: .biometrics)
-            }
-            
-            Section {
-                SettingRow(setting: .about)
-                SettingRow(setting: .rate)
-                SettingRow(setting: .share)
-            }
-            
-            Section {
-                VStack(alignment: .center, spacing: 12) {
-                    Image(systemName: "moon.fill")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 25))
-                    
-                    Text("Version 1.0")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                
+                Section {
+                    SettingRow(setting: .biometrics)
                 }
-                .frame(maxWidth: .infinity)
+                
+                Section {
+                    SettingRow(setting: .about)
+                    SettingRow(setting: .rate)
+                    SettingRow(setting: .share)
+                }
+                
+                Section {
+                    VStack(alignment: .center, spacing: 12) {
+                        Image(systemName: "moon.fill")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 25))
+                        
+                        Text("Version 1.0")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .listRowBackground(Color(uiColor: .systemGroupedBackground))
             }
-            .listRowBackground(Color(uiColor: .systemGroupedBackground))
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("Settings")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

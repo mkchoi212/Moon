@@ -80,6 +80,7 @@ extension WalletConnect: ClientDelegate {
     func client(_ client: Client, didConnect session: Session) {
         self.session = session
         UserDefaultsConfig.sessions.append(session)
+        // check for dup addresses
         delegate.didConnect()
     }
 
