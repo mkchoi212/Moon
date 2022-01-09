@@ -26,7 +26,7 @@ class WalletModel: ObservableObject {
     @Published var loadingTransactions = true
     
     init() {
-        reload(reset: false, refresh: false)
+//        reload(reset: false, refresh: false)
     }
     
     func formatCurrency(value: NSNumber) -> String {

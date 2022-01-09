@@ -14,23 +14,18 @@ struct WoofTabView: View {
     let wallet = WalletModel()
     
     var body: some View {
-        VStack {
-            WalletHeader(presentWalletSelector: $presentWalletSelector)
+        TabView {
+            CoinView(presentWalletSelector: $presentWalletSelector)
+                .environmentObject(wallet)
                 .environmentObject(walletViewModel)
-        
-            TabView {
-                CoinView()
-                    .environmentObject(wallet)
-                    .environmentObject(walletViewModel)
-                    .tabItem {
-                        Label("Coins", systemImage: "moon.fill")
-                    }
-                
-                Text("Objects")
-                    .tabItem {
-                        Label("Objects", systemImage: "square")
-                    }
-            }
+                .tabItem {
+                    Label("Coins", systemImage: "moon.fill")
+                }
+            
+            Text("Objects")
+                .tabItem {
+                    Label("Objects", systemImage: "square")
+                }
         }
         .bottomSheet(isPresented: $presentWalletSelector,
                      height: CGFloat((walletViewModel.walletAddresses.count * 100) + 150),

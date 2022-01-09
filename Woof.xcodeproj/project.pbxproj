@@ -75,7 +75,8 @@
 		2793F713278B467C00F85363 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 2793F712278B467C00F85363 /* Shiny */; };
 		2793F715278B53D600F85363 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F714278B53D600F85363 /* Data.swift */; };
 		2793F718278B551500F85363 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2793F717278B551500F85363 /* SocketIO */; };
-		2793F71B278B551C00F85363 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 2793F71A278B551C00F85363 /* Starscream */; };
+		2793F720278B93D800F85363 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 2793F71F278B93D800F85363 /* Starscream */; };
+		2793F722278B949200F85363 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F721278B949200F85363 /* TrackableScrollView.swift */; };
 		27AE1FF7278A48DA00C07ADF /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FF6278A48DA00C07ADF /* Separator.swift */; };
 		27AE1FF9278A505000C07ADF /* WalletSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */; };
 		27AE1FFB278A67D100C07ADF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FFA278A67D100C07ADF /* Theme.swift */; };
@@ -169,6 +170,7 @@
 		277387F5276A2725009A424A /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		2793F714278B53D600F85363 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		2793F721278B949200F85363 /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		27AE1FF6278A48DA00C07ADF /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSelectorView.swift; sourceTree = "<group>"; };
 		27AE1FFA278A67D100C07ADF /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -204,7 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2793F71B278B551C00F85363 /* Starscream in Frameworks */,
+				2793F720278B93D800F85363 /* Starscream in Frameworks */,
 				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
 				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
 				273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */,
@@ -298,6 +300,7 @@
 				2730E009275DBBCE0082BE45 /* GenericActionCell.swift */,
 				27410778276C320600E77A00 /* BigXButton.swift */,
 				27410783276DBDAC00E77A00 /* ActivityIndicator.swift */,
+				2793F721278B949200F85363 /* TrackableScrollView.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -505,7 +508,7 @@
 				273157BC2771A06B00256151 /* WalletConnectSwift */,
 				2793F712278B467C00F85363 /* Shiny */,
 				2793F717278B551500F85363 /* SocketIO */,
-				2793F71A278B551C00F85363 /* Starscream */,
+				2793F71F278B93D800F85363 /* Starscream */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
@@ -542,7 +545,7 @@
 				273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */,
 				2793F711278B467C00F85363 /* XCRemoteSwiftPackageReference "shiny" */,
 				2793F716278B551500F85363 /* XCRemoteSwiftPackageReference "socket" */,
-				2793F719278B551C00F85363 /* XCRemoteSwiftPackageReference "Starscream" */,
+				2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -593,6 +596,7 @@
 				2730E016275DCC8E0082BE45 /* WalletBalance.swift in Sources */,
 				2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */,
 				274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */,
+				2793F722278B949200F85363 /* TrackableScrollView.swift in Sources */,
 				274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */,
 				2741076A276B255200E77A00 /* SaveButtonModifier.swift in Sources */,
 				27E9E20F2769B5CB00EBB552 /* Automation+CoreData.swift in Sources */,
@@ -911,7 +915,7 @@
 				kind = branch;
 			};
 		};
-		2793F719278B551C00F85363 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+		2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/daltoniam/Starscream.git";
 			requirement = {
@@ -952,9 +956,9 @@
 			package = 2793F716278B551500F85363 /* XCRemoteSwiftPackageReference "socket" */;
 			productName = SocketIO;
 		};
-		2793F71A278B551C00F85363 /* Starscream */ = {
+		2793F71F278B93D800F85363 /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2793F719278B551C00F85363 /* XCRemoteSwiftPackageReference "Starscream" */;
+			package = 2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -8,54 +8,8 @@
 import SwiftUI
 import Shiny
 
-struct WalletHeader: View {
-    @Binding var presentWalletSelector: Bool
-    @EnvironmentObject var walletViewModel: WalletConnectionViewModel
-    
-    var body: some View {
-        HStack(alignment: .bottom, spacing: 15) {
-            Button {
-                presentWalletSelector = true
-            } label: {
-                CircleImageView(backgroundColor: .themeText,
-                                icon: Image(systemName: "moon"))
-            }
-            .frame(width: 40, height: 40)
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text("junsoo.eth")
-                    .font(.system(size: 18, weight: .medium, design: .rounded))
-                    .foregroundColor(.themeText)
-                
-                Text("$14,231.10")
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                    .foregroundColor(.themeText)
-            }
-            
-            Spacer()
-            
-            Button {
-            } label: {
-                HStack {
-                    Text("Ethereum")
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundColor(.themeText)
-                    
-                    Image(systemName: "chevron.down")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(.themeText)
-                }
-            }
-        }
-        .padding(.horizontal, 15)
-        .padding(.vertical, 10)
-        .background(Color.themePrimary)
-    }
-}
-
-struct CoinView: View {
+struct CoinContentView: View {
     @EnvironmentObject var wallet: WalletModel
-    @EnvironmentObject var viewModel: WalletConnectionViewModel
     
     var body: some View {
         ZStack {
@@ -72,7 +26,8 @@ struct CoinView: View {
                 
                 Text(wallet.formatCurrency(value: wallet.value))
                     .font(.system(size: 30, weight: .bold, design: .rounded))
-                    .shiny(.iridescent)
+                    .foregroundColor(.white)
+//                    .shiny(.iridescent)
                 
                 Spacer()
                 
@@ -91,11 +46,79 @@ struct CoinView: View {
     }
 }
 
+struct HomeHeader: View {
+    @Binding var presentWalletSelector: Bool
+    @EnvironmentObject var wallet: WalletModel
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text("Good morning")
+                .font(.system(size: 15, weight: .medium))
+                .foregroundColor(Color(uiColor: .secondaryLabel))
+            
+            HStack {
+                Text("junsoo.eth")
+                    .font(.system(size: 28, weight: .semibold))
+               
+                Spacer()
+                
+                Button {
+                    presentWalletSelector = true
+                } label: {
+                    CircleImageView(backgroundColor: .themeText,
+                                    icon: Image(systemName: "moon"))
+                }
+                .frame(width: 38, height: 38)
+            }
+        }
+    }
+}
+
+struct CoinView: View {
+    @State var scrollOffset: CGFloat = 0
+    @Binding var presentWalletSelector: Bool
+    
+    @EnvironmentObject var wallet: WalletModel
+    let columnItem = [GridItem(.flexible())]
+    
+    var body: some View {
+        NavigationView {
+            ZStack(alignment: .top) {
+                TrackableScrollView(axes: .vertical, showsIndicators: true) { offset in
+                    withAnimation(.easeIn(duration: 0.15)) {
+                        scrollOffset = offset.y
+                    }
+                } content: {
+                    VStack(spacing: 0) {
+                        HomeHeader(presentWalletSelector: $presentWalletSelector)
+                            .environmentObject(wallet)
+                            .padding(.horizontal)
+                        
+                        CoinContentView()
+                            .environmentObject(wallet)
+                        
+                        LazyVGrid(columns: columnItem) {
+                        }
+                    }
+                }
+                .offset(y: 44)
+                
+                Text(wallet.formatCurrency(value: wallet.value))
+                    .opacity(scrollOffset > -40 ? 0 : 1)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(height: 44)
+                    .background(Color(uiColor: .systemBackground))
+            }
+            .navigationBarHidden(true)
+        }
+    }
+}
+
 struct WalletHomeView_Previews: PreviewProvider {
-    static let env = WalletConnectionViewModel()
+    static let env = WalletModel()
     
     static var previews: some View {
-        CoinView()
+        CoinView(presentWalletSelector: .constant(true))
             .environmentObject(env)
     }
 }

@@ -9,12 +9,19 @@ import SwiftUI
 
 @main
 struct WoofApp: App {
-    let persistenceController = PersistenceController.shared
+    init() {
+//        let appearance = UINavigationBarAppearance()
+//        appearance.backgroundColor = .systemBackground
+//        appearance.shadowColor = nil
+//        
+//        UINavigationBar.appearance().standardAppearance = appearance
+//        UINavigationBar.appearance().compactAppearance = appearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
 
     var body: some Scene {
         WindowGroup {
             WoofTabView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
