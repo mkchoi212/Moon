@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import WalletConnectSwift
 
 protocol WalletConnectDelegate {
@@ -21,6 +22,7 @@ class WalletConnect {
     var delegate: WalletConnectDelegate
 
     let iconURL = "https://pbs.twimg.com/profile_images/1473169204610502656/wrHEpsx4_400x400.jpg"
+    @AppStorage("current.wallet.address") private var selectedAddress: String = ""
     
     init(delegate: WalletConnectDelegate) {
         self.delegate = delegate
@@ -87,7 +89,7 @@ extension WalletConnect: ClientDelegate {
         }
         
         UserDefaultsConfig.sessions.append(session)
-        UserDefaultsConfig.selectedWalletAddress = session.walletInfo?.accounts.first
+        selectedAddress = session.walletInfo?.accounts.first ?? ""
         
         NotificationCenter.default.post(name: .init(rawValue: "refresh.selected.wallet"), object: nil)
         delegate.didConnect()

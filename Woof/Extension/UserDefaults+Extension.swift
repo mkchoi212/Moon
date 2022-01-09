@@ -32,7 +32,4 @@ final class UserDefaultsConfig: NSObject {
             }
         }
     }
-    
-    @UserDefault("selected.wallet.address", defaultValue: nil)
-    static var selectedWalletAddress: String?
 }

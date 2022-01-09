@@ -20,17 +20,20 @@ final class WalletConnectionViewModel: ObservableObject {
     
     @Published var walletAddresses: [String] = []
     @Published var connectionError: Error?
-    @Published var selectedAddress: String? = UserDefaultsConfig.selectedWalletAddress
+    @Published var selectedWallet: Session?
+    @AppStorage("current.wallet.address") var selectedAddress: String = ""
     
     var cancellables = Set<AnyCancellable>()
     
     init() {
         refreshWallets(onMainThread: false)
+        selectedWallet = walletToSessionMap[selectedAddress]
         
         NotificationCenter.default.publisher(for: .init(rawValue: "refresh.selected.wallet"), object: nil)
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.selectedAddress = UserDefaultsConfig.selectedWalletAddress
+                guard let self = self else { return }
+                self.selectedWallet = self.walletToSessionMap[self.selectedAddress]
             }
             .store(in: &cancellables)
     }

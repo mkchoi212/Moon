@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SettingsWalletListView: View {
-    @State var _selectedAddr: String? = nil
+    @State var _selectedAddr: String = ""
     @StateObject var viewModel = WalletConnectionViewModel()
     
     var body: some View {

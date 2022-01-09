@@ -20,12 +20,21 @@
         }
       },
       {
-        "package": "Starscream",
-        "repositoryURL": "https://github.com/daltoniam/Starscream.git",
+        "package": "Shiny",
+        "repositoryURL": "https://github.com/maustinstar/shiny.git",
         "state": {
-          "branch": null,
-          "revision": "df8d82047f6654d8e4b655d1b1525c64e1059d21",
-          "version": "4.0.4"
+          "branch": "master",
+          "revision": "862360b8ab6b9ea9eb1156569a30f154b22625a5",
+          "version": null
+        }
+      },
+      {
+        "package": "SocketIO",
+        "repositoryURL": "https://github.com/socketio/socket.io-client-swift",
+        "state": {
+          "branch": "master",
+          "revision": "a1ed825835a2d8c2555938e96557ccc05e4bebf3",
+          "version": null
         }
       },
       {

@@ -51,7 +51,7 @@ struct WalletIcon: View {
 }
 
 struct WalletListContentView: View {
-    @Binding var selectedAddress: String?
+    @Binding var selectedAddress: String
     var allowSelection = false
     
     @EnvironmentObject var viewModel: WalletConnectionViewModel
@@ -76,11 +76,7 @@ struct WalletListContentView: View {
                         return
                     }
                     
-                    if selectedAddress == addr {
-                        selectedAddress = nil
-                    } else {
-                        selectedAddress = addr
-                    }
+                    selectedAddress = addr
                 }
             }
             .onDelete(perform: delete)

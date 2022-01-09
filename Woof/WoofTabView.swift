@@ -11,6 +11,8 @@ struct WoofTabView: View {
     @StateObject var walletViewModel = WalletConnectionViewModel()
     @State var presentWalletSelector = false
     
+    let wallet = WalletModel()
+    
     var body: some View {
         VStack {
             WalletHeader(presentWalletSelector: $presentWalletSelector)
@@ -18,6 +20,7 @@ struct WoofTabView: View {
         
             TabView {
                 CoinView()
+                    .environmentObject(wallet)
                     .environmentObject(walletViewModel)
                     .tabItem {
                         Label("Coins", systemImage: "moon.fill")
