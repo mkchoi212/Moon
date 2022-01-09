@@ -7,28 +7,45 @@
 
 import SwiftUI
 
+struct WalletIconModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: 50, height: 50)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
 struct WalletIcon: View {
     var url: URL?
+   
+    var placeHolder: some View {
+        Image(systemName: "wallet.pass.fill")
+            .resizable()
+            .foregroundStyle(Color.themePrimary)
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(.lightBlue))
+            .frame(width: 50, height: 50)
+    }
     
     var body: some View {
         if let url = url {
-            AsyncImage(url: url) { image in
-                image
+            if url.absoluteString.contains("metamask-fox.svg") {
+                Image("metamask")
                     .resizable()
-                    .frame(width: 50, height: 50)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-            } placeholder: {
-                RoundedRectangle(cornerRadius: 4)
-                    .frame(width: 50, height: 50)
-                    .foregroundColor(.lightGray)
+                    .padding(6)
+                    .background(Color(uiColor: .label))
+                    .modifier(WalletIconModifier())
+            } else {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .modifier(WalletIconModifier())
+                } placeholder: {
+                    placeHolder
+                }
             }
         } else {
-            Image(systemName: "wallet.pass.fill")
-                .resizable()
-                .foregroundStyle(Color.themePrimary)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 8).foregroundColor(.lightBlue))
-                .frame(width: 50, height: 50)
+            placeHolder
         }
     }
 }
@@ -51,7 +68,7 @@ struct WalletListContentView: View {
                     if addr == selectedAddress {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 22, weight: .semibold))
-                            .foregroundColor(.themePrimary)
+                            .foregroundColor(.themeControl)
                     }
                 }
                 .onTapGesture {
@@ -68,10 +85,12 @@ struct WalletListContentView: View {
             }
             .onDelete(perform: delete)
             .listRowSeparator(.hidden)
+            .listRowBackground(Color.modalBackground)
         }
         .listStyle(.plain)
         .toolbar {
             EditButton()
+                .foregroundColor(.themeText)
         }
     }
     
@@ -81,6 +100,7 @@ struct WalletListContentView: View {
 }
 
 struct WalletSelectorView: View {
+    @State var presentSettings = false
     @State var presentWalletConnectionView = false
     @EnvironmentObject var viewModel: WalletConnectionViewModel
     
@@ -97,14 +117,31 @@ struct WalletSelectorView: View {
                 } label: {
                     Text("Add an existing wallet")
                         .font(.system(size: 15))
-                        .foregroundColor(.themePrimary)
+                        .foregroundColor(.themeText)
                 }
                 .padding(.horizontal)
             }
+            .background(Color.modalBackground)
             .navigationTitle("Wallets")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                       presentSettings = true
+                    } label: {
+                        Text("Settings")
+                    }
+                    .tint(.themeText)
+                }
+            }
         }
-        .bottomSheet(isPresented: $presentWalletConnectionView, detents: .constant([.large()])) {
+        .introspectNavigationController(customize: { nc in
+            nc.navigationBar.backgroundColor = .modalBackground
+        })
+        .systemBottomSheet(isPresented: $presentSettings, detents: .constant([.large()]), contentView: {
+            SettingsView()
+        })
+        .systemBottomSheet(isPresented: $presentWalletConnectionView, detents: .constant([.large()])) {
             NavigationView {
                 WalletConnectionView()
                     .environmentObject(viewModel)

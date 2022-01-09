@@ -35,11 +35,21 @@ extension Color {
 }
 
 extension Color {
+    static var modalBackground: Color {
+        Color(uiColor: .modalBackground)
+    }
+    
     static var lightGray: Color {
         Color(uiColor: .lightGray)
     }
     
     static var lightBlue: Color {
         Color.blue.opacity(0.15)
+    }
+}
+
+extension UIColor {
+    static var modalBackground: UIColor {
+        .systemBackground
     }
 }

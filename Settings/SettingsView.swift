@@ -89,6 +89,9 @@ struct SettingRow: View {
 }
 
 struct SettingsView: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         NavigationView {
             List {
@@ -126,8 +129,15 @@ struct SettingsView: View {
                 }
                 .listRowBackground(Color(uiColor: .systemGroupedBackground))
             }
+            .listStyle(.insetGrouped)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }, label: {
+                Image(systemName: "xmark")
+                    .foregroundColor(.themeControl)
+            }))
         }
         .onAppear {
             UIApplication.shared.statusBarStyle = .darkContent

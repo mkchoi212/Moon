@@ -1,6 +1,6 @@
 //
-//  BottomSheetModifier.swift
-//  BottomSheet
+//  SystemBottomSheetModifier.swift
+//  SystemBottomSheet
 //
 //  Created by Adam Foot on 16/06/2021.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 15, *)
-struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
+struct SystemBottomSheet<T: Any, ContentView: View>: ViewModifier {
     @Binding private var isPresented: Bool
     @Binding private var detents: [UISheetPresentationController.Detent]
     
@@ -22,7 +22,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
     private let contentView: () -> ContentView
     
     @State private var bottomSheetViewController: BottomSheetViewController<ContentView>?
-
+    
     init(
         isPresented: Binding<Bool>,
         detents: Binding<[UISheetPresentationController.Detent]>,
@@ -58,7 +58,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         isModalInPresentation: Bool = false,
         onDismiss: (() -> Void)? = nil,
         @ViewBuilder contentView: @escaping () -> ContentView
-     ) {
+    ) {
         self._isPresented = Binding<Bool>(get: {
             item.wrappedValue != nil
         }, set: { newValue in
@@ -72,26 +72,26 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         self.prefersEdgeAttachedInCompactHeight = prefersEdgeAttachedInCompactHeight
         self.widthFollowsPreferredContentSizeWhenEdgeAttached = widthFollowsPreferredContentSizeWhenEdgeAttached
         self.isModalInPresentation = isModalInPresentation
-         self.contentView = contentView
-     }
-
+        self.contentView = contentView
+    }
+    
     func body(content: Content) -> some View {
         content
             .onChange(of: isPresented, perform: updatePresentation)
     }
-
+    
     private func updatePresentation(_ isPresented: Bool) {
         guard let windowScene = UIApplication.shared.connectedScenes.first(where: {
             $0.activationState == .foregroundActive
         }) as? UIWindowScene else { return }
-
+        
         
         guard let root = windowScene.keyWindow?.rootViewController else { return }
         var controllerToPresentFrom = root
         while let presented = controllerToPresentFrom.presentedViewController {
             controllerToPresentFrom = presented
         }
-
+        
         if isPresented {
             bottomSheetViewController = BottomSheetViewController(
                 isPresented: $isPresented,
@@ -104,9 +104,9 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
                 isModalInPresentation: isModalInPresentation,
                 content: contentView()
             )
-
+            
             controllerToPresentFrom.present(bottomSheetViewController!, animated: true)
-
+            
         } else {
             onDismiss?()
             bottomSheetViewController?.dismiss(animated: true)
@@ -116,7 +116,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
 
 @available(iOS 15, *)
 extension View {
-
+    
     /// Presents a bottom sheet when the binding to a Boolean value you provide is true. The bottom sheet
     /// can also be customised in the same way as a UISheetPresentationController can be.
     /// - Parameters:
@@ -130,7 +130,7 @@ extension View {
     ///   - isModalInPresentation: A Boolean value indicating whether the view controller enforces a modal behavior.
     ///   - onDismiss: The closure to execute when dismissing the sheet.
     ///   - contentView: A closure that returns the content of the sheet.
-    public func bottomSheet<ContentView: View>(
+    public func systemBottomSheet<ContentView: View>(
         isPresented: Binding<Bool>,
         detents: Binding<[UISheetPresentationController.Detent]>,
         largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier? = nil,
@@ -143,7 +143,7 @@ extension View {
         @ViewBuilder contentView: @escaping () -> ContentView
     ) -> some View {
         self.modifier(
-            BottomSheet<Any, ContentView>(
+            SystemBottomSheet<Any, ContentView>(
                 isPresented: isPresented,
                 detents: detents,
                 largestUndimmedDetentIdentifier:  largestUndimmedDetentIdentifier, prefersGrabberVisible: prefersGrabberVisible,
@@ -170,7 +170,7 @@ extension View {
     ///   - isModalInPresentation: A Boolean value indicating whether the view controller enforces a modal behavior.
     ///   - onDismiss: The closure to execute when dismissing the sheet.
     ///   - contentView: A closure that returns the content of the sheet.
-    public func bottomSheet<T: Any, ContentView: View>(
+    public func systemBottomSheet<T: Any, ContentView: View>(
         item: Binding<T?>,
         detents: Binding<[UISheetPresentationController.Detent]>,
         largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier? = nil,
@@ -183,7 +183,7 @@ extension View {
         @ViewBuilder contentView: @escaping () -> ContentView
     ) -> some View {
         self.modifier(
-            BottomSheet(
+            SystemBottomSheet(
                 item: item,
                 detents: detents,
                 largestUndimmedDetentIdentifier:  largestUndimmedDetentIdentifier, prefersGrabberVisible: prefersGrabberVisible,

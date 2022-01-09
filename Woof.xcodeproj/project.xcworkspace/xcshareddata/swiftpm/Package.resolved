@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "BottomSheet",
-        "repositoryURL": "https://github.com/weitieda/bottom-sheet",
-        "state": {
-          "branch": "master",
-          "revision": "0eb23336119ee048fb48da52f5be4f28fd5431fb",
-          "version": null
-        }
-      },
-      {
         "package": "CryptoSwift",
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {

@@ -12,26 +12,28 @@ struct WoofTabView: View {
     @State var presentWalletSelector = false
     
     var body: some View {
-        TabView {
-            WalletHomeView(presentWalletSelector: $presentWalletSelector)
+        VStack {
+            WalletHeader(presentWalletSelector: $presentWalletSelector)
                 .environmentObject(walletViewModel)
-                .tabItem {
-                    Label("Coins", systemImage: "moon.fill")
-                }
-            
-            Text("Objects")
-                .tabItem {
-                    Label("Objects", systemImage: "square")
-                }
-
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "triangle")
-                }
+        
+            TabView {
+                CoinView()
+                    .environmentObject(walletViewModel)
+                    .tabItem {
+                        Label("Coins", systemImage: "moon.fill")
+                    }
+                
+                Text("Objects")
+                    .tabItem {
+                        Label("Objects", systemImage: "square")
+                    }
+            }
         }
         .bottomSheet(isPresented: $presentWalletSelector,
-                     height: CGFloat((walletViewModel.walletAddresses.count * 100) + 100),
-                     topBarHeight: 10, content: {
+                     height: CGFloat((walletViewModel.walletAddresses.count * 100) + 150),
+                     topBarHeight: 14,
+                     topBarBackgroundColor: .modalBackground,
+                     content: {
             WalletSelectorView()
                 .environmentObject(walletViewModel)
         })

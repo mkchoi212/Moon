@@ -11,7 +11,7 @@ import SwiftUI
 public struct BottomSheet<Content: View>: View {
     
     private var dragToDismissThreshold: CGFloat { height * 0.2 }
-    private var grayBackgroundOpacity: Double { isPresented ? (0.4 - Double(draggedOffset)/600) : 0 }
+    private var grayBackgroundOpacity: Double { isPresented ? (0.5 - Double(draggedOffset)/600) : 0 }
     
     @State private var draggedOffset: CGFloat = 0
     @State private var previousDragValue: DragGesture.Value?
@@ -80,11 +80,10 @@ public struct BottomSheet<Content: View>: View {
     }
     
     fileprivate func fullScreenLightGrayOverlay() -> some View {
-        Color
-            .black
+        Color(uiColor: .init(named: "ModalBackgroundColor")!)
             .opacity(grayBackgroundOpacity)
             .edgesIgnoringSafeArea(.all)
-            .animation(.interactiveSpring())
+            .animation(.easeInOut(duration: 0.2))
             .onTapGesture { self.isPresented = false }
     }
     

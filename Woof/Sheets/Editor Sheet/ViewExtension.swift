@@ -11,7 +11,7 @@ import SwiftUI
 public extension View {
     func bottomSheet<Content: View>(
         isPresented: Binding<Bool>,
-        usesKeyboard: Bool,
+        usesKeyboard: Bool = false,
         height: CGFloat,
         topBarHeight: CGFloat = 30,
         topBarCornerRadius: CGFloat? = nil,

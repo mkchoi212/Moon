@@ -6,17 +6,6 @@
 //
 
 import SwiftUI
-import BottomSheet
-
-struct WalletHomeContentView: View {
-    var body: some View {
-        List {
-            ForEach(0...10, id: \.self) { i in
-                Text("asdf")
-            }
-        }
-    }
-}
 
 struct WalletHeader: View {
     @Binding var presentWalletSelector: Bool
@@ -25,9 +14,9 @@ struct WalletHeader: View {
     var body: some View {
         HStack(alignment: .bottom, spacing: 15) {
             Button {
-               presentWalletSelector = true
+                presentWalletSelector = true
             } label: {
-                CircleImageView(backgroundColor: .white,
+                CircleImageView(backgroundColor: .themeText,
                                 icon: Image(systemName: "moon"))
             }
             .frame(width: 40, height: 40)
@@ -35,11 +24,11 @@ struct WalletHeader: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("junsoo.eth")
                     .font(.system(size: 18, weight: .medium, design: .rounded))
-                    .foregroundColor(.white)
+                    .foregroundColor(.themeText)
                 
                 Text("$14,231.10")
                     .font(.system(size: 20, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
+                    .foregroundColor(.themeText)
             }
             
             Spacer()
@@ -49,43 +38,33 @@ struct WalletHeader: View {
                 HStack {
                     Text("Ethereum")
                         .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundColor(.white)
+                        .foregroundColor(.themeText)
                     
                     Image(systemName: "chevron.down")
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(.white)
+                        .foregroundColor(.themeText)
                 }
-                .padding(6)
-                .overlay(RoundedRectangle(cornerRadius: 8)
-                            .stroke(.white, style: .init(lineWidth: 0.5))
-                )
             }
         }
         .padding(.horizontal, 15)
-        .padding(.bottom, 15)
+        .padding(.vertical, 10)
         .background(Color.themePrimary)
     }
 }
 
-struct WalletHomeView: View {
-    @Binding var presentWalletSelector: Bool
-    @EnvironmentObject var walletViewModel: WalletConnectionViewModel
+struct CoinView: View {
+    @EnvironmentObject var viewModel: WalletConnectionViewModel
     
     var body: some View {
-        VStack(spacing: 0) {
-            WalletHeader(presentWalletSelector: $presentWalletSelector)
-                .environmentObject(walletViewModel)
-            
-            WalletHomeContentView()
-        }
-        .onAppear {
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        Text("asdf")
     }
 }
 
 struct WalletHomeView_Previews: PreviewProvider {
+    static let env = WalletConnectionViewModel()
+    
     static var previews: some View {
-        WalletHomeView(presentWalletSelector: .constant(false))
+        CoinView()
+            .environmentObject(env)
     }
 }

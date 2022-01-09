@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum Theme: String, CaseIterable {
-    case black, blue
+    case mono, blue
 }
 
 struct ThemeManager {
@@ -22,14 +22,23 @@ struct ThemeManager {
            let savedTheme = Theme(rawValue: savedThemeRawValue) {
             theme = savedTheme
         } else {
-            theme = .black
+            theme = .mono
         }
     }
     
     var primary: Color {
         switch theme {
-            case .black:
+            case .mono:
                 return Color(uiColor: .systemBackground)
+            case .blue:
+                return .blue
+        }
+    }
+    
+    var text: Color {
+        switch theme {
+            case .mono:
+                return Color(uiColor: .label)
             case .blue:
                 return .blue
         }
@@ -39,5 +48,13 @@ struct ThemeManager {
 extension Color {
     static var themePrimary: Color {
         ThemeManager.shared.primary
+    }
+    
+    static var themeControl: Color {
+        ThemeManager.shared.text
+    }
+    
+    static var themeText: Color {
+        ThemeManager.shared.text
     }
 }

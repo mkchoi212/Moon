@@ -22,7 +22,7 @@ struct ActionCell: View {
                           backgroundColor: Color(uiColor: .secondarySystemGroupedBackground)) {
             remove()
         }
-        .onOpenURL(perform: didOpenURL(url:))
+                          .onOpenURL(perform: didOpenURL(url:))
     }
     
     func didOpenURL(url: URL) {
@@ -69,11 +69,11 @@ struct ActionList: View {
             }
             .padding(.top, 15)
         }
-        .bottomSheet(item: $editorViewModel.selectedProperty,
-                     detents: $editorViewModel.detents,
-                     prefersGrabberVisible: true,
-                     prefersScrollingExpandsWhenScrolledToEdge: true,
-                     isModalInPresentation: false) {
+        .systemBottomSheet(item: $editorViewModel.selectedProperty,
+                           detents: $editorViewModel.detents,
+                           prefersGrabberVisible: true,
+                           prefersScrollingExpandsWhenScrolledToEdge: true,
+                           isModalInPresentation: false) {
             if let property = editorViewModel.selectedProperty,
                let action = editorViewModel.selectedAction {
                 editorViewModel.editor(for: property)

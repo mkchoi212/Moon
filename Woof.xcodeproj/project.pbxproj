@@ -62,13 +62,16 @@
 		27410787276EE0A900E77A00 /* Auth+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410786276EE0A900E77A00 /* Auth+Extension.swift */; };
 		274107892770343B00E77A00 /* WalletConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274107882770343B00E77A00 /* WalletConnectionView.swift */; };
 		274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AEBCC278A289900BE6E55 /* CircleImageView.swift */; };
-		274AEBD2278A3BEC00BE6E55 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 274AEBD1278A3BEC00BE6E55 /* BottomSheet */; };
 		274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA39E2760DC8700B1E2D3 /* IconPicker.swift */; };
 		274BA3A127622AF600B1E2D3 /* ComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */; };
 		274BA3A427622B4000B1E2D3 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BA3A327622B4000B1E2D3 /* RuleCell.swift */; };
-		27557D90276B068A0044A864 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B127687040003084E5 /* BottomSheet.swift */; };
+		27557D90276B068A0044A864 /* SystemBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B127687040003084E5 /* SystemBottomSheet.swift */; };
 		27557D91276B068A0044A864 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B227687040003084E5 /* BottomSheetViewController.swift */; };
-		277D0543278A272E009E2B29 /* WalletHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0542278A272E009E2B29 /* WalletHomeView.swift */; };
+		277D0543278A272E009E2B29 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0542278A272E009E2B29 /* CoinView.swift */; };
+		2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
+		2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
+		2793F70F278A7F9500F85363 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C727698E43003084E5 /* BottomSheet.swift */; };
+		2793F710278A7F9500F85363 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277387F5276A2725009A424A /* KeyboardHelper.swift */; };
 		27AE1FF7278A48DA00C07ADF /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FF6278A48DA00C07ADF /* Separator.swift */; };
 		27AE1FF9278A505000C07ADF /* WalletSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */; };
 		27AE1FFB278A67D100C07ADF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FFA278A67D100C07ADF /* Theme.swift */; };
@@ -110,7 +113,7 @@
 		270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SurfaceAppearance+phone.swift"; sourceTree = "<group>"; };
 		270241A42767301B003084E5 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		270241AB27673812003084E5 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
-		270241B127687040003084E5 /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		270241B127687040003084E5 /* SystemBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemBottomSheet.swift; sourceTree = "<group>"; };
 		270241B227687040003084E5 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		270241B62768723E003084E5 /* ComparatorEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparatorEditor.swift; sourceTree = "<group>"; };
 		270241B927698A36003084E5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -160,7 +163,7 @@
 		274BA3A027622AF600B1E2D3 /* ComposerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerSheet.swift; sourceTree = "<group>"; };
 		274BA3A327622B4000B1E2D3 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
 		277387F5276A2725009A424A /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
-		277D0542278A272E009E2B29 /* WalletHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHomeView.swift; sourceTree = "<group>"; };
+		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		27AE1FF6278A48DA00C07ADF /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSelectorView.swift; sourceTree = "<group>"; };
 		27AE1FFA278A67D100C07ADF /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -196,7 +199,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274AEBD2278A3BEC00BE6E55 /* BottomSheet in Frameworks */,
 				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
 				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
 				273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */,
@@ -235,7 +237,7 @@
 		270241B527687043003084E5 /* Native Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				270241B127687040003084E5 /* BottomSheet.swift */,
+				270241B127687040003084E5 /* SystemBottomSheet.swift */,
 				270241B227687040003084E5 /* BottomSheetViewController.swift */,
 			);
 			path = "Native Sheet";
@@ -436,7 +438,7 @@
 				2702418A27670A26003084E5 /* Info.plist */,
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
-				277D0542278A272E009E2B29 /* WalletHomeView.swift */,
+				277D0542278A272E009E2B29 /* CoinView.swift */,
 				27AE1FFA278A67D100C07ADF /* Theme.swift */,
 				273157B827718E9700256151 /* Wallet */,
 				2730E00B275DBC070082BE45 /* UI Components */,
@@ -492,7 +494,6 @@
 				27410767276B0B8900E77A00 /* Introspect */,
 				2741077B276C972000E77A00 /* OrderedCollections */,
 				273157BC2771A06B00256151 /* WalletConnectSwift */,
-				274AEBD1278A3BEC00BE6E55 /* BottomSheet */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
@@ -527,7 +528,6 @@
 				27410766276B0B8900E77A00 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				2741077A276C972000E77A00 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */,
-				274AEBD0278A3BEC00BE6E55 /* XCRemoteSwiftPackageReference "bottom-sheet" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -556,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2730E023275DD0BF0082BE45 /* Buy.swift in Sources */,
+				2793F70F278A7F9500F85363 /* BottomSheet.swift in Sources */,
 				27410787276EE0A900E77A00 /* Auth+Extension.swift in Sources */,
 				2730E008275DBBBA0082BE45 /* Wallet.swift in Sources */,
 				274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */,
@@ -584,7 +585,7 @@
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				27AE1FF7278A48DA00C07ADF /* Separator.swift in Sources */,
 				2730E02B275DD2030082BE45 /* ConditionType.swift in Sources */,
-				277D0543278A272E009E2B29 /* WalletHomeView.swift in Sources */,
+				277D0543278A272E009E2B29 /* CoinView.swift in Sources */,
 				27E9E2172769B70700EBB552 /* Action+CoreData.swift in Sources */,
 				27F12CE3275D700600D87182 /* ActionList.swift in Sources */,
 				2730E02D275DE9AC0082BE45 /* Automation.swift in Sources */,
@@ -598,6 +599,7 @@
 				27410773276C1F2A00E77A00 /* EditorSheetViewModel.swift in Sources */,
 				2741076E276B333200E77A00 /* CoinModel.swift in Sources */,
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,
+				2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */,
 				270241AC27673812003084E5 /* PanelDelegate.swift in Sources */,
 				2730E029275DD15B0082BE45 /* Swap.swift in Sources */,
 				273157BA2771A04500256151 /* WalletConnect.swift in Sources */,
@@ -617,9 +619,11 @@
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
 				27DA34052766D0970035C7B0 /* TextEntity.swift in Sources */,
 				2730E011275DCC1B0082BE45 /* PercentageChange.swift in Sources */,
-				27557D90276B068A0044A864 /* BottomSheet.swift in Sources */,
+				27557D90276B068A0044A864 /* SystemBottomSheet.swift in Sources */,
 				27557D91276B068A0044A864 /* BottomSheetViewController.swift in Sources */,
 				27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */,
+				2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */,
+				2793F710278A7F9500F85363 /* KeyboardHelper.swift in Sources */,
 				2730E000275DBB770082BE45 /* Comparator.swift in Sources */,
 				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,
 				2730E021275DD0920082BE45 /* SendEmail.swift in Sources */,
@@ -875,14 +879,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		274AEBD0278A3BEC00BE6E55 /* XCRemoteSwiftPackageReference "bottom-sheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/weitieda/bottom-sheet";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -905,11 +901,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2741077A276C972000E77A00 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
-		};
-		274AEBD1278A3BEC00BE6E55 /* BottomSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 274AEBD0278A3BEC00BE6E55 /* XCRemoteSwiftPackageReference "bottom-sheet" */;
-			productName = BottomSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 
