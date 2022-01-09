@@ -15,7 +15,7 @@ struct Automation: Identifiable {
     let conditions: [AnyEquatableCondition]
     let actions: [AnyEquatableAction]
     
-    static let empty = Automation(id: UUID(), title: "", color: .blue, iconName: "moon.fill", conditions: [], actions: [])
+    static let empty = Automation(id: UUID(), title: "", color: .themePrimary, iconName: "moon.fill", conditions: [], actions: [])
     
     static let dummy: [Automation] =
     [

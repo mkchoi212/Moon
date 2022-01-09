@@ -8,28 +8,33 @@
 import SwiftUI
 
 struct WoofTabView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \AutomationContract.date, ascending: true)],
-                  animation: .default)
-    var automations: FetchedResults<AutomationContract>
+    @StateObject var walletViewModel = WalletConnectionViewModel()
+    @State var presentWalletSelector = false
     
     var body: some View {
         TabView {
-            HomeView(automations: automations.map(\.automation))
+            WalletHomeView(presentWalletSelector: $presentWalletSelector)
+                .environmentObject(walletViewModel)
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label("Coins", systemImage: "moon.fill")
                 }
             
-            NotificationView()
+            Text("Objects")
                 .tabItem {
-                    Label("Notifications", systemImage: "bell")
+                    Label("Objects", systemImage: "square")
                 }
-            
+
             SettingsView()
                 .tabItem {
-                    Label("Settings", systemImage: "gear")
+                    Label("Settings", systemImage: "triangle")
                 }
         }
+        .bottomSheet(isPresented: $presentWalletSelector,
+                     height: CGFloat((walletViewModel.walletAddresses.count * 100) + 100),
+                     topBarHeight: 10, content: {
+            WalletSelectorView()
+                .environmentObject(walletViewModel)
+        })
     }
 }
 

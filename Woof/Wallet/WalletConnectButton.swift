@@ -49,8 +49,7 @@ struct WalletConnectButton: View {
                 }
             }
             .padding()
-            .background(RoundedRectangle(cornerRadius: 12).foregroundColor(Color(uiColor: .secondarySystemBackground)))
-            
+            .background(RoundedRectangle(cornerRadius: 50).foregroundColor(Color(uiColor: .secondarySystemBackground)))
         }
         .buttonStyle(.plain)
     }

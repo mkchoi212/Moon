@@ -129,6 +129,9 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear {
+            UIApplication.shared.statusBarStyle = .darkContent
+        }
     }
 }
 

@@ -88,10 +88,3 @@ struct ComposerView: View {
         }
     }
 }
-
-struct ComposerView_Previews: PreviewProvider {
-    static var previews: some View {
-        ComposerView(viewModel: ComposerViewModel(automation: Automation.dummy[0]))
-            .preferredColorScheme(.light)
-    }
-}

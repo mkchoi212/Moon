@@ -52,7 +52,6 @@ class WalletConnect {
 //        }
     }
 
-    // https://developer.apple.com/documentation/security/1399291-secrandomcopybytes
     private func randomKey() throws -> String {
         var bytes = [Int8](repeating: 0, count: 32)
         let status = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
@@ -79,8 +78,18 @@ extension WalletConnect: ClientDelegate {
 
     func client(_ client: Client, didConnect session: Session) {
         self.session = session
+        
+        let existingWalletIdx = UserDefaultsConfig.sessions.firstIndex { s in
+            s.url == session.url
+        }
+        if let existingWalletIdx = existingWalletIdx {
+            UserDefaultsConfig.sessions.remove(at: existingWalletIdx)
+        }
+        
         UserDefaultsConfig.sessions.append(session)
-        // check for dup addresses
+        UserDefaultsConfig.selectedWalletAddress = session.walletInfo?.accounts.first
+        
+        NotificationCenter.default.post(name: .init(rawValue: "refresh.selected.wallet"), object: nil)
         delegate.didConnect()
     }
 

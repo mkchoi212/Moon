@@ -5,22 +5,34 @@
 //  Created by Mike Choi on 12/21/21.
 //
 
+import Combine
 import SwiftUI
 import WalletConnectSwift
 
 final class WalletConnectionViewModel: ObservableObject {
-    var sessions: [Session] = []
-    var walletToSessionMap: [String: Session] = [:]
-    @Published var walletAddresses: [String] = []
-    @Published var connectionError: Error?
-    var uri: String?
-    
     lazy var wc: WalletConnect = {
         WalletConnect(delegate: self)
     }()
     
+    var sessions: [Session] = []
+    var walletToSessionMap: [String: Session] = [:]
+    var uri: String?
+    
+    @Published var walletAddresses: [String] = []
+    @Published var connectionError: Error?
+    @Published var selectedAddress: String? = UserDefaultsConfig.selectedWalletAddress
+    
+    var cancellables = Set<AnyCancellable>()
+    
     init() {
         refreshWallets(onMainThread: false)
+        
+        NotificationCenter.default.publisher(for: .init(rawValue: "refresh.selected.wallet"), object: nil)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.selectedAddress = UserDefaultsConfig.selectedWalletAddress
+            }
+            .store(in: &cancellables)
     }
     
     func refreshWallets(onMainThread: Bool = true) {

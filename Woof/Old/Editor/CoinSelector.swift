@@ -52,7 +52,7 @@ struct CoinTable: View {
                     if selectedCryptoSymbol?.lowercased() == coin.symbol {
                         Image(systemName: "checkmark")
                             .font(.system(size: 17, weight: .semibold))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.themePrimary)
                     }
                 }
                 .padding(.vertical, 6)

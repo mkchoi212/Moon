@@ -15,6 +15,9 @@ final class UserDefaultsConfig: NSObject {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     
+    @UserDefault("theme", defaultValue: nil)
+    static var theme: String?
+    
     @UserDefault("wallet.sessions", defaultValue: [])
     static var sessionsDataArray: [Data]
     static var sessions: [Session] {
@@ -29,4 +32,7 @@ final class UserDefaultsConfig: NSObject {
             }
         }
     }
+    
+    @UserDefault("selected.wallet.address", defaultValue: nil)
+    static var selectedWalletAddress: String?
 }

@@ -16,6 +16,6 @@ struct SaveButtonModifier: ViewModifier {
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
             .background(RoundedRectangle(cornerRadius: 12)
-                            .foregroundColor(.blue))
+                            .foregroundColor(.themePrimary))
     }
 }
