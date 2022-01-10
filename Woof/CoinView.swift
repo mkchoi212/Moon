@@ -15,8 +15,8 @@ struct CoinContentView: View {
             Spacer()
             
             Text(wallet.formatCurrency(value: wallet.value))
-                .shiny(.iridescent)
                 .font(.system(size: 30, weight: .bold, design: .rounded))
+                .shiny(.iridescent)
 
             Spacer()
             
@@ -45,10 +45,10 @@ struct HomeHeader: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("Good morning")
+            Text(wallet.loadingPortfolio ?  "Loading wallet..." : "Good morning")
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(Color(uiColor: .secondaryLabel))
-            
+        
             HStack {
                 Text("junsoo.eth")
                     .font(.system(size: 28, weight: .semibold))
@@ -90,7 +90,31 @@ struct CoinView: View {
                         CoinContentView()
                             .environmentObject(wallet)
                         
-                        LazyVGrid(columns: columnItem) {
+                        LazyVGrid(columns: columnItem, alignment: .leading) {
+                            Text("Assets")
+                                .padding()
+                                .font(.system(size: 25, weight: .medium))
+                            
+                            ForEach(wallet.tokens, id: \.self.id) { token in
+                                HStack(spacing: 12) {
+                                    CircleImageView(backgroundColor: .lightBlue,
+                                                    url: URL(string: token.iconURL ?? ""),
+                                                    icon: Image(systemName: "questionmark"))
+                                        .frame(width: 30, height: 30)
+                                    
+                                    Text(token.name)
+                                        .font(.system(size: 18, weight: .semibold))
+                                    
+                                    Spacer()
+                                    
+                                    VStack(alignment: .trailing, spacing: 4) {
+                                        Text("\(wallet.formatCurrency(value: token.value()))")
+                                        Text("\(token.tokenQuantity())".prefix(8) + " \(token.symbol)")
+                                            .foregroundColor(Color(uiColor: .secondaryLabel))
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
                         }
                     }
                 }

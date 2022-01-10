@@ -19,14 +19,19 @@ class WalletModel: ObservableObject {
     @Published var objects: [OpenSeaAsset] = []
     @Published var transactions: [Transaction] = []
     
-    // loading states
     @Published var loadingPortfolio = true
     @Published var loadingTokens = true
     @Published var loadingObjects = true
     @Published var loadingTransactions = true
     
+    lazy var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+    
     init() {
-//        reload(reset: false, refresh: false)
+        reload(reset: false, refresh: false)
     }
     
     func formatCurrency(value: NSNumber) -> String {
@@ -87,20 +92,10 @@ class WalletModel: ObservableObject {
                         for asset in assets {
                             let assetData = asset.value["asset"] as! [String: AnyObject]
                             let priceData = assetData["price"] as? [String: AnyObject]
-                            
-                            if priceData != nil {
-                                let id = assetData["id"] as! String
-                                let name = assetData["name"] as! String
-                                let symbol = assetData["symbol"] as! String
-                                let quantity = asset.value["quantity"] as! String
-                                let priceValue = priceData?["value"] as? NSNumber
-                                let relative_change = priceData?["relative_change_24h"] as? NSNumber
-                                let iconURL = assetData["icon_url"] as? String
-                                
-                                var price: Price? = nil
-                                price = Price(value: priceValue ?? 0, relative_change: relative_change ?? 0)
-                                                                
-                                let token = Token(id: id, name: name, symbol: symbol, quantity: quantity, price: price, iconURL: iconURL)
+                           
+                            if priceData != nil,
+                               let assetBinary = try? JSONSerialization.data(withJSONObject: assetData, options: .fragmentsAllowed),
+                               let token = try? self.decoder.decode(Token.self, from: assetBinary) {
                                 tokensArray.append(token)
                             }
                         }
@@ -146,8 +141,8 @@ class WalletModel: ObservableObject {
                                 token = Token(id: tokenID ?? "0", name: name ?? "", symbol: symbol ?? "", quantity: nil, price: nil, iconURL: iconURL)
                             }
                             
-                            let value = asset?["value"] as? NSNumber
-                            let price = asset?["price"] as? NSNumber
+                            let value = asset?["value"] as? Double
+                            let price = asset?["price"] as? Double
                             let type = transactionData["type"] as! String
                             let mined_at = transactionData["mined_at"] as! Int
                             let hash = transactionData["hash"] as! String
@@ -159,8 +154,8 @@ class WalletModel: ObservableObject {
                             var fee: Fee? = nil
                             let feeObject = transactionData["fee"] as? [String: AnyObject]
                             if feeObject != nil {
-                                let feeValue = feeObject?["value"] as? NSNumber
-                                let feePrice = feeObject?["price"] as? NSNumber
+                                let feeValue = feeObject?["value"] as? Double
+                                let feePrice = feeObject?["price"] as? Double
                                 fee = Fee(value: feeValue ?? 0, price: feePrice ?? 0)
                             }
                             
@@ -249,108 +244,6 @@ struct OpenSeaAssetTrait: Codable {
             let value = try container.decode(Int.self, forKey: .value)
             self.value = "\(value)"
         }
-    }
-}
-
-class Token: ObservableObject {
-    init(id: String, name: String, symbol: String, quantity: String?, price: Price?, iconURL: String?) {
-        self.id = id
-        self.name = name
-        self.symbol = symbol
-        self.quantity = quantity
-        self.price = price
-        self.iconURL = iconURL
-    }
-    
-    var id: String
-    var name: String
-    var symbol: String
-    var quantity: String?
-    var price: Price?
-    var iconURL: String?
-    
-    func value() -> NSNumber {
-        if self.price != nil && self.quantity != nil {
-            return NSNumber(value: Double(truncating: self.price?.value ?? 0) * self.tokenQuantity())
-        } else {
-            return 0
-        }
-    }
-    
-    func tokenQuantity() -> Double {
-        return Double((self.quantity! as NSString).doubleValue) / oneETHinWEI
-    }
-    
-    func percentChange() -> String {
-        if self.price?.relative_change != nil {
-            return String(format: "%.2f", Double(truncating: self.price?.relative_change ?? 0)) + "%"
-        } else {
-            return "0%"
-        }
-    }
-}
-
-struct Price {
-    var value: NSNumber
-    var relative_change: NSNumber
-}
-
-struct Fee {
-    var value: NSNumber
-    var price: NSNumber
-    
-    func feePrice() -> NSNumber {
-        return NSNumber(value: Double(truncating: self.price) * self.feeValue())
-    }
-    
-    func feeValue() -> Double {
-        return Double(truncating: self.value) / oneETHinWEI
-    }
-}
-
-class Transaction: ObservableObject {
-    init(id: String, token: Token?, value: NSNumber?, price: NSNumber?, type: String, mined_at: Int, hash: String, status: String, block_number: Int, address_from: String?, address_to: String?, fee: Fee?) {
-        self.id = id
-        self.token = token
-        self.value = value
-        self.price = price
-        self.type = type
-        self.mined_at = mined_at
-        self.hash = hash
-        self.status = status
-        self.block_number = block_number
-        self.address_from = address_from
-        self.address_to = address_to
-        self.fee = fee
-    }
-    
-    var id: String
-    var token: Token?
-    var value: NSNumber?
-    var price: NSNumber?
-    var type: String
-    var mined_at: Int
-    var hash: String
-    var status: String
-    var block_number: Int
-    var address_from: String?
-    var address_to: String?
-    var fee: Fee?
-    
-    func transactionQuantity() -> Double {
-        return Double(truncating: self.value ?? 0) / oneETHinWEI
-    }
-
-    func transactionValue() -> NSNumber {
-        if self.price != nil && self.value != nil {
-            return NSNumber(value: Double(truncating: self.price ?? 0) * self.transactionQuantity())
-        } else {
-            return 0
-        }
-    }
-    
-    func title() -> String {
-        return "\(self.type.capitalized) \(self.token?.symbol.uppercased() ?? "")"
     }
 }
 

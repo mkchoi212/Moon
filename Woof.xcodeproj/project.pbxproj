@@ -79,6 +79,10 @@
 		2793F727278BABC600F85363 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F724278BABC600F85363 /* ShinyView.swift */; };
 		2793F728278BABC600F85363 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F725278BABC600F85363 /* Gradient.swift */; };
 		2793F729278BABC600F85363 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F726278BABC600F85363 /* MotionManager.swift */; };
+		2793F72B278BC0BE00F85363 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F72A278BC0BE00F85363 /* Token.swift */; };
+		2793F72D278BC0EA00F85363 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F72C278BC0EA00F85363 /* Price.swift */; };
+		2793F730278BC22C00F85363 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F72F278BC22C00F85363 /* Transaction.swift */; };
+		2793F732278BC29500F85363 /* Fee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F731278BC29500F85363 /* Fee.swift */; };
 		27AE1FF7278A48DA00C07ADF /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FF6278A48DA00C07ADF /* Separator.swift */; };
 		27AE1FF9278A505000C07ADF /* WalletSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */; };
 		27AE1FFB278A67D100C07ADF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE1FFA278A67D100C07ADF /* Theme.swift */; };
@@ -176,6 +180,10 @@
 		2793F724278BABC600F85363 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
 		2793F725278BABC600F85363 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		2793F726278BABC600F85363 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		2793F72A278BC0BE00F85363 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		2793F72C278BC0EA00F85363 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		2793F72F278BC22C00F85363 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		2793F731278BC29500F85363 /* Fee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fee.swift; sourceTree = "<group>"; };
 		27AE1FF6278A48DA00C07ADF /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSelectorView.swift; sourceTree = "<group>"; };
 		27AE1FFA278A67D100C07ADF /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -407,6 +415,17 @@
 			path = Shiny;
 			sourceTree = "<group>";
 		};
+		2793F72E278BC1FC00F85363 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2793F72A278BC0BE00F85363 /* Token.swift */,
+				2793F72C278BC0EA00F85363 /* Price.swift */,
+				2793F72F278BC22C00F85363 /* Transaction.swift */,
+				2793F731278BC29500F85363 /* Fee.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		27E9E2062769AF0C00EBB552 /* Editor Sheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +485,7 @@
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
 				277D0542278A272E009E2B29 /* CoinView.swift */,
 				27AE1FFA278A67D100C07ADF /* Theme.swift */,
+				2793F72E278BC1FC00F85363 /* Models */,
 				273157B827718E9700256151 /* Wallet */,
 				2730E00B275DBC070082BE45 /* UI Components */,
 				274AEBD5278A3CF000BE6E55 /* Old */,
@@ -586,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2793F730278BC22C00F85363 /* Transaction.swift in Sources */,
 				2730E023275DD0BF0082BE45 /* Buy.swift in Sources */,
 				2793F729278BABC600F85363 /* MotionManager.swift in Sources */,
 				2793F70F278A7F9500F85363 /* BottomSheet.swift in Sources */,
@@ -594,6 +615,7 @@
 				274BA39F2760DC8700B1E2D3 /* IconPicker.swift in Sources */,
 				27DA340127642F480035C7B0 /* ComposerViewModel.swift in Sources */,
 				2730E018275DCD630082BE45 /* TransactionFee.swift in Sources */,
+				2793F72D278BC0EA00F85363 /* Price.swift in Sources */,
 				270241A62767301B003084E5 /* SearchBar.swift in Sources */,
 				2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
@@ -631,6 +653,7 @@
 				27E9E20D2769B06E00EBB552 /* PersistanceController.swift in Sources */,
 				2741077E276D682700E77A00 /* ActionViewModel.swift in Sources */,
 				27410773276C1F2A00E77A00 /* EditorSheetViewModel.swift in Sources */,
+				2793F732278BC29500F85363 /* Fee.swift in Sources */,
 				2741076E276B333200E77A00 /* CoinModel.swift in Sources */,
 				2730E025275DD10B0082BE45 /* Sell.swift in Sources */,
 				2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */,
@@ -668,6 +691,7 @@
 				2793F715278B53D600F85363 /* Data.swift in Sources */,
 				2730E00A275DBBCE0082BE45 /* GenericActionCell.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
+				2793F72B278BC0BE00F85363 /* Token.swift in Sources */,
 				27E9E2132769B64900EBB552 /* Color+CoreData.swift in Sources */,
 				2730E005275DBBA80082BE45 /* Crypto.swift in Sources */,
 				27410775276C22B900E77A00 /* CoinDataService.swift in Sources */,
