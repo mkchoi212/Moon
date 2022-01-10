@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "Shiny",
-        "repositoryURL": "https://github.com/maustinstar/shiny.git",
-        "state": {
-          "branch": "master",
-          "revision": "862360b8ab6b9ea9eb1156569a30f154b22625a5",
-          "version": null
-        }
-      },
-      {
         "package": "SocketIO",
         "repositoryURL": "https://github.com/socketio/socket.io-client-swift",
         "state": {

@@ -6,42 +6,35 @@
 //
 
 import SwiftUI
-import Shiny
 
 struct CoinContentView: View {
     @EnvironmentObject var wallet: WalletModel
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundStyle(LinearGradient(colors: [Color(hex: "#191919"), Color(hex: "#050505")],
-                                                startPoint: .top,
-                                                endPoint: .bottom))
-                .overlay(RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color(hex: "#2a2a2a"), lineWidth: 2))
-                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+        VStack(alignment: .leading, spacing: 15) {
+            Spacer()
             
-            VStack(alignment: .leading, spacing: 15) {
-                Spacer()
-                
-                Text(wallet.formatCurrency(value: wallet.value))
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-//                    .shiny(.iridescent)
-                
-                Spacer()
-                
-                Text("0x9f8523C4DF59724Db6F1990aA064735cfDcd2EA1")
-                    .lineLimit(1)
-                    .foregroundColor(.white.opacity(0.7))
-                    .font(.system(size: 12, weight: .semibold, design: .monospaced))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(20)
+            Text(wallet.formatCurrency(value: wallet.value))
+                .shiny(.iridescent)
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+
+            Spacer()
+            
+            Text("0x9f8523C4DF59724Db6F1990aA064735cfDcd2EA1")
+                .lineLimit(1)
+                .foregroundColor(.white.opacity(0.7))
+                .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .padding(20)
+        .background(RoundedRectangle(cornerRadius: 20)
+                        .foregroundStyle(LinearGradient(colors: [Color(hex: "#191919"), Color(hex: "#050505")],
+                                                        startPoint: .top,
+                                                        endPoint: .bottom))
+                        .overlay(RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color(hex: "#2a2a2a"), lineWidth: 2)))
         .frame(height: 220)
-        .frame(maxWidth: .infinity)
+        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
         .padding()
     }
 }
@@ -59,7 +52,7 @@ struct HomeHeader: View {
             HStack {
                 Text("junsoo.eth")
                     .font(.system(size: 28, weight: .semibold))
-               
+                
                 Spacer()
                 
                 Button {
