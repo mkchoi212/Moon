@@ -11,14 +11,13 @@ import SwiftUI
 public struct BottomSheet<Content: View>: View {
     
     private var dragToDismissThreshold: CGFloat { height * 0.2 }
-    private var grayBackgroundOpacity: Double { isPresented ? (0.5 - Double(draggedOffset)/600) : 0 }
+    private var grayBackgroundOpacity: Double { isPresented ? (0.4 - Double(draggedOffset)/600) : 0 }
     
     @State private var draggedOffset: CGFloat = 0
     @State private var previousDragValue: DragGesture.Value?
 
     @Binding var isPresented: Bool
-    private let usesKeyboard: Bool
-    private let _height: CGFloat
+    private let height: CGFloat
     private let topBarHeight: CGFloat
     private let topBarCornerRadius: CGFloat
     private let content: Content
@@ -26,15 +25,8 @@ public struct BottomSheet<Content: View>: View {
     private let topBarBackgroundColor: Color
     private let showTopIndicator: Bool
     
-    @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
-    
-    var height: CGFloat {
-        _height + self.keyboardHeightHelper.keyboardHeight
-    }
-    
     public init(
         isPresented: Binding<Bool>,
-        usesKeyboard: Bool,
         height: CGFloat,
         topBarHeight: CGFloat = 30,
         topBarCornerRadius: CGFloat? = nil,
@@ -45,9 +37,8 @@ public struct BottomSheet<Content: View>: View {
     ) {
         self.topBarBackgroundColor = topBarBackgroundColor
         self.contentBackgroundColor = contentBackgroundColor
-        self.usesKeyboard = usesKeyboard
         self._isPresented = isPresented
-        self._height = height
+        self.height = height
         self.topBarHeight = topBarHeight
         if let topBarCornerRadius = topBarCornerRadius {
             self.topBarCornerRadius = topBarCornerRadius
@@ -71,19 +62,20 @@ public struct BottomSheet<Content: View>: View {
                     }
                 }
                 .frame(height: self.height - min(self.draggedOffset*2, 0))
-                .background(contentBackgroundColor)
-                .cornerRadius(topBarCornerRadius, corners: [.topLeft, .topRight])
+                .background(self.contentBackgroundColor)
+                .cornerRadius(self.topBarCornerRadius, corners: [.topLeft, .topRight])
                 .animation(.interactiveSpring())
-                .offset(y: isPresented ? (geometry.size.height/2 - height/2 + geometry.safeAreaInsets.bottom + draggedOffset) : (geometry.size.height/2 + height/2 + geometry.safeAreaInsets.bottom))
+                .offset(y: self.isPresented ? (geometry.size.height/2 - self.height/2 + geometry.safeAreaInsets.bottom + self.draggedOffset) : (geometry.size.height/2 + self.height/2 + geometry.safeAreaInsets.bottom))
             }
         }
     }
     
     fileprivate func fullScreenLightGrayOverlay() -> some View {
-        Color(uiColor: .init(named: "ModalBackgroundColor")!)
+        Color
+            .black
             .opacity(grayBackgroundOpacity)
             .edgesIgnoringSafeArea(.all)
-            .animation(.easeInOut(duration: 0.2))
+            .animation(.interactiveSpring())
             .onTapGesture { self.isPresented = false }
     }
     
@@ -99,19 +91,29 @@ public struct BottomSheet<Content: View>: View {
         .gesture(
             DragGesture()
                 .onChanged({ (value) in
-                    let offsetY = value.translation.height
-                    if offsetY > -100 {
-                        draggedOffset = offsetY
-                    }
                     
-                    previousDragValue = value
+                    let offsetY = value.translation.height
+                    self.draggedOffset = offsetY
+                    
+                    if let previousValue = self.previousDragValue {
+                        let previousOffsetY = previousValue.translation.height
+                        let timeDiff = Double(value.time.timeIntervalSince(previousValue.time))
+                        let heightDiff = Double(offsetY - previousOffsetY)
+                        let velocityY = heightDiff / timeDiff
+                        if velocityY > 1400 {
+                            self.isPresented = false
+                            return
+                        }
+                    }
+                    self.previousDragValue = value
                     
                 })
                 .onEnded({ (value) in
-                    self.draggedOffset = 0
-                    if let yDiff = previousDragValue?.translation.height, yDiff > 70 {
+                    let offsetY = value.translation.height
+                    if offsetY > self.dragToDismissThreshold {
                         self.isPresented = false
                     }
+                    self.draggedOffset = 0
                 })
         )
     }

@@ -14,7 +14,7 @@ import SwiftUI
 class WalletModel: ObservableObject {
     @AppStorage("current.wallet.address") var currentWalletAddress: String = ""
     @Published var network = Network()
-    @Published var value: NSNumber = 0
+    @Published var portfolio: Portfolio?
     @Published var tokens: [Token] = []
     @Published var objects: [OpenSeaAsset] = []
     @Published var transactions: [Transaction] = []
@@ -26,7 +26,26 @@ class WalletModel: ObservableObject {
     
     lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.keyDecodingStrategy = .custom({ keys in
+            guard let rawValue = keys.last?.stringValue else {
+                // unknown case
+                return AnyKey(stringValue: "")!
+            }
+            
+            let split = rawValue.split(separator: "_").map(String.init).enumerated().map { (idx, component) -> String in
+                if idx == 0 {
+                    return component
+                } else {
+                    if component.first?.isNumber ?? false {
+                        return component
+                    } else {
+                        return component.capitalized
+                    }
+                }
+            }
+            
+            return AnyKey(stringValue: split.joined())!
+        })
         return decoder
     }()
     
@@ -34,13 +53,14 @@ class WalletModel: ObservableObject {
         reload(reset: false, refresh: false)
     }
     
-    func formatCurrency(value: NSNumber) -> String {
+    func formatCurrency(value: Double?) -> String {
+        guard let value = value else {
+            return "$0"
+        }
+        
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-
-        let total = Double(truncating: value)
-
-        return formatter.string(from: NSNumber(value: total)) ?? "$0"
+        return formatter.string(from: NSNumber(value: value)) ?? "$0"
     }
     
     func formatAddress(address: String) -> String {
@@ -56,7 +76,6 @@ class WalletModel: ObservableObject {
             self.loadingPortfolio = true
             self.loadingTransactions = true
             
-            self.value = 0
             self.tokens = []
             self.objects = []
             self.transactions = []
@@ -90,8 +109,9 @@ class WalletModel: ObservableObject {
                         let assets = firstDict["payload"]!["assets"]! as! [String: AnyObject]
                         
                         for asset in assets {
-                            let assetData = asset.value["asset"] as! [String: AnyObject]
-                            let priceData = assetData["price"] as? [String: AnyObject]
+                            var assetData = asset.value["asset"] as! [String: Any]
+                            assetData["quantity"] = asset.value["quantity"] as! String
+                            let priceData = assetData["price"] as? [String: Any]
                            
                             if priceData != nil,
                                let assetBinary = try? JSONSerialization.data(withJSONObject: assetData, options: .fragmentsAllowed),
@@ -109,9 +129,12 @@ class WalletModel: ObservableObject {
             addressSocket.on("received address portfolio") { data, ack in
                 print("received portfolio")
                 DispatchQueue.main.async {
-                    if let array = data as? [[String: AnyObject]], let firstDict = array.first {
-                        let assets = firstDict["payload"]!["portfolio"]! as! [String: AnyObject]
-                        self.value = assets["total_value"] as! NSNumber
+                    if let array = data as? [[String: AnyObject]],
+                       let firstDict = array.first,
+                       let portfolioDict = firstDict["payload"]!["portfolio"]! as? [String: AnyObject],
+                       let portfolioData = try? JSONSerialization.data(withJSONObject: portfolioDict, options: .fragmentsAllowed),
+                       let portfolio = try? self.decoder.decode(Portfolio.self, from: portfolioData) {
+                        self.portfolio = portfolio
                         self.loadingPortfolio = false
                     }
                 }
@@ -126,41 +149,11 @@ class WalletModel: ObservableObject {
                         let transactions = firstDict["payload"]!["transactions"]! as! [AnyObject]
                         
                         for transaction in transactions {
-                            let transactionData = transaction as! [String: AnyObject]
-                            let id = transactionData["id"] as! String
-                            let changes = transactionData["changes"] as! [AnyObject]
-                            let asset = changes.first
-                            
-                            let assetObject = asset?["asset"] as? [String: AnyObject]
-                            var token: Token? = nil
-                            if assetObject != nil {
-                                let tokenID = assetObject?["id"] as? String
-                                let name = assetObject?["name"] as? String
-                                let symbol = assetObject?["symbol"] as? String
-                                let iconURL = assetObject?["icon_url"] as? String
-                                token = Token(id: tokenID ?? "0", name: name ?? "", symbol: symbol ?? "", quantity: nil, price: nil, iconURL: iconURL)
+                            if let transDict = transaction as? [String: AnyObject],
+                               let transData = try? JSONSerialization.data(withJSONObject: transDict, options: .fragmentsAllowed),
+                               let trans = try? self.decoder.decode(Transaction.self, from: transData) {
+                                transactionsArray.append(trans)
                             }
-                            
-                            let value = asset?["value"] as? Double
-                            let price = asset?["price"] as? Double
-                            let type = transactionData["type"] as! String
-                            let mined_at = transactionData["mined_at"] as! Int
-                            let hash = transactionData["hash"] as! String
-                            let status = transactionData["status"] as! String
-                            let block_number = transactionData["block_number"] as! Int
-                            let address_from = transactionData["address_from"] as? String
-                            let address_to = transactionData["address_to"] as? String
-                            
-                            var fee: Fee? = nil
-                            let feeObject = transactionData["fee"] as? [String: AnyObject]
-                            if feeObject != nil {
-                                let feeValue = feeObject?["value"] as? Double
-                                let feePrice = feeObject?["price"] as? Double
-                                fee = Fee(value: feeValue ?? 0, price: feePrice ?? 0)
-                            }
-                            
-                            let transactionObject = Transaction(id: id, token: token, value: value, price: price, type: type, mined_at: mined_at, hash: hash, status: status, block_number: block_number, address_from: address_from, address_to: address_to, fee: fee)
-                            transactionsArray.append(transactionObject)
                         }
                         
                         self.transactions = transactionsArray

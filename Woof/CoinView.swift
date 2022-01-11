@@ -14,7 +14,7 @@ struct CoinContentView: View {
         VStack(alignment: .leading, spacing: 15) {
             Spacer()
             
-            Text(wallet.formatCurrency(value: wallet.value))
+            Text(wallet.formatCurrency(value: wallet.portfolio?.totalValue))
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .shiny(.iridescent)
 
@@ -98,7 +98,7 @@ struct CoinView: View {
                             ForEach(wallet.tokens, id: \.self.id) { token in
                                 HStack(spacing: 12) {
                                     CircleImageView(backgroundColor: .lightBlue,
-                                                    url: URL(string: token.iconURL ?? ""),
+                                                    url: URL(string: token.iconUrl ?? ""),
                                                     icon: Image(systemName: "questionmark"))
                                         .frame(width: 30, height: 30)
                                     
@@ -120,7 +120,7 @@ struct CoinView: View {
                 }
                 .offset(y: 44)
                 
-                Text(wallet.formatCurrency(value: wallet.value))
+                Text(wallet.formatCurrency(value: wallet.portfolio?.totalValue))
                     .opacity(scrollOffset > -40 ? 0 : 1)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .frame(height: 44)

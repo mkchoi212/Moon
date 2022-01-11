@@ -8,33 +8,41 @@
 import Foundation
 import SwiftUI
 
-class Token: ObservableObject, Codable {
+final class Token: ObservableObject, Codable {
     var id: String
     var name: String
     var symbol: String
     var quantity: String?
     var price: Price?
-    var iconURL: String?
-   
-    init(id: String, name: String, symbol: String, quantity: String?, price: Price?, iconURL: String?) {
+    var iconUrl: String?
+  
+    init(id: String, name: String, symbol: String, quantity: String?, price: Price?, iconUrl: String?) {
         self.id = id
         self.name = name
         self.symbol = symbol
         self.quantity = quantity
         self.price = price
-        self.iconURL = iconURL
+        self.iconUrl = iconUrl
     }
-    
-    func value() -> NSNumber {
+}
+
+// MARK: -
+
+extension Token {
+    func value() -> Double {
         if self.price != nil && self.quantity != nil {
-            return NSNumber(value: (self.price?.value ?? 0) * self.tokenQuantity())
+            return (self.price?.value ?? 0) * self.tokenQuantity()
         } else {
             return 0
         }
     }
     
     func tokenQuantity() -> Double {
-        return Double((self.quantity! as NSString).doubleValue) / oneETHinWEI
+        if let quantity = quantity {
+            return Double((quantity as NSString).doubleValue) / oneETHinWEI
+        } else {
+            return 0
+        }
     }
     
     func percentChange() -> String {
