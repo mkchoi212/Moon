@@ -8,7 +8,8 @@
 import Foundation
 
 struct TransactionChange: Codable {
-    let token: Token
+    let asset: Token
+//    let nftAsset: [String: AnyObject]
     let value: Int
     let direction: String
     let addressFrom: String

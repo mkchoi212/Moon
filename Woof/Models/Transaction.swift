@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class Transaction: ObservableObject, Codable {
+final class Transaction: ObservableObject, Identifiable, Codable {
     var id: String
     var type: String
     var `protocol`: String?
@@ -27,27 +27,27 @@ final class Transaction: ObservableObject, Codable {
     // TODO: (Ask) it's a dict??
 //    var meta: String?
     
-    // Transactionchange with "out" direction
-    var outChange: TransactionChange? {
-        changes?.first { $0.direction == "out" }
+    var change: TransactionChange? {
+        changes?.first
     }
+    
     func transactionQuantity() -> Double {
-        return Double(outChange?.value ?? 0) / oneETHinWEI
+        return Double(change?.value ?? 0) / oneETHinWEI
     }
 
-    func transactionValue() -> NSNumber {
-        guard let outChange = outChange else {
+    func transactionValue() -> Double {
+        guard let change = change else {
             return 0
         }
 
-        if outChange.price != nil {
-            return NSNumber(value: (outChange.price ?? 0) * self.transactionQuantity())
+        if change.price != nil {
+            return (change.price ?? 0) * self.transactionQuantity()
         } else {
             return 0
         }
     }
     
     func title() -> String {
-        return "\(type.capitalized) \(outChange?.token.symbol.uppercased() ?? "")"
+        return "\(type.capitalized) \(change?.asset.symbol.uppercased() ?? "")"
     }
 }

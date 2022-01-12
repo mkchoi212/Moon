@@ -53,16 +53,6 @@ class WalletModel: ObservableObject {
         reload(reset: false, refresh: false)
     }
     
-    func formatCurrency(value: Double?) -> String {
-        guard let value = value else {
-            return "$0"
-        }
-        
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
-    }
-    
     func formatAddress(address: String) -> String {
         return address.prefix(6) + "..." + address.suffix(4)
     }
@@ -95,7 +85,17 @@ class WalletModel: ObservableObject {
         
         self.fetchObjects()
     }
-    
+}
+
+extension WalletModel {
+    func transactions(for token: Token) -> [Transaction] {
+        transactions.filter {
+            $0.change?.asset.id == token.id
+        }
+    }
+}
+
+extension WalletModel {
     func fetchAssets() {
         if self.currentWalletAddress != "" {
             addressSocket.emit("get", ["scope": ["assets", "portfolio", "transactions"], "payload": ["address": self.currentWalletAddress, "currency": "usd"]])

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct WalletIconModifier: ViewModifier {
     func body(content: Content) -> some View {

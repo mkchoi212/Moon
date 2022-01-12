@@ -16,9 +16,10 @@ final class Token: ObservableObject, Codable {
     var price: Price?
     var iconUrl: String?
   
-    init(id: String, name: String, symbol: String, quantity: String?, price: Price?, iconUrl: String?) {
+    init(id: String, name: String, type: String, symbol: String, quantity: String?, price: Price?, iconUrl: String?) {
         self.id = id
         self.name = name
+//        self.type = type
         self.symbol = symbol
         self.quantity = quantity
         self.price = price

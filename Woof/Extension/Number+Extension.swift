@@ -29,7 +29,15 @@ extension NumberFormatter {
         nf.locale = .current
         nf.usesGroupingSeparator = true
         nf.minimumFractionDigits = 2
-        nf.maximumFractionDigits = 6
+        nf.maximumFractionDigits = 2
+        return nf
+    }()
+    
+    static let eightSignificantPlaces: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.roundingMode = .halfUp
+        nf.maximumFractionDigits = 8
         return nf
     }()
 }
