@@ -53,11 +53,13 @@
 		27C05D212771F10900200498 /* WalletConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D202771F10900200498 /* WalletConnectionViewModel.swift */; };
 		27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D222771F15300200498 /* WalletConnectButton.swift */; };
 		27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D24277289EE00200498 /* SettingsWalletListView.swift */; };
+		27CD75532793570600B2D083 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD75522793570600B2D083 /* AlertToast */; };
 		27E7DE32278DE7070065F507 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE31278DE7070065F507 /* Portfolio.swift */; };
 		27E7DE34278DEB230065F507 /* AnyKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE33278DEB230065F507 /* AnyKey.swift */; };
 		27E7DE36278DEDFE0065F507 /* TransactionChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE35278DEDFE0065F507 /* TransactionChange.swift */; };
 		27E7DE39278E39760065F507 /* CoinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE38278E39760065F507 /* CoinDetailView.swift */; };
 		27E7DE3B278E551C0065F507 /* GridHeaderTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE3A278E551C0065F507 /* GridHeaderTextStyle.swift */; };
+		27E7DE3D2791208A0065F507 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE3C2791208A0065F507 /* CardView.swift */; };
 		27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E2082769AF3E00EBB552 /* Model.xcdatamodeld */; };
 		27E9E20D2769B06E00EBB552 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E9E20C2769B06E00EBB552 /* PersistanceController.swift */; };
 		27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F12CC2275CE07400D87182 /* WoofApp.swift */; };
@@ -116,6 +118,7 @@
 		27E7DE35278DEDFE0065F507 /* TransactionChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionChange.swift; sourceTree = "<group>"; };
 		27E7DE38278E39760065F507 /* CoinDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailView.swift; sourceTree = "<group>"; };
 		27E7DE3A278E551C0065F507 /* GridHeaderTextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHeaderTextStyle.swift; sourceTree = "<group>"; };
+		27E7DE3C2791208A0065F507 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		27E9E2092769AF3E00EBB552 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		27E9E20C2769B06E00EBB552 /* PersistanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		27F12CBF275CE07400D87182 /* Moon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2793F720278B93D800F85363 /* Starscream in Frameworks */,
+				27CD75532793570600B2D083 /* AlertToast in Frameworks */,
 				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
 				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
 				273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */,
@@ -283,6 +287,7 @@
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
 				277D0542278A272E009E2B29 /* CoinView.swift */,
+				27E7DE3C2791208A0065F507 /* CardView.swift */,
 				27E7DE38278E39760065F507 /* CoinDetailView.swift */,
 				27AE1FFA278A67D100C07ADF /* Theme.swift */,
 				2793F72E278BC1FC00F85363 /* Models */,
@@ -342,6 +347,7 @@
 				273157BC2771A06B00256151 /* WalletConnectSwift */,
 				2793F717278B551500F85363 /* SocketIO */,
 				2793F71F278B93D800F85363 /* Starscream */,
+				27CD75522793570600B2D083 /* AlertToast */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
@@ -378,6 +384,7 @@
 				273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */,
 				2793F716278B551500F85363 /* XCRemoteSwiftPackageReference "socket" */,
 				2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */,
+				27CD75512793570600B2D083 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -452,6 +459,7 @@
 				2793F715278B53D600F85363 /* Data.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
 				2793F72B278BC0BE00F85363 /* Token.swift in Sources */,
+				27E7DE3D2791208A0065F507 /* CardView.swift in Sources */,
 				27E7DE39278E39760065F507 /* CoinDetailView.swift in Sources */,
 				27AE1FFB278A67D100C07ADF /* Theme.swift in Sources */,
 				2793F727278BABC600F85363 /* ShinyView.swift in Sources */,
@@ -711,6 +719,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		27CD75512793570600B2D083 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -743,6 +759,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
+		};
+		27CD75522793570600B2D083 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27CD75512793570600B2D083 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 

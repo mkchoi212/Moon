@@ -12,7 +12,12 @@ import Combine
 import SwiftUI
 
 class WalletModel: ObservableObject {
-    @AppStorage("current.wallet.address") var currentWalletAddress: String = ""
+    @AppStorage("current.wallet.address") var currentWalletAddress: String = "" {
+        didSet {
+            print("asdf")
+        }
+    }
+    
     @Published var network = Network()
     @Published var portfolio: Portfolio?
     @Published var tokens: [Token] = []
@@ -23,6 +28,9 @@ class WalletModel: ObservableObject {
     @Published var loadingTokens = true
     @Published var loadingObjects = true
     @Published var loadingTransactions = true
+    
+    let qrQueue = DispatchQueue(label: "com.woof.qr.code.generation")
+    var walletQRCodeData: Data?
     
     lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -51,6 +59,31 @@ class WalletModel: ObservableObject {
     
     init() {
         reload(reset: false, refresh: false)
+    
+        qrQueue.async {
+            self.walletQRCodeData = self.getQRCodeDate(text: self.currentWalletAddress)
+        }
+    }
+    
+    func getQRCodeDate(text: String) -> Data? {
+        guard let filter = CIFilter(name: "CIQRCodeGenerator") else {
+            return nil
+        }
+        
+        let data = text.data(using: .ascii, allowLossyConversion: false)
+        filter.setValue(data, forKey: "inputMessage")
+        guard let ciimage = filter.outputImage else {
+            return nil
+        }
+        
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let scaledCIImage = ciimage.transformed(by: transform)
+        let uiimage = UIImage(ciImage: scaledCIImage)
+        return uiimage.pngData()!
+    }
+    
+    func copyAddressToPasteboard() {
+        UIPasteboard.general.string = currentWalletAddress
     }
     
     func formatAddress(address: String) -> String {

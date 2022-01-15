@@ -13,6 +13,10 @@ class CoinViewModel: ObservableObject {
             .formatted(date: .abbreviated, time: .omitted)
     }
     
+    func truncatedAddress(addr: String) -> String {
+        addr.prefix(6) + "..." + addr.suffix(4)
+    }
+    
     func formatCurrency(double: Double?) -> String {
         guard let double = double else {
             // TODO: not alwasy dollar

@@ -6,39 +6,7 @@
 //
 
 import SwiftUI
-
-struct CoinContentView: View {
-    @EnvironmentObject var wallet: WalletModel
-    @EnvironmentObject var coinViewModel: CoinViewModel
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Spacer()
-            
-            Text(coinViewModel.formatCurrency(double: wallet.portfolio?.totalValue))
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-                .shiny(.iridescent)
-
-            Spacer()
-            
-            Text("0x9f8523C4DF59724Db6F1990aA064735cfDcd2EA1")
-                .lineLimit(1)
-                .foregroundColor(.white.opacity(0.7))
-                .font(.system(size: 12, weight: .semibold, design: .monospaced))
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .padding(20)
-        .background(RoundedRectangle(cornerRadius: 20)
-                        .foregroundStyle(LinearGradient(colors: [Color(hex: "#191919"), Color(hex: "#050505")],
-                                                        startPoint: .top,
-                                                        endPoint: .bottom))
-                        .overlay(RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color(hex: "#2a2a2a"), lineWidth: 2)))
-        .frame(height: 220)
-        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
-        .padding()
-    }
-}
+import AlertToast
 
 struct HomeHeader: View {
     @Binding var presentWalletSelector: Bool
@@ -96,11 +64,14 @@ struct CoinCell: View {
 
 struct CoinView: View {
     @State var scrollOffset: CGFloat = 0
-    @StateObject var coinViewModel = CoinViewModel()
+    @State var showPasteboardCopiedToast = false
     @Binding var presentWalletSelector: Bool
+    
+    @StateObject var coinViewModel = CoinViewModel()
     @EnvironmentObject var wallet: WalletModel
     
     let columnItem = [GridItem(.flexible())]
+    let token = Token(id: "abc", name: "Ethereum", type: "crypto", symbol: "ETH", quantity: "1.4232", price: Price(value: 2301.42, relativeChange24h: 0.1212), iconUrl: "https://token-icons.s3.amazonaws.com/eth.png")
     
     var body: some View {
         NavigationView {
@@ -114,8 +85,8 @@ struct CoinView: View {
                         HomeHeader(presentWalletSelector: $presentWalletSelector)
                             .environmentObject(wallet)
                             .padding(.horizontal)
-                        
-                        CoinContentView()
+                       
+                        CardView(showPasteboardCopiedToast: $showPasteboardCopiedToast)
                             .environmentObject(wallet)
                             .environmentObject(coinViewModel)
                         
@@ -124,7 +95,7 @@ struct CoinView: View {
                                 .padding()
                                 .modifier(GridHeaderTextStyle())
                             
-                            ForEach(wallet.tokens, id: \.self.id) { token in
+                            ForEach(wallet.loadingTokens ? [token] : wallet.tokens, id: \.self.id) { token in
                                 NavigationLink {
                                     CoinDetailView(token: token)
                                         .environmentObject(coinViewModel)
@@ -133,6 +104,7 @@ struct CoinView: View {
                                         .environmentObject(wallet)
                                         .environmentObject(coinViewModel)
                                         .padding(.horizontal)
+                                        .redacted(reason: wallet.loadingTokens ? .placeholder : [])
                                 }
                                 .buttonStyle(.plain)
                             }
@@ -148,6 +120,9 @@ struct CoinView: View {
                     .background(Color(uiColor: .systemBackground))
             }
             .navigationBarHidden(true)
+            .toast(isPresenting: $showPasteboardCopiedToast) {
+                AlertToast(displayMode: .hud, type: .regular, title: "Copied to Pasteboard")
+            }
         }
     }
 }
