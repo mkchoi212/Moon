@@ -56,18 +56,16 @@ struct CoinView: View {
                         .environmentObject(wallet)
                         .preference(
                             key: ScrollOffsetPreferenceKey.self,
-                            value: proxy.frame(in: .named("scrollView")).origin
+                            value: proxy.frame(in: .named("scroll")).origin
                         )
+                        .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                            self.offset = value.y
+                        }
                 }
                 .modifier(PureCell())
                 .padding(.horizontal)
                 .padding(.bottom, 50)
-                .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
-                    withAnimation(.easeInOut(duration: 0.18)) {
-                        self.offset = value.y
-                    }
-                }
-                
+
                 CardView(showPasteboardCopiedToast: $showPasteboardCopiedToast)
                     .environmentObject(wallet)
                     .environmentObject(coinViewModel)
@@ -96,10 +94,9 @@ struct CoinView: View {
                             CoinCell(token: token)
                                 .environmentObject(wallet)
                                 .environmentObject(coinViewModel)
-                                .padding(.horizontal)
+                                .padding(.vertical, 8)
                         }
-                        .buttonStyle(.plain)
-                        .modifier(PureCell())
+                        .modifier(PureCell(zeroInsets: false))
                     }
                 }
             }
@@ -109,6 +106,7 @@ struct CoinView: View {
                 ToolbarItem(placement: .principal) {
                     Text(coinViewModel.formatCurrency(double: wallet.portfolio?.totalValue))
                         .opacity(offset < 40  ? 1 : 0)
+                        .animation(.easeInOut(duration: 0.18), value: offset)
                         .font(.system(size: 17, weight: .semibold, design: .rounded))
                         .frame(width: 300, alignment: .center)
                 }
