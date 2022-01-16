@@ -9,6 +9,11 @@ import SwiftUI
 import Shimmer
 import AlertToast
 
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGPoint = .zero
+    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {}
+}
+
 struct HomeHeader: View {
     @Binding var presentWalletSelector: Bool
     @EnvironmentObject var wallet: WalletModel
@@ -18,7 +23,7 @@ struct HomeHeader: View {
             Text(wallet.loadingPortfolio ?  "Loading wallet..." : "Good morning")
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(Color(uiColor: .secondaryLabel))
-            
+    
             HStack {
                 Text("junsoo.eth")
                     .font(.system(size: 28, weight: .semibold))
@@ -65,29 +70,17 @@ struct CoinCell: View {
     }
 }
 
-struct ScrollRefreshable<Content: View>: View {
-    var content: Content
-    
-    init(@ViewBuilder content: @escaping () -> Content) {
-        self.content = content()
-    }
-    
-    var body: some View {
-        List {
-            content
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-        }
-        .listStyle(.plain)
-        .refreshable {
-            print("asdf")
-        }
+struct PureCell: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
 }
 
 struct CoinView: View {
-    @State var scrollOffset: CGFloat = 0
+    @State var offset: CGFloat = 100
     @State var showPasteboardCopiedToast = false
     @Binding var presentWalletSelector: Bool
     
@@ -98,64 +91,74 @@ struct CoinView: View {
     
     var body: some View {
         NavigationView {
-            ZStack(alignment: .top) {
-                ScrollRefreshable {
-                    TrackableScrollView(axes: .vertical, showsIndicators: true) { offset in
-                        withAnimation(.easeIn(duration: 0.15)) {
-                            scrollOffset = offset.y
-                        }
-                    } content: {
-                        VStack(spacing: 0) {
-                            HomeHeader(presentWalletSelector: $presentWalletSelector)
-                                .environmentObject(wallet)
-                                .padding(.horizontal)
-                            
-                            CardView(showPasteboardCopiedToast: $showPasteboardCopiedToast)
-                                .environmentObject(wallet)
-                                .environmentObject(coinViewModel)
-                            
-                            LazyVGrid(columns: columnItem, alignment: .leading) {
-                                Text("Assets")
-                                    .padding()
-                                    .modifier(GridHeaderTextStyle())
-                                
-                                ForEach(wallet.loadingTokens ? coinViewModel.dummyTokenPlaceHolders : wallet.tokens, id: \.self.id) { token in
-                                    if wallet.loadingTokens {
-                                        CoinCell(token: token)
-                                            .environmentObject(wallet)
-                                            .environmentObject(coinViewModel)
-                                            .padding(.horizontal)
-                                            .redacted(reason: .placeholder)
-                                            .shimmering()
-                                    } else {
-                                        NavigationLink {
-                                            CoinDetailView(token: token)
-                                                .environmentObject(coinViewModel)
-                                        } label: {
-                                            CoinCell(token: token)
-                                                .environmentObject(wallet)
-                                                .environmentObject(coinViewModel)
-                                                .padding(.horizontal)
-                                        }
-                                        .buttonStyle(.plain)
-                                    }
-                                }
-                            }
-                        }
+            List {
+                GeometryReader { proxy in
+                    HomeHeader(presentWalletSelector: $presentWalletSelector)
+                        .environmentObject(wallet)
+                        .preference(
+                            key: ScrollOffsetPreferenceKey.self,
+                            value: proxy.frame(in: .named("scrollView")).origin
+                        )
+                }
+                .modifier(PureCell())
+                .padding(.horizontal)
+                .padding(.bottom, 40)
+                .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                    withAnimation(.easeInOut(duration: 0.18)) {
+                        self.offset = value.y
                     }
                 }
-                .offset(y: 44)
                 
-                Text(coinViewModel.formatCurrency(double: wallet.portfolio?.totalValue))
-                    .opacity(scrollOffset > -40 ? 0 : 1)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .frame(height: 44)
-                    .background(Color(uiColor: .systemBackground))
+                CardView(showPasteboardCopiedToast: $showPasteboardCopiedToast)
+                    .environmentObject(wallet)
+                    .environmentObject(coinViewModel)
+                    .modifier(PureCell())
+                
+                Text("Assets")
+                    .padding()
+                    .modifier(GridHeaderTextStyle())
+                    .modifier(PureCell())
+                
+                ForEach(wallet.loadingTokens ? coinViewModel.dummyTokenPlaceHolders : wallet.tokens, id: \.self.id) { token in
+                    if wallet.loadingTokens {
+                        CoinCell(token: token)
+                            .environmentObject(wallet)
+                            .environmentObject(coinViewModel)
+                            .padding(.horizontal)
+                            .redacted(reason: .placeholder)
+                            .shimmering()
+                            .modifier(PureCell())
+                    } else {
+                        NavigationLink {
+                            CoinDetailView(token: token)
+                                .environmentObject(coinViewModel)
+                        } label: {
+                            CoinCell(token: token)
+                                .environmentObject(wallet)
+                                .environmentObject(coinViewModel)
+                                .padding(.horizontal)
+                        }
+                        .buttonStyle(.plain)
+                        .modifier(PureCell())
+                    }
+                }
             }
-            .navigationBarHidden(true)
-            .toast(isPresenting: $showPasteboardCopiedToast) {
-                AlertToast(displayMode: .hud, type: .regular, title: "Copied to Pasteboard")
+            .listStyle(.plain)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar(content: {
+                ToolbarItem(placement: .principal) {
+                    Text(coinViewModel.formatCurrency(double: wallet.portfolio?.totalValue))
+                        .opacity(offset < 40  ? 1 : 0)
+                        .font(.system(size: 15, weight: .semibold, design: .rounded))
+                        .frame(width: 300, alignment: .center)
+                }
+            })
+            .refreshable {
+                wallet.reload(reset: false, refresh: true)
             }
+        }
+        .toast(isPresenting: $showPasteboardCopiedToast) {
+            AlertToast(displayMode: .hud, type: .regular, title: "Copied to Pasteboard")
         }
     }
 }

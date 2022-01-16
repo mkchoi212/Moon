@@ -39,7 +39,6 @@
 		2793F715278B53D600F85363 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F714278B53D600F85363 /* Data.swift */; };
 		2793F718278B551500F85363 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2793F717278B551500F85363 /* SocketIO */; };
 		2793F720278B93D800F85363 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 2793F71F278B93D800F85363 /* Starscream */; };
-		2793F722278B949200F85363 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F721278B949200F85363 /* TrackableScrollView.swift */; };
 		2793F727278BABC600F85363 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F724278BABC600F85363 /* ShinyView.swift */; };
 		2793F728278BABC600F85363 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F725278BABC600F85363 /* Gradient.swift */; };
 		2793F729278BABC600F85363 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F726278BABC600F85363 /* MotionManager.swift */; };
@@ -100,7 +99,6 @@
 		274AEBCC278A289900BE6E55 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		2793F714278B53D600F85363 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		2793F721278B949200F85363 /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		2793F724278BABC600F85363 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
 		2793F725278BABC600F85363 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		2793F726278BABC600F85363 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
@@ -185,7 +183,6 @@
 				274AEBCC278A289900BE6E55 /* CircleImageView.swift */,
 				27410778276C320600E77A00 /* BigXButton.swift */,
 				27410783276DBDAC00E77A00 /* ActivityIndicator.swift */,
-				2793F721278B949200F85363 /* TrackableScrollView.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -430,7 +427,6 @@
 				2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */,
 				27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */,
 				2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */,
-				2793F722278B949200F85363 /* TrackableScrollView.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				27AE1FF7278A48DA00C07ADF /* Separator.swift in Sources */,
 				277D0543278A272E009E2B29 /* CoinView.swift in Sources */,

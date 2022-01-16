@@ -13,6 +13,17 @@ struct WoofTabView: View {
     
     let wallet = WalletModel()
     
+    init() {
+        let appr = UINavigationBarAppearance()
+        appr.backgroundColor = .systemBackground
+        appr.shadowColor = nil
+        
+        UINavigationBar.appearance().standardAppearance = appr
+        UINavigationBar.appearance().scrollEdgeAppearance = appr
+        UINavigationBar.appearance().compactAppearance = appr
+        UINavigationBar.appearance().compactScrollEdgeAppearance = appr
+    }
+    
     var body: some View {
         TabView {
             CoinView(presentWalletSelector: $presentWalletSelector)
