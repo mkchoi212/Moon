@@ -20,7 +20,7 @@ public struct BottomSheet<Content: View>: View {
     private let height: CGFloat
     private let topBarHeight: CGFloat
     private let topBarCornerRadius: CGFloat
-    private let content: Content
+    private let content: () -> Content
     private let contentBackgroundColor: Color
     private let topBarBackgroundColor: Color
     private let showTopIndicator: Bool
@@ -33,7 +33,7 @@ public struct BottomSheet<Content: View>: View {
         topBarBackgroundColor: Color = Color(.systemBackground),
         contentBackgroundColor: Color = Color(.systemBackground),
         showTopIndicator: Bool,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: @escaping () -> Content
     ) {
         self.topBarBackgroundColor = topBarBackgroundColor
         self.contentBackgroundColor = contentBackgroundColor
@@ -46,7 +46,7 @@ public struct BottomSheet<Content: View>: View {
             self.topBarCornerRadius = topBarHeight / 3
         }
         self.showTopIndicator = showTopIndicator
-        self.content = content()
+        self.content = content
     }
     
     public var body: some View {
@@ -57,7 +57,8 @@ public struct BottomSheet<Content: View>: View {
                     self.topBar(geometry: geometry)
                     VStack(spacing: -8) {
                         Spacer()
-                        self.content.padding(.bottom, geometry.safeAreaInsets.bottom)
+                        self.content()
+                            .padding(.bottom, geometry.safeAreaInsets.bottom)
                         Spacer()
                     }
                 }

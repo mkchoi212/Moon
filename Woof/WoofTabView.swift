@@ -9,26 +9,17 @@ import SwiftUI
 
 struct WoofTabView: View {
     @StateObject var walletViewModel = WalletConnectionViewModel()
+    @StateObject var wallet = WalletModel()
     @State var presentWalletSelector = false
     
-    let wallet = WalletModel()
-    
     init() {
-        let appr = UINavigationBarAppearance()
-        appr.backgroundColor = .systemBackground
-        appr.shadowColor = nil
-        
-        UINavigationBar.appearance().standardAppearance = appr
-        UINavigationBar.appearance().scrollEdgeAppearance = appr
-        UINavigationBar.appearance().compactAppearance = appr
-        UINavigationBar.appearance().compactScrollEdgeAppearance = appr
+        NavigationBarAppearance.shared.set(mode: .solid)
     }
     
     var body: some View {
         TabView {
             CoinView(presentWalletSelector: $presentWalletSelector)
                 .environmentObject(wallet)
-                .environmentObject(walletViewModel)
                 .tabItem {
                     Label("Coins", systemImage: "moon.fill")
                 }

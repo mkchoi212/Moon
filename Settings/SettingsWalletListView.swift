@@ -22,15 +22,6 @@ struct SettingsWalletListView: View {
         } else {
             WalletListContentView(selectedAddress: $_selectedAddr, allowSelection: false)
                 .environmentObject(viewModel)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink {
-                        } label: {
-                            Text("Edit")
-                                .foregroundColor(.blue)
-                        }
-                    }
-                }
         }
     }
 }

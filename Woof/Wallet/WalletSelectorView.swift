@@ -18,7 +18,7 @@ struct WalletIconModifier: ViewModifier {
 
 struct WalletIcon: View {
     var url: URL?
-   
+    
     var placeHolder: some View {
         Image(systemName: "wallet.pass.fill")
             .resizable()
@@ -62,10 +62,10 @@ struct WalletListContentView: View {
             ForEach(viewModel.walletAddresses, id: \.self) { addr in
                 HStack(alignment: .center, spacing: 15) {
                     WalletIcon(url: viewModel.iconURL(of: addr))
-                  
+                    
                     Text(addr)
                         .font(.system(size: 15, weight: .regular, design: .monospaced))
-                
+                    
                     if addr == selectedAddress {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 22, weight: .semibold))
@@ -85,10 +85,10 @@ struct WalletListContentView: View {
             .listRowBackground(Color.modalBackground)
         }
         .listStyle(.plain)
-        .toolbar {
-            EditButton()
-                .foregroundColor(.themeText)
-        }
+//        .toolbar {
+//            EditButton()
+//                .foregroundColor(.themeText)
+//        }
     }
     
     func delete(at offsets: IndexSet) {
@@ -99,25 +99,25 @@ struct WalletListContentView: View {
 struct WalletSelectorView: View {
     @State var presentSettings = false
     @State var presentWalletConnectionView = false
+    
     @EnvironmentObject var viewModel: WalletConnectionViewModel
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 4) {
+//            VStack(alignment: .leading, spacing: 4) {
                 WalletListContentView(selectedAddress: $viewModel.selectedAddress)
                     .environmentObject(viewModel)
-                
-                Spacer()
-                
-                Button {
-                    presentWalletConnectionView = true
-                } label: {
-                    Text("Add an existing wallet")
-                        .font(.system(size: 15))
-                        .foregroundColor(.themeText)
-                }
-                .padding(.horizontal)
-            }
+
+//                Button {
+//                    presentWalletConnectionView = true
+//                } label: {
+//                    Text("Add an existing wallet")
+//                        .font(.system(size: 15))
+//                        .foregroundColor(.themeText)
+//                }
+//                .padding(.horizontal)
+//            }
+            .navigationBarTitleDisplayMode(.inline)
             .background(Color.modalBackground)
             .navigationTitle("Wallets")
             .navigationBarTitleDisplayMode(.inline)
@@ -130,20 +130,19 @@ struct WalletSelectorView: View {
                     }
                     .tint(.themeText)
                 }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
             }
         }
-        .introspectNavigationController(customize: { nc in
-            nc.navigationBar.backgroundColor = .modalBackground
-        })
         .systemBottomSheet(isPresented: $presentSettings, detents: .constant([.large()]), contentView: {
             SettingsView()
         })
         .systemBottomSheet(isPresented: $presentWalletConnectionView, detents: .constant([.large()])) {
-            NavigationView {
-                WalletConnectionView()
-                    .environmentObject(viewModel)
-                    .navigationBarTitleDisplayMode(.inline)
-            }
+            WalletConnectionView()
+                .environmentObject(viewModel)
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

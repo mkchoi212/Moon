@@ -92,6 +92,10 @@ struct SettingsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    init() {
+        NavigationBarAppearance.shared.set(mode: .systemDefault)
+    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -141,6 +145,9 @@ struct SettingsView: View {
         }
         .onAppear {
             UIApplication.shared.statusBarStyle = .darkContent
+        }
+        .onDisappear {
+            NavigationBarAppearance.shared.set(mode: .solid)
         }
     }
 }
