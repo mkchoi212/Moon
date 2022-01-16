@@ -27,6 +27,7 @@ struct WoofTabView: View {
                     Label("Objects", systemImage: "square")
                 }
         }
+        .tint(.accentColor)
         .bottomSheet(isPresented: $presentWalletSelector,
                      height: CGFloat((walletViewModel.walletAddresses.count * 100) + 150),
                      topBarHeight: 14,

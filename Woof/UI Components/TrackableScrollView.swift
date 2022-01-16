@@ -18,7 +18,7 @@ struct TrackableScrollView<Content: View>: View {
     let showsIndicators: Bool
     let offsetChanged: (CGPoint) -> Void
     let content: Content
-
+    
     init(
         axes: Axis.Set = .vertical,
         showsIndicators: Bool = true,

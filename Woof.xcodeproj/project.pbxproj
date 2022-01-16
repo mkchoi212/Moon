@@ -54,6 +54,7 @@
 		27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D222771F15300200498 /* WalletConnectButton.swift */; };
 		27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D24277289EE00200498 /* SettingsWalletListView.swift */; };
 		27CD75532793570600B2D083 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD75522793570600B2D083 /* AlertToast */; };
+		27CD755627936B5900B2D083 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD755527936B5900B2D083 /* Shimmer */; };
 		27E7DE32278DE7070065F507 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE31278DE7070065F507 /* Portfolio.swift */; };
 		27E7DE34278DEB230065F507 /* AnyKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE33278DEB230065F507 /* AnyKey.swift */; };
 		27E7DE36278DEDFE0065F507 /* TransactionChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE35278DEDFE0065F507 /* TransactionChange.swift */; };
@@ -140,6 +141,7 @@
 				27CD75532793570600B2D083 /* AlertToast in Frameworks */,
 				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
 				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
+				27CD755627936B5900B2D083 /* Shimmer in Frameworks */,
 				273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */,
 				2741077C276C972000E77A00 /* OrderedCollections in Frameworks */,
 				2793F718278B551500F85363 /* SocketIO in Frameworks */,
@@ -348,6 +350,7 @@
 				2793F717278B551500F85363 /* SocketIO */,
 				2793F71F278B93D800F85363 /* Starscream */,
 				27CD75522793570600B2D083 /* AlertToast */,
+				27CD755527936B5900B2D083 /* Shimmer */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
@@ -385,6 +388,7 @@
 				2793F716278B551500F85363 /* XCRemoteSwiftPackageReference "socket" */,
 				2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */,
 				27CD75512793570600B2D083 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -602,6 +606,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -632,6 +637,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -727,6 +733,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -764,6 +778,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 27CD75512793570600B2D083 /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		27CD755527936B5900B2D083 /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
 		};
 /* End XCSwiftPackageProductDependency section */
 

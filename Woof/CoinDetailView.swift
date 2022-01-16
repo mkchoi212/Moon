@@ -8,6 +8,18 @@
 import SwiftUI
 
 class CoinViewModel: ObservableObject {
+    lazy var dummyTokenPlaceHolders: [Token] = {
+        (0...10).map { _ in
+            Token(id: UUID().uuidString,
+                  name: "Ethereum",
+                  type: "crypto",
+                  symbol: "ETH",
+                  quantity: "1.4232",
+                  price: Price(value: 2301.42, relativeChange24h: 0.1212),
+                  iconUrl: "https://www.random.coin")
+        }
+    }()
+    
     func humanizedMineDate(minedAt: Int) -> String {
         Date(timeIntervalSince1970: TimeInterval(minedAt))
             .formatted(date: .abbreviated, time: .omitted)

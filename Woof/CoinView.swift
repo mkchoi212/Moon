@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shimmer
 import AlertToast
 
 struct HomeHeader: View {
@@ -17,7 +18,7 @@ struct HomeHeader: View {
             Text(wallet.loadingPortfolio ?  "Loading wallet..." : "Good morning")
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(Color(uiColor: .secondaryLabel))
-        
+            
             HStack {
                 Text("junsoo.eth")
                     .font(.system(size: 28, weight: .semibold))
@@ -27,8 +28,8 @@ struct HomeHeader: View {
                 Button {
                     presentWalletSelector = true
                 } label: {
-                    CircleImageView(backgroundColor: .themeText,
-                                    icon: Image(systemName: "moon"))
+                    CircleImageView(backgroundColor: Color(uiColor: .secondarySystemBackground),
+                                    icon: Image(systemName: "person.fill"))
                 }
                 .frame(width: 38, height: 38)
             }
@@ -38,15 +39,17 @@ struct HomeHeader: View {
 
 struct CoinCell: View {
     var token: Token
+    
     @EnvironmentObject var wallet: WalletModel
     @EnvironmentObject var coinViewModel: CoinViewModel
     
     var body: some View {
         HStack(spacing: 12) {
-            CircleImageView(backgroundColor: .lightBlue,
-                            url: URL(string: token.iconUrl ?? ""),
-                            icon: Image(systemName: "questionmark"))
-                .frame(width: 30, height: 30)
+            CircleImageView(backgroundColor: Color(uiColor: .secondarySystemBackground),
+                            url: token.iconUrl == nil ? nil : URL(string: token.iconUrl!),
+                            icon: Image("generic.coin"),
+                            iconPadding: 6)
+                .frame(width: 40, height: 40)
             
             Text(token.name)
                 .font(.system(size: 18, weight: .semibold))
@@ -62,6 +65,27 @@ struct CoinCell: View {
     }
 }
 
+struct ScrollRefreshable<Content: View>: View {
+    var content: Content
+    
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        List {
+            content
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        }
+        .listStyle(.plain)
+        .refreshable {
+            print("asdf")
+        }
+    }
+}
+
 struct CoinView: View {
     @State var scrollOffset: CGFloat = 0
     @State var showPasteboardCopiedToast = false
@@ -71,42 +95,51 @@ struct CoinView: View {
     @EnvironmentObject var wallet: WalletModel
     
     let columnItem = [GridItem(.flexible())]
-    let token = Token(id: "abc", name: "Ethereum", type: "crypto", symbol: "ETH", quantity: "1.4232", price: Price(value: 2301.42, relativeChange24h: 0.1212), iconUrl: "https://token-icons.s3.amazonaws.com/eth.png")
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
-                TrackableScrollView(axes: .vertical, showsIndicators: true) { offset in
-                    withAnimation(.easeIn(duration: 0.15)) {
-                        scrollOffset = offset.y
-                    }
-                } content: {
-                    VStack(spacing: 0) {
-                        HomeHeader(presentWalletSelector: $presentWalletSelector)
-                            .environmentObject(wallet)
-                            .padding(.horizontal)
-                       
-                        CardView(showPasteboardCopiedToast: $showPasteboardCopiedToast)
-                            .environmentObject(wallet)
-                            .environmentObject(coinViewModel)
-                        
-                        LazyVGrid(columns: columnItem, alignment: .leading) {
-                            Text("Assets")
-                                .padding()
-                                .modifier(GridHeaderTextStyle())
+                ScrollRefreshable {
+                    TrackableScrollView(axes: .vertical, showsIndicators: true) { offset in
+                        withAnimation(.easeIn(duration: 0.15)) {
+                            scrollOffset = offset.y
+                        }
+                    } content: {
+                        VStack(spacing: 0) {
+                            HomeHeader(presentWalletSelector: $presentWalletSelector)
+                                .environmentObject(wallet)
+                                .padding(.horizontal)
                             
-                            ForEach(wallet.loadingTokens ? [token] : wallet.tokens, id: \.self.id) { token in
-                                NavigationLink {
-                                    CoinDetailView(token: token)
-                                        .environmentObject(coinViewModel)
-                                } label: {
-                                    CoinCell(token: token)
-                                        .environmentObject(wallet)
-                                        .environmentObject(coinViewModel)
-                                        .padding(.horizontal)
-                                        .redacted(reason: wallet.loadingTokens ? .placeholder : [])
+                            CardView(showPasteboardCopiedToast: $showPasteboardCopiedToast)
+                                .environmentObject(wallet)
+                                .environmentObject(coinViewModel)
+                            
+                            LazyVGrid(columns: columnItem, alignment: .leading) {
+                                Text("Assets")
+                                    .padding()
+                                    .modifier(GridHeaderTextStyle())
+                                
+                                ForEach(wallet.loadingTokens ? coinViewModel.dummyTokenPlaceHolders : wallet.tokens, id: \.self.id) { token in
+                                    if wallet.loadingTokens {
+                                        CoinCell(token: token)
+                                            .environmentObject(wallet)
+                                            .environmentObject(coinViewModel)
+                                            .padding(.horizontal)
+                                            .redacted(reason: .placeholder)
+                                            .shimmering()
+                                    } else {
+                                        NavigationLink {
+                                            CoinDetailView(token: token)
+                                                .environmentObject(coinViewModel)
+                                        } label: {
+                                            CoinCell(token: token)
+                                                .environmentObject(wallet)
+                                                .environmentObject(coinViewModel)
+                                                .padding(.horizontal)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                     }

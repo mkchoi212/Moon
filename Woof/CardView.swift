@@ -7,7 +7,16 @@
 
 import AlertToast
 import SwiftUI
-import CoreImage.CIFilterBuiltins
+import Shimmer
+
+extension Image {
+    func cardCornerButtonModifier() -> some View {
+        self
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 20, height: 20, alignment: .trailing)
+   }
+}
 
 struct CardBalanceView: View {
     var flipCard: () -> ()
@@ -25,15 +34,23 @@ struct CardBalanceView: View {
                     flipCard()
                 } label: {
                     Image(systemName: "qrcode")
+                        .cardCornerButtonModifier()
                         .foregroundColor(.white)
                 }
             }
             
             Spacer()
             
-            Text(coinViewModel.formatCurrency(double: wallet.portfolio?.totalValue))
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-                .shiny(.iridescent)
+            if wallet.loadingPortfolio {
+                RoundedRectangle(cornerRadius: 4)
+                        .frame(width: 150, height: 24, alignment: .leading)
+                        .foregroundColor(.gray)
+                        .shimmering()
+            } else {
+                Text(coinViewModel.formatCurrency(double: wallet.portfolio?.totalValue))
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .shiny(.iridescent)
+            }
             
             Spacer()
             
@@ -52,9 +69,6 @@ struct CardBalanceView: View {
 }
 
 struct CardQRView: View {
-    let context = CIContext()
-    let filter = CIFilter.qrCodeGenerator()
-    
     var flipCard: () -> ()
     
     @Binding var showPasteboardCopiedToast: Bool
@@ -72,6 +86,8 @@ struct CardQRView: View {
                             flipCard()
                         } label: {
                             Image(systemName: "arrow.uturn.left")
+                                .cardCornerButtonModifier()
+                                .foregroundColor(.gray)
                         }
                     }
                     
@@ -91,6 +107,7 @@ struct CardQRView: View {
                         } label: {
                             Label("Copy Address", systemImage: "square.on.square")
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                .foregroundColor(Color(uiColor: .label))
                         }
                         
                         Button {
@@ -98,6 +115,7 @@ struct CardQRView: View {
                         } label: {
                             Label("Share", systemImage: "square.and.arrow.up")
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                .foregroundColor(Color(uiColor: .label))
                         }
                     }
                 }
@@ -127,7 +145,7 @@ struct CardView: View {
     var backgroundCard: some View {
         if isContentRotated {
             return AnyView(RoundedRectangle(cornerRadius: 20)
-                .foregroundStyle(Color.white))
+                            .foregroundStyle(Color(uiColor: .systemBackground)))
         } else {
             return AnyView(RoundedRectangle(cornerRadius: 20)
                 .foregroundStyle(LinearGradient(colors: [Color(hex: "#191919"), Color(hex: "#050505")],
@@ -154,9 +172,9 @@ struct CardView: View {
                         .overlay(RoundedRectangle(cornerRadius: 20)
                         .stroke(Color(hex: "#2a2a2a"), lineWidth: 0.4)))
         .frame(height: 220)
-        .padding()
         .rotation3DEffect(Angle(degrees: isCardRotated ? 180 : 0), axis: (x: CGFloat(0), y: CGFloat(10), z: CGFloat(0)))
         .shadow(color: Color.black.opacity(0.15), radius: 10, x: 10, y: 10)
+        .padding()
         .onChange(of: showPasteboardCopiedToast) { _ in
             impactMed.impactOccurred()
         }
