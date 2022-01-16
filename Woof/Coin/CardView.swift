@@ -5,7 +5,6 @@
 //  Created by Mike Choi on 1/13/22.
 //
 
-import AlertToast
 import SwiftUI
 import Shimmer
 
@@ -175,8 +174,10 @@ struct CardView: View {
         .rotation3DEffect(Angle(degrees: isCardRotated ? 180 : 0), axis: (x: CGFloat(0), y: CGFloat(10), z: CGFloat(0)))
         .shadow(color: Color.black.opacity(0.15), radius: 10, x: 10, y: 10)
         .padding()
-        .onChange(of: showPasteboardCopiedToast) { _ in
-            impactMed.impactOccurred()
+        .onChange(of: showPasteboardCopiedToast) { isShowing in
+            if isShowing {
+                impactMed.impactOccurred()
+            }
         }
     }
     

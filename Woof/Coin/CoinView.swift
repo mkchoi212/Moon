@@ -7,39 +7,10 @@
 
 import SwiftUI
 import Shimmer
-import AlertToast
 
 struct ScrollOffsetPreferenceKey: PreferenceKey {
     static var defaultValue: CGPoint = .zero
     static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {}
-}
-
-struct HomeHeader: View {
-    @Binding var presentWalletSelector: Bool
-    @EnvironmentObject var wallet: WalletModel
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(wallet.loadingPortfolio ?  "Loading wallet..." : "Good morning")
-                .font(.system(size: 15, weight: .medium))
-                .foregroundColor(Color(uiColor: .secondaryLabel))
-    
-            HStack {
-                Text("junsoo.eth")
-                    .font(.system(size: 28, weight: .semibold))
-                
-                Spacer()
-                
-                Button {
-                    presentWalletSelector = true
-                } label: {
-                    CircleImageView(backgroundColor: Color(uiColor: .secondarySystemBackground),
-                                    icon: Image(systemName: "person.fill"))
-                }
-                .frame(width: 38, height: 38)
-            }
-        }
-    }
 }
 
 struct CoinCell: View {
@@ -50,10 +21,7 @@ struct CoinCell: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            CircleImageView(backgroundColor: Color(uiColor: .secondarySystemBackground),
-                            url: token.iconUrl == nil ? nil : URL(string: token.iconUrl!),
-                            icon: Image("generic.coin"),
-                            iconPadding: 6)
+            CoinImageView(iconUrl: token.iconUrl)
                 .frame(width: 40, height: 40)
             
             Text(token.name)
@@ -67,15 +35,6 @@ struct CoinCell: View {
                     .foregroundColor(Color(uiColor: .secondaryLabel))
             }
         }
-    }
-}
-
-struct PureCell: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.clear)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
 }
 
@@ -102,7 +61,7 @@ struct CoinView: View {
                 }
                 .modifier(PureCell())
                 .padding(.horizontal)
-                .padding(.bottom, 40)
+                .padding(.bottom, 50)
                 .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
                     withAnimation(.easeInOut(duration: 0.18)) {
                         self.offset = value.y
@@ -122,12 +81,13 @@ struct CoinView: View {
                 ForEach(wallet.loadingTokens ? coinViewModel.dummyTokenPlaceHolders : wallet.tokens, id: \.self.id) { token in
                     if wallet.loadingTokens {
                         CoinCell(token: token)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                             .environmentObject(wallet)
                             .environmentObject(coinViewModel)
                             .padding(.horizontal)
                             .redacted(reason: .placeholder)
                             .shimmering()
-                            .modifier(PureCell())
                     } else {
                         NavigationLink {
                             CoinDetailView(token: token)
@@ -149,7 +109,7 @@ struct CoinView: View {
                 ToolbarItem(placement: .principal) {
                     Text(coinViewModel.formatCurrency(double: wallet.portfolio?.totalValue))
                         .opacity(offset < 40  ? 1 : 0)
-                        .font(.system(size: 15, weight: .semibold, design: .rounded))
+                        .font(.system(size: 17, weight: .semibold, design: .rounded))
                         .frame(width: 300, alignment: .center)
                 }
             })

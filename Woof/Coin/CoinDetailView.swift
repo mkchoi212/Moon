@@ -9,7 +9,7 @@ import SwiftUI
 
 class CoinViewModel: ObservableObject {
     lazy var dummyTokenPlaceHolders: [Token] = {
-        (0...10).map { _ in
+        (0...6).map { _ in
             Token(id: UUID().uuidString,
                   name: "Ethereum",
                   type: "crypto",
@@ -81,9 +81,7 @@ struct CoinDetailView: View {
                 
                 ForEach(wallet.transactions(for: token)) { transaction in
                     HStack(spacing: 12) {
-                        CircleImageView(backgroundColor: .lightBlue,
-                                        url: URL(string: token.iconUrl ?? ""),
-                                        icon: Image(systemName: "questionmark"))
+                        CoinImageView(iconUrl: token.iconUrl)
                             .frame(width: 30, height: 30)
                         
                         Spacer()

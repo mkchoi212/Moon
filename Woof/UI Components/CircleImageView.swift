@@ -8,6 +8,17 @@
 import Foundation
 import SwiftUI
 
+struct CoinImageView: View {
+    var iconUrl: String?
+    
+    var body: some View {
+        CircleImageView(backgroundColor: Color(uiColor: .secondarySystemBackground),
+                        url: iconUrl == nil ? nil : URL(string: iconUrl!),
+                        icon: Image("generic.coin"),
+                        iconPadding: 6)
+    }
+}
+
 struct CircleImageView: View {
     var backgroundColor: Color?
     var iconTintColor: Color?

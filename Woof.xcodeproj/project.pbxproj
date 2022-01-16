@@ -19,6 +19,8 @@
 		270241A62767301B003084E5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A42767301B003084E5 /* SearchBar.swift */; };
 		270241AC27673812003084E5 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241AB27673812003084E5 /* PanelDelegate.swift */; };
 		270241BA27698A36003084E5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B927698A36003084E5 /* String+Extension.swift */; };
+		27192FF42793CC2400159E8C /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27192FF12793CC2400159E8C /* AlertToast.swift */; };
+		27192FF52793CC2400159E8C /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27192FF22793CC2400159E8C /* ActivityIndicator.swift */; };
 		273157BA2771A04500256151 /* WalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157B92771A04500256151 /* WalletConnect.swift */; };
 		273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 273157BC2771A06B00256151 /* WalletConnectSwift */; };
 		273157BF2771D46A00256151 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157BE2771D46A00256151 /* UserDefaults+Extension.swift */; };
@@ -26,12 +28,13 @@
 		27410768276B0B8900E77A00 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 27410767276B0B8900E77A00 /* Introspect */; };
 		27410779276C320600E77A00 /* BigXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410778276C320600E77A00 /* BigXButton.swift */; };
 		2741077C276C972000E77A00 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2741077B276C972000E77A00 /* OrderedCollections */; };
-		27410784276DBDAC00E77A00 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410783276DBDAC00E77A00 /* ActivityIndicator.swift */; };
 		27410787276EE0A900E77A00 /* Auth+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410786276EE0A900E77A00 /* Auth+Extension.swift */; };
 		274107892770343B00E77A00 /* WalletConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274107882770343B00E77A00 /* WalletConnectionView.swift */; };
 		274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AEBCC278A289900BE6E55 /* CircleImageView.swift */; };
 		27557D90276B068A0044A864 /* SystemBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B127687040003084E5 /* SystemBottomSheet.swift */; };
 		27557D91276B068A0044A864 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B227687040003084E5 /* BottomSheetViewController.swift */; };
+		2761D52C2793CFAA00BDF310 /* PureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D52B2793CFAA00BDF310 /* PureCell.swift */; };
+		2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D52D2793CFC700BDF310 /* HomeHeader.swift */; };
 		277D0543278A272E009E2B29 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0542278A272E009E2B29 /* CoinView.swift */; };
 		2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
 		2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
@@ -52,7 +55,6 @@
 		27C05D212771F10900200498 /* WalletConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D202771F10900200498 /* WalletConnectionViewModel.swift */; };
 		27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D222771F15300200498 /* WalletConnectButton.swift */; };
 		27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D24277289EE00200498 /* SettingsWalletListView.swift */; };
-		27CD75532793570600B2D083 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD75522793570600B2D083 /* AlertToast */; };
 		27CD755627936B5900B2D083 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD755527936B5900B2D083 /* Shimmer */; };
 		27E7DE32278DE7070065F507 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE31278DE7070065F507 /* Portfolio.swift */; };
 		27E7DE34278DEB230065F507 /* AnyKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE33278DEB230065F507 /* AnyKey.swift */; };
@@ -89,14 +91,17 @@
 		270241C627698E43003084E5 /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		270241C727698E43003084E5 /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		270241C827698E43003084E5 /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		27192FF12793CC2400159E8C /* AlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertToast.swift; path = "../../../../Downloads/AlertToast-master 2/Sources/AlertToast/AlertToast.swift"; sourceTree = "<group>"; };
+		27192FF22793CC2400159E8C /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = "../../../../Downloads/AlertToast-master 2/Sources/AlertToast/ActivityIndicator.swift"; sourceTree = "<group>"; };
 		273157B92771A04500256151 /* WalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnect.swift; sourceTree = "<group>"; };
 		273157BE2771D46A00256151 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		273157C02771D55B00256151 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		27410778276C320600E77A00 /* BigXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigXButton.swift; sourceTree = "<group>"; };
-		27410783276DBDAC00E77A00 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		27410786276EE0A900E77A00 /* Auth+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Extension.swift"; sourceTree = "<group>"; };
 		274107882770343B00E77A00 /* WalletConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectionView.swift; sourceTree = "<group>"; };
 		274AEBCC278A289900BE6E55 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
+		2761D52B2793CFAA00BDF310 /* PureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PureCell.swift; sourceTree = "<group>"; };
+		2761D52D2793CFC700BDF310 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		2793F714278B53D600F85363 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		2793F724278BABC600F85363 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
@@ -136,7 +141,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2793F720278B93D800F85363 /* Starscream in Frameworks */,
-				27CD75532793570600B2D083 /* AlertToast in Frameworks */,
 				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
 				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
 				27CD755627936B5900B2D083 /* Shimmer in Frameworks */,
@@ -179,10 +183,10 @@
 			isa = PBXGroup;
 			children = (
 				27AE1FF6278A48DA00C07ADF /* Separator.swift */,
+				2761D52B2793CFAA00BDF310 /* PureCell.swift */,
 				27E7DE3A278E551C0065F507 /* GridHeaderTextStyle.swift */,
 				274AEBCC278A289900BE6E55 /* CircleImageView.swift */,
 				27410778276C320600E77A00 /* BigXButton.swift */,
-				27410783276DBDAC00E77A00 /* ActivityIndicator.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -209,6 +213,17 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		2761D52F2793CFD000BDF310 /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				277D0542278A272E009E2B29 /* CoinView.swift */,
+				27E7DE38278E39760065F507 /* CoinDetailView.swift */,
+				2761D52D2793CFC700BDF310 /* HomeHeader.swift */,
+				27E7DE3C2791208A0065F507 /* CardView.swift */,
+			);
+			path = Coin;
+			sourceTree = "<group>";
+		};
 		2793F723278BABC600F85363 /* Shiny */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +246,15 @@
 				27E7DE33278DEB230065F507 /* AnyKey.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		27CD755F2793CA0600B2D083 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				27192FF22793CC2400159E8C /* ActivityIndicator.swift */,
+				27192FF12793CC2400159E8C /* AlertToast.swift */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		27E9E2062769AF0C00EBB552 /* Editor Sheet */ = {
@@ -285,10 +309,8 @@
 				2702418A27670A26003084E5 /* Info.plist */,
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
-				277D0542278A272E009E2B29 /* CoinView.swift */,
-				27E7DE3C2791208A0065F507 /* CardView.swift */,
-				27E7DE38278E39760065F507 /* CoinDetailView.swift */,
 				27AE1FFA278A67D100C07ADF /* Theme.swift */,
+				2761D52F2793CFD000BDF310 /* Coin */,
 				2793F72E278BC1FC00F85363 /* Models */,
 				273157B827718E9700256151 /* Wallet */,
 				2730E00B275DBC070082BE45 /* UI Components */,
@@ -297,6 +319,7 @@
 				27F12CE8275D91D100D87182 /* Extension */,
 				27E9E20B2769B05E00EBB552 /* Core Data */,
 				2793F723278BABC600F85363 /* Shiny */,
+				27CD755F2793CA0600B2D083 /* Toast */,
 				27F12CC6275CE07400D87182 /* Assets.xcassets */,
 			);
 			path = Woof;
@@ -346,7 +369,6 @@
 				273157BC2771A06B00256151 /* WalletConnectSwift */,
 				2793F717278B551500F85363 /* SocketIO */,
 				2793F71F278B93D800F85363 /* Starscream */,
-				27CD75522793570600B2D083 /* AlertToast */,
 				27CD755527936B5900B2D083 /* Shimmer */,
 			);
 			productName = Woof;
@@ -384,7 +406,6 @@
 				273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */,
 				2793F716278B551500F85363 /* XCRemoteSwiftPackageReference "socket" */,
 				2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */,
-				27CD75512793570600B2D083 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
@@ -422,7 +443,7 @@
 				2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
 				27410779276C320600E77A00 /* BigXButton.swift in Sources */,
-				27410784276DBDAC00E77A00 /* ActivityIndicator.swift in Sources */,
+				2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */,
 				270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */,
 				2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */,
 				27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */,
@@ -430,6 +451,7 @@
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				27AE1FF7278A48DA00C07ADF /* Separator.swift in Sources */,
 				277D0543278A272E009E2B29 /* CoinView.swift in Sources */,
+				27192FF52793CC2400159E8C /* ActivityIndicator.swift in Sources */,
 				2793F728278BABC600F85363 /* Gradient.swift in Sources */,
 				270241BA27698A36003084E5 /* String+Extension.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
@@ -437,12 +459,14 @@
 				2793F732278BC29500F85363 /* Fee.swift in Sources */,
 				2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */,
 				270241AC27673812003084E5 /* PanelDelegate.swift in Sources */,
+				27192FF42793CC2400159E8C /* AlertToast.swift in Sources */,
 				273157BA2771A04500256151 /* WalletConnect.swift in Sources */,
 				274107892770343B00E77A00 /* WalletConnectionView.swift in Sources */,
 				27E7DE34278DEB230065F507 /* AnyKey.swift in Sources */,
 				27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */,
 				2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */,
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
+				2761D52C2793CFAA00BDF310 /* PureCell.swift in Sources */,
 				273157C12771D55B00256151 /* UserDefault.swift in Sources */,
 				27AE1FF9278A505000C07ADF /* WalletSelectorView.swift in Sources */,
 				27E7DE3B278E551C0065F507 /* GridHeaderTextStyle.swift in Sources */,
@@ -721,14 +745,6 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		27CD75512793570600B2D083 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/elai950/AlertToast.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
@@ -769,11 +785,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
-		};
-		27CD75522793570600B2D083 /* AlertToast */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 27CD75512793570600B2D083 /* XCRemoteSwiftPackageReference "AlertToast" */;
-			productName = AlertToast;
 		};
 		27CD755527936B5900B2D083 /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;
