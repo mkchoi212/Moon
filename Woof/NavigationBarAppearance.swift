@@ -11,16 +11,17 @@ struct NavigationBarAppearance {
     static let shared = NavigationBarAppearance()
     
     enum Mode {
-        case solid, systemDefault
+        case solid(UIColor?), systemDefault
     }
     
     func set(mode: Mode) {
         switch mode {
-            case .solid:
+            case .solid(let color):
                 let appr = UINavigationBarAppearance()
-                appr.backgroundColor = .systemBackground
+                appr.backgroundColor = color ?? .systemBackground
                 appr.shadowColor = nil
-                
+               
+                UINavigationBar.appearance().backgroundColor = appr.backgroundColor
                 UINavigationBar.appearance().standardAppearance = appr
                 UINavigationBar.appearance().scrollEdgeAppearance = appr
                 UINavigationBar.appearance().compactAppearance = appr

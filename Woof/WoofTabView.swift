@@ -10,11 +10,9 @@ import SwiftUI
 struct WoofTabView: View {
     @StateObject var walletViewModel = WalletConnectionViewModel()
     @StateObject var wallet = WalletModel()
-    @State var presentWalletSelector = false
+    @StateObject var openSea = OpenSea()
     
-    init() {
-        NavigationBarAppearance.shared.set(mode: .solid)
-    }
+    @State var presentWalletSelector = false
     
     var body: some View {
         TabView {
@@ -23,10 +21,16 @@ struct WoofTabView: View {
                 .tabItem {
                     Label("Coins", systemImage: "moon.fill")
                 }
-            
-            Text("Objects")
+           
+            CollectiblesView()
+                .environmentObject(openSea)
                 .tabItem {
-                    Label("Objects", systemImage: "square")
+                    Label("Collectibles", systemImage: "square")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "person")
                 }
         }
         .tint(.accentColor)

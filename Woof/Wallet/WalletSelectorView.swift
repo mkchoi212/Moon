@@ -97,7 +97,6 @@ struct WalletListContentView: View {
 }
 
 struct WalletSelectorView: View {
-    @State var presentSettings = false
     @State var presentWalletConnectionView = false
     
     @EnvironmentObject var viewModel: WalletConnectionViewModel
@@ -121,24 +120,12 @@ struct WalletSelectorView: View {
             .background(Color.modalBackground)
             .navigationTitle("Wallets")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                       presentSettings = true
-                    } label: {
-                        Text("Settings")
-                    }
-                    .tint(.themeText)
-                }
-                
+            .toolbar {                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
             }
         }
-        .systemBottomSheet(isPresented: $presentSettings, detents: .constant([.large()]), contentView: {
-            SettingsView()
-        })
         .systemBottomSheet(isPresented: $presentWalletConnectionView, detents: .constant([.large()])) {
             WalletConnectionView()
                 .environmentObject(viewModel)

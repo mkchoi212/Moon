@@ -12,11 +12,7 @@ import Combine
 import SwiftUI
 
 class WalletModel: ObservableObject {
-    @AppStorage("current.wallet.address") var currentWalletAddress: String = "" {
-        didSet {
-            print("asdf")
-        }
-    }
+    @AppStorage("current.wallet.address") var currentWalletAddress: String = ""
     
     @Published var network = Network()
     @Published var portfolio: Portfolio?
@@ -26,7 +22,6 @@ class WalletModel: ObservableObject {
     
     @Published var loadingPortfolio = true
     @Published var loadingTokens = true
-    @Published var loadingObjects = true
     @Published var loadingTransactions = true
     
     let qrQueue = DispatchQueue(label: "com.woof.qr.code.generation")
@@ -95,7 +90,6 @@ class WalletModel: ObservableObject {
             network.disconnect()
             
             self.loadingTokens = true
-            self.loadingObjects = true
             self.loadingPortfolio = true
             self.loadingTransactions = true
             
@@ -115,8 +109,6 @@ class WalletModel: ObservableObject {
         addressSocket.on(clientEvent: .connect) { data, ack in
             self.fetchAssets()
         }
-        
-        self.fetchObjects()
     }
 }
 
@@ -198,37 +190,6 @@ extension WalletModel {
             self.loadingTokens = false
             self.loadingPortfolio = false
             self.loadingTransactions = false
-        }
-    }
-    
-    func fetchObjects() {
-        if self.currentWalletAddress != "" {
-            guard let url = URL(string: "https://api.opensea.io/api/v1/assets?limit=50&format=json&owner=\(self.currentWalletAddress)") else {
-                print("Invalid URL")
-                return
-            }
-                    
-            let request = URLRequest(url: url)
-            
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let data = data {
-                    if let decodedResponse = try? JSONDecoder().decode(OpenSeaAssetsResponse.self, from: data) {
-                        // we have good data – go back to the main thread
-                        DispatchQueue.main.async {
-                            // update our UI
-                            self.objects = decodedResponse.assets
-                            self.loadingObjects = false
-                        }
-
-                        return
-                    }
-                }
-
-                // if we're still here it means there was a problem
-                print("failed: \(error?.localizedDescription ?? "Unknown error")")
-            }.resume()
-        } else {
-            self.loadingObjects = false
         }
     }
 }
