@@ -40,4 +40,20 @@ final class NFTViewModel: ObservableObject {
             }
         }
     }
+    
+    func rows(for nftCount: Int) -> [GridItem] {
+        if nftCount > 4 {
+            return [GridItem(.fixed(180)), GridItem(.fixed(180))]
+        } else {
+            return [GridItem(.fixed(180))]
+        }
+    }
+    
+    func sectionHeight(for nftCount: Int) -> CGFloat {
+        if nftCount > 4 {
+            return 400
+        } else {
+            return 200
+        }
+    }
 }

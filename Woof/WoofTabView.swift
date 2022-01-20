@@ -13,6 +13,7 @@ struct WoofTabView: View {
     @StateObject var openSea = OpenSea()
     
     @State var presentWalletSelector = false
+    @State var isStatusBarHidden = false
     
     var body: some View {
         TabView {
@@ -22,7 +23,7 @@ struct WoofTabView: View {
                     Label("Coins", systemImage: "moon.fill")
                 }
            
-            CollectiblesView()
+            CollectiblesView(isStatusBarHidden: $isStatusBarHidden)
                 .environmentObject(openSea)
                 .tabItem {
                     Label("Collectibles", systemImage: "square")
@@ -34,6 +35,7 @@ struct WoofTabView: View {
                 }
         }
         .tint(.accentColor)
+        .statusBar(hidden: isStatusBarHidden)
         .bottomSheet(isPresented: $presentWalletSelector,
                      height: CGFloat((walletViewModel.walletAddresses.count * 100) + 150),
                      topBarHeight: 14,
