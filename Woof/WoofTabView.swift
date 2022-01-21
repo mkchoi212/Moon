@@ -13,7 +13,8 @@ struct WoofTabView: View {
     @StateObject var openSea = OpenSea()
     
     @State var presentWalletSelector = false
-    @State var isStatusBarHidden = false
+    @State var presentNFTModal = false
+    @State var nftSelection: NFTSelection? = nil
     
     var body: some View {
         TabView {
@@ -23,7 +24,7 @@ struct WoofTabView: View {
                     Label("Coins", systemImage: "moon.fill")
                 }
            
-            CollectiblesView(isStatusBarHidden: $isStatusBarHidden)
+            CollectiblesView(nftSelection: $nftSelection)
                 .environmentObject(openSea)
                 .tabItem {
                     Label("Collectibles", systemImage: "square")
@@ -35,7 +36,6 @@ struct WoofTabView: View {
                 }
         }
         .tint(.accentColor)
-        .statusBar(hidden: isStatusBarHidden)
         .bottomSheet(isPresented: $presentWalletSelector,
                      height: CGFloat((walletViewModel.walletAddresses.count * 100) + 150),
                      topBarHeight: 14,
@@ -44,6 +44,14 @@ struct WoofTabView: View {
             WalletSelectorView()
                 .environmentObject(walletViewModel)
         })
+        .fullScreenBottomSheet(isPresented: $presentNFTModal, dismissed: {
+            nftSelection = nil
+        } ,content: {
+            Text("ASdf")
+        })
+        .onChange(of: nftSelection) { _ in
+            presentNFTModal = true
+        }
     }
 }
 

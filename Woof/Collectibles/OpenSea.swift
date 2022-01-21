@@ -8,25 +8,7 @@
 import Foundation
 import SwiftUI
 
-typealias CollectionTable = [NFTCollection: [NFTModel]]
-
-class NFTModel: Hashable, ObservableObject {
-    let nft: NFT
-    @Published var isShowing = false
-    @Published var isDisplayed = false
-    
-    init(nft: NFT) {
-        self.nft = nft
-    }
-
-    static func == (lhs: NFTModel, rhs: NFTModel) -> Bool {
-        lhs.nft.id == rhs.nft.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(nft.id)
-    }
-}
+typealias CollectionTable = [NFTCollection: [NFT]]
 
 final class OpenSea: ObservableObject {
     @AppStorage("current.wallet.address") var currentWalletAddress: String = ""
@@ -53,7 +35,7 @@ final class OpenSea: ObservableObject {
                      
                      let collectionAssets = try await fetchNFTs(in: slug)
                      DispatchQueue.main.async {
-                         self.collectionTable[collection] = collectionAssets.map(NFTModel.init)
+                         self.collectionTable[collection] = collectionAssets
                      }
                  }
              } catch let err {

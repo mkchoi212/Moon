@@ -8,17 +8,18 @@
 import Shimmer
 import SwiftUI
 
+struct NFTSelection: Equatable {
+    let nft: NFT
+    let collection: NFTCollection
+}
 
 struct CollectiblesList: View {
     @StateObject var viewModel = NFTViewModel()
     @StateObject var listviewModel = NFTViewModel()
     @EnvironmentObject var openSea: OpenSea
     
-    @State var selectedCollection: NFTCollection?
-    @State var selectedNFT: NFTModel?
-    @State var isDisplayingDetail = false
-    
-    @Binding var isStatusBarHidden: Bool
+    @Binding var isDisplayingDetail: Bool
+    @Binding var selection: NFTSelection?
     
     var body: some View {
         List {
@@ -41,8 +42,12 @@ struct CollectiblesList: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: viewModel.rows(for: nfts.count), alignment: .top, spacing: 8) {
                             ForEach(nfts, id: \.self) { nft in
-                                let imageResource = viewModel.imageResource(for: nft.nft, parentCollection: collection)
-                                NFTImage(resource: imageResource)
+                                let imageResource = viewModel.imageResource(for: nft, parentCollection: collection)
+                                Button {
+                                    selection = NFTSelection(nft: nft, collection: collection)
+                                } label: {
+                                    NFTImage(resource: imageResource)
+                                }
                             }
                         }
                         .frame(height: viewModel.sectionHeight(for: nfts.count))
@@ -53,17 +58,12 @@ struct CollectiblesList: View {
             }
         }
         .listStyle(.plain)
-        .onChange(of: isDisplayingDetail) { newValue in
-            isStatusBarHidden = newValue
-        }
-        .introspectTabBarController { tabBarController in
-            tabBarController.tabBar.isHidden = isStatusBarHidden
-        }
     }
 }
 
 struct CollectiblesContentView: View {
-    @Binding var isStatusBarHidden: Bool
+    @State var isDisplayingDetail = false
+    @Binding var nftSelection: NFTSelection?
     @EnvironmentObject var openSea: OpenSea
     
     var body: some View {
@@ -71,7 +71,8 @@ struct CollectiblesContentView: View {
             ActivityIndicator()
                 .progressViewStyle(.circular)
         } else {
-            CollectiblesList(isStatusBarHidden: $isStatusBarHidden)
+            CollectiblesList(isDisplayingDetail: $isDisplayingDetail,
+                             selection: $nftSelection)
                 .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -79,12 +80,13 @@ struct CollectiblesContentView: View {
 
 struct CollectiblesView: View {
     @State var initialFetch = false
-    @Binding var isStatusBarHidden: Bool
+    
+    @Binding var nftSelection: NFTSelection?
     @EnvironmentObject var openSea: OpenSea
     
     var body: some View {
         NavigationView {
-            CollectiblesContentView(isStatusBarHidden: $isStatusBarHidden)
+            CollectiblesContentView(nftSelection: $nftSelection)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
@@ -103,7 +105,7 @@ struct CollectiblesView: View {
 }
 
 struct CollectiblesView_Previews: PreviewProvider {
-    static let nft: NFTModel = NFTModel(nft: NFT(tokenId: "asdf", imageUrl: nil, backgroundColor: nil, name: "hello", externalLink: nil, assetContract: nil))
+    static let nft: NFT = NFT(tokenId: "asdf", imageUrl: nil, backgroundColor: nil, name: "hello", externalLink: nil, assetContract: nil)
     
     static let collection = NFTCollection(name: "hello", description: nil, createdDate: "123", slug: "asdf", imageUrl: "https://lh3.googleusercontent.com/faRTnT7NgJ3mawHlRlpb9o7-_uSrPAeWt2FNPkPuymbIbXryZIAvT1yXR-nxZK7ZCW-oPuLfWuQmf-EmsJGXbZCzbOW-3UU4L_hy_MQ=s0", largeImageUrl: nil, bannerImageUrl: nil, safelistRequestStatus: .approved, payoutAddress: nil, stats: NFTStats(oneDayVolume: 0, oneDayChange: 0, oneDaySales: 0, oneDayAveragePrice: 0, totalSupply: 0, totalSales: 0, totalVolume: 0, count: 0, floorPrice: 0, marketCap: 0, numOwners: 0), chatUrl: nil, discordUrl: nil, featuredImageUrl: nil, mediumUserName: nil, telegramUrl: nil, twitterUsername: nil, instagramUsername: nil, wikiUrl: nil, ownedAssetCount: 4)
     
@@ -117,7 +119,7 @@ struct CollectiblesView_Previews: PreviewProvider {
     static let viewModel = NFTViewModel()
     
     static var previews: some View {
-        CollectiblesView(isStatusBarHidden: .constant(false))
+        CollectiblesView(nftSelection: .constant(nil))
             .environmentObject(CollectiblesView_Previews.openSea)
     }
 }

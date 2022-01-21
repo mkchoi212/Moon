@@ -1,51 +1,54 @@
 //
-//  BottomSheet.swift
-//  BottomSheet
+//  FullModal.swift
+//  Woof
 //
-//  Created by Tieda Wei on 2020-04-25.
-//  Copyright © 2020 Tieda Wei. All rights reserved.
+//  Created by Mike Choi on 1/20/22.
 //
 
 import SwiftUI
 
-public struct BottomSheet<Content: View>: View {
+public struct FullModal<Content: View>: View {
     
     private var dragToDismissThreshold: CGFloat { height * 0.2 }
     private var grayBackgroundOpacity: Double { isPresented ? (0.4 - Double(draggedOffset)/600) : 0 }
     
     @State private var draggedOffset: CGFloat = 0
-    @State private var previousDragValue: DragGesture.Value?
 
-    @Binding var isPresented: Bool
+    @Binding var isPresented: Bool {
+        didSet {
+            if !isPresented {
+                dismissed()
+            }
+        }
+    }
     private let height: CGFloat
     private let topBarHeight: CGFloat
     private let topBarCornerRadius: CGFloat
     private let content: () -> Content
+    private let dismissed: () -> ()
     private let contentBackgroundColor: Color
     private let topBarBackgroundColor: Color
-    private let showTopIndicator: Bool
     
     public init(
         isPresented: Binding<Bool>,
-        height: CGFloat,
         topBarHeight: CGFloat = 30,
         topBarCornerRadius: CGFloat? = nil,
         topBarBackgroundColor: Color = Color(.systemBackground),
         contentBackgroundColor: Color = Color(.systemBackground),
-        showTopIndicator: Bool,
+        dismissed: @escaping () -> (),
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.topBarBackgroundColor = topBarBackgroundColor
         self.contentBackgroundColor = contentBackgroundColor
         self._isPresented = isPresented
-        self.height = height
+        self.height = UIScreen.main.bounds.height
         self.topBarHeight = topBarHeight
         if let topBarCornerRadius = topBarCornerRadius {
             self.topBarCornerRadius = topBarCornerRadius
         } else {
             self.topBarCornerRadius = topBarHeight / 3
         }
-        self.showTopIndicator = showTopIndicator
+        self.dismissed = dismissed
         self.content = content
     }
     
@@ -68,6 +71,20 @@ public struct BottomSheet<Content: View>: View {
                 .animation(.interactiveSpring())
                 .offset(y: self.isPresented ? (geometry.size.height/2 - self.height/2 + geometry.safeAreaInsets.bottom + self.draggedOffset) : (geometry.size.height/2 + self.height/2 + geometry.safeAreaInsets.bottom))
             }
+            .gesture(
+                DragGesture()
+                    .onChanged({ (value) in
+                        let offsetY = value.translation.height
+                        self.draggedOffset = offsetY
+                    })
+                    .onEnded({ (value) in
+                        let offsetY = value.translation.height
+                        if offsetY > self.dragToDismissThreshold {
+                            self.isPresented = false
+                        }
+                        self.draggedOffset = 0
+                    })
+            )
         }
     }
     
@@ -85,37 +102,28 @@ public struct BottomSheet<Content: View>: View {
             RoundedRectangle(cornerRadius: 6)
                 .fill(Color.secondary)
                 .frame(width: 40, height: 6)
-                .opacity(showTopIndicator ? 1 : 0)
         }
         .frame(width: geometry.size.width, height: topBarHeight)
         .background(topBarBackgroundColor)
-        .gesture(
-            DragGesture()
-                .onChanged({ (value) in
-                    
-                    let offsetY = value.translation.height
-                    self.draggedOffset = offsetY
-                    
-                    if let previousValue = self.previousDragValue {
-                        let previousOffsetY = previousValue.translation.height
-                        let timeDiff = Double(value.time.timeIntervalSince(previousValue.time))
-                        let heightDiff = Double(offsetY - previousOffsetY)
-                        let velocityY = heightDiff / timeDiff
-                        if velocityY != .infinity, velocityY > 1400 {
-                            self.isPresented = false
-                            return
-                        }
-                    }
-                    self.previousDragValue = value
-                    
-                })
-                .onEnded({ (value) in
-                    let offsetY = value.translation.height
-                    if offsetY > self.dragToDismissThreshold {
-                        self.isPresented = false
-                    }
-                    self.draggedOffset = 0
-                })
-        )
+    }
+}
+
+struct Demo: View {
+    @State var present = false
+    var body: some View {
+        Button {
+            present.toggle()
+        } label: {
+            Text("Present")
+        }
+        .fullScreenBottomSheet(isPresented: $present, dismissed: { }) {
+            Text("Hello world :)")
+        }
+    }
+}
+
+struct FullModal_Previews: PreviewProvider {
+    static var previews: some View {
+        Demo()
     }
 }

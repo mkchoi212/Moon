@@ -32,3 +32,26 @@ public extension View {
         }
     }
 }
+
+public extension View {
+    func fullScreenBottomSheet<Content: View>(
+        isPresented: Binding<Bool>,
+        topBarHeight: CGFloat = 30,
+        topBarCornerRadius: CGFloat? = nil,
+        contentBackgroundColor: Color = Color(.systemBackground),
+        topBarBackgroundColor: Color = Color(.systemBackground),
+        dismissed: @escaping () -> (),
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View {
+        ZStack {
+            self
+            FullModal(isPresented: isPresented,
+                      topBarHeight: topBarHeight,
+                      topBarCornerRadius: topBarCornerRadius,
+                      topBarBackgroundColor: topBarBackgroundColor,
+                      contentBackgroundColor: contentBackgroundColor,
+                      dismissed: dismissed,
+                      content: content)
+        }
+    }
+}
