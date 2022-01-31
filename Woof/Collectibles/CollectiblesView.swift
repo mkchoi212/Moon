@@ -66,12 +66,25 @@ struct CollectiblesList: View {
 struct CollectiblesContentView: View {
     @State var isDisplayingDetail = false
     @Binding var nftSelection: NFTSelection?
+    @Binding var retry: Bool
+    
     @EnvironmentObject var openSea: OpenSea
     
     var body: some View {
         if openSea.isLoading {
             ActivityIndicator()
                 .progressViewStyle(.circular)
+        } else if openSea.isNotAvailable {
+            VStack(alignment: .center, spacing: 15) {
+                LottieView(fileName: "broken", loopForever: false)
+                    .frame(width: 120, height: 120, alignment: .center)
+                Text("Oops.. Something went wrong\nTap to retry")
+                    .font(.system(size: 18, weight: .medium))
+                    .multilineTextAlignment(.center)
+            }
+            .onTapGesture {
+                retry.toggle()
+            }
         } else {
             CollectiblesList(isDisplayingDetail: $isDisplayingDetail,
                              selection: $nftSelection)
@@ -82,13 +95,14 @@ struct CollectiblesContentView: View {
 
 struct CollectiblesView: View {
     @State var initialFetch = false
+    @State var retry = false
     
     @Binding var nftSelection: NFTSelection?
     @EnvironmentObject var openSea: OpenSea
     
     var body: some View {
         NavigationView {
-            CollectiblesContentView(nftSelection: $nftSelection)
+            CollectiblesContentView(nftSelection: $nftSelection, retry: $retry)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
@@ -101,6 +115,12 @@ struct CollectiblesView: View {
             if !initialFetch {
                 openSea.fetch()
                 initialFetch.toggle()
+            }
+        }
+        .onChange(of: retry) { _ in
+            openSea.isLoading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                openSea.fetch()
             }
         }
     }

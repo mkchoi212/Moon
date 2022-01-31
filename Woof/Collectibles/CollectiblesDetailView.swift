@@ -48,6 +48,8 @@ struct CollectiblesHeaderView: View {
     var collection: NFTCollection
     var imageResource: ImageResource
     
+    @Binding var toastPayload: ToastPayload?
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             NFTImage(resource: imageResource)
@@ -74,6 +76,7 @@ struct CollectiblesHeaderView: View {
                     
                     Button {
                         UIPasteboard.general.string = nft.tokenId
+                        toastPayload = ToastPayload(message: "Token copied")
                     } label: {
                         Label("Copy Token ID", systemImage: "doc.on.doc")
                     }
@@ -106,8 +109,10 @@ struct CollectiblesDetailView: View {
     var nft: NFT
     var collection: NFTCollection
     @State var showMoreText: TextEntity?
-    @StateObject var viewModel = NFTViewModel()
+    @State var presentToast = false
+    @State var toastPayload: ToastPayload?
     
+    @StateObject var viewModel = NFTViewModel()
     let cellModifier = PureCell(sideInsets: 15, bottomInset: 15)
     
     var body: some View {
@@ -120,10 +125,10 @@ struct CollectiblesDetailView: View {
             .frame(maxWidth: .infinity)
             .modifier(PureCell())
             
-            
             CollectiblesHeaderView(nft: nft,
                                    collection: collection,
-                                   imageResource: viewModel.imageResource(for: nft, parentCollection: collection))
+                                   imageResource: viewModel.imageResource(for: nft, parentCollection: collection),
+                                   toastPayload: $toastPayload)
                 .modifier(cellModifier)
             
             VStack(alignment: .leading, spacing: 15) {
@@ -182,6 +187,12 @@ struct CollectiblesDetailView: View {
         .listStyle(.plain)
         .sheet(item: $showMoreText) { text in
             ScrollableModalTextView(title: nft.name, text: text.text)
+        }
+        .toast(isPresenting: $presentToast, offsetY: 60) {
+            AlertToast(displayMode: .hud, type: .regular, title: "Asdf")
+        }
+        .onChange(of: toastPayload) { _ in
+            presentToast = true
         }
     }
 }

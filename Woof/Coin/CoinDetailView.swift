@@ -16,7 +16,7 @@ class CoinViewModel: ObservableObject {
                   symbol: "ETH",
                   quantity: "1.4232",
                   price: Price(value: 2301.42, relativeChange24h: 0.1212),
-                  iconUrl: "https://www.random.coin")
+                  iconUrl: nil)
         }
     }()
     

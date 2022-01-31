@@ -13,6 +13,7 @@ typealias CollectionTable = [NFTCollection: [NFT]]
 final class OpenSea: ObservableObject {
     @AppStorage("current.wallet.address") var currentWalletAddress: String = ""
     
+    @Published var isNotAvailable = false
     @Published var isLoading = true
     @Published var collectionTable: CollectionTable = [:]
     
@@ -24,6 +25,8 @@ final class OpenSea: ObservableObject {
     }
     
     func fetch() {
+        isLoading = true
+        
          Task {
              do {
                  let collections = try await fetchCollections()
@@ -40,6 +43,10 @@ final class OpenSea: ObservableObject {
                  }
              } catch let err {
                  print(err)
+                 
+                 DispatchQueue.main.async {
+                     self.isNotAvailable = true
+                 }
              }
              
              DispatchQueue.main.async {

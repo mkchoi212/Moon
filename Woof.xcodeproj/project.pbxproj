@@ -67,6 +67,9 @@
 		27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D222771F15300200498 /* WalletConnectButton.swift */; };
 		27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D24277289EE00200498 /* SettingsWalletListView.swift */; };
 		27CD755627936B5900B2D083 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD755527936B5900B2D083 /* Shimmer */; };
+		27E02BA127A88E21008B496F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 27E02BA027A88E21008B496F /* Lottie */; };
+		27E02BA327A88E46008B496F /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E02BA227A88E46008B496F /* LottieView.swift */; };
+		27E02BA627A88F50008B496F /* broken.json in Resources */ = {isa = PBXBuildFile; fileRef = 27E02BA527A88F50008B496F /* broken.json */; };
 		27E7DE32278DE7070065F507 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE31278DE7070065F507 /* Portfolio.swift */; };
 		27E7DE34278DEB230065F507 /* AnyKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE33278DEB230065F507 /* AnyKey.swift */; };
 		27E7DE36278DEDFE0065F507 /* TransactionChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7DE35278DEDFE0065F507 /* TransactionChange.swift */; };
@@ -139,6 +142,8 @@
 		27C05D202771F10900200498 /* WalletConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectionViewModel.swift; sourceTree = "<group>"; };
 		27C05D222771F15300200498 /* WalletConnectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectButton.swift; sourceTree = "<group>"; };
 		27C05D24277289EE00200498 /* SettingsWalletListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWalletListView.swift; sourceTree = "<group>"; };
+		27E02BA227A88E46008B496F /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		27E02BA527A88F50008B496F /* broken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = broken.json; sourceTree = "<group>"; };
 		27E7DE31278DE7070065F507 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		27E7DE33278DEB230065F507 /* AnyKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyKey.swift; sourceTree = "<group>"; };
 		27E7DE35278DEDFE0065F507 /* TransactionChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionChange.swift; sourceTree = "<group>"; };
@@ -169,6 +174,7 @@
 				273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */,
 				2741077C276C972000E77A00 /* OrderedCollections in Frameworks */,
 				2793F718278B551500F85363 /* SocketIO in Frameworks */,
+				27E02BA127A88E21008B496F /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +301,15 @@
 			path = Toast;
 			sourceTree = "<group>";
 		};
+		27E02BA427A88E58008B496F /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				27E02BA527A88F50008B496F /* broken.json */,
+				27E02BA227A88E46008B496F /* LottieView.swift */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		27E9E2062769AF0C00EBB552 /* Editor Sheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +371,7 @@
 				273157B827718E9700256151 /* Wallet */,
 				2730E00B275DBC070082BE45 /* UI Components */,
 				27F12CC8275CE07400D87182 /* Preview Content */,
+				27E02BA427A88E58008B496F /* Lottie */,
 				27E9E2072769AF1200EBB552 /* Sheets */,
 				27F12CE8275D91D100D87182 /* Extension */,
 				27E9E20B2769B05E00EBB552 /* Core Data */,
@@ -411,6 +427,7 @@
 				2793F717278B551500F85363 /* SocketIO */,
 				2793F71F278B93D800F85363 /* Starscream */,
 				27CD755527936B5900B2D083 /* Shimmer */,
+				27E02BA027A88E21008B496F /* Lottie */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
@@ -448,6 +465,7 @@
 				2793F716278B551500F85363 /* XCRemoteSwiftPackageReference "socket" */,
 				2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */,
 				27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				27E02B9F27A88E21008B496F /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -463,6 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E02BA627A88F50008B496F /* broken.json in Resources */,
 				27F12CCA275CE07400D87182 /* Preview Assets.xcassets in Resources */,
 				27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */,
 			);
@@ -490,6 +509,7 @@
 				2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */,
 				275B82B2279675C2003D9B15 /* NFT.swift in Sources */,
 				27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */,
+				27E02BA327A88E46008B496F /* LottieView.swift in Sources */,
 				2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				275B82B427968764003D9B15 /* NFTViewModel.swift in Sources */,
@@ -807,6 +827,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		27E02B9F27A88E21008B496F /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -844,6 +872,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
+		};
+		27E02BA027A88E21008B496F /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27E02B9F27A88E21008B496F /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 

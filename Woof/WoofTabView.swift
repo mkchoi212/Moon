@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+struct ToastPayload: Identifiable, Equatable {
+    let id = UUID()
+    let message: String
+}
+
 struct WoofTabView: View {
     @StateObject var walletViewModel = WalletConnectionViewModel()
     @StateObject var wallet = WalletModel()
@@ -23,7 +28,7 @@ struct WoofTabView: View {
                 .tabItem {
                     Label("Coins", systemImage: "moon.fill")
                 }
-           
+            
             CollectiblesView(nftSelection: $nftSelection)
                 .environmentObject(openSea)
                 .tabItem {
@@ -46,7 +51,8 @@ struct WoofTabView: View {
                 .environmentObject(walletViewModel)
         })
         .sheet(item: $nftSelection, content: { nftSelection in
-            CollectiblesDetailView(nft: nftSelection.nft, collection: nftSelection.collection)
+            CollectiblesDetailView(nft: nftSelection.nft,
+                                   collection: nftSelection.collection)
         })
     }
 }
