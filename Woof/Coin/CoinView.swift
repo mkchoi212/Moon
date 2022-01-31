@@ -96,7 +96,7 @@ struct CoinView: View {
                                 .environmentObject(coinViewModel)
                                 .padding(.vertical, 8)
                         }
-                        .modifier(PureCell(zeroInsets: false))
+                        .modifier(PureCell(zeroInsets: true))
                     }
                 }
             }

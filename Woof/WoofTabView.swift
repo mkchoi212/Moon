@@ -36,6 +36,7 @@ struct WoofTabView: View {
                 }
         }
         .tint(.accentColor)
+        //https://github.com/AndreaMiotto/PartialSheet
         .bottomSheet(isPresented: $presentWalletSelector,
                      height: CGFloat((walletViewModel.walletAddresses.count * 100) + 150),
                      topBarHeight: 14,
@@ -44,14 +45,9 @@ struct WoofTabView: View {
             WalletSelectorView()
                 .environmentObject(walletViewModel)
         })
-        .fullScreenBottomSheet(isPresented: $presentNFTModal, dismissed: {
-            nftSelection = nil
-        } ,content: {
-            Text("ASdf")
+        .sheet(item: $nftSelection, content: { nftSelection in
+            CollectiblesDetailView(nft: nftSelection.nft, collection: nftSelection.collection)
         })
-        .onChange(of: nftSelection) { _ in
-            presentNFTModal = true
-        }
     }
 }
 

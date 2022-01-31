@@ -41,6 +41,7 @@
 		275B82B627968BC9003D9B15 /* NFTImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B82B527968BC9003D9B15 /* NFTImage.swift */; };
 		275B82B8279A4AC7003D9B15 /* CollectiblesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B82B7279A4AC7003D9B15 /* CollectiblesDetailView.swift */; };
 		275B82BA279A6BB8003D9B15 /* FullModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B82B9279A6BB8003D9B15 /* FullModal.swift */; };
+		275B82D1279BB633003D9B15 /* CompactText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B82D0279BB633003D9B15 /* CompactText.swift */; };
 		2761D52C2793CFAA00BDF310 /* PureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D52B2793CFAA00BDF310 /* PureCell.swift */; };
 		2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D52D2793CFC700BDF310 /* HomeHeader.swift */; };
 		2761D5312793D04700BDF310 /* NavigationBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */; };
@@ -118,6 +119,7 @@
 		275B82B527968BC9003D9B15 /* NFTImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTImage.swift; sourceTree = "<group>"; };
 		275B82B7279A4AC7003D9B15 /* CollectiblesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiblesDetailView.swift; sourceTree = "<group>"; };
 		275B82B9279A6BB8003D9B15 /* FullModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullModal.swift; sourceTree = "<group>"; };
+		275B82D0279BB633003D9B15 /* CompactText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactText.swift; sourceTree = "<group>"; };
 		2761D52B2793CFAA00BDF310 /* PureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PureCell.swift; sourceTree = "<group>"; };
 		2761D52D2793CFC700BDF310 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarAppearance.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				27E7DE3A278E551C0065F507 /* GridHeaderTextStyle.swift */,
 				274AEBCC278A289900BE6E55 /* CircleImageView.swift */,
 				27410778276C320600E77A00 /* BigXButton.swift */,
+				275B82D0279BB633003D9B15 /* CompactText.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				27557D91276B068A0044A864 /* BottomSheetViewController.swift in Sources */,
 				27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */,
 				2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */,
+				275B82D1279BB633003D9B15 /* CompactText.swift in Sources */,
 				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,
 				2793F715278B53D600F85363 /* Data.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,

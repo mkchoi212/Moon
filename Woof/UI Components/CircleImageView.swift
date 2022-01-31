@@ -13,7 +13,7 @@ struct CoinImageView: View {
     
     var body: some View {
         CircleImageView(backgroundColor: Color(uiColor: .secondarySystemBackground),
-                        url: iconUrl == nil ? nil : URL(string: iconUrl!),
+                        url: iconUrl,
                         icon: Image("generic.coin"),
                         iconPadding: 6)
     }
@@ -26,15 +26,19 @@ struct CircleImageView: View {
     var icon: Image?
     var iconPadding: CGFloat
     
-    init(backgroundColor: Color?, iconTintColor: Color? = nil, url: URL? = nil, icon: Image? = nil, iconPadding: CGFloat = 8.0) {
+    init(backgroundColor: Color? = nil, iconTintColor: Color? = nil, url: String? = nil, icon: Image? = nil, iconPadding: CGFloat = 8.0) {
         self.backgroundColor = backgroundColor
         self.iconTintColor = iconTintColor
         self.iconPadding = iconPadding
         
-        if let urlPath = url?.absoluteString, urlPath.contains("eth.png") {
-            self.icon = Image("eth", bundle: nil)
+        if let url = url {
+            if url .contains("eth.png") {
+                self.icon = Image("eth", bundle: nil)
+            } else {
+                self.url = URL(string: url )
+            }
         } else {
-            self.url = url
+            self.url = nil
             self.icon = icon
         }
     }
@@ -64,7 +68,7 @@ struct CircleImageView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             CircleImageView(backgroundColor: .lightBlue,
-                            url: URL(string: "https://token-icons.s3.amazonaws.com/eth.png"))
+                            url: "https://token-icons.s3.amazonaws.com/eth.png")
                 .frame(width: 32, height: 32)
             
             CircleImageView(backgroundColor: .lightBlue,

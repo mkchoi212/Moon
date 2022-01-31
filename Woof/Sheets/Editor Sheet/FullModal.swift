@@ -13,7 +13,8 @@ public struct FullModal<Content: View>: View {
     private var grayBackgroundOpacity: Double { isPresented ? (0.4 - Double(draggedOffset)/600) : 0 }
     
     @State private var draggedOffset: CGFloat = 0
-
+    @State private var previousDragValue: DragGesture.Value?
+    
     @Binding var isPresented: Bool {
         didSet {
             if !isPresented {
@@ -28,6 +29,9 @@ public struct FullModal<Content: View>: View {
     private let dismissed: () -> ()
     private let contentBackgroundColor: Color
     private let topBarBackgroundColor: Color
+    
+    @State var offset: CGFloat = 0
+    @State var isDragging = false
     
     public init(
         isPresented: Binding<Bool>,
@@ -54,57 +58,62 @@ public struct FullModal<Content: View>: View {
     
     public var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                self.fullScreenLightGrayOverlay()
-                VStack(spacing: 0) {
-                    self.topBar(geometry: geometry)
-                    VStack(spacing: -8) {
-                        Spacer()
-                        self.content()
-                            .padding(.bottom, geometry.safeAreaInsets.bottom)
-                        Spacer()
-                    }
+        ZStack {
+                List {
+                    VStack {
+                        GeometryReader { proxy in
+                        self.topBar(geometry: proxy)
+                            .preference(
+                                key: ScrollOffsetPreferenceKey.self,
+                                value: proxy.frame(in: .named("scrollView")).origin
+                            )
+                            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                                if !isDragging {
+                                    return
+                                }
+                                
+                                if value.y > 13 {
+                                    print(value.y)
+                                    draggedOffset = value.y
+                                }
+                            }
+                        }
+                    }.frame(maxWidth: .infinity, alignment: .center)
+                    
+                    self.content()
                 }
-                .frame(height: self.height - min(self.draggedOffset*2, 0))
+                .listStyle(.plain)
                 .background(self.contentBackgroundColor)
                 .cornerRadius(self.topBarCornerRadius, corners: [.topLeft, .topRight])
-                .animation(.interactiveSpring())
-                .offset(y: self.isPresented ? (geometry.size.height/2 - self.height/2 + geometry.safeAreaInsets.bottom + self.draggedOffset) : (geometry.size.height/2 + self.height/2 + geometry.safeAreaInsets.bottom))
             }
+            .animation(.interactiveSpring(response: 0.3, dampingFraction: 0.8), value: self.isPresented)
+            .offset(y: self.isPresented ? (geometry.size.height/2 - self.height/2 + geometry.safeAreaInsets.bottom + self.draggedOffset) : (geometry.size.height/2 + self.height/2 + geometry.safeAreaInsets.bottom))
             .gesture(
                 DragGesture()
-                    .onChanged({ (value) in
-                        let offsetY = value.translation.height
-                        self.draggedOffset = offsetY
-                    })
-                    .onEnded({ (value) in
-                        let offsetY = value.translation.height
-                        if offsetY > self.dragToDismissThreshold {
-                            self.isPresented = false
+                    .onChanged { value in
+                        isDragging = true
+                        print("is dragging")
+                    }
+                    .onEnded { _ in
+                        print("drag ended")
+                        
+                        if draggedOffset > dragToDismissThreshold {
+                            print("offset is \(draggedOffset)")
+                            print("dismissing")
+                            isPresented = false
                         }
-                        self.draggedOffset = 0
+                        
+                        isDragging = false
+                        draggedOffset = 0
                     })
-            )
         }
-    }
-    
-    fileprivate func fullScreenLightGrayOverlay() -> some View {
-        Color
-            .black
-            .opacity(grayBackgroundOpacity)
-            .edgesIgnoringSafeArea(.all)
-            .animation(.interactiveSpring())
-            .onTapGesture { self.isPresented = false }
     }
     
     fileprivate func topBar(geometry: GeometryProxy) -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(Color.secondary)
-                .frame(width: 40, height: 6)
-        }
-        .frame(width: geometry.size.width, height: topBarHeight)
-        .background(topBarBackgroundColor)
+        RoundedRectangle(cornerRadius: 6)
+            .fill(Color.secondary)
+            .frame(width: 40, height: 6, alignment: .center)
+            .background(topBarBackgroundColor)
     }
 }
 
@@ -117,7 +126,10 @@ struct Demo: View {
             Text("Present")
         }
         .fullScreenBottomSheet(isPresented: $present, dismissed: { }) {
-            Text("Hello world :)")
+            Text("ASdf")
+            Text("ASdf")
+            Text("ASdf")
+            Text("ASdf")
         }
     }
 }
