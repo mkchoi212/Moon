@@ -79,7 +79,8 @@ struct CollectiblesContentView: View {
                 LottieView(fileName: "broken", loopForever: false)
                     .frame(width: 120, height: 120, alignment: .center)
                 Text("Oops.. Something went wrong\nTap to retry")
-                    .font(.system(size: 18, weight: .medium))
+                    .font(.system(size: 17, weight: .medium))
+                    .foregroundColor(Color(uiColor: .secondaryLabel))
                     .multilineTextAlignment(.center)
             }
             .onTapGesture {

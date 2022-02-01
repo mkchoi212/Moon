@@ -9,9 +9,21 @@ import SwiftUI
 
 @main
 struct WoofApp: App {
+    @StateObject var authModel = SettingsViewModel()
+    @AppStorage("biometrics.enabled") var biometricsEnabled = false
+    
     var body: some Scene {
         WindowGroup {
-            WoofTabView()
+            if authModel.isAuthenticated || !authModel.isBiometricsEnabled {
+                WoofTabView()
+                    .animation(.easeIn(duration: 0.15), value: authModel.isAuthenticated)
+            } else {
+                Cover()
+                    .environmentObject(authModel)
+                    .onAppear {
+                        authModel.authenticate()
+                    }
+            }
         }
     }
 }

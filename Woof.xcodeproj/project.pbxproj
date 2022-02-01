@@ -46,6 +46,9 @@
 		2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D52D2793CFC700BDF310 /* HomeHeader.swift */; };
 		2761D5312793D04700BDF310 /* NavigationBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */; };
 		2761D5332794DC4C00BDF310 /* CollectiblesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D5322794DC4C00BDF310 /* CollectiblesView.swift */; };
+		2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCD527A899F6002660F5 /* SettingsViewModel.swift */; };
+		2763CCD827A89C73002660F5 /* Cover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCD727A89C73002660F5 /* Cover.swift */; };
+		2763CCDA27A8A5C5002660F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */; };
 		277D0543278A272E009E2B29 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0542278A272E009E2B29 /* CoinView.swift */; };
 		2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
 		2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
@@ -127,6 +130,9 @@
 		2761D52D2793CFC700BDF310 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarAppearance.swift; sourceTree = "<group>"; };
 		2761D5322794DC4C00BDF310 /* CollectiblesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiblesView.swift; sourceTree = "<group>"; };
+		2763CCD527A899F6002660F5 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		2763CCD727A89C73002660F5 /* Cover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cover.swift; sourceTree = "<group>"; };
+		2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		2793F714278B53D600F85363 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		2793F724278BABC600F85363 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				27F12CD4275CE12200D87182 /* SettingsView.swift */,
+				2763CCD527A899F6002660F5 /* SettingsViewModel.swift */,
 				27C05D24277289EE00200498 /* SettingsWalletListView.swift */,
 			);
 			path = Settings;
@@ -344,7 +351,6 @@
 			isa = PBXGroup;
 			children = (
 				27F12CC1275CE07400D87182 /* Woof */,
-				27410785276EDB6F00E77A00 /* Settings */,
 				27F12CC0275CE07400D87182 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -361,6 +367,8 @@
 			isa = PBXGroup;
 			children = (
 				2702418A27670A26003084E5 /* Info.plist */,
+				2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */,
+				2763CCD727A89C73002660F5 /* Cover.swift */,
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
 				27AE1FFA278A67D100C07ADF /* Theme.swift */,
@@ -377,6 +385,7 @@
 				27E9E20B2769B05E00EBB552 /* Core Data */,
 				2793F723278BABC600F85363 /* Shiny */,
 				27CD755F2793CA0600B2D083 /* Toast */,
+				27410785276EDB6F00E77A00 /* Settings */,
 				27F12CC6275CE07400D87182 /* Assets.xcassets */,
 			);
 			path = Woof;
@@ -482,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E02BA627A88F50008B496F /* broken.json in Resources */,
+				2763CCDA27A8A5C5002660F5 /* LaunchScreen.storyboard in Resources */,
 				27F12CCA275CE07400D87182 /* Preview Assets.xcassets in Resources */,
 				27F12CC7275CE07400D87182 /* Assets.xcassets in Resources */,
 			);
@@ -510,6 +520,7 @@
 				275B82B2279675C2003D9B15 /* NFT.swift in Sources */,
 				27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */,
 				27E02BA327A88E46008B496F /* LottieView.swift in Sources */,
+				2763CCD827A89C73002660F5 /* Cover.swift in Sources */,
 				2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				275B82B427968764003D9B15 /* NFTViewModel.swift in Sources */,
@@ -553,6 +564,7 @@
 				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,
 				2793F715278B53D600F85363 /* Data.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
+				2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */,
 				2793F72B278BC0BE00F85363 /* Token.swift in Sources */,
 				27E7DE3D2791208A0065F507 /* CardView.swift in Sources */,
 				275B82B8279A4AC7003D9B15 /* CollectiblesDetailView.swift in Sources */,
@@ -688,6 +700,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Woof/Preview Content\"";
@@ -695,9 +708,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Woof/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Protect your wallet via biometrics";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -720,6 +735,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Woof/Preview Content\"";
@@ -727,9 +743,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Woof/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Protect your wallet via biometrics";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

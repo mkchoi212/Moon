@@ -10,11 +10,12 @@ import SwiftUI
 
 struct CoinImageView: View {
     var iconUrl: String?
+    var loading = false
     
     var body: some View {
         CircleImageView(backgroundColor: Color(uiColor: .secondarySystemBackground),
                         url: iconUrl,
-                        icon: Image("generic.coin"),
+                        icon: loading ? nil : Image("generic.coin"),
                         iconPadding: 6)
     }
 }
@@ -60,6 +61,9 @@ struct CircleImageView: View {
                 .foregroundColor(iconTintColor ?? .primary)
                 .padding(iconPadding)
                 .background(Circle().foregroundColor(backgroundColor ?? .gray))
+        } else {
+            Circle()
+                .foregroundColor(.lightGray.opacity(0.4))
         }
     }
 }

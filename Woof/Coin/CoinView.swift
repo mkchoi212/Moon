@@ -15,13 +15,14 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
 
 struct CoinCell: View {
     var token: Token
+    var loading = false
     
     @EnvironmentObject var wallet: WalletModel
     @EnvironmentObject var coinViewModel: CoinViewModel
     
     var body: some View {
         HStack(spacing: 12) {
-            CoinImageView(iconUrl: token.iconUrl)
+            CoinImageView(iconUrl: token.iconUrl, loading: loading)
                 .frame(width: 40, height: 40)
             
             Text(token.name)
@@ -78,7 +79,7 @@ struct CoinView: View {
                 
                 ForEach(wallet.loadingTokens ? coinViewModel.dummyTokenPlaceHolders : wallet.tokens, id: \.self.id) { token in
                     if wallet.loadingTokens {
-                        CoinCell(token: token)
+                        CoinCell(token: token, loading: true)
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                             .environmentObject(wallet)

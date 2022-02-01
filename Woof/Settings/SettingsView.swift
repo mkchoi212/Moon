@@ -90,7 +90,10 @@ struct SettingRow: View {
 
 struct SettingsView: View {
     
+    @AppStorage("biometrics.enabled") var biometricsEnabled = false
     @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject var viewModel = SettingsViewModel()
  
     var body: some View {
         NavigationView {
@@ -106,7 +109,11 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    SettingRow(setting: .biometrics)
+                    HStack {
+                        SettingRow(setting: .biometrics)
+                        Toggle(isOn: $biometricsEnabled, label: {})
+                            .tint(nil)
+                    }
                 }
                 
                 Section {
@@ -132,6 +139,13 @@ struct SettingsView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onChange(of: biometricsEnabled) { biometricsEnabled in
+            viewModel.authenticate { ok in
+                if !ok {
+                    self.biometricsEnabled.toggle()
+                }
+            }
         }
     }
 }
