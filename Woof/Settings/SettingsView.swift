@@ -13,7 +13,7 @@ enum Setting: String, CaseIterable, Identifiable {
     case biometrics = "Require"
     case about = "About Moon"
     case rate = "Rate Moon"
-    case share = "Tell your friends"
+    case followOnTwitter = "Follow us on Twitter"
     case feedback = "Feedback and support"
     
     var id: String {
@@ -49,8 +49,8 @@ enum Setting: String, CaseIterable, Identifiable {
                 return Image(systemName: "info")
             case .rate:
                 return Image(systemName: "star.fill")
-            case .share:
-                return Image(systemName: "person.2.fill")
+            case .followOnTwitter:
+                return Image("bird")
             case .feedback:
                 return Image(systemName: "mail.fill")
         }
@@ -66,8 +66,8 @@ enum Setting: String, CaseIterable, Identifiable {
                 return .systemPurple
             case .rate:
                 return .systemOrange
-            case .share:
-                return .darkText
+            case .followOnTwitter:
+                return .label
             case .feedback:
                 return .lightGray
         }
@@ -99,6 +99,9 @@ struct SettingsExtraSection: View {
                                           message: "",
                                           attachments: nil)
     @State var showFeedbackMailModal = false
+    @State var showAboutModal = false
+    @State var rateButtonTapped = false
+    @State var openTwitter = false
     @Binding var toastPayload: ToastPayload?
     
     var body: some View {
@@ -111,7 +114,12 @@ struct SettingsExtraSection: View {
             
             SettingRow(setting: .about)
             SettingRow(setting: .rate)
-            SettingRow(setting: .share)
+            
+            Button {
+                UIApplication.shared.open(URL(string: "twitter://twitter://user?screen_name=guard_if")!, options: [:])
+            } label : {
+                SettingRow(setting: .followOnTwitter)
+            }
         }
         .sheet(isPresented: $showFeedbackMailModal) {
             MailView(data: $mailData) { result in
@@ -122,6 +130,9 @@ struct SettingsExtraSection: View {
                 }
             }
         }
+        .sheet(isPresented: $showAboutModal) {
+        }
+        
     }
 }
 
