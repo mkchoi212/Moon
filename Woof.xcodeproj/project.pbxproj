@@ -19,8 +19,6 @@
 		270241A62767301B003084E5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A42767301B003084E5 /* SearchBar.swift */; };
 		270241AC27673812003084E5 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241AB27673812003084E5 /* PanelDelegate.swift */; };
 		270241BA27698A36003084E5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B927698A36003084E5 /* String+Extension.swift */; };
-		27192FF42793CC2400159E8C /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27192FF12793CC2400159E8C /* AlertToast.swift */; };
-		27192FF52793CC2400159E8C /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27192FF22793CC2400159E8C /* ActivityIndicator.swift */; };
 		273157BA2771A04500256151 /* WalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157B92771A04500256151 /* WalletConnect.swift */; };
 		273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 273157BC2771A06B00256151 /* WalletConnectSwift */; };
 		273157BF2771D46A00256151 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157BE2771D46A00256151 /* UserDefaults+Extension.swift */; };
@@ -49,6 +47,10 @@
 		2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCD527A899F6002660F5 /* SettingsViewModel.swift */; };
 		2763CCD827A89C73002660F5 /* Cover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCD727A89C73002660F5 /* Cover.swift */; };
 		2763CCDA27A8A5C5002660F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */; };
+		2763CCE627AA1B6C002660F5 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE327AA1B6C002660F5 /* BlurView.swift */; };
+		2763CCE727AA1B6C002660F5 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE427AA1B6C002660F5 /* ActivityIndicator.swift */; };
+		2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE527AA1B6C002660F5 /* AlertToast.swift */; };
+		2763CCEA27AA1B81002660F5 /* MailComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE927AA1B81002660F5 /* MailComposer.swift */; };
 		277D0543278A272E009E2B29 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0542278A272E009E2B29 /* CoinView.swift */; };
 		2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
 		2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
@@ -108,8 +110,6 @@
 		270241C627698E43003084E5 /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		270241C727698E43003084E5 /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		270241C827698E43003084E5 /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
-		27192FF12793CC2400159E8C /* AlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertToast.swift; path = "../../../../Downloads/AlertToast-master 2/Sources/AlertToast/AlertToast.swift"; sourceTree = "<group>"; };
-		27192FF22793CC2400159E8C /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = "../../../../Downloads/AlertToast-master 2/Sources/AlertToast/ActivityIndicator.swift"; sourceTree = "<group>"; };
 		273157B92771A04500256151 /* WalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnect.swift; sourceTree = "<group>"; };
 		273157BE2771D46A00256151 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		273157C02771D55B00256151 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -133,6 +133,10 @@
 		2763CCD527A899F6002660F5 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		2763CCD727A89C73002660F5 /* Cover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cover.swift; sourceTree = "<group>"; };
 		2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2763CCE327AA1B6C002660F5 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = "../../../../.Trash/AlertToast-master 2/Sources/AlertToast/BlurView.swift"; sourceTree = "<group>"; };
+		2763CCE427AA1B6C002660F5 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = "../../../../.Trash/AlertToast-master 2/Sources/AlertToast/ActivityIndicator.swift"; sourceTree = "<group>"; };
+		2763CCE527AA1B6C002660F5 /* AlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertToast.swift; path = "../../../../.Trash/AlertToast-master 2/Sources/AlertToast/AlertToast.swift"; sourceTree = "<group>"; };
+		2763CCE927AA1B81002660F5 /* MailComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposer.swift; sourceTree = "<group>"; };
 		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		2793F714278B53D600F85363 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		2793F724278BABC600F85363 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				274AEBCC278A289900BE6E55 /* CircleImageView.swift */,
 				27410778276C320600E77A00 /* BigXButton.swift */,
 				275B82D0279BB633003D9B15 /* CompactText.swift */,
+				2763CCE927AA1B81002660F5 /* MailComposer.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -302,8 +307,9 @@
 		27CD755F2793CA0600B2D083 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
-				27192FF22793CC2400159E8C /* ActivityIndicator.swift */,
-				27192FF12793CC2400159E8C /* AlertToast.swift */,
+				2763CCE427AA1B6C002660F5 /* ActivityIndicator.swift */,
+				2763CCE527AA1B6C002660F5 /* AlertToast.swift */,
+				2763CCE327AA1B6C002660F5 /* BlurView.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -510,10 +516,12 @@
 				2793F70F278A7F9500F85363 /* BottomSheet.swift in Sources */,
 				27410787276EE0A900E77A00 /* Auth+Extension.swift in Sources */,
 				2793F72D278BC0EA00F85363 /* Price.swift in Sources */,
+				2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */,
 				270241A62767301B003084E5 /* SearchBar.swift in Sources */,
 				2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
 				27410779276C320600E77A00 /* BigXButton.swift in Sources */,
+				2763CCE727AA1B6C002660F5 /* ActivityIndicator.swift in Sources */,
 				2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */,
 				270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */,
 				2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */,
@@ -526,7 +534,6 @@
 				275B82B427968764003D9B15 /* NFTViewModel.swift in Sources */,
 				27AE1FF7278A48DA00C07ADF /* Separator.swift in Sources */,
 				277D0543278A272E009E2B29 /* CoinView.swift in Sources */,
-				27192FF52793CC2400159E8C /* ActivityIndicator.swift in Sources */,
 				2793F728278BABC600F85363 /* Gradient.swift in Sources */,
 				270241BA27698A36003084E5 /* String+Extension.swift in Sources */,
 				27F12CC3275CE07400D87182 /* WoofApp.swift in Sources */,
@@ -535,7 +542,6 @@
 				2793F732278BC29500F85363 /* Fee.swift in Sources */,
 				2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */,
 				270241AC27673812003084E5 /* PanelDelegate.swift in Sources */,
-				27192FF42793CC2400159E8C /* AlertToast.swift in Sources */,
 				273157BA2771A04500256151 /* WalletConnect.swift in Sources */,
 				274107892770343B00E77A00 /* WalletConnectionView.swift in Sources */,
 				27E7DE34278DEB230065F507 /* AnyKey.swift in Sources */,
@@ -561,6 +567,7 @@
 				27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */,
 				2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */,
 				275B82D1279BB633003D9B15 /* CompactText.swift in Sources */,
+				2763CCE627AA1B6C002660F5 /* BlurView.swift in Sources */,
 				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,
 				2793F715278B53D600F85363 /* Data.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
@@ -569,6 +576,7 @@
 				27E7DE3D2791208A0065F507 /* CardView.swift in Sources */,
 				275B82B8279A4AC7003D9B15 /* CollectiblesDetailView.swift in Sources */,
 				27E7DE39278E39760065F507 /* CoinDetailView.swift in Sources */,
+				2763CCEA27AA1B81002660F5 /* MailComposer.swift in Sources */,
 				27AE1FFB278A67D100C07ADF /* Theme.swift in Sources */,
 				2793F727278BABC600F85363 /* ShinyView.swift in Sources */,
 				273157BF2771D46A00256151 /* UserDefaults+Extension.swift in Sources */,

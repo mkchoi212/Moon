@@ -36,7 +36,7 @@ struct Cover: View {
                 
                 Text("MOON")
                     .foregroundColor(Color(uiColor: .secondaryLabel))
-                    .font(.system(size: 16, weight: .semibold, design: .default))
+                    .font(.system(size: 14, weight: .semibold, design: .default))
             }
         }
     }

@@ -14,6 +14,7 @@ enum Setting: String, CaseIterable, Identifiable {
     case about = "About Moon"
     case rate = "Rate Moon"
     case share = "Tell your friends"
+    case feedback = "Feedback and support"
     
     var id: String {
         rawValue
@@ -50,6 +51,8 @@ enum Setting: String, CaseIterable, Identifiable {
                 return Image(systemName: "star.fill")
             case .share:
                 return Image(systemName: "person.2.fill")
+            case .feedback:
+                return Image(systemName: "mail.fill")
         }
     }
     
@@ -65,6 +68,8 @@ enum Setting: String, CaseIterable, Identifiable {
                 return .systemOrange
             case .share:
                 return .darkText
+            case .feedback:
+                return .lightGray
         }
     }
 }
@@ -88,13 +93,46 @@ struct SettingRow: View {
     }
 }
 
-struct SettingsView: View {
+struct SettingsExtraSection: View {
+    @State var mailData = ComposeMailData(subject: "Moon Feedback - v\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown")",
+                                          recipients: ["mkchoi212@icloud.com"],
+                                          message: "",
+                                          attachments: nil)
+    @State var showFeedbackMailModal = false
+    @Binding var toastPayload: ToastPayload?
     
+    var body: some View {
+        Section {
+            Button {
+                showFeedbackMailModal = true
+            } label: {
+                SettingRow(setting: .feedback)
+            }
+            
+            SettingRow(setting: .about)
+            SettingRow(setting: .rate)
+            SettingRow(setting: .share)
+        }
+        .sheet(isPresented: $showFeedbackMailModal) {
+            MailView(data: $mailData) { result in
+                if case .success(let result) = result, result == .sent {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        toastPayload = ToastPayload(message: "Feedback sent successfully")
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct SettingsView: View {
     @AppStorage("biometrics.enabled") var biometricsEnabled = false
     @Environment(\.presentationMode) var presentationMode
     
+    @State var showToast = false
+    @State var toastPayload: ToastPayload?
     @StateObject var viewModel = SettingsViewModel()
- 
+    
     var body: some View {
         NavigationView {
             List {
@@ -116,11 +154,7 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section {
-                    SettingRow(setting: .about)
-                    SettingRow(setting: .rate)
-                    SettingRow(setting: .share)
-                }
+                SettingsExtraSection(toastPayload: $toastPayload)
                 
                 Section {
                     VStack(alignment: .center, spacing: 12) {
@@ -146,6 +180,12 @@ struct SettingsView: View {
                     self.biometricsEnabled.toggle()
                 }
             }
+        }
+        .toast(isPresenting: $showToast) {
+            AlertToast(displayMode: .hud, type: .regular, title: toastPayload?.message)
+        }
+        .onChange(of: toastPayload) { _ in
+            showToast = true
         }
     }
 }
