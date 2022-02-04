@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BetterSafariView",
+        "repositoryURL": "https://github.com/stleamist/BetterSafariView",
+        "state": {
+          "branch": "main",
+          "revision": "9c051d20dbb50fa61d014d87b4ab6c5504408a73",
+          "version": null
+        }
+      },
+      {
         "package": "CryptoSwift",
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {

@@ -51,6 +51,8 @@
 		2763CCE727AA1B6C002660F5 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE427AA1B6C002660F5 /* ActivityIndicator.swift */; };
 		2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE527AA1B6C002660F5 /* AlertToast.swift */; };
 		2763CCEA27AA1B81002660F5 /* MailComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE927AA1B81002660F5 /* MailComposer.swift */; };
+		2763CCEC27AB638E002660F5 /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCEB27AB638E002660F5 /* TransactionDetailView.swift */; };
+		2763CCF127AB68B9002660F5 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 2763CCF027AB68B9002660F5 /* BetterSafariView */; };
 		277D0543278A272E009E2B29 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0542278A272E009E2B29 /* CoinView.swift */; };
 		2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
 		2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
@@ -137,6 +139,7 @@
 		2763CCE427AA1B6C002660F5 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = "../../../../.Trash/AlertToast-master 2/Sources/AlertToast/ActivityIndicator.swift"; sourceTree = "<group>"; };
 		2763CCE527AA1B6C002660F5 /* AlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertToast.swift; path = "../../../../.Trash/AlertToast-master 2/Sources/AlertToast/AlertToast.swift"; sourceTree = "<group>"; };
 		2763CCE927AA1B81002660F5 /* MailComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposer.swift; sourceTree = "<group>"; };
+		2763CCEB27AB638E002660F5 /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
 		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		2793F714278B53D600F85363 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		2793F724278BABC600F85363 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2793F720278B93D800F85363 /* Starscream in Frameworks */,
+				2763CCF127AB68B9002660F5 /* BetterSafariView in Frameworks */,
 				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
 				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
 				27CD755627936B5900B2D083 /* Shimmer in Frameworks */,
@@ -259,6 +263,7 @@
 			children = (
 				277D0542278A272E009E2B29 /* CoinView.swift */,
 				27E7DE38278E39760065F507 /* CoinDetailView.swift */,
+				2763CCEB27AB638E002660F5 /* TransactionDetailView.swift */,
 				2761D52D2793CFC700BDF310 /* HomeHeader.swift */,
 				27E7DE3C2791208A0065F507 /* CardView.swift */,
 			);
@@ -443,6 +448,7 @@
 				2793F71F278B93D800F85363 /* Starscream */,
 				27CD755527936B5900B2D083 /* Shimmer */,
 				27E02BA027A88E21008B496F /* Lottie */,
+				2763CCF027AB68B9002660F5 /* BetterSafariView */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
@@ -481,6 +487,7 @@
 				2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */,
 				27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				27E02B9F27A88E21008B496F /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				2763CCEF27AB68B9002660F5 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -576,6 +583,7 @@
 				27E7DE3D2791208A0065F507 /* CardView.swift in Sources */,
 				275B82B8279A4AC7003D9B15 /* CollectiblesDetailView.swift in Sources */,
 				27E7DE39278E39760065F507 /* CoinDetailView.swift in Sources */,
+				2763CCEC27AB638E002660F5 /* TransactionDetailView.swift in Sources */,
 				2763CCEA27AA1B81002660F5 /* MailComposer.swift in Sources */,
 				27AE1FFB278A67D100C07ADF /* Theme.swift in Sources */,
 				2793F727278BABC600F85363 /* ShinyView.swift in Sources */,
@@ -829,6 +837,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		2763CCEF27AB68B9002660F5 /* XCRemoteSwiftPackageReference "BetterSafariView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stleamist/BetterSafariView";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		2793F716278B551500F85363 /* XCRemoteSwiftPackageReference "socket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
@@ -883,6 +899,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2741077A276C972000E77A00 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		2763CCF027AB68B9002660F5 /* BetterSafariView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2763CCEF27AB68B9002660F5 /* XCRemoteSwiftPackageReference "BetterSafariView" */;
+			productName = BetterSafariView;
 		};
 		2793F717278B551500F85363 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;

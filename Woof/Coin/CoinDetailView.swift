@@ -57,6 +57,45 @@ final class CoinDetailViewModel: ObservableObject {
     }
 }
 
+struct TransactionCell: View {
+    var token: Token
+    var transaction: Transaction
+    
+    @EnvironmentObject var vieWModel: CoinViewModel
+    
+    var body: some View {
+        HStack(spacing: 12) {
+            CoinImageView(iconUrl: token.iconUrl)
+                .frame(width: 40, height: 40)
+            
+            Spacer()
+            
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(spacing: 8) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(transaction.title())
+                            .lineLimit(1)
+                        
+                        Text(Date(timeIntervalSince1970: TimeInterval(transaction.minedAt)).formatted(date: .abbreviated, time: .omitted))
+                            .lineLimit(1)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Text("\(vieWModel.formatCurrency(double: transaction.transactionValue()))")
+                            .lineLimit(1)
+                        
+                        Text(vieWModel.humanTokenQuantityString(quantity: transaction.transactionQuantity(), symbol: token.symbol))
+                            .foregroundColor(Color(uiColor: .secondaryLabel))
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct CoinDetailView: View {
     @ObservedObject var token: Token
     @EnvironmentObject var wallet: WalletModel
@@ -73,6 +112,7 @@ struct CoinDetailView: View {
                     .foregroundColor(Color(uiColor: .secondaryLabel))
                     .font(.system(size: 22, weight: .regular, design: .rounded))
             }
+            .padding(.vertical)
             
             LazyVGrid(columns: column, alignment: .leading) {
                 Text("Transactions")
@@ -80,29 +120,13 @@ struct CoinDetailView: View {
                     .modifier(GridHeaderTextStyle())
                 
                 ForEach(wallet.transactions(for: token)) { transaction in
-                    HStack(spacing: 12) {
-                        CoinImageView(iconUrl: token.iconUrl)
-                            .frame(width: 30, height: 30)
-                        
-                        Spacer()
-                        
-                        VStack(alignment: .leading, spacing: 2) {
-                            HStack(spacing: 8) {
-                                Text(transaction.title())
-                                    .lineLimit(1)
-                                
-                                Spacer()
-                                
-                                Text("\(coinVieWModel.formatCurrency(double: transaction.transactionValue()))")
-                                    .lineLimit(1)
-                            }
-                            
-                            Text(Date(timeIntervalSince1970: TimeInterval(transaction.minedAt)).formatted(date: .abbreviated, time: .omitted))
-                                .lineLimit(1)
-                                .foregroundColor(.secondary)
-                        }
+                    NavigationLink {
+                        TransactionDetailView(transaction: transaction)
+                            .environmentObject(coinVieWModel)
+                    } label: {
+                        TransactionCell(token: token, transaction: transaction)
+                            .padding()
                     }
-                    .padding()
                 }
             }
         }

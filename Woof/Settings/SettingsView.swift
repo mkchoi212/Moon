@@ -67,7 +67,7 @@ enum Setting: String, CaseIterable, Identifiable {
             case .rate:
                 return .systemOrange
             case .followOnTwitter:
-                return .label
+                return .black
             case .feedback:
                 return .lightGray
         }
@@ -78,7 +78,7 @@ struct SettingRow: View {
     let setting: Setting
     
     var body: some View {
-        HStack {
+        HStack(spacing: 12) {
             setting.image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
