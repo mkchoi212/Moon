@@ -50,6 +50,8 @@ struct NFTCollection: Codable, Hashable, Identifiable {
     var id: String {
         name
     }
+    
+    static let dummy = NFTCollection(name: "CryptoPunks", description: "CryptoPunks launched as a fixed set of 10,000 items in mid-2017 and became one of the inspirations for the ERC-721 standard. They have been featured in places like The New York Times, Christie’s of London, Art|Basel Miami, and The PBS NewsHour.", createdDate: "123", slug: "CryptoPunks", imageUrl: "https://lh3.googleusercontent.com/jAnoAAC4aNNREN2qzvwyKBsm0u-9r89J0WLKOvUML-7wYqSkd2eu3Q-pt1PsIDDeDuKcHPNITCTfODy6EMC4cVFNWQuxDPUQYbAeGg=s0", largeImageUrl: nil, bannerImageUrl: nil, safelistRequestStatus: .approved, payoutAddress: nil, stats: NFTStats(oneDayVolume: 0, oneDayChange: 0, oneDaySales: 0, oneDayAveragePrice: 0, totalSupply: 0, totalSales: 0, totalVolume: 0, count: 0, floorPrice: 0, marketCap: 0, numOwners: 0), chatUrl: nil, discordUrl: nil, featuredImageUrl: nil, mediumUserName: nil, telegramUrl: nil, twitterUsername: nil, instagramUsername: nil, wikiUrl: nil, ownedAssetCount: 4)
 }
 
 extension NFTCollection: Comparable {

@@ -74,6 +74,7 @@
 		27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D222771F15300200498 /* WalletConnectButton.swift */; };
 		27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D24277289EE00200498 /* SettingsWalletListView.swift */; };
 		27CBF43E27BAE89000DAB861 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 27CBF43D27BAE89000DAB861 /* Toast */; };
+		27CBF44027BB044000DAB861 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CBF43F27BB044000DAB861 /* CollectionView.swift */; };
 		27CD755627936B5900B2D083 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD755527936B5900B2D083 /* Shimmer */; };
 		27E02BA127A88E21008B496F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 27E02BA027A88E21008B496F /* Lottie */; };
 		27E02BA327A88E46008B496F /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E02BA227A88E46008B496F /* LottieView.swift */; };
@@ -156,6 +157,7 @@
 		27C05D202771F10900200498 /* WalletConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectionViewModel.swift; sourceTree = "<group>"; };
 		27C05D222771F15300200498 /* WalletConnectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectButton.swift; sourceTree = "<group>"; };
 		27C05D24277289EE00200498 /* SettingsWalletListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWalletListView.swift; sourceTree = "<group>"; };
+		27CBF43F27BB044000DAB861 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		27E02BA227A88E46008B496F /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		27E02BA527A88F50008B496F /* broken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = broken.json; sourceTree = "<group>"; };
 		27E7DE31278DE7070065F507 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				275B82B327968764003D9B15 /* NFTViewModel.swift */,
 				275B82B7279A4AC7003D9B15 /* CollectiblesDetailView.swift */,
 				2761D5322794DC4C00BDF310 /* CollectiblesView.swift */,
+				27CBF43F27BB044000DAB861 /* CollectionView.swift */,
 				275B82B527968BC9003D9B15 /* NFTImage.swift */,
 				275B82AD27967599003D9B15 /* NFTStats.swift */,
 				275B82AF279675AC003D9B15 /* NFTCollection.swift */,
@@ -526,6 +529,7 @@
 				2761D5332794DC4C00BDF310 /* CollectiblesView.swift in Sources */,
 				2793F70F278A7F9500F85363 /* BottomSheet.swift in Sources */,
 				27410787276EE0A900E77A00 /* Auth+Extension.swift in Sources */,
+				27CBF44027BB044000DAB861 /* CollectionView.swift in Sources */,
 				2793F72D278BC0EA00F85363 /* Price.swift in Sources */,
 				2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */,
 				270241A62767301B003084E5 /* SearchBar.swift in Sources */,

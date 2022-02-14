@@ -17,13 +17,12 @@ struct NFTSelection: Equatable, Identifiable {
 
 struct CollectiblesList: View {
     @StateObject var viewModel = NFTViewModel()
-    @StateObject var listviewModel = NFTViewModel()
     @EnvironmentObject var openSea: OpenSea
     
     @Binding var isDisplayingDetail: Bool
     @Binding var selection: NFTSelection?
 
-    @State var displayAll = false
+    @State var selectedCollection: NFTCollection?
     
     var body: some View {
         List {
@@ -38,14 +37,15 @@ struct CollectiblesList: View {
                         Spacer()
                         
                         ZStack {
-                            NavigationLink(destination: Text("asdf"), isActive: $displayAll) {
-                                EmptyView()
+                            NavigationLink("", tag: collection, selection: $selectedCollection) {
+                                CollectionView(collection: collection, nfts: nfts)
+                                    .environmentObject(viewModel)
                             }
-                            .frame(width: 0)
                             .hidden()
+                            .frame(width: 0)
                             
                             Button("View All") {
-                                displayAll.toggle()
+                                selectedCollection = collection
                             }
                             .foregroundColor(.secondary)
                         }
@@ -139,23 +139,9 @@ struct CollectiblesView: View {
 }
 
 struct CollectiblesView_Previews: PreviewProvider {
-    static let nft = NFT(owner: .init(user: .init(username: "adamtrannews"), profileImageUrl: "https://storage.googleapis.com/opensea-static/opensea-profile/19.png", address: "0x7becee3d6a7c1b7355fc04af63ec9a2f0a583436"), creator: .init(user: .init(username: "adamtrannews"), profileImageUrl: "https://storage.googleapis.com/opensea-static/opensea-profile/19.png", address: "0x7becee3d6a7c1b7355fc04af63ec9a2f0a583436"),
-                         tokenId: "asdf",
-                         imageUrl: "https://lh3.googleusercontent.com/jAnoAAC4aNNREN2qzvwyKBsm0u-9r89J0WLKOvUML-7wYqSkd2eu3Q-pt1PsIDDeDuKcHPNITCTfODy6EMC4cVFNWQuxDPUQYbAeGg=s0",
-                         backgroundColor: nil,
-                         name: "CryptoPunk #7842",
-                         externalLink: nil,
-                         permalink: "https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/56053100554430904991517213092900507939703437358200320741647226733043910705153",
-                         assetContract: nil,
-                         description: "Welcome to the home of Desperate ApeWife on OpenSea. About 333 Desperate ApeWife CLUB laser eyes NFTs on the Ethereum blockchain. 🤩🤩\n\nDiscover the best items in this collection, Desperate ApeWife is a collection of female laser eyes. Come browsing and purchase your most favorite items at our store 😍💯\n\n🤎We love and value female very much. We do not hesitate to send various gifts to owners of more than one item.💟💟",
-                         traits: [.init(traitType: "Upper body", value: "Gangster", displayType: nil, maxValue: nil, traitCount: nil, order: nil), .init(traitType: "Skin Color", value: "Tycon", displayType: nil, maxValue: nil, traitCount: nil, order: nil), .init(traitType: "Hand", value: "Jules", displayType: nil, maxValue: nil, traitCount: 538, order: nil)])
-    
-    
-    static let collection = NFTCollection(name: "hello", description: nil, createdDate: "123", slug: "asdf", imageUrl: "https://lh3.googleusercontent.com/faRTnT7NgJ3mawHlRlpb9o7-_uSrPAeWt2FNPkPuymbIbXryZIAvT1yXR-nxZK7ZCW-oPuLfWuQmf-EmsJGXbZCzbOW-3UU4L_hy_MQ=s0", largeImageUrl: nil, bannerImageUrl: nil, safelistRequestStatus: .approved, payoutAddress: nil, stats: NFTStats(oneDayVolume: 0, oneDayChange: 0, oneDaySales: 0, oneDayAveragePrice: 0, totalSupply: 0, totalSales: 0, totalVolume: 0, count: 0, floorPrice: 0, marketCap: 0, numOwners: 0), chatUrl: nil, discordUrl: nil, featuredImageUrl: nil, mediumUserName: nil, telegramUrl: nil, twitterUsername: nil, instagramUsername: nil, wikiUrl: nil, ownedAssetCount: 4)
-    
     static var openSea: OpenSea = {
         let openSea = OpenSea()
-        openSea.collectionTable = [CollectiblesView_Previews.collection: [CollectiblesView_Previews.nft]]
+        openSea.collectionTable = [NFTCollection.dummy: [NFT.random]]
         openSea.isLoading = false
         return openSea
     }()
