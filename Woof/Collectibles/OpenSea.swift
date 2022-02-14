@@ -27,32 +27,32 @@ final class OpenSea: ObservableObject {
     func fetch() {
         isLoading = true
         
-         Task {
-             do {
-                 let collections = try await fetchCollections()
-                 for collection in collections {
-                     guard let slug = collection.slug else {
-                         collectionTable[collection] = []
-                         continue
-                     }
-                     
-                     let collectionAssets = try await fetchNFTs(in: slug)
-                     DispatchQueue.main.async {
-                         self.collectionTable[collection] = collectionAssets
-                     }
-                 }
-             } catch let err {
-                 print(err)
-                 
-                 DispatchQueue.main.async {
-                     self.isNotAvailable = true
-                 }
-             }
-             
-             DispatchQueue.main.async {
-                 self.isLoading = false
-             }
-         }
+        Task {
+            do {
+                let collections = try await fetchCollections()
+                for collection in collections {
+                    guard let slug = collection.slug else {
+                        collectionTable[collection] = []
+                        continue
+                    }
+                    
+                    let collectionAssets = try await fetchNFTs(in: slug)
+                    DispatchQueue.main.async {
+                        self.collectionTable[collection] = collectionAssets
+                    }
+                }
+            } catch let err {
+                print(err)
+                
+                DispatchQueue.main.async {
+                    self.isNotAvailable = true
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+        }
     }
 }
 
@@ -75,9 +75,7 @@ extension OpenSea {
         var urlComponents = URLComponents(string: "https://api.opensea.io/api/v1/assets")!
         urlComponents.queryItems = [
             .init(name: "owner", value: currentWalletAddress),
-            .init(name: "collection", value: collectionSlug),
-            .init(name: "offset", value: "0"),
-            .init(name: "limit", value: "20")
+            .init(name: "collection", value: collectionSlug)
         ]
         
         var request = URLRequest(url: urlComponents.url!)

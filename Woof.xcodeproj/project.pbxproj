@@ -73,6 +73,7 @@
 		27C05D212771F10900200498 /* WalletConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D202771F10900200498 /* WalletConnectionViewModel.swift */; };
 		27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D222771F15300200498 /* WalletConnectButton.swift */; };
 		27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D24277289EE00200498 /* SettingsWalletListView.swift */; };
+		27CBF43E27BAE89000DAB861 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 27CBF43D27BAE89000DAB861 /* Toast */; };
 		27CD755627936B5900B2D083 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD755527936B5900B2D083 /* Shimmer */; };
 		27E02BA127A88E21008B496F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 27E02BA027A88E21008B496F /* Lottie */; };
 		27E02BA327A88E46008B496F /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E02BA227A88E46008B496F /* LottieView.swift */; };
@@ -188,6 +189,7 @@
 				273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */,
 				2741077C276C972000E77A00 /* OrderedCollections in Frameworks */,
 				2793F718278B551500F85363 /* SocketIO in Frameworks */,
+				27CBF43E27BAE89000DAB861 /* Toast in Frameworks */,
 				27E02BA127A88E21008B496F /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +451,7 @@
 				27CD755527936B5900B2D083 /* Shimmer */,
 				27E02BA027A88E21008B496F /* Lottie */,
 				2763CCF027AB68B9002660F5 /* BetterSafariView */,
+				27CBF43D27BAE89000DAB861 /* Toast */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
@@ -488,6 +491,7 @@
 				27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				27E02B9F27A88E21008B496F /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				2763CCEF27AB68B9002660F5 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
+				27CBF43C27BAE89000DAB861 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -861,6 +865,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		27CBF43C27BAE89000DAB861 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BastiaanJansen/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
@@ -914,6 +926,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2793F71E278B93D800F85363 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
+		};
+		27CBF43D27BAE89000DAB861 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27CBF43C27BAE89000DAB861 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 		27CD755527936B5900B2D083 /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;

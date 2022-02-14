@@ -5,7 +5,7 @@
 //  Created by Mike Choi on 1/20/22.
 //
 
-import Foundation
+import BetterSafariView
 import SwiftUI
 
 struct TextEntity: Identifiable {
@@ -43,18 +43,25 @@ struct ScrollableModalTextView: View {
 }
 
 struct CollectiblesHeaderView: View {
-   
     var nft: NFT
     var collection: NFTCollection
     var imageResource: ImageResource
-    
+   
+    @State var showEtherscan = false
     @Binding var toastPayload: ToastPayload?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 8) {
+            RoundedRectangle(cornerRadius: 4)
+                .frame(width: 42, height: 6, alignment: .center)
+                .foregroundColor(.lightGray)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+                .padding(.top, 4)
+            
             NFTImage(resource: imageResource)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
-                .shadow(color: .black.opacity(0.2), radius: 18, x: 15, y: 15)
+                .shadow(color: .black.opacity(0.2), radius: 10, x: 15, y: 15)
                 .padding(.bottom, 10)
             
             HStack(alignment: .center) {
@@ -70,6 +77,7 @@ struct CollectiblesHeaderView: View {
                     }
                     
                     Button {
+                        showEtherscan.toggle()
                     } label: {
                         Label("View on Etherscan", systemImage: "link")
                     }
@@ -81,7 +89,6 @@ struct CollectiblesHeaderView: View {
                         Label("Copy Token ID", systemImage: "doc.on.doc")
                     }
                 } label: {
-                    
                     Image(systemName: "ellipsis.circle")
                         .resizable()
                         .frame(width: 24, height: 24)
@@ -90,17 +97,23 @@ struct CollectiblesHeaderView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text(collection.name)
-                .font(.system(size: 18, weight: .semibold, design: .rounded))
-                .foregroundColor(.blue)
+            Button {
+            } label: {
+                Text(collection.name)
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .foregroundColor(.blue)
+            }
             
             HStack {
-                Text("by ") + Text(nft.creator.user?.username ?? "unknown artist")
+                Text("by \(nft.creator.user?.username ?? "unknown artist")")
                 
                 CircleImageView(url: nft.creator.profileImageUrl, icon: nil, iconPadding: 0)
                     .aspectRatio(1, contentMode: .fit)
                     .frame(width: 25)
             }
+        }
+        .safariView(isPresented: $showEtherscan) {
+            SafariView(url: URL(string: nft.permalink ?? "")!, configuration: .init(entersReaderIfAvailable: false, barCollapsingEnabled: true))
         }
     }
 }
@@ -114,17 +127,10 @@ struct CollectiblesDetailView: View {
     
     @StateObject var viewModel = NFTViewModel()
     let cellModifier = PureCell(sideInsets: 15, bottomInset: 15)
+    let feedback = UIImpactFeedbackGenerator(style: .rigid)
     
     var body: some View {
         List {
-            VStack(alignment: .center) {
-                RoundedRectangle(cornerRadius: 4)
-                    .frame(width: 42, height: 6, alignment: .center)
-                    .foregroundColor(.lightGray)
-            }
-            .frame(maxWidth: .infinity)
-            .modifier(PureCell())
-            
             CollectiblesHeaderView(nft: nft,
                                    collection: collection,
                                    imageResource: viewModel.imageResource(for: nft, parentCollection: collection),
@@ -144,8 +150,11 @@ struct CollectiblesDetailView: View {
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text(nft.owner.user?.username ?? "unknown")
-                        Text(nft.owner.address.prefix(8) + "...")
+                            .font(.system(size: 15, weight: .regular))
+                        
+                        Text(nft.owner.address.prefix(12) + "...")
                             .foregroundColor(.secondary)
+                            .font(.system(size: 15, weight: .regular, design: .monospaced))
                     }
                 }
             }
@@ -158,7 +167,7 @@ struct CollectiblesDetailView: View {
                 CompactText(text: nft.description ?? "", didPressMore: {
                     showMoreText = TextEntity(text: nft.description ?? "")
                 })
-                    .lineLimit(3)
+                .lineLimit(3)
             }
             .modifier(cellModifier)
             
@@ -188,11 +197,12 @@ struct CollectiblesDetailView: View {
         .sheet(item: $showMoreText) { text in
             ScrollableModalTextView(title: nft.name, text: text.text)
         }
-        .toast(isPresenting: $presentToast, offsetY: 60) {
-            AlertToast(displayMode: .hud, type: .regular, title: "Asdf")
+        .toast(isPresenting: $presentToast, offsetY: 40) {
+            AlertToast(displayMode: .hud, type: .regular, title: toastPayload?.message ?? "Done")
         }
         .onChange(of: toastPayload) { _ in
             presentToast = true
+            feedback.impactOccurred()
         }
     }
 }

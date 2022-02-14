@@ -47,6 +47,15 @@
         }
       },
       {
+        "package": "Starscream",
+        "repositoryURL": "https://github.com/daltoniam/Starscream.git",
+        "state": {
+          "branch": null,
+          "revision": "df8d82047f6654d8e4b655d1b1525c64e1059d21",
+          "version": "4.0.4"
+        }
+      },
+      {
         "package": "swift-collections",
         "repositoryURL": "https://github.com/apple/swift-collections.git",
         "state": {
@@ -71,6 +80,15 @@
           "branch": null,
           "revision": "61411771350a5a4e96666a8a202ae4b2be327a2b",
           "version": "1.0.1"
+        }
+      },
+      {
+        "package": "Toast",
+        "repositoryURL": "https://github.com/BastiaanJansen/Toast-Swift",
+        "state": {
+          "branch": null,
+          "revision": "190f193a8432c01d4dc7f4de87ee3cccb9e75a21",
+          "version": "1.0.5"
         }
       },
       {

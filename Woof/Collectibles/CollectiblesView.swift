@@ -22,6 +22,8 @@ struct CollectiblesList: View {
     
     @Binding var isDisplayingDetail: Bool
     @Binding var selection: NFTSelection?
+
+    @State var displayAll = false
     
     var body: some View {
         List {
@@ -35,9 +37,18 @@ struct CollectiblesList: View {
                         
                         Spacer()
                         
-                        Button("View All") {
+                        ZStack {
+                            NavigationLink(destination: Text("asdf"), isActive: $displayAll) {
+                                EmptyView()
+                            }
+                            .frame(width: 0)
+                            .hidden()
+                            
+                            Button("View All") {
+                                displayAll.toggle()
+                            }
+                            .foregroundColor(.secondary)
                         }
-                        .foregroundColor(.secondary)
                     }
                     .padding(.horizontal)
                     

@@ -71,6 +71,7 @@ struct CoinView: View {
                     .environmentObject(wallet)
                     .environmentObject(coinViewModel)
                     .modifier(PureCell())
+                    .zIndex(10)
                 
                 Text("Assets")
                     .padding()
