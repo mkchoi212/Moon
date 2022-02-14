@@ -19,10 +19,9 @@ struct CollectiblesList: View {
     @StateObject var viewModel = NFTViewModel()
     @EnvironmentObject var openSea: OpenSea
     
-    @Binding var isDisplayingDetail: Bool
-    @Binding var selection: NFTSelection?
-
+    @State var selectedNFT: NFTSelection?
     @State var selectedCollection: NFTCollection?
+    @Binding var isDisplayingDetail: Bool
     
     var body: some View {
         List {
@@ -57,7 +56,7 @@ struct CollectiblesList: View {
                             ForEach(nfts, id: \.self) { nft in
                                 let imageResource = viewModel.imageResource(for: nft, parentCollection: collection)
                                 Button {
-                                    selection = NFTSelection(nft: nft, collection: collection)
+                                    selectedNFT = NFTSelection(nft: nft, collection: collection)
                                 } label: {
                                     NFTImage(resource: imageResource)
                                 }
@@ -71,12 +70,15 @@ struct CollectiblesList: View {
             }
         }
         .listStyle(.plain)
+        .sheet(item: $selectedNFT, content: { selectedNFT in
+            CollectiblesDetailView(nft: selectedNFT.nft,
+                                   collection: selectedNFT.collection)
+        })
     }
 }
 
 struct CollectiblesContentView: View {
     @State var isDisplayingDetail = false
-    @Binding var nftSelection: NFTSelection?
     @Binding var retry: Bool
     
     @EnvironmentObject var openSea: OpenSea
@@ -98,8 +100,7 @@ struct CollectiblesContentView: View {
                 retry.toggle()
             }
         } else {
-            CollectiblesList(isDisplayingDetail: $isDisplayingDetail,
-                             selection: $nftSelection)
+            CollectiblesList(isDisplayingDetail: $isDisplayingDetail)
                 .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -109,12 +110,11 @@ struct CollectiblesView: View {
     @State var initialFetch = false
     @State var retry = false
     
-    @Binding var nftSelection: NFTSelection?
     @EnvironmentObject var openSea: OpenSea
     
     var body: some View {
         NavigationView {
-            CollectiblesContentView(nftSelection: $nftSelection, retry: $retry)
+            CollectiblesContentView(retry: $retry)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
@@ -149,7 +149,7 @@ struct CollectiblesView_Previews: PreviewProvider {
     static let viewModel = NFTViewModel()
     
     static var previews: some View {
-        CollectiblesView(nftSelection: .constant(nil))
+        CollectiblesView()
             .environmentObject(CollectiblesView_Previews.openSea)
     }
 }

@@ -19,7 +19,6 @@ struct WoofTabView: View {
     
     @State var presentWalletSelector = false
     @State var presentNFTModal = false
-    @State var nftSelection: NFTSelection? = nil
     
     var body: some View {
         TabView {
@@ -29,7 +28,7 @@ struct WoofTabView: View {
                     Label("Coins", systemImage: "moon.fill")
                 }
             
-            CollectiblesView(nftSelection: $nftSelection)
+            CollectiblesView()
                 .environmentObject(openSea)
                 .tabItem {
                     Label("Collectibles", systemImage: "square")
@@ -49,10 +48,6 @@ struct WoofTabView: View {
                      content: {
             WalletSelectorView()
                 .environmentObject(walletViewModel)
-        })
-        .sheet(item: $nftSelection, content: { nftSelection in
-            CollectiblesDetailView(nft: nftSelection.nft,
-                                   collection: nftSelection.collection)
         })
     }
 }
