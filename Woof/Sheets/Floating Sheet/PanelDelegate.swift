@@ -11,7 +11,7 @@ import FloatingPanel
 final class PanelDelegate: FloatingPanelControllerDelegate {
     class PanelLayout: FloatingPanelBottomLayout {
         override var initialState: FloatingPanelState {
-            .tip
+            .hidden
         }
         
         override var position: FloatingPanelPosition {

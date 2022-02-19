@@ -24,7 +24,7 @@ struct HomeHeader: View {
                 Spacer()
                 
                 Button {
-                    presentWalletSelector = true
+                    presentWalletSelector.toggle()
                 } label: {
                     CircleImageView(backgroundColor: Color(uiColor: .secondarySystemBackground),
                                     icon: Image(systemName: "person.fill"))

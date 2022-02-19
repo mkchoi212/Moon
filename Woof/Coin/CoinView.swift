@@ -40,11 +40,13 @@ struct CoinCell: View {
 }
 
 struct CoinView: View {
-    @State var offset: CGFloat = 100
+    // unique initial value to prevent initial flashing of the title
+    @State var offset: CGFloat = 10000
     @State var showPasteboardCopiedToast = false
-    @Binding var presentWalletSelector: Bool
+    @State var presentWalletSelector = false
     
     @StateObject var coinViewModel = CoinViewModel()
+    @StateObject var walletViewModel = WalletConnectionViewModel()
     @EnvironmentObject var wallet: WalletModel
     
     let columnItem = [GridItem(.flexible())]
@@ -52,31 +54,36 @@ struct CoinView: View {
     var body: some View {
         NavigationView {
             List {
-                GeometryReader { proxy in
+                VStack {
                     HomeHeader(presentWalletSelector: $presentWalletSelector)
                         .environmentObject(wallet)
+                    
+                    CardView(showPasteboardCopiedToast: $showPasteboardCopiedToast)
+                        .environmentObject(wallet)
+                        .environmentObject(coinViewModel)
+                        .zIndex(1)
+                }
+                .modifier(PureCell())
+                .padding(.horizontal)
+                .padding(.bottom, 20)
+                
+                GeometryReader { proxy in
+                    Text("Assets")
+                        .modifier(GridHeaderTextStyle())
+                        .modifier(PureCell())
                         .preference(
                             key: ScrollOffsetPreferenceKey.self,
                             value: proxy.frame(in: .named("scroll")).origin
                         )
                         .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
-                            self.offset = value.y
+                            if self.offset == 10000 {
+                                self.offset = 1000
+                            } else {
+                                self.offset = value.y
+                            }
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .modifier(PureCell())
-                .padding(.horizontal)
-                .padding(.bottom, 50)
-
-                CardView(showPasteboardCopiedToast: $showPasteboardCopiedToast)
-                    .environmentObject(wallet)
-                    .environmentObject(coinViewModel)
-                    .modifier(PureCell())
-                    .zIndex(10)
-                
-                Text("Assets")
-                    .padding()
-                    .modifier(GridHeaderTextStyle())
-                    .modifier(PureCell())
                 
                 ForEach(wallet.loadingTokens ? coinViewModel.dummyTokenPlaceHolders : wallet.tokens, id: \.self.id) { token in
                     if wallet.loadingTokens {
@@ -107,7 +114,7 @@ struct CoinView: View {
             .toolbar(content: {
                 ToolbarItem(placement: .principal) {
                     Text(coinViewModel.formatCurrency(double: wallet.portfolio?.totalValue))
-                        .opacity(offset < 40  ? 1 : 0)
+                        .opacity(offset < 340 ? 1 : 0)
                         .animation(.easeInOut(duration: 0.18), value: offset)
                         .font(.system(size: 17, weight: .semibold, design: .rounded))
                         .frame(width: 300, alignment: .center)
@@ -115,10 +122,13 @@ struct CoinView: View {
             })
             .refreshable {
                 wallet.reload(reset: false, refresh: true)
-            }
-        }
+            }     }
         .toast(isPresenting: $showPasteboardCopiedToast) {
             AlertToast(displayMode: .hud, type: .regular, title: "Copied to Pasteboard")
+        }
+        .onChange(of: presentWalletSelector) { _ in
+                StackedWalletSelectorView()
+                    .environmentObject(walletViewModel)
         }
     }
 }
@@ -127,7 +137,7 @@ struct WalletHomeView_Previews: PreviewProvider {
     static let env = WalletModel()
     
     static var previews: some View {
-        CoinView(presentWalletSelector: .constant(true))
+        CoinView()
             .environmentObject(env)
     }
 }

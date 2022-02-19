@@ -62,7 +62,7 @@ struct CollectiblesHeaderView: View {
             NFTImage(resource: imageResource)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .shadow(color: .black.opacity(0.2), radius: 10, x: 15, y: 15)
-                .padding(.bottom, 10)
+                .padding(.bottom, 8)
             
             HStack(alignment: .center) {
                 Text(nft.name)
@@ -79,7 +79,7 @@ struct CollectiblesHeaderView: View {
                     Button {
                         showEtherscan.toggle()
                     } label: {
-                        Label("View on Etherscan", systemImage: "link")
+                        Label("View on Etherscan", systemImage: "safari")
                     }
                     
                     Button {

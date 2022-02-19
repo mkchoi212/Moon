@@ -173,7 +173,6 @@ struct CardView: View {
         .frame(height: 220)
         .rotation3DEffect(Angle(degrees: isCardRotated ? 180 : 0), axis: (x: CGFloat(0), y: CGFloat(10), z: CGFloat(0)))
         .shadow(color: Color.black.opacity(0.15), radius: 10, x: 10, y: 10)
-        .padding()
         .onChange(of: showPasteboardCopiedToast) { isShowing in
             if isShowing {
                 impactMed.impactOccurred()

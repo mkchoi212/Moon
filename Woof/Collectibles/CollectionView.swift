@@ -24,7 +24,7 @@ struct CollectionView: View {
                     Button {
                         selection = NFTSelection(nft: nft, collection: collection)
                     } label: {
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 8) {
                             NFTImage(resource: imageResource)
                             Text(nft.name)
                         }

@@ -20,7 +20,7 @@ struct SettingsWalletListView: View {
                     .padding(.horizontal)
             }
         } else {
-            WalletListContentView(selectedAddress: $_selectedAddr, allowSelection: false)
+            WalletListContentView(allowSelection: false, selectedAddress: $_selectedAddr)
                 .environmentObject(viewModel)
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct ToastPayload: Identifiable, Equatable {
     let id = UUID()
@@ -13,17 +14,19 @@ struct ToastPayload: Identifiable, Equatable {
 }
 
 struct WoofTabView: View {
-    @StateObject var walletViewModel = WalletConnectionViewModel()
     @StateObject var wallet = WalletModel()
     @StateObject var openSea = OpenSea()
     
     @State var presentWalletSelector = false
     @State var presentNFTModal = false
     
+    @EnvironmentObject var sheetManager: PartialSheetManager
+    
     var body: some View {
         TabView {
-            CoinView(presentWalletSelector: $presentWalletSelector)
+            CoinView()
                 .environmentObject(wallet)
+                .environmentObject(sheetManager)
                 .tabItem {
                     Label("Coins", systemImage: "moon.fill")
                 }
@@ -40,15 +43,7 @@ struct WoofTabView: View {
                 }
         }
         .tint(.accentColor)
-        //https://github.com/AndreaMiotto/PartialSheet
-        .bottomSheet(isPresented: $presentWalletSelector,
-                     height: CGFloat((walletViewModel.walletAddresses.count * 100) + 150),
-                     topBarHeight: 14,
-                     topBarBackgroundColor: .modalBackground,
-                     content: {
-            WalletSelectorView()
-                .environmentObject(walletViewModel)
-        })
+        .addPartialSheet()
     }
 }
 

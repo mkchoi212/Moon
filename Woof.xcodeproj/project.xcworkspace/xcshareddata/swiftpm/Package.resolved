@@ -20,20 +20,20 @@
         }
       },
       {
-        "package": "FloatingPanel",
-        "repositoryURL": "https://github.com/scenee/FloatingPanel",
-        "state": {
-          "branch": "master",
-          "revision": "e39f634d348110bcb7fd555e5a6bc97ceaa58de7",
-          "version": null
-        }
-      },
-      {
         "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios",
         "state": {
           "branch": "master",
           "revision": "0335842f32a16a12033cce6ff8987a4b84d18d90",
+          "version": null
+        }
+      },
+      {
+        "package": "PartialSheet",
+        "repositoryURL": "https://github.com/AndreaMiotto/PartialSheet",
+        "state": {
+          "branch": "master",
+          "revision": "422d748bfb149b2af4b48e43b7b6197bd8a727c1",
           "version": null
         }
       },

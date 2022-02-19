@@ -14,7 +14,6 @@
 		2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419527672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift */; };
 		2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419627672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift */; };
 		2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419727672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift */; };
-		270241A127672EC1003084E5 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 270241A027672EC1003084E5 /* FloatingPanel */; };
 		270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */; };
 		270241A62767301B003084E5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A42767301B003084E5 /* SearchBar.swift */; };
 		270241AC27673812003084E5 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241AB27673812003084E5 /* PanelDelegate.swift */; };
@@ -75,6 +74,7 @@
 		27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C05D24277289EE00200498 /* SettingsWalletListView.swift */; };
 		27CBF43E27BAE89000DAB861 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 27CBF43D27BAE89000DAB861 /* Toast */; };
 		27CBF44027BB044000DAB861 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CBF43F27BB044000DAB861 /* CollectionView.swift */; };
+		27CBF44927C0C92B00DAB861 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 27CBF44827C0C92B00DAB861 /* PartialSheet */; };
 		27CD755627936B5900B2D083 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 27CD755527936B5900B2D083 /* Shimmer */; };
 		27E02BA127A88E21008B496F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 27E02BA027A88E21008B496F /* Lottie */; };
 		27E02BA327A88E46008B496F /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E02BA227A88E46008B496F /* LottieView.swift */; };
@@ -185,9 +185,9 @@
 			files = (
 				2793F720278B93D800F85363 /* Starscream in Frameworks */,
 				2763CCF127AB68B9002660F5 /* BetterSafariView in Frameworks */,
-				270241A127672EC1003084E5 /* FloatingPanel in Frameworks */,
 				27410768276B0B8900E77A00 /* Introspect in Frameworks */,
 				27CD755627936B5900B2D083 /* Shimmer in Frameworks */,
+				27CBF44927C0C92B00DAB861 /* PartialSheet in Frameworks */,
 				273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */,
 				2741077C276C972000E77A00 /* OrderedCollections in Frameworks */,
 				2793F718278B551500F85363 /* SocketIO in Frameworks */,
@@ -445,7 +445,6 @@
 			);
 			name = Woof;
 			packageProductDependencies = (
-				270241A027672EC1003084E5 /* FloatingPanel */,
 				27410767276B0B8900E77A00 /* Introspect */,
 				2741077B276C972000E77A00 /* OrderedCollections */,
 				273157BC2771A06B00256151 /* WalletConnectSwift */,
@@ -455,6 +454,7 @@
 				27E02BA027A88E21008B496F /* Lottie */,
 				2763CCF027AB68B9002660F5 /* BetterSafariView */,
 				27CBF43D27BAE89000DAB861 /* Toast */,
+				27CBF44827C0C92B00DAB861 /* PartialSheet */,
 			);
 			productName = Woof;
 			productReference = 27F12CBF275CE07400D87182 /* Moon.app */;
@@ -485,7 +485,6 @@
 			);
 			mainGroup = 27F12CB6275CE07400D87182;
 			packageReferences = (
-				2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				27410766276B0B8900E77A00 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				2741077A276C972000E77A00 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */,
@@ -495,6 +494,7 @@
 				27E02B9F27A88E21008B496F /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				2763CCEF27AB68B9002660F5 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				27CBF43C27BAE89000DAB861 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				27CBF44727C0C92B00DAB861 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 27F12CC0275CE07400D87182 /* Products */;
 			projectDirPath = "";
@@ -813,14 +813,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scenee/FloatingPanel";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WalletConnect/WalletConnectSwift";
@@ -877,6 +869,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		27CBF44727C0C92B00DAB861 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		27CD755427936B5900B2D083 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
@@ -896,11 +896,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		270241A027672EC1003084E5 /* FloatingPanel */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2702419F27672EC1003084E5 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
-			productName = FloatingPanel;
-		};
 		273157BC2771A06B00256151 /* WalletConnectSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 273157BB2771A06B00256151 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */;
@@ -935,6 +930,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 27CBF43C27BAE89000DAB861 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		27CBF44827C0C92B00DAB861 /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27CBF44727C0C92B00DAB861 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
 		};
 		27CD755527936B5900B2D083 /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;

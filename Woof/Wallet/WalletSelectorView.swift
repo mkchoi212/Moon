@@ -51,44 +51,70 @@ struct WalletIcon: View {
     }
 }
 
-struct WalletListContentView: View {
+struct WalletRow: View {
+    let iconURL: URL?
+    let addr: String
     @Binding var selectedAddress: String
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 15) {
+            WalletIcon(url: iconURL)
+            
+            Text(addr)
+                .font(.system(size: 15, weight: .semibold, design: .monospaced))
+            
+            if addr == selectedAddress {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundColor(.themeControl)
+            }
+        }
+        .onTapGesture {
+            selectedAddress = addr
+        }
+    }
+}
+
+struct ConnectWalletRow: View {
+    var body: some View {
+        HStack(alignment: .center, spacing: 15) {
+            Image(systemName: "plus")
+                .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color(uiColor: .label))
+                .padding(12)
+                .background(RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.lightGray, lineWidth: 1))
+                .frame(width: 50, height: 50)
+            
+            Text("Connect wallet")
+                .font(.system(size: 15, weight: .semibold, design: .default))
+            
+            Spacer()
+        }
+        .onTapGesture {
+            print("asdf")
+        }
+    }
+}
+
+struct WalletListContentView: View {
     var allowSelection = false
     
+    @Binding var selectedAddress: String
     @EnvironmentObject var viewModel: WalletConnectionViewModel
     
     var body: some View {
         List {
             ForEach(viewModel.walletAddresses, id: \.self) { addr in
-                HStack(alignment: .center, spacing: 15) {
-                    WalletIcon(url: viewModel.iconURL(of: addr))
-                    
-                    Text(addr)
-                        .font(.system(size: 15, weight: .regular, design: .monospaced))
-                    
-                    if addr == selectedAddress {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 22, weight: .semibold))
-                            .foregroundColor(.themeControl)
-                    }
-                }
-                .onTapGesture {
-                    if !allowSelection {
-                        return
-                    }
-                    
-                    selectedAddress = addr
-                }
+                WalletRow(iconURL: viewModel.iconURL(of: addr),
+                          addr: addr,
+                          selectedAddress: allowSelection ? $selectedAddress : .constant(""))
             }
             .onDelete(perform: delete)
             .listRowSeparator(.hidden)
             .listRowBackground(Color.modalBackground)
         }
         .listStyle(.plain)
-//        .toolbar {
-//            EditButton()
-//                .foregroundColor(.themeText)
-//        }
     }
     
     func delete(at offsets: IndexSet) {
@@ -103,33 +129,41 @@ struct WalletSelectorView: View {
     
     var body: some View {
         NavigationView {
-//            VStack(alignment: .leading, spacing: 4) {
-                WalletListContentView(selectedAddress: $viewModel.selectedAddress)
-                    .environmentObject(viewModel)
-
-//                Button {
-//                    presentWalletConnectionView = true
-//                } label: {
-//                    Text("Add an existing wallet")
-//                        .font(.system(size: 15))
-//                        .foregroundColor(.themeText)
-//                }
-//                .padding(.horizontal)
-//            }
-            .navigationBarTitleDisplayMode(.inline)
-            .background(Color.modalBackground)
-            .navigationTitle("Wallets")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            WalletListContentView(selectedAddress: $viewModel.selectedAddress)
+                .environmentObject(viewModel)
+                .navigationBarTitleDisplayMode(.inline)
+                .background(Color.modalBackground)
+                .navigationTitle("Wallets")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
                 }
-            }
         }
         .systemBottomSheet(isPresented: $presentWalletConnectionView, detents: .constant([.large()])) {
             WalletConnectionView()
                 .environmentObject(viewModel)
                 .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
+struct StackedWalletSelectorView: View {
+    @EnvironmentObject var viewModel: WalletConnectionViewModel
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Group {
+                ForEach(viewModel.walletAddresses, id: \.self) { addr in
+                    WalletRow(iconURL: viewModel.iconURL(of: addr),
+                              addr: addr,
+                              selectedAddress: viewModel.$selectedAddress)
+                    
+                    ConnectWalletRow()
+                }
+            }
+            .padding()
         }
     }
 }
@@ -140,5 +174,7 @@ struct WalletSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         WalletSelectorView()
             .environmentObject(WalletSelector_Previews.walletViewModel)
+        
+        ConnectWalletRow()
     }
 }
