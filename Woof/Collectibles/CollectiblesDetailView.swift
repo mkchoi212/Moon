@@ -46,9 +46,11 @@ struct CollectiblesHeaderView: View {
     var nft: NFT
     var collection: NFTCollection
     var imageResource: ImageResource
+    @Binding var toastPayload: ToastPayload?
+    var showCollections: () -> ()
     
     @State var showEtherscan = false
-    @Binding var toastPayload: ToastPayload?
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -98,6 +100,10 @@ struct CollectiblesHeaderView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
             Button {
+                presentationMode.wrappedValue.dismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    showCollections()
+                }
             } label: {
                 Text(collection.name)
                     .font(.system(size: 18, weight: .semibold, design: .rounded))
@@ -121,11 +127,14 @@ struct CollectiblesHeaderView: View {
 struct CollectiblesDetailView: View {
     var nft: NFT
     var collection: NFTCollection
+    var showCollections: () -> ()
+    
     @State var showMoreText: TextEntity?
     @State var presentToast = false
     @State var toastPayload: ToastPayload?
     
     @StateObject var viewModel = NFTViewModel()
+    
     let cellModifier = PureCell(sideInsets: 15, bottomInset: 15)
     let feedback = UIImpactFeedbackGenerator(style: .rigid)
     
@@ -134,7 +143,8 @@ struct CollectiblesDetailView: View {
             CollectiblesHeaderView(nft: nft,
                                    collection: collection,
                                    imageResource: viewModel.imageResource(for: nft, parentCollection: collection),
-                                   toastPayload: $toastPayload)
+                                   toastPayload: $toastPayload,
+                                   showCollections: showCollections)
                 .modifier(cellModifier)
             
             VStack(alignment: .leading, spacing: 15) {
@@ -218,7 +228,7 @@ struct CollectiblesDetailView_Previews: PreviewProvider {
     static let viewModel = NFTViewModel()
     
     static var previews: some View {
-        CollectiblesDetailView(nft: NFT.random, collection: NFTCollection.dummy)
+        CollectiblesDetailView(nft: NFT.random, collection: NFTCollection.dummy, showCollections: {})
             .environmentObject(CollectiblesView_Previews.viewModel)
     }
 }

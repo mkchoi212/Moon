@@ -39,7 +39,8 @@ struct CollectionView: View {
         .navigationBarTitleDisplayMode(.large)
         .sheet(item: $selection, content: { nft in
             CollectiblesDetailView(nft: nft.nft,
-                                   collection: nft.collection)
+                                   collection: nft.collection,
+                                   showCollections: {})
         })
     }
 }

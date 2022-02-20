@@ -72,7 +72,10 @@ struct CollectiblesList: View {
         .listStyle(.plain)
         .sheet(item: $selectedNFT, content: { selectedNFT in
             CollectiblesDetailView(nft: selectedNFT.nft,
-                                   collection: selectedNFT.collection)
+                                   collection: selectedNFT.collection,
+                                   showCollections: {
+                selectedCollection = selectedNFT.collection
+            })
         })
     }
 }
