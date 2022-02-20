@@ -13,7 +13,7 @@ struct HomeHeader: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(wallet.loadingPortfolio ?  "Loading wallet..." : "Good morning")
+            Text(wallet.loadingPortfolio ?  "Loading wallet..." : greetings())
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(Color(uiColor: .secondaryLabel))
     
@@ -31,6 +31,20 @@ struct HomeHeader: View {
                 }
                 .frame(width: 38, height: 38)
             }
+        }
+    }
+    
+    func greetings() -> String {
+        let components = Calendar.current.dateComponents([.hour], from: Date())
+        switch components.hour ?? 0 {
+            case 0...11:
+                return "Good morning"
+            case 11...14:
+                return "Good afternoon"
+            case 14...24:
+                return "Good evening"
+            default:
+                return "Good morning"
         }
     }
 }
