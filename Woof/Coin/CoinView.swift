@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Shimmer
+import PartialSheet
 
 struct ScrollOffsetPreferenceKey: PreferenceKey {
     static var defaultValue: CGPoint = .zero
@@ -44,10 +45,12 @@ struct CoinView: View {
     @State var offset: CGFloat = 10000
     @State var showPasteboardCopiedToast = false
     @State var presentWalletSelector = false
+    @State var presentWalletConnector = false
     
     @StateObject var coinViewModel = CoinViewModel()
     @StateObject var walletViewModel = WalletConnectionViewModel()
     @EnvironmentObject var wallet: WalletModel
+    @EnvironmentObject var sheetManager: PartialSheetManager
     
     let columnItem = [GridItem(.flexible())]
     
@@ -85,29 +88,7 @@ struct CoinView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
-                ForEach(wallet.loadingTokens ? coinViewModel.dummyTokenPlaceHolders : wallet.tokens, id: \.self.id) { token in
-                    if wallet.loadingTokens {
-                        CoinCell(token: token, loading: true)
-                            .listRowSeparator(.hidden)
-                            .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
-                            .environmentObject(wallet)
-                            .environmentObject(coinViewModel)
-                            .padding(.horizontal)
-                            .redacted(reason: .placeholder)
-                            .shimmering()
-                    } else {
-                        NavigationLink {
-                            CoinDetailView(token: token)
-                                .environmentObject(coinViewModel)
-                        } label: {
-                            CoinCell(token: token)
-                                .environmentObject(wallet)
-                                .environmentObject(coinViewModel)
-                                .padding(.vertical, 8)
-                        }
-                        .modifier(PureCell(zeroInsets: true))
-                    }
-                }
+                assetList()
             }
             .listStyle(.plain)
             .navigationBarTitleDisplayMode(.inline)
@@ -122,13 +103,52 @@ struct CoinView: View {
             })
             .refreshable {
                 wallet.reload(reset: false, refresh: true)
-            }     }
+            }
+        }
         .toast(isPresenting: $showPasteboardCopiedToast) {
             AlertToast(displayMode: .hud, type: .regular, title: "Copied to Pasteboard")
         }
-        .onChange(of: presentWalletSelector) { _ in
-                StackedWalletSelectorView()
+        .sheet(isPresented: $presentWalletConnector, content: {
+            WalletConnectionView()
+                .environmentObject(walletViewModel)
+        })
+        .onChange(of: presentWalletSelector) { presentSheet in
+            if presentSheet {
+                sheetManager.showPartialSheet {
+                    StackedWalletSelectorView(presentSheet: $presentWalletSelector) {
+                        presentWalletConnector = true
+                    }
                     .environmentObject(walletViewModel)
+                }
+            } else {
+                sheetManager.closePartialSheet()
+            }
+        }
+    }
+    
+    @ViewBuilder func assetList() -> some View {
+        ForEach(wallet.loadingTokens ? coinViewModel.dummyTokenPlaceHolders : wallet.tokens, id: \.self.id) { token in
+            if wallet.loadingTokens {
+                CoinCell(token: token, loading: true)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                    .environmentObject(wallet)
+                    .environmentObject(coinViewModel)
+                    .padding(.horizontal)
+                    .redacted(reason: .placeholder)
+                    .shimmering()
+            } else {
+                NavigationLink {
+                    CoinDetailView(token: token)
+                        .environmentObject(coinViewModel)
+                } label: {
+                    CoinCell(token: token)
+                        .environmentObject(wallet)
+                        .environmentObject(coinViewModel)
+                        .padding(.vertical, 8)
+                }
+                .modifier(PureCell(zeroInsets: true))
+            }
         }
     }
 }

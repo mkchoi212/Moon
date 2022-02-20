@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419127672DE9003084E5 /* View+floatingPanel.swift */; };
-		2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419227672DE9003084E5 /* View+floatingPanelContentMode.swift */; };
-		2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419327672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift */; };
-		2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419427672DE9003084E5 /* FloatingPanelView.swift */; };
-		2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419527672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift */; };
-		2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419627672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift */; };
-		2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2702419727672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift */; };
-		270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */; };
-		270241A62767301B003084E5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241A42767301B003084E5 /* SearchBar.swift */; };
-		270241AC27673812003084E5 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241AB27673812003084E5 /* PanelDelegate.swift */; };
 		270241BA27698A36003084E5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241B927698A36003084E5 /* String+Extension.swift */; };
 		273157BA2771A04500256151 /* WalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157B92771A04500256151 /* WalletConnect.swift */; };
 		273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 273157BC2771A06B00256151 /* WalletConnectSwift */; };
@@ -98,16 +88,6 @@
 
 /* Begin PBXFileReference section */
 		2702418A27670A26003084E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2702419127672DE9003084E5 /* View+floatingPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanel.swift"; sourceTree = "<group>"; };
-		2702419227672DE9003084E5 /* View+floatingPanelContentMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanelContentMode.swift"; sourceTree = "<group>"; };
-		2702419327672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanelSurfaceAppearance.swift"; sourceTree = "<group>"; };
-		2702419427672DE9003084E5 /* FloatingPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPanelView.swift; sourceTree = "<group>"; };
-		2702419527672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIHostingController+ignoreKeyboard.swift"; sourceTree = "<group>"; };
-		2702419627672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanelGrabberHandlePadding.swift"; sourceTree = "<group>"; };
-		2702419727672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+floatingPanelContentInsetAdjustmentBehavior.swift"; sourceTree = "<group>"; };
-		270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SurfaceAppearance+phone.swift"; sourceTree = "<group>"; };
-		270241A42767301B003084E5 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		270241AB27673812003084E5 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
 		270241B127687040003084E5 /* SystemBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemBottomSheet.swift; sourceTree = "<group>"; };
 		270241B227687040003084E5 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		270241B927698A36003084E5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -199,23 +179,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2702419027672DAD003084E5 /* Floating Sheet */ = {
-			isa = PBXGroup;
-			children = (
-				2702419427672DE9003084E5 /* FloatingPanelView.swift */,
-				270241AB27673812003084E5 /* PanelDelegate.swift */,
-				270241A42767301B003084E5 /* SearchBar.swift */,
-				2702419527672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift */,
-				2702419127672DE9003084E5 /* View+floatingPanel.swift */,
-				2702419727672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift */,
-				2702419227672DE9003084E5 /* View+floatingPanelContentMode.swift */,
-				2702419627672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift */,
-				2702419327672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift */,
-				270241A227672F8A003084E5 /* SurfaceAppearance+phone.swift */,
-			);
-			path = "Floating Sheet";
-			sourceTree = "<group>";
-		};
 		270241B527687043003084E5 /* Native Sheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,7 +310,6 @@
 		27E9E2072769AF1200EBB552 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				2702419027672DAD003084E5 /* Floating Sheet */,
 				270241B527687043003084E5 /* Native Sheet */,
 				27E9E2062769AF0C00EBB552 /* Editor Sheet */,
 			);
@@ -532,19 +494,14 @@
 				27CBF44027BB044000DAB861 /* CollectionView.swift in Sources */,
 				2793F72D278BC0EA00F85363 /* Price.swift in Sources */,
 				2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */,
-				270241A62767301B003084E5 /* SearchBar.swift in Sources */,
-				2702419827672DE9003084E5 /* View+floatingPanel.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
 				27410779276C320600E77A00 /* BigXButton.swift in Sources */,
 				2763CCE727AA1B6C002660F5 /* ActivityIndicator.swift in Sources */,
 				2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */,
-				270241A327672F8A003084E5 /* SurfaceAppearance+phone.swift in Sources */,
-				2702419A27672DE9003084E5 /* View+floatingPanelSurfaceAppearance.swift in Sources */,
 				275B82B2279675C2003D9B15 /* NFT.swift in Sources */,
 				27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */,
 				27E02BA327A88E46008B496F /* LottieView.swift in Sources */,
 				2763CCD827A89C73002660F5 /* Cover.swift in Sources */,
-				2702419C27672DE9003084E5 /* UIHostingController+ignoreKeyboard.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				275B82B427968764003D9B15 /* NFTViewModel.swift in Sources */,
 				27AE1FF7278A48DA00C07ADF /* Separator.swift in Sources */,
@@ -556,13 +513,11 @@
 				27E9E20D2769B06E00EBB552 /* PersistanceController.swift in Sources */,
 				2793F732278BC29500F85363 /* Fee.swift in Sources */,
 				2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */,
-				270241AC27673812003084E5 /* PanelDelegate.swift in Sources */,
 				273157BA2771A04500256151 /* WalletConnect.swift in Sources */,
 				274107892770343B00E77A00 /* WalletConnectionView.swift in Sources */,
 				27E7DE34278DEB230065F507 /* AnyKey.swift in Sources */,
 				27C05D25277289EE00200498 /* SettingsWalletListView.swift in Sources */,
 				275B82B0279675AC003D9B15 /* NFTCollection.swift in Sources */,
-				2702419927672DE9003084E5 /* View+floatingPanelContentMode.swift in Sources */,
 				27F12CE7275D7D7900D87182 /* Number+Extension.swift in Sources */,
 				2761D52C2793CFAA00BDF310 /* PureCell.swift in Sources */,
 				273157C12771D55B00256151 /* UserDefault.swift in Sources */,
@@ -571,7 +526,6 @@
 				275B82AE27967599003D9B15 /* NFTStats.swift in Sources */,
 				275B82BA279A6BB8003D9B15 /* FullModal.swift in Sources */,
 				27E7DE3B278E551C0065F507 /* GridHeaderTextStyle.swift in Sources */,
-				2702419D27672DE9003084E5 /* View+floatingPanelGrabberHandlePadding.swift in Sources */,
 				27C05D212771F10900200498 /* WalletConnectionViewModel.swift in Sources */,
 				275B82AC279631C0003D9B15 /* OpenSea.swift in Sources */,
 				27F12CD7275CE42700D87182 /* Color+Extension.swift in Sources */,
@@ -583,7 +537,6 @@
 				2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */,
 				275B82D1279BB633003D9B15 /* CompactText.swift in Sources */,
 				2763CCE627AA1B6C002660F5 /* BlurView.swift in Sources */,
-				2702419E27672DE9003084E5 /* View+floatingPanelContentInsetAdjustmentBehavior.swift in Sources */,
 				2793F715278B53D600F85363 /* Data.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
 				2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */,
@@ -596,7 +549,6 @@
 				27AE1FFB278A67D100C07ADF /* Theme.swift in Sources */,
 				2793F727278BABC600F85363 /* ShinyView.swift in Sources */,
 				273157BF2771D46A00256151 /* UserDefaults+Extension.swift in Sources */,
-				2702419B27672DE9003084E5 /* FloatingPanelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Introspect
+import zlib
 
 struct WalletIconModifier: ViewModifier {
     func body(content: Content) -> some View {
@@ -37,6 +38,7 @@ struct WalletIcon: View {
                     .background(Color(uiColor: .label))
                     .modifier(WalletIconModifier())
             } else {
+                // replace with diff image loader?
                 AsyncImage(url: url) { image in
                     image
                         .resizable()
@@ -44,6 +46,7 @@ struct WalletIcon: View {
                 } placeholder: {
                     placeHolder
                 }
+                .animation(nil, value: UUID())
             }
         } else {
             placeHolder
@@ -60,17 +63,18 @@ struct WalletRow: View {
         HStack(alignment: .center, spacing: 15) {
             WalletIcon(url: iconURL)
             
+            let isSelected = (addr == selectedAddress)
+            
             Text(addr)
                 .font(.system(size: 15, weight: .semibold, design: .monospaced))
+                .foregroundColor(isSelected ? .blue : .label)
+                .multilineTextAlignment(.leading)
             
-            if addr == selectedAddress {
+            if isSelected {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 22, weight: .semibold))
-                    .foregroundColor(.themeControl)
+                    .foregroundColor(.blue)
             }
-        }
-        .onTapGesture {
-            selectedAddress = addr
         }
     }
 }
@@ -90,9 +94,6 @@ struct ConnectWalletRow: View {
                 .font(.system(size: 15, weight: .semibold, design: .default))
             
             Spacer()
-        }
-        .onTapGesture {
-            print("asdf")
         }
     }
 }
@@ -150,20 +151,40 @@ struct WalletSelectorView: View {
 }
 
 struct StackedWalletSelectorView: View {
+    @Binding var presentSheet: Bool
     @EnvironmentObject var viewModel: WalletConnectionViewModel
+    
+    let feedback = UISelectionFeedbackGenerator()
+    var connectWallet: () -> ()
     
     var body: some View {
         VStack(spacing: 8) {
-            Group {
-                ForEach(viewModel.walletAddresses, id: \.self) { addr in
+            ForEach(viewModel.walletAddresses, id: \.self) { addr in
+                Button {
+                    feedback.selectionChanged()
+                    viewModel.selectedAddress = addr
+                    presentSheet = false
+                } label: {
                     WalletRow(iconURL: viewModel.iconURL(of: addr),
                               addr: addr,
                               selectedAddress: viewModel.$selectedAddress)
-                    
-                    ConnectWalletRow()
+                        .padding()
                 }
+                
+                Separator()
             }
-            .padding()
+            
+            Button {
+                presentSheet = false
+                feedback.selectionChanged()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    connectWallet()
+                }
+            } label: {
+                ConnectWalletRow()
+                    .padding()
+            }
         }
     }
 }
@@ -174,6 +195,8 @@ struct WalletSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         WalletSelectorView()
             .environmentObject(WalletSelector_Previews.walletViewModel)
+        
+        WalletRow(iconURL: nil, addr: "0x1321231029asdfasdfasdfadfsdfas3810928309123", selectedAddress: .constant("asdf"))
         
         ConnectWalletRow()
     }

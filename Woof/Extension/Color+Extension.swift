@@ -46,6 +46,10 @@ extension Color {
     static var lightBlue: Color {
         Color.blue.opacity(0.15)
     }
+    
+    static var label: Color {
+        Color(uiColor: .label)
+    }
 }
 
 extension UIColor {

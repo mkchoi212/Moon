@@ -45,42 +45,47 @@ struct WalletConnectionView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack(alignment: .center, spacing: 15) {
-            Spacer()
-            
-            TextField("Wallet address or ENS name", text: $rawEntryText)
-                .font(.system(size: 18, weight: .regular, design: .monospaced))
-            
-            Button {
-            } label: {
-                Text("Add Wallet")
-                    .foregroundColor(.white)
-                    .font(.system(size: 18, weight: .medium))
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.themePrimary))
-            }
-            .disabled(rawEntryText.isEmpty)
-            .opacity(rawEntryText.isEmpty ? 0.5 : 1)
-            
-            Separator(text: "Or")
-            
-            WalletConnectionOptionsView()
-                .environmentObject(viewModel)
-            
-            Spacer()
-        }
-        .padding(.horizontal)
-        .navigationTitle("Add Wallet")
-        .toolbar(content: {
-            ToolbarItem(placement: .cancellationAction) {
+        NavigationView {
+            VStack(alignment: .center, spacing: 18) {
+                Spacer()
+                
+                TextField("Wallet address or ENS name", text: $rawEntryText)
+                    .font(.system(size: 18, weight: .regular, design: .monospaced))
+                    .padding(.bottom)
+                
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+                    // todo
                 } label: {
-                    Image(systemName: "xmark")
+                    Text("Add Wallet")
+                        .foregroundColor(Color(uiColor: .systemBackground))
+                        .font(.system(size: 18, weight: .medium))
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.label))
                 }
+                .disabled(rawEntryText.isEmpty)
+                .opacity(rawEntryText.isEmpty ? 0.5 : 1)
+                
+                Separator(text: "Or")
+                
+                WalletConnectionOptionsView()
+                    .environmentObject(viewModel)
+                
+                Spacer()
             }
-        })
+            .padding(.horizontal)
+            .navigationTitle("Add Wallet")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar(content: {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                }
+            })
+        }
         .onChange(of: viewModel.walletAddresses) { newValue in
             presentationMode.wrappedValue.dismiss()
         }
@@ -93,5 +98,9 @@ struct WalletSelector_Previews: PreviewProvider {
     static var previews: some View {
         WalletConnectionView()
             .environmentObject(WalletSelector_Previews.walletViewModel)
+        
+        WalletConnectionView()
+            .environmentObject(WalletSelector_Previews.walletViewModel)
+            .preferredColorScheme(.dark)
     }
 }
