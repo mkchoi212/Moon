@@ -48,7 +48,7 @@ struct CoinView: View {
     @State var presentWalletConnector = false
     
     @StateObject var coinViewModel = CoinViewModel()
-    @StateObject var walletViewModel = WalletConnectionViewModel()
+    @EnvironmentObject var walletViewModel: WalletConnectionViewModel
     @EnvironmentObject var wallet: WalletModel
     @EnvironmentObject var sheetManager: PartialSheetManager
     

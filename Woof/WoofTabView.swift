@@ -16,6 +16,7 @@ struct ToastPayload: Identifiable, Equatable {
 struct WoofTabView: View {
     @StateObject var wallet = WalletModel()
     @StateObject var openSea = OpenSea()
+    @StateObject var connectionViewModel = WalletConnectionViewModel()
     
     @State var presentWalletSelector = false
     @State var presentNFTModal = false
@@ -25,11 +26,13 @@ struct WoofTabView: View {
     var body: some View {
         if wallet.wallets.isEmpty {
             OnboardingView()
+                .environmentObject(connectionViewModel)
         } else {
             TabView {
                 CoinView()
                     .environmentObject(wallet)
                     .environmentObject(sheetManager)
+                    .environmentObject(connectionViewModel)
                     .tabItem {
                         Label("Coins", systemImage: "moon.fill")
                     }

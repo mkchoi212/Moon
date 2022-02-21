@@ -38,53 +38,61 @@ struct WalletConnectionOptionsView: View {
     }
 }
 
-struct WalletConnectionView: View {
+struct WalletConnectionContentView: View {
     @State var rawEntryText: String = ""
+    @EnvironmentObject var viewModel: WalletConnectionViewModel
     
+    var body: some View {
+        VStack(alignment: .center, spacing: 18) {
+            Spacer()
+            
+            TextField("Wallet address or ENS name", text: $rawEntryText)
+                .font(.system(size: 18, weight: .regular, design: .monospaced))
+                .padding(.bottom)
+            
+            Button {
+                // todo
+            } label: {
+                Text("Add Wallet")
+                    .foregroundColor(Color(uiColor: .systemBackground))
+                    .font(.system(size: 18, weight: .medium))
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.label))
+            }
+            .disabled(rawEntryText.isEmpty)
+            .opacity(rawEntryText.isEmpty ? 0.5 : 1)
+            
+            Separator(text: "Or")
+            
+            WalletConnectionOptionsView()
+                .environmentObject(viewModel)
+            
+            Spacer()
+        }
+        .padding(.horizontal)
+        .navigationTitle("Add Wallet")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct WalletConnectionView: View {
     @EnvironmentObject var viewModel: WalletConnectionViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .center, spacing: 18) {
-                Spacer()
-                
-                TextField("Wallet address or ENS name", text: $rawEntryText)
-                    .font(.system(size: 18, weight: .regular, design: .monospaced))
-                    .padding(.bottom)
-                
-                Button {
-                    // todo
-                } label: {
-                    Text("Add Wallet")
-                        .foregroundColor(Color(uiColor: .systemBackground))
-                        .font(.system(size: 18, weight: .medium))
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.label))
-                }
-                .disabled(rawEntryText.isEmpty)
-                .opacity(rawEntryText.isEmpty ? 0.5 : 1)
-                
-                Separator(text: "Or")
-                
-                WalletConnectionOptionsView()
-                    .environmentObject(viewModel)
-                
-                Spacer()
-            }
-            .padding(.horizontal)
-            .navigationTitle("Add Wallet")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar(content: {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
+            WalletConnectionContentView()
+                .environmentObject(viewModel)
+                .toolbar(content: {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
                     }
-                }
-            })
+                })
         }
         .onChange(of: viewModel.wallets) { newValue in
             presentationMode.wrappedValue.dismiss()
