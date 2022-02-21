@@ -94,7 +94,7 @@ struct CardQRView: View {
                 }
                 
                 HStack(alignment: .center, spacing: 25) {
-                    Image(uiImage: UIImage(data: wallet.walletQRCodeData!)!)
+                    Image(uiImage: wallet.qrGenerator.qrImage!)
                         .resizable()
                         .scaledToFit()
                         .frame(width: proxy.size.height * 0.7, height: proxy.size.height * 0.7)

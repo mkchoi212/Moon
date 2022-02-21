@@ -12,6 +12,7 @@
 		273157BD2771A06B00256151 /* WalletConnectSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 273157BC2771A06B00256151 /* WalletConnectSwift */; };
 		273157BF2771D46A00256151 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157BE2771D46A00256151 /* UserDefaults+Extension.swift */; };
 		273157C12771D55B00256151 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157C02771D55B00256151 /* UserDefault.swift */; };
+		273E325E27C34D1C009F6B1C /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E325D27C34D1C009F6B1C /* QRCodeGenerator.swift */; };
 		27410768276B0B8900E77A00 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 27410767276B0B8900E77A00 /* Introspect */; };
 		27410779276C320600E77A00 /* BigXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410778276C320600E77A00 /* BigXButton.swift */; };
 		2741077C276C972000E77A00 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2741077B276C972000E77A00 /* OrderedCollections */; };
@@ -97,6 +98,7 @@
 		273157B92771A04500256151 /* WalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnect.swift; sourceTree = "<group>"; };
 		273157BE2771D46A00256151 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		273157C02771D55B00256151 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		273E325D27C34D1C009F6B1C /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
 		27410778276C320600E77A00 /* BigXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigXButton.swift; sourceTree = "<group>"; };
 		27410786276EE0A900E77A00 /* Auth+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Extension.swift"; sourceTree = "<group>"; };
 		274107882770343B00E77A00 /* WalletConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectionView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */,
 				27C05D222771F15300200498 /* WalletConnectButton.swift */,
 				2793F714278B53D600F85363 /* Data.swift */,
+				273E325D27C34D1C009F6B1C /* QRCodeGenerator.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				2763CCE627AA1B6C002660F5 /* BlurView.swift in Sources */,
 				2793F715278B53D600F85363 /* Data.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
+				273E325E27C34D1C009F6B1C /* QRCodeGenerator.swift in Sources */,
 				2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */,
 				2793F72B278BC0BE00F85363 /* Token.swift in Sources */,
 				27E7DE3D2791208A0065F507 /* CardView.swift in Sources */,

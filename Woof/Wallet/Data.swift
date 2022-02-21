@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreGraphics
 import SocketIO
 import Combine
 import SwiftUI
@@ -17,15 +16,13 @@ class WalletModel: ObservableObject {
     @Published var network = Network()
     @Published var portfolio: Portfolio?
     @Published var tokens: [Token] = []
-    @Published var objects: [OpenSeaAsset] = []
     @Published var transactions: [Transaction] = []
     
     @Published var loadingPortfolio = true
     @Published var loadingTokens = true
     @Published var loadingTransactions = true
     
-    let qrQueue = DispatchQueue(label: "com.woof.qr.code.generation")
-    var walletQRCodeData: Data?
+    let qrGenerator = QRCodeGenerator()
     
     lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -54,29 +51,9 @@ class WalletModel: ObservableObject {
     
     init() {
         reload(reset: false, refresh: false)
-    
-        qrQueue.async {
-            self.walletQRCodeData = self.getQRCodeDate(text: self.currentWalletAddress)
-        }
+        qrGenerator.currentWalletAddress = currentWalletAddress
     }
-    
-    func getQRCodeDate(text: String) -> Data? {
-        guard let filter = CIFilter(name: "CIQRCodeGenerator") else {
-            return nil
-        }
-        
-        let data = text.data(using: .ascii, allowLossyConversion: false)
-        filter.setValue(data, forKey: "inputMessage")
-        guard let ciimage = filter.outputImage else {
-            return nil
-        }
-        
-        let transform = CGAffineTransform(scaleX: 10, y: 10)
-        let scaledCIImage = ciimage.transformed(by: transform)
-        let uiimage = UIImage(ciImage: scaledCIImage)
-        return uiimage.pngData()!
-    }
-    
+  
     func copyAddressToPasteboard() {
         UIPasteboard.general.string = currentWalletAddress
     }
@@ -94,7 +71,6 @@ class WalletModel: ObservableObject {
             self.loadingTransactions = true
             
             self.tokens = []
-            self.objects = []
             self.transactions = []
             network.connect()
         }
@@ -198,40 +174,6 @@ let oneETHinWEI: Double = 1000000000000000000 // 18 decimals to divide amounts b
 
 struct ReverseENSLookupResponse: Codable {
     var address: String
-}
-
-struct OpenSeaAssetsResponse: Codable {
-    var assets: [OpenSeaAsset]
-}
-
-class OpenSeaAsset: Codable, ObservableObject {
-    var id: Int
-    var image_url: String
-    var name: String?
-    var external_link: String?
-    var traits: [OpenSeaAssetTrait]
-    var description: String?
-    var permalink: String
-    
-    func isSVG() -> Bool {
-        return self.image_url.suffix(3) == "svg"
-    }
-}
-
-struct OpenSeaAssetTrait: Codable {
-    var trait_type: String
-    var value: String
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.trait_type = try container.decode(String.self, forKey: .trait_type)
-        do {
-            self.value = try container.decode(String.self, forKey: .value)
-        } catch DecodingError.typeMismatch {
-            let value = try container.decode(Int.self, forKey: .value)
-            self.value = "\(value)"
-        }
-    }
 }
 
 let manager = SocketManager(socketURL: URL(string: "wss://api-v4.zerion.io")!, config: [.log(false), .extraHeaders(["Origin": "https://localhost:3000"]), .forceWebsockets(true), .connectParams( ["api_token": "Demo.ukEVQp6L5vfgxcz4sBke7XvS873GMYHy"]), .version(.two), .secure(true)])
