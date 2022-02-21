@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct OnboardingView: View {
     @State var degrees: Double = 0
     @State var showWalletConnect = false

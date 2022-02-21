@@ -13,16 +13,8 @@ struct SettingsWalletListView: View {
     @StateObject var viewModel = WalletConnectionViewModel()
     
     var body: some View {
-        if viewModel.wallets.isEmpty {
-            ScrollView {
-                WalletConnectionOptionsView()
-                    .environmentObject(viewModel)
-                    .padding(.horizontal)
-            }
-        } else {
-            WalletListContentView(allowSelection: false, selectedWallet: $_selectedWallet)
-                .environmentObject(viewModel)
-        }
+        WalletListContentView(allowSelection: false, selectedWallet: $_selectedWallet)
+            .environmentObject(viewModel)
     }
 }
 

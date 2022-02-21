@@ -8,10 +8,48 @@
 import SwiftUI
 import WalletConnectSwift
 
-struct WalletConnectionOptionsView: View {
+struct WalletConnectionContentView: View {
+    @State var rawEntryText: String = ""
     @EnvironmentObject var viewModel: WalletConnectionViewModel
     
     var body: some View {
+        VStack(alignment: .center, spacing: 18) {
+            Spacer()
+            
+            TextField("Wallet address or ENS name", text: $rawEntryText)
+                .font(.system(size: 18, weight: .regular, design: .monospaced))
+                .padding(.bottom)
+
+            addWalletButton
+            
+            Separator(text: "Or")
+            
+            options
+            
+            Spacer()
+        }
+        .padding(.horizontal)
+        .navigationTitle("Add Wallet")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    @ViewBuilder var addWalletButton: some View {
+        Button {
+            // todo
+        } label: {
+            Text("Add Wallet")
+                .foregroundColor(Color(uiColor: .systemBackground))
+                .font(.system(size: 18, weight: .medium))
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.label))
+        }
+        .disabled(rawEntryText.isEmpty)
+        .opacity(rawEntryText.isEmpty ? 0.5 : 1)
+        
+    }
+    
+    @ViewBuilder var options: some View {
         VStack {
             WalletConnectButton(image: Image(uiImage: .init(named: "metamask")!),
                                 title: "Connect with Metamask") { uri in
@@ -35,44 +73,6 @@ struct WalletConnectionOptionsView: View {
             
             Spacer()
         }
-    }
-}
-
-struct WalletConnectionContentView: View {
-    @State var rawEntryText: String = ""
-    @EnvironmentObject var viewModel: WalletConnectionViewModel
-    
-    var body: some View {
-        VStack(alignment: .center, spacing: 18) {
-            Spacer()
-            
-            TextField("Wallet address or ENS name", text: $rawEntryText)
-                .font(.system(size: 18, weight: .regular, design: .monospaced))
-                .padding(.bottom)
-            
-            Button {
-                // todo
-            } label: {
-                Text("Add Wallet")
-                    .foregroundColor(Color(uiColor: .systemBackground))
-                    .font(.system(size: 18, weight: .medium))
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.label))
-            }
-            .disabled(rawEntryText.isEmpty)
-            .opacity(rawEntryText.isEmpty ? 0.5 : 1)
-            
-            Separator(text: "Or")
-            
-            WalletConnectionOptionsView()
-                .environmentObject(viewModel)
-            
-            Spacer()
-        }
-        .padding(.horizontal)
-        .navigationTitle("Add Wallet")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
