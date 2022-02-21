@@ -18,50 +18,24 @@ final class WalletConnectionViewModel: ObservableObject {
     var walletToSessionMap: [String: Session] = [:]
     var uri: String?
     
-    @Published var walletAddresses: [String] = []
     @Published var connectionError: Error?
-    @Published var selectedWallet: Session?
-    @AppStorage("current.wallet.address") var selectedAddress: String = ""
+    @Published var selectedSession: Session?
+    @Published var wallets: [Wallet] = []
+    @AppStorage("current.wallet") var selectedWallet: Wallet = .empty
     
     var cancellables = Set<AnyCancellable>()
     
     init() {
-        refreshWallets(onMainThread: false)
-        selectedWallet = walletToSessionMap[selectedAddress]
+        let addr = selectedWallet.address
+        selectedSession = walletToSessionMap[addr]
         
         NotificationCenter.default.publisher(for: .init(rawValue: "refresh.selected.wallet"), object: nil)
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.selectedWallet = self.walletToSessionMap[self.selectedAddress]
+                self.selectedSession = self.walletToSessionMap[addr]
             }
             .store(in: &cancellables)
-    }
-    
-    func refreshWallets(onMainThread: Bool = true) {
-        let refresh: () -> () = {
-            self.sessions = UserDefaultsConfig.sessions
-            var addresses = [String]()
-            
-            self.sessions.forEach { session in
-                let accounts = session.walletInfo?.accounts ?? []
-                addresses.append(contentsOf: accounts)
-                
-                accounts.forEach {
-                    self.walletToSessionMap[$0] = session
-                }
-            }
-            
-            self.walletAddresses = addresses
-        }
-        
-        if onMainThread {
-            DispatchQueue.main.async {
-                refresh()
-            }
-        } else {
-            refresh()
-        }
     }
     
     func connect() -> String? {
@@ -106,21 +80,17 @@ final class WalletConnectionViewModel: ObservableObject {
 extension WalletConnectionViewModel: WalletConnectDelegate {
     func failedToConnect() {
         print("FAILED")
-        refreshWallets()
     }
     
     func didConnect() {
         print("CONNECTEd")
-        refreshWallets()
     }
     
     func didDisconnect() {
-        refreshWallets()
         print("DISCONNECTEd")
     }
     
     func didUpdate() {
-        refreshWallets()
         print("UPDATED")
     }
 }

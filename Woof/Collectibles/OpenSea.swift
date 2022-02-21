@@ -11,7 +11,7 @@ import SwiftUI
 typealias CollectionTable = [NFTCollection: [NFT]]
 
 final class OpenSea: ObservableObject {
-    @AppStorage("current.wallet.address") var currentWalletAddress: String = ""
+    @AppStorage("current.wallet") var currentWallet: Wallet = .empty
     
     @Published var isNotAvailable = false
     @Published var isLoading = true
@@ -74,7 +74,7 @@ extension OpenSea {
     private func fetchNFTs(in collectionSlug: String) async throws -> [NFT] {
         var urlComponents = URLComponents(string: "https://api.opensea.io/api/v1/assets")!
         urlComponents.queryItems = [
-            .init(name: "owner", value: currentWalletAddress),
+            .init(name: "owner", value: currentWallet.address),
             .init(name: "collection", value: collectionSlug)
         ]
         

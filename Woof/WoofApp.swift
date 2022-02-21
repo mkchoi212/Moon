@@ -17,17 +17,19 @@ struct WoofApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if authModel.isAuthenticated || !authModel.isBiometricsEnabled {
-                WoofTabView()
-                    .animation(.easeIn(duration: 0.15), value: authModel.isAuthenticated)
-                    .environmentObject(sheetManager)
-            } else {
-                Cover()
-                    .environmentObject(authModel)
-                    .onAppear {
-                        authModel.authenticate()
-                    }
+            Group {
+                if authModel.isAuthenticated || !authModel.isBiometricsEnabled {
+                    WoofTabView()
+                        .environmentObject(sheetManager)
+                } else {
+                    Cover()
+                        .environmentObject(authModel)
+                        .onAppear {
+                            authModel.authenticate()
+                        }
+                }
             }
+            .animation(.easeIn(duration: 0.25), value: authModel.isAuthenticated)
         }
     }
 }

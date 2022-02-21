@@ -23,27 +23,31 @@ struct WoofTabView: View {
     @EnvironmentObject var sheetManager: PartialSheetManager
     
     var body: some View {
-        TabView {
-            CoinView()
-                .environmentObject(wallet)
-                .environmentObject(sheetManager)
-                .tabItem {
-                    Label("Coins", systemImage: "moon.fill")
-                }
-            
-            CollectiblesView()
-                .environmentObject(openSea)
-                .tabItem {
-                    Label("Collectibles", systemImage: "square")
-                }
-            
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "person")
-                }
+        if wallet.wallets.isEmpty {
+            OnboardingView()
+        } else {
+            TabView {
+                CoinView()
+                    .environmentObject(wallet)
+                    .environmentObject(sheetManager)
+                    .tabItem {
+                        Label("Coins", systemImage: "moon.fill")
+                    }
+                
+                CollectiblesView()
+                    .environmentObject(openSea)
+                    .tabItem {
+                        Label("Collectibles", systemImage: "square")
+                    }
+                
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "person")
+                    }
+            }
+            .tint(.accentColor)
+            .addPartialSheet()
         }
-        .tint(.accentColor)
-        .addPartialSheet()
     }
 }
 

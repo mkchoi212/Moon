@@ -86,7 +86,7 @@ struct WalletConnectionView: View {
                 }
             })
         }
-        .onChange(of: viewModel.walletAddresses) { newValue in
+        .onChange(of: viewModel.wallets) { newValue in
             presentationMode.wrappedValue.dismiss()
         }
     }

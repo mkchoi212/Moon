@@ -22,7 +22,9 @@ class WalletConnect {
     var delegate: WalletConnectDelegate
 
     let iconURL = "https://pbs.twimg.com/profile_images/1473169204610502656/wrHEpsx4_400x400.jpg"
-    @AppStorage("current.wallet.address") private var selectedAddress: String = ""
+    
+    @AppStorage("current.wallet") var selectedWallet: Wallet = .empty
+    @AppStorage("wallets") var wallets: [Wallet] = []
     
     init(delegate: WalletConnectDelegate) {
         self.delegate = delegate
@@ -81,28 +83,30 @@ extension WalletConnect: ClientDelegate {
     func client(_ client: Client, didConnect session: Session) {
         self.session = session
         
-        let existingWalletIdx = UserDefaultsConfig.sessions.firstIndex { s in
-            s.url == session.url
+        let existingWalletIdx = wallets.firstIndex { wallet in
+            wallet.session?.url == session.url
         }
         if let existingWalletIdx = existingWalletIdx {
-            UserDefaultsConfig.sessions.remove(at: existingWalletIdx)
+            wallets.remove(at: existingWalletIdx)
         }
+       
+        let newAddr = session.walletInfo?.accounts.first ?? ""
+        let newWallet = Wallet(address: newAddr, connectionType: .write(session))
         
-        UserDefaultsConfig.sessions.append(session)
-        selectedAddress = session.walletInfo?.accounts.first ?? ""
+        wallets.append(newWallet)
+        selectedWallet = newWallet
         
         NotificationCenter.default.post(name: .init(rawValue: "refresh.selected.wallet"), object: nil)
         delegate.didConnect()
     }
 
     func client(_ client: Client, didDisconnect session: Session) {
-        let sessions = UserDefaultsConfig.sessions
-        let idx = sessions.firstIndex {
-            $0.url == session.url
+        let idx = wallets.firstIndex {
+            $0.session?.url == session.url
         }
         
         if let idx = idx {
-            UserDefaultsConfig.sessions.remove(at: idx)
+            wallets.remove(at: idx)
         }
         
         delegate.didDisconnect()

@@ -13,6 +13,8 @@
 		273157BF2771D46A00256151 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157BE2771D46A00256151 /* UserDefaults+Extension.swift */; };
 		273157C12771D55B00256151 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273157C02771D55B00256151 /* UserDefault.swift */; };
 		273E325E27C34D1C009F6B1C /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E325D27C34D1C009F6B1C /* QRCodeGenerator.swift */; };
+		273E326027C34F4C009F6B1C /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E325F27C34F4C009F6B1C /* Wallet.swift */; };
+		273E326327C3F594009F6B1C /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326227C3F594009F6B1C /* Onboarding.swift */; };
 		27410768276B0B8900E77A00 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 27410767276B0B8900E77A00 /* Introspect */; };
 		27410779276C320600E77A00 /* BigXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410778276C320600E77A00 /* BigXButton.swift */; };
 		2741077C276C972000E77A00 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2741077B276C972000E77A00 /* OrderedCollections */; };
@@ -47,7 +49,7 @@
 		2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
 		2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
 		2793F70F278A7F9500F85363 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C727698E43003084E5 /* BottomSheet.swift */; };
-		2793F715278B53D600F85363 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F714278B53D600F85363 /* Data.swift */; };
+		2793F715278B53D600F85363 /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F714278B53D600F85363 /* WalletModel.swift */; };
 		2793F718278B551500F85363 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2793F717278B551500F85363 /* SocketIO */; };
 		2793F720278B93D800F85363 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 2793F71F278B93D800F85363 /* Starscream */; };
 		2793F727278BABC600F85363 /* ShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2793F724278BABC600F85363 /* ShinyView.swift */; };
@@ -99,6 +101,8 @@
 		273157BE2771D46A00256151 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		273157C02771D55B00256151 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		273E325D27C34D1C009F6B1C /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		273E325F27C34F4C009F6B1C /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		273E326227C3F594009F6B1C /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		27410778276C320600E77A00 /* BigXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigXButton.swift; sourceTree = "<group>"; };
 		27410786276EE0A900E77A00 /* Auth+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Extension.swift"; sourceTree = "<group>"; };
 		274107882770343B00E77A00 /* WalletConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectionView.swift; sourceTree = "<group>"; };
@@ -125,7 +129,7 @@
 		2763CCE927AA1B81002660F5 /* MailComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposer.swift; sourceTree = "<group>"; };
 		2763CCEB27AB638E002660F5 /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
 		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
-		2793F714278B53D600F85363 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		2793F714278B53D600F85363 /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
 		2793F724278BABC600F85363 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
 		2793F725278BABC600F85363 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		2793F726278BABC600F85363 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
@@ -207,15 +211,24 @@
 		273157B827718E9700256151 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				273E326127C3503C009F6B1C /* Connection (UI) */,
+				273E325F27C34F4C009F6B1C /* Wallet.swift */,
 				273157B92771A04500256151 /* WalletConnect.swift */,
-				27C05D202771F10900200498 /* WalletConnectionViewModel.swift */,
-				274107882770343B00E77A00 /* WalletConnectionView.swift */,
-				27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */,
-				27C05D222771F15300200498 /* WalletConnectButton.swift */,
-				2793F714278B53D600F85363 /* Data.swift */,
+				2793F714278B53D600F85363 /* WalletModel.swift */,
 				273E325D27C34D1C009F6B1C /* QRCodeGenerator.swift */,
 			);
 			path = Wallet;
+			sourceTree = "<group>";
+		};
+		273E326127C3503C009F6B1C /* Connection (UI) */ = {
+			isa = PBXGroup;
+			children = (
+				27C05D222771F15300200498 /* WalletConnectButton.swift */,
+				27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */,
+				27C05D202771F10900200498 /* WalletConnectionViewModel.swift */,
+				274107882770343B00E77A00 /* WalletConnectionView.swift */,
+			);
+			path = "Connection (UI)";
 			sourceTree = "<group>";
 		};
 		27410785276EDB6F00E77A00 /* Settings */ = {
@@ -354,6 +367,7 @@
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
 				27AE1FFA278A67D100C07ADF /* Theme.swift */,
 				2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */,
+				273E326227C3F594009F6B1C /* Onboarding.swift */,
 				2761D52F2793CFD000BDF310 /* Coin */,
 				2761D5342794E3E000BDF310 /* Collectibles */,
 				2793F72E278BC1FC00F85363 /* Models */,
@@ -499,6 +513,7 @@
 				2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
 				27410779276C320600E77A00 /* BigXButton.swift in Sources */,
+				273E326027C34F4C009F6B1C /* Wallet.swift in Sources */,
 				2763CCE727AA1B6C002660F5 /* ActivityIndicator.swift in Sources */,
 				2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */,
 				275B82B2279675C2003D9B15 /* NFT.swift in Sources */,
@@ -540,7 +555,7 @@
 				2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */,
 				275B82D1279BB633003D9B15 /* CompactText.swift in Sources */,
 				2763CCE627AA1B6C002660F5 /* BlurView.swift in Sources */,
-				2793F715278B53D600F85363 /* Data.swift in Sources */,
+				2793F715278B53D600F85363 /* WalletModel.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
 				273E325E27C34D1C009F6B1C /* QRCodeGenerator.swift in Sources */,
 				2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */,
@@ -548,6 +563,7 @@
 				27E7DE3D2791208A0065F507 /* CardView.swift in Sources */,
 				275B82B8279A4AC7003D9B15 /* CollectiblesDetailView.swift in Sources */,
 				27E7DE39278E39760065F507 /* CoinDetailView.swift in Sources */,
+				273E326327C3F594009F6B1C /* Onboarding.swift in Sources */,
 				2763CCEC27AB638E002660F5 /* TransactionDetailView.swift in Sources */,
 				2763CCEA27AA1B81002660F5 /* MailComposer.swift in Sources */,
 				27AE1FFB278A67D100C07ADF /* Theme.swift in Sources */,

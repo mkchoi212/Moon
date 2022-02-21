@@ -9,18 +9,18 @@ import Foundation
 import SwiftUI
 
 struct SettingsWalletListView: View {
-    @State var _selectedAddr: String = ""
+    @State var _selectedWallet: Wallet = .empty
     @StateObject var viewModel = WalletConnectionViewModel()
     
     var body: some View {
-        if viewModel.walletAddresses.isEmpty {
+        if viewModel.wallets.isEmpty {
             ScrollView {
                 WalletConnectionOptionsView()
                     .environmentObject(viewModel)
                     .padding(.horizontal)
             }
         } else {
-            WalletListContentView(allowSelection: false, selectedAddress: $_selectedAddr)
+            WalletListContentView(allowSelection: false, selectedWallet: $_selectedWallet)
                 .environmentObject(viewModel)
         }
     }

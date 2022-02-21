@@ -101,15 +101,15 @@ struct ConnectWalletRow: View {
 struct WalletListContentView: View {
     var allowSelection = false
     
-    @Binding var selectedAddress: String
+    @Binding var selectedWallet: Wallet
     @EnvironmentObject var viewModel: WalletConnectionViewModel
     
     var body: some View {
         List {
-            ForEach(viewModel.walletAddresses, id: \.self) { addr in
-                WalletRow(iconURL: viewModel.iconURL(of: addr),
-                          addr: addr,
-                          selectedAddress: allowSelection ? $selectedAddress : .constant(""))
+            ForEach(viewModel.wallets, id: \.self) { wallet in
+                WalletRow(iconURL: viewModel.iconURL(of: wallet.address),
+                          addr: wallet.address,
+                          selectedAddress: allowSelection ? $selectedWallet.address: .constant(""))
             }
             .onDelete(perform: delete)
             .listRowSeparator(.hidden)
@@ -130,7 +130,7 @@ struct WalletSelectorView: View {
     
     var body: some View {
         NavigationView {
-            WalletListContentView(selectedAddress: $viewModel.selectedAddress)
+            WalletListContentView(selectedWallet: $viewModel.selectedWallet)
                 .environmentObject(viewModel)
                 .navigationBarTitleDisplayMode(.inline)
                 .background(Color.modalBackground)
@@ -159,15 +159,15 @@ struct StackedWalletSelectorView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            ForEach(viewModel.walletAddresses, id: \.self) { addr in
+            ForEach(viewModel.wallets, id: \.self) { wallet in
                 Button {
                     feedback.selectionChanged()
-                    viewModel.selectedAddress = addr
+                    viewModel.selectedWallet = wallet
                     presentSheet = false
                 } label: {
-                    WalletRow(iconURL: viewModel.iconURL(of: addr),
-                              addr: addr,
-                              selectedAddress: viewModel.$selectedAddress)
+                    WalletRow(iconURL: viewModel.iconURL(of: wallet.address),
+                              addr: wallet.address,
+                              selectedAddress: viewModel.$selectedWallet.address)
                         .padding()
                 }
                 

@@ -17,19 +17,4 @@ final class UserDefaultsConfig: NSObject {
     
     @UserDefault("theme", defaultValue: nil)
     static var theme: String?
-    
-    @UserDefault("wallet.sessions", defaultValue: [])
-    static var sessionsDataArray: [Data]
-    static var sessions: [Session] {
-        get {
-            return sessionsDataArray.compactMap {
-                try? UserDefaultsConfig.shared.decoder.decode(Session.self, from: $0)
-            }
-        }
-        set {
-            sessionsDataArray = newValue.compactMap {
-                try? UserDefaultsConfig.shared.encoder.encode($0)
-            }
-        }
-    }
 }
