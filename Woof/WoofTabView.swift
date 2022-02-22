@@ -22,9 +22,10 @@ struct WoofTabView: View {
     @State var presentNFTModal = false
     
     @EnvironmentObject var sheetManager: PartialSheetManager
+    @AppStorage("did.complete.onboarding") var didCompleteOnboarding = false
     
     var body: some View {
-        if wallet.wallets.isEmpty {
+        if !didCompleteOnboarding {
             OnboardingView()
                 .environmentObject(connectionViewModel)
         } else {

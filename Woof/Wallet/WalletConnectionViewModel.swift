@@ -22,24 +22,8 @@ final class WalletConnectionViewModel: ObservableObject {
     
     @Published var isLoading = false
     @Published var connectionError: Error?
-    @Published var selectedSession: Session?
     @AppStorage("wallets") var wallets: [Wallet] = []
-    @AppStorage("current.wallet") var selectedWallet: Wallet = .empty
-    
-    var cancellables = Set<AnyCancellable>()
-    
-    init() {
-        let addr = selectedWallet.address
-        selectedSession = walletToSessionMap[addr]
-        
-        NotificationCenter.default.publisher(for: .init(rawValue: "refresh.selected.wallet"), object: nil)
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                self.selectedSession = self.walletToSessionMap[addr]
-            }
-            .store(in: &cancellables)
-    }
+    @AppStorage("current.wallet") var selectedWallet: Wallet?
     
     func connectReadOnlyWallet(input: String) async {
         DispatchQueue.main.async {
@@ -65,6 +49,7 @@ final class WalletConnectionViewModel: ObservableObject {
     private func addWallet(wallet: Wallet) {
         DispatchQueue.main.async {
             self.wallets.append(wallet)
+            self.selectedWallet = wallet
         }
     }
     

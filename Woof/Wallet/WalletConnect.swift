@@ -16,7 +16,7 @@ protocol WalletConnectDelegate {
     func didUpdate()
 }
 
-class WalletConnect {
+final class WalletConnect {
     var client: Client!
     var session: Session!
     var delegate: WalletConnectDelegate

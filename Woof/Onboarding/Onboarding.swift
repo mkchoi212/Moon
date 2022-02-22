@@ -58,6 +58,7 @@ struct OnboardingView: View {
             }
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(.stack)
     }
     
     @ViewBuilder var buttons: some View {

@@ -101,7 +101,7 @@ struct ConnectWalletRow: View {
 struct WalletListContentView: View {
     var allowSelection = false
     
-    @Binding var selectedWallet: Wallet
+    @Binding var selectedWallet: Wallet?
     @EnvironmentObject var viewModel: WalletConnectionViewModel
     
     var body: some View {
@@ -109,7 +109,9 @@ struct WalletListContentView: View {
             ForEach(viewModel.wallets, id: \.self) { wallet in
                 WalletRow(iconURL: viewModel.iconURL(of: wallet.address),
                           addr: wallet.address,
-                          selectedAddress: allowSelection ? $selectedWallet.address: .constant(""))
+                          selectedAddress: .constant(""))
+                #warning("todo")
+//                          selectedAddress: allowSelection ? $selectedWallet.address: .constant(""))
             }
             .onDelete(perform: delete)
             .listRowSeparator(.hidden)
@@ -126,11 +128,11 @@ struct WalletListContentView: View {
 struct WalletSelectorView: View {
     @State var presentWalletConnectionView = false
     
-    @EnvironmentObject var viewModel: WalletConnectionViewModel
+    @EnvironmentObject var viewModel: WalletModel
     
     var body: some View {
         NavigationView {
-            WalletListContentView(selectedWallet: $viewModel.selectedWallet)
+            WalletListContentView(selectedWallet: $viewModel.currentWallet)
                 .environmentObject(viewModel)
                 .navigationBarTitleDisplayMode(.inline)
                 .background(Color.modalBackground)
@@ -167,7 +169,7 @@ struct StackedWalletSelectorView: View {
                 } label: {
                     WalletRow(iconURL: viewModel.iconURL(of: wallet.address),
                               addr: wallet.address,
-                              selectedAddress: viewModel.$selectedWallet.address)
+                              selectedAddress: .constant(""))
                         .padding()
                 }
                 

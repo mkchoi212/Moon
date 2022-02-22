@@ -18,6 +18,7 @@
 		273E326527C44A0C009F6B1C /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326427C44A0C009F6B1C /* UINavigationBar+Extension.swift */; };
 		273E326727C466AA009F6B1C /* ReverseENS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326627C466AA009F6B1C /* ReverseENS.swift */; };
 		273E326A27C46A54009F6B1C /* OnboardingWalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326927C46A54009F6B1C /* OnboardingWalletConnect.swift */; };
+		273E326C27C5AA2F009F6B1C /* PrivacyPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326B27C5AA2F009F6B1C /* PrivacyPermissionView.swift */; };
 		27410768276B0B8900E77A00 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 27410767276B0B8900E77A00 /* Introspect */; };
 		27410779276C320600E77A00 /* BigXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410778276C320600E77A00 /* BigXButton.swift */; };
 		2741077C276C972000E77A00 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2741077B276C972000E77A00 /* OrderedCollections */; };
@@ -109,6 +110,7 @@
 		273E326427C44A0C009F6B1C /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		273E326627C466AA009F6B1C /* ReverseENS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseENS.swift; sourceTree = "<group>"; };
 		273E326927C46A54009F6B1C /* OnboardingWalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWalletConnect.swift; sourceTree = "<group>"; };
+		273E326B27C5AA2F009F6B1C /* PrivacyPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPermissionView.swift; sourceTree = "<group>"; };
 		27410778276C320600E77A00 /* BigXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigXButton.swift; sourceTree = "<group>"; };
 		27410786276EE0A900E77A00 /* Auth+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Extension.swift"; sourceTree = "<group>"; };
 		274107882770343B00E77A00 /* WalletConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectionView.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			children = (
 				273E326227C3F594009F6B1C /* Onboarding.swift */,
 				273E326927C46A54009F6B1C /* OnboardingWalletConnect.swift */,
+				273E326B27C5AA2F009F6B1C /* PrivacyPermissionView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				2793F70F278A7F9500F85363 /* BottomSheet.swift in Sources */,
 				27410787276EE0A900E77A00 /* Auth+Extension.swift in Sources */,
 				27CBF44027BB044000DAB861 /* CollectionView.swift in Sources */,
+				273E326C27C5AA2F009F6B1C /* PrivacyPermissionView.swift in Sources */,
 				2793F72D278BC0EA00F85363 /* Price.swift in Sources */,
 				2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
