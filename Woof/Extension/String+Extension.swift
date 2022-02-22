@@ -12,3 +12,5 @@ extension String {
         prefix(1).capitalized + dropFirst()
     }
 }
+
+extension String: Error { }

@@ -35,18 +35,31 @@ struct WalletConnectionContentView: View {
     
     @ViewBuilder var addWalletButton: some View {
         Button {
-            // todo
+            Task {
+                await viewModel.connectReadOnlyWallet(input: rawEntryText)
+            }
         } label: {
-            Text("Add Wallet")
-                .foregroundColor(Color(uiColor: .systemBackground))
-                .font(.system(size: 18, weight: .medium))
+            addButton
                 .padding()
                 .frame(maxWidth: .infinity)
+                .frame(height: 60)
                 .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.label))
         }
         .disabled(rawEntryText.isEmpty)
         .opacity(rawEntryText.isEmpty ? 0.5 : 1)
-        
+    }
+    
+    @ViewBuilder var addButton: some View {
+        if viewModel.isLoading {
+            ProgressView()
+                .progressViewStyle(.circular)
+                .tint(Color(uiColor: UIColor.systemBackground))
+                .frame(height: 30)
+        } else {
+           Text("Add Wallet")
+                .foregroundColor(Color(uiColor: .systemBackground))
+                .font(.system(size: 18, weight: .medium))
+        }
     }
     
     @ViewBuilder var options: some View {

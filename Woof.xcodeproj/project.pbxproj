@@ -16,6 +16,8 @@
 		273E326027C34F4C009F6B1C /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E325F27C34F4C009F6B1C /* Wallet.swift */; };
 		273E326327C3F594009F6B1C /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326227C3F594009F6B1C /* Onboarding.swift */; };
 		273E326527C44A0C009F6B1C /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326427C44A0C009F6B1C /* UINavigationBar+Extension.swift */; };
+		273E326727C466AA009F6B1C /* ReverseENS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326627C466AA009F6B1C /* ReverseENS.swift */; };
+		273E326A27C46A54009F6B1C /* OnboardingWalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273E326927C46A54009F6B1C /* OnboardingWalletConnect.swift */; };
 		27410768276B0B8900E77A00 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 27410767276B0B8900E77A00 /* Introspect */; };
 		27410779276C320600E77A00 /* BigXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27410778276C320600E77A00 /* BigXButton.swift */; };
 		2741077C276C972000E77A00 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 2741077B276C972000E77A00 /* OrderedCollections */; };
@@ -105,6 +107,8 @@
 		273E325F27C34F4C009F6B1C /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		273E326227C3F594009F6B1C /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		273E326427C44A0C009F6B1C /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
+		273E326627C466AA009F6B1C /* ReverseENS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseENS.swift; sourceTree = "<group>"; };
+		273E326927C46A54009F6B1C /* OnboardingWalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWalletConnect.swift; sourceTree = "<group>"; };
 		27410778276C320600E77A00 /* BigXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigXButton.swift; sourceTree = "<group>"; };
 		27410786276EE0A900E77A00 /* Auth+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Extension.swift"; sourceTree = "<group>"; };
 		274107882770343B00E77A00 /* WalletConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnectionView.swift; sourceTree = "<group>"; };
@@ -213,24 +217,34 @@
 		273157B827718E9700256151 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				273E326127C3503C009F6B1C /* Connection (UI) */,
+				273E326127C3503C009F6B1C /* Connection UI */,
 				273E325F27C34F4C009F6B1C /* Wallet.swift */,
 				273157B92771A04500256151 /* WalletConnect.swift */,
+				27C05D202771F10900200498 /* WalletConnectionViewModel.swift */,
+				273E326627C466AA009F6B1C /* ReverseENS.swift */,
 				2793F714278B53D600F85363 /* WalletModel.swift */,
-				273E325D27C34D1C009F6B1C /* QRCodeGenerator.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
 		};
-		273E326127C3503C009F6B1C /* Connection (UI) */ = {
+		273E326127C3503C009F6B1C /* Connection UI */ = {
 			isa = PBXGroup;
 			children = (
 				27C05D222771F15300200498 /* WalletConnectButton.swift */,
 				27AE1FF8278A505000C07ADF /* WalletSelectorView.swift */,
-				27C05D202771F10900200498 /* WalletConnectionViewModel.swift */,
 				274107882770343B00E77A00 /* WalletConnectionView.swift */,
+				273E325D27C34D1C009F6B1C /* QRCodeGenerator.swift */,
 			);
-			path = "Connection (UI)";
+			path = "Connection UI";
+			sourceTree = "<group>";
+		};
+		273E326827C46A4A009F6B1C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				273E326227C3F594009F6B1C /* Onboarding.swift */,
+				273E326927C46A54009F6B1C /* OnboardingWalletConnect.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		27410785276EDB6F00E77A00 /* Settings */ = {
@@ -369,7 +383,7 @@
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
 				27AE1FFA278A67D100C07ADF /* Theme.swift */,
 				2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */,
-				273E326227C3F594009F6B1C /* Onboarding.swift */,
+				273E326827C46A4A009F6B1C /* Onboarding */,
 				2761D52F2793CFD000BDF310 /* Coin */,
 				2761D5342794E3E000BDF310 /* Collectibles */,
 				2793F72E278BC1FC00F85363 /* Models */,
@@ -520,6 +534,7 @@
 				2763CCE727AA1B6C002660F5 /* ActivityIndicator.swift in Sources */,
 				2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */,
 				275B82B2279675C2003D9B15 /* NFT.swift in Sources */,
+				273E326A27C46A54009F6B1C /* OnboardingWalletConnect.swift in Sources */,
 				27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */,
 				27E02BA327A88E46008B496F /* LottieView.swift in Sources */,
 				2763CCD827A89C73002660F5 /* Cover.swift in Sources */,
@@ -559,6 +574,7 @@
 				275B82D1279BB633003D9B15 /* CompactText.swift in Sources */,
 				2763CCE627AA1B6C002660F5 /* BlurView.swift in Sources */,
 				2793F715278B53D600F85363 /* WalletModel.swift in Sources */,
+				273E326727C466AA009F6B1C /* ReverseENS.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
 				273E325E27C34D1C009F6B1C /* QRCodeGenerator.swift in Sources */,
 				2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */,

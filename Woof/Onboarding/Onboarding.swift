@@ -44,7 +44,7 @@ struct OnboardingView: View {
                 }
                 .padding()
                 
-                NavigationLink(destination: WalletConnectionContentView().environmentObject(connectionViewModel),
+                NavigationLink(destination: OnboardingWalletConnect().environmentObject(connectionViewModel),
                                isActive: $showWalletConnect) {
                      EmptyView()
                 }.hidden()
@@ -110,7 +110,10 @@ struct OnboardingView: View {
 }
 
 struct Onboarding_Previews: PreviewProvider {
+    @StateObject static var viewModel = WalletConnectionViewModel()
+    
     static var previews: some View {
         OnboardingView()
+            .environmentObject(Onboarding_Previews.viewModel)
     }
 }

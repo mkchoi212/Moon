@@ -14,13 +14,16 @@ final class WalletConnectionViewModel: ObservableObject {
         WalletConnect(delegate: self)
     }()
     
+    let reverseENS = ReverseENS()
+    
     var sessions: [Session] = []
     var walletToSessionMap: [String: Session] = [:]
     var uri: String?
     
+    @Published var isLoading = false
     @Published var connectionError: Error?
     @Published var selectedSession: Session?
-    @Published var wallets: [Wallet] = []
+    @AppStorage("wallets") var wallets: [Wallet] = []
     @AppStorage("current.wallet") var selectedWallet: Wallet = .empty
     
     var cancellables = Set<AnyCancellable>()
@@ -36,6 +39,33 @@ final class WalletConnectionViewModel: ObservableObject {
                 self.selectedSession = self.walletToSessionMap[addr]
             }
             .store(in: &cancellables)
+    }
+    
+    func connectReadOnlyWallet(input: String) async {
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
+        
+        if input.lowercased().contains(".eth") {
+            let address = try? await reverseENS.reverseENSLookup(ensName: input)
+            if let address = address {
+                addWallet(wallet: Wallet(address: address, connectionType: .readonly))
+            } else {
+                connectionError = "Failed to lookup ENS name"
+            }
+        } else {
+            addWallet(wallet: Wallet(address: input, connectionType: .readonly))
+        }
+       
+        DispatchQueue.main.async {
+            self.isLoading = false
+        }
+    }
+    
+    private func addWallet(wallet: Wallet) {
+        DispatchQueue.main.async {
+            self.wallets.append(wallet)
+        }
     }
     
     func connect() -> String? {
