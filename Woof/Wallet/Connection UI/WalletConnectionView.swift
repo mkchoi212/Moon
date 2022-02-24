@@ -8,6 +8,19 @@
 import SwiftUI
 import WalletConnectSwift
 
+struct PrimaryButtonModifier: ViewModifier {
+    
+    var backgroundColor: Color
+    
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .background(RoundedRectangle(cornerRadius: 50).foregroundColor(backgroundColor))
+    }
+}
+
 struct WalletConnectionContentView: View {
     @State var rawEntryText: String = ""
     @EnvironmentObject var viewModel: WalletConnectionViewModel
@@ -19,7 +32,9 @@ struct WalletConnectionContentView: View {
             TextField("Wallet address or ENS name", text: $rawEntryText)
                 .font(.system(size: 18, weight: .regular, design: .monospaced))
                 .padding(.bottom)
-
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+            
             addWalletButton
             
             Separator(text: "Or")
@@ -40,10 +55,7 @@ struct WalletConnectionContentView: View {
             }
         } label: {
             addButton
-                .padding()
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-                .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.label))
+                .modifier(PrimaryButtonModifier(backgroundColor: .label))
         }
         .disabled(rawEntryText.isEmpty)
         .opacity(rawEntryText.isEmpty ? 0.5 : 1)
@@ -56,7 +68,7 @@ struct WalletConnectionContentView: View {
                 .tint(Color(uiColor: UIColor.systemBackground))
                 .frame(height: 30)
         } else {
-           Text("Add Wallet")
+            Text("Add Wallet")
                 .foregroundColor(Color(uiColor: .systemBackground))
                 .font(.system(size: 18, weight: .medium))
         }

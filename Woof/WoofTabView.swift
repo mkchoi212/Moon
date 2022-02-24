@@ -25,33 +25,36 @@ struct WoofTabView: View {
     @AppStorage("did.complete.onboarding") var didCompleteOnboarding = false
     
     var body: some View {
-        if !didCompleteOnboarding {
-            OnboardingView()
-                .environmentObject(connectionViewModel)
-        } else {
-            TabView {
-                CoinView()
-                    .environmentObject(wallet)
-                    .environmentObject(sheetManager)
+        Group {
+            if !didCompleteOnboarding {
+                OnboardingView()
                     .environmentObject(connectionViewModel)
-                    .tabItem {
-                        Label("Coins", systemImage: "moon.fill")
-                    }
-                
-                CollectiblesView()
-                    .environmentObject(openSea)
-                    .tabItem {
-                        Label("Collectibles", systemImage: "square")
-                    }
-                
-                SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "person")
-                    }
+            } else {
+                TabView {
+                    CoinView()
+                        .environmentObject(wallet)
+                        .environmentObject(sheetManager)
+                        .environmentObject(connectionViewModel)
+                        .tabItem {
+                            Label("Coins", systemImage: "moon.fill")
+                        }
+                    
+                    CollectiblesView()
+                        .environmentObject(openSea)
+                        .tabItem {
+                            Label("Collectibles", systemImage: "square")
+                        }
+                    
+                    SettingsView()
+                        .tabItem {
+                            Label("Settings", systemImage: "person")
+                        }
+                }
+                .tint(.accentColor)
+                .addPartialSheet()
             }
-            .tint(.accentColor)
-            .addPartialSheet()
         }
+        .animation(.easeIn(duration: 0.25), value: didCompleteOnboarding)
     }
 }
 

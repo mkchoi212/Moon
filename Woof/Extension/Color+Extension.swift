@@ -50,6 +50,11 @@ extension Color {
     static var label: Color {
         Color(uiColor: .label)
     }
+    
+    static var tertiaryBackground: Color {
+        Color(uiColor: .tertiarySystemBackground)
+    }
+
 }
 
 extension UIColor {

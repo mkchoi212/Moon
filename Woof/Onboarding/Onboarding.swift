@@ -46,7 +46,7 @@ struct OnboardingView: View {
                 
                 NavigationLink(destination: OnboardingWalletConnect().environmentObject(connectionViewModel),
                                isActive: $showWalletConnect) {
-                     EmptyView()
+                    EmptyView()
                 }.hidden()
             }
             .onReceive(timer) { _ in
@@ -76,13 +76,13 @@ struct OnboardingView: View {
             Spacer()
             
             Button {
-               showWalletConnect = true
+                showWalletConnect = true
             } label: {
                 Text("Connect Wallet")
                     .foregroundColor(.white)
                     .font(.system(size: 15, weight: .semibold, design: .monospaced))
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 12))
+                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(Color(uiColor: .systemBackground)))
             }
         }
     }
@@ -116,5 +116,10 @@ struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
             .environmentObject(Onboarding_Previews.viewModel)
+        
+        OnboardingView()
+            .environmentObject(Onboarding_Previews.viewModel)
+            .preferredColorScheme(.dark)
+        
     }
 }

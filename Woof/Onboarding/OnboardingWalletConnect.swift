@@ -40,5 +40,6 @@ struct OnboardingWalletConnect: View {
                 self.goToNextView = true
             }
         })
+        .background(Color.tertiaryBackground)
     }
 }
