@@ -15,7 +15,7 @@ struct Cover: View {
         ZStack {
             Image("moon")
                 .resizable()
-                .frame(width: 50, height: 50, alignment: .center)
+                .frame(width: 80, height: 80, alignment: .center)
    
             VStack(spacing: 20) {
                 Spacer()
@@ -25,20 +25,17 @@ struct Cover: View {
                 } label: {
                     Text("Unlock")
                         .font(.system(size: 17, weight: .semibold))
+                        .foregroundColor(Color(uiColor: .systemBackground))
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(.blue)
-                        .overlay(RoundedRectangle(cornerRadius: 12).foregroundColor(.lightBlue))
+                        .background(RoundedRectangle(cornerRadius: 12).foregroundColor(.label))
                         .padding()
                 }
                 .opacity(authModel.isWaitingAuthentication ? 1 : 0)
                 .animation(.easeIn, value: authModel.isWaitingAuthentication)
-                
-                Text("MOON")
-                    .foregroundColor(Color(uiColor: .secondaryLabel))
-                    .font(.system(size: 14, weight: .semibold, design: .default))
             }
         }
+        .background(Color(uiColor: .secondarySystemBackground))
     }
 }
 
@@ -47,5 +44,10 @@ struct Cover_Previews: PreviewProvider {
         Cover()
             .environmentObject(SettingsViewModel())
             .previewDevice(.init(rawValue: "iPhone 13 Pro"))
+        
+        Cover()
+            .environmentObject(SettingsViewModel())
+            .previewDevice(.init(rawValue: "iPhone 13 Pro"))
+            .preferredColorScheme(.dark)
     }
 }

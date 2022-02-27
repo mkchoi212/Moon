@@ -123,9 +123,6 @@ public struct AlertToast: View{
         ///Image from Assets
         case image(_ name: String, _ color: Color)
         
-        ///Loading indicator (Circular)
-        case loading
-        
         ///Only text alert
         case regular
     }
@@ -374,7 +371,7 @@ public struct AlertToast: View{
             }
         }
         .padding()
-        .withFrame(type != .regular && type != .loading)
+        .withFrame(type != .regular)
         .alertBackground(style?.backgroundColor ?? nil)
         .cornerRadius(10)
     }
@@ -562,11 +559,6 @@ public struct AlertToastModifier: ViewModifier{
     }
     
     private func onAppearAction(){
-        if alert().type == .loading{
-            duration = 0
-            tapToDismiss = false
-        }
-        
         if duration > 0{
             workItem?.cancel()
             

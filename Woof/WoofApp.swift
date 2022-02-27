@@ -12,20 +12,23 @@ import PartialSheet
 struct WoofApp: App {
     @StateObject var authModel = SettingsViewModel()
     @AppStorage("biometrics.enabled") var biometricsEnabled = false
+    @AppStorage("did.complete.onboarding") var didCompleteOnboarding = false
     
     let sheetManager = PartialSheetManager()
     
     var body: some Scene {
         WindowGroup {
             Group {
-                if authModel.isAuthenticated || !authModel.isBiometricsEnabled {
+                if !didCompleteOnboarding || (authModel.isAuthenticated || !authModel.isBiometricsEnabled) {
                     WoofTabView()
                         .environmentObject(sheetManager)
                 } else {
                     Cover()
                         .environmentObject(authModel)
                         .onAppear {
-                            authModel.authenticate()
+                            if didCompleteOnboarding {
+                                authModel.authenticate()
+                            }
                         }
                 }
             }

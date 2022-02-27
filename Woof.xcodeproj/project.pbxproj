@@ -43,12 +43,12 @@
 		2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCD527A899F6002660F5 /* SettingsViewModel.swift */; };
 		2763CCD827A89C73002660F5 /* Cover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCD727A89C73002660F5 /* Cover.swift */; };
 		2763CCDA27A8A5C5002660F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */; };
-		2763CCE627AA1B6C002660F5 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE327AA1B6C002660F5 /* BlurView.swift */; };
-		2763CCE727AA1B6C002660F5 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE427AA1B6C002660F5 /* ActivityIndicator.swift */; };
-		2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE527AA1B6C002660F5 /* AlertToast.swift */; };
 		2763CCEA27AA1B81002660F5 /* MailComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE927AA1B81002660F5 /* MailComposer.swift */; };
 		2763CCEC27AB638E002660F5 /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCEB27AB638E002660F5 /* TransactionDetailView.swift */; };
 		2763CCF127AB68B9002660F5 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 2763CCF027AB68B9002660F5 /* BetterSafariView */; };
+		2771DB4227CB25800069323A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771DB3F27CB25800069323A /* ActivityIndicator.swift */; };
+		2771DB4327CB25800069323A /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771DB4027CB25800069323A /* AlertToast.swift */; };
+		2771DB4427CB25800069323A /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771DB4127CB25800069323A /* BlurView.swift */; };
 		277D0543278A272E009E2B29 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0542278A272E009E2B29 /* CoinView.swift */; };
 		2793F70D278A7F9500F85363 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C627698E43003084E5 /* RoundedCorner.swift */; };
 		2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270241C827698E43003084E5 /* ViewExtension.swift */; };
@@ -131,11 +131,11 @@
 		2763CCD527A899F6002660F5 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		2763CCD727A89C73002660F5 /* Cover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cover.swift; sourceTree = "<group>"; };
 		2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2763CCE327AA1B6C002660F5 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = "../../../../.Trash/AlertToast-master 2/Sources/AlertToast/BlurView.swift"; sourceTree = "<group>"; };
-		2763CCE427AA1B6C002660F5 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = "../../../../.Trash/AlertToast-master 2/Sources/AlertToast/ActivityIndicator.swift"; sourceTree = "<group>"; };
-		2763CCE527AA1B6C002660F5 /* AlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertToast.swift; path = "../../../../.Trash/AlertToast-master 2/Sources/AlertToast/AlertToast.swift"; sourceTree = "<group>"; };
 		2763CCE927AA1B81002660F5 /* MailComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposer.swift; sourceTree = "<group>"; };
 		2763CCEB27AB638E002660F5 /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
+		2771DB3F27CB25800069323A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		2771DB4027CB25800069323A /* AlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertToast.swift; sourceTree = "<group>"; };
+		2771DB4127CB25800069323A /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		277D0542278A272E009E2B29 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		2793F714278B53D600F85363 /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
 		2793F724278BABC600F85363 /* ShinyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShinyView.swift; sourceTree = "<group>"; };
@@ -315,9 +315,9 @@
 		27CD755F2793CA0600B2D083 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
-				2763CCE427AA1B6C002660F5 /* ActivityIndicator.swift */,
-				2763CCE527AA1B6C002660F5 /* AlertToast.swift */,
-				2763CCE327AA1B6C002660F5 /* BlurView.swift */,
+				2771DB3F27CB25800069323A /* ActivityIndicator.swift */,
+				2771DB4027CB25800069323A /* AlertToast.swift */,
+				2771DB4127CB25800069323A /* BlurView.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -531,16 +531,15 @@
 				27CBF44027BB044000DAB861 /* CollectionView.swift in Sources */,
 				273E326C27C5AA2F009F6B1C /* PrivacyPermissionView.swift in Sources */,
 				2793F72D278BC0EA00F85363 /* Price.swift in Sources */,
-				2763CCE827AA1B6C002660F5 /* AlertToast.swift in Sources */,
 				27F12CD5275CE12200D87182 /* SettingsView.swift in Sources */,
 				27410779276C320600E77A00 /* BigXButton.swift in Sources */,
 				273E326027C34F4C009F6B1C /* Wallet.swift in Sources */,
-				2763CCE727AA1B6C002660F5 /* ActivityIndicator.swift in Sources */,
 				2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */,
 				275B82B2279675C2003D9B15 /* NFT.swift in Sources */,
 				273E326A27C46A54009F6B1C /* OnboardingWalletConnect.swift in Sources */,
 				27C05D232771F15300200498 /* WalletConnectButton.swift in Sources */,
 				27E02BA327A88E46008B496F /* LottieView.swift in Sources */,
+				2771DB4227CB25800069323A /* ActivityIndicator.swift in Sources */,
 				2763CCD827A89C73002660F5 /* Cover.swift in Sources */,
 				27F12CC5275CE07400D87182 /* WoofTabView.swift in Sources */,
 				275B82B427968764003D9B15 /* NFTViewModel.swift in Sources */,
@@ -576,12 +575,13 @@
 				27E9E20A2769AF3E00EBB552 /* Model.xcdatamodeld in Sources */,
 				2793F70E278A7F9500F85363 /* ViewExtension.swift in Sources */,
 				275B82D1279BB633003D9B15 /* CompactText.swift in Sources */,
-				2763CCE627AA1B6C002660F5 /* BlurView.swift in Sources */,
 				2793F715278B53D600F85363 /* WalletModel.swift in Sources */,
 				273E326727C466AA009F6B1C /* ReverseENS.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
 				273E325E27C34D1C009F6B1C /* QRCodeGenerator.swift in Sources */,
 				2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */,
+				2771DB4427CB25800069323A /* BlurView.swift in Sources */,
+				2771DB4327CB25800069323A /* AlertToast.swift in Sources */,
 				2793F72B278BC0BE00F85363 /* Token.swift in Sources */,
 				27E7DE3D2791208A0065F507 /* CardView.swift in Sources */,
 				273E326527C44A0C009F6B1C /* UINavigationBar+Extension.swift in Sources */,
