@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Cover: View {
-    @EnvironmentObject var authModel: SettingsViewModel
+    @EnvironmentObject var authModel: LocalAuthModel
     
     var body: some View {
         ZStack {
@@ -42,11 +42,11 @@ struct Cover: View {
 struct Cover_Previews: PreviewProvider {
     static var previews: some View {
         Cover()
-            .environmentObject(SettingsViewModel())
+            .environmentObject(LocalAuthModel())
             .previewDevice(.init(rawValue: "iPhone 13 Pro"))
         
         Cover()
-            .environmentObject(SettingsViewModel())
+            .environmentObject(LocalAuthModel())
             .previewDevice(.init(rawValue: "iPhone 13 Pro"))
             .preferredColorScheme(.dark)
     }

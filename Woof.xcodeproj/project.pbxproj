@@ -40,7 +40,6 @@
 		2761D52E2793CFC700BDF310 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D52D2793CFC700BDF310 /* HomeHeader.swift */; };
 		2761D5312793D04700BDF310 /* NavigationBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */; };
 		2761D5332794DC4C00BDF310 /* CollectiblesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2761D5322794DC4C00BDF310 /* CollectiblesView.swift */; };
-		2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCD527A899F6002660F5 /* SettingsViewModel.swift */; };
 		2763CCD827A89C73002660F5 /* Cover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCD727A89C73002660F5 /* Cover.swift */; };
 		2763CCDA27A8A5C5002660F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */; };
 		2763CCEA27AA1B81002660F5 /* MailComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763CCE927AA1B81002660F5 /* MailComposer.swift */; };
@@ -128,7 +127,6 @@
 		2761D52D2793CFC700BDF310 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarAppearance.swift; sourceTree = "<group>"; };
 		2761D5322794DC4C00BDF310 /* CollectiblesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiblesView.swift; sourceTree = "<group>"; };
-		2763CCD527A899F6002660F5 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		2763CCD727A89C73002660F5 /* Cover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cover.swift; sourceTree = "<group>"; };
 		2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2763CCE927AA1B81002660F5 /* MailComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailComposer.swift; sourceTree = "<group>"; };
@@ -254,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				27F12CD4275CE12200D87182 /* SettingsView.swift */,
-				2763CCD527A899F6002660F5 /* SettingsViewModel.swift */,
 				27C05D24277289EE00200498 /* SettingsWalletListView.swift */,
 			);
 			path = Settings;
@@ -381,9 +378,9 @@
 			children = (
 				2702418A27670A26003084E5 /* Info.plist */,
 				2763CCD927A8A5C5002660F5 /* LaunchScreen.storyboard */,
-				2763CCD727A89C73002660F5 /* Cover.swift */,
 				27F12CC2275CE07400D87182 /* WoofApp.swift */,
 				27F12CC4275CE07400D87182 /* WoofTabView.swift */,
+				2763CCD727A89C73002660F5 /* Cover.swift */,
 				27AE1FFA278A67D100C07ADF /* Theme.swift */,
 				2761D5302793D04700BDF310 /* NavigationBarAppearance.swift */,
 				273E326827C46A4A009F6B1C /* Onboarding */,
@@ -579,7 +576,6 @@
 				273E326727C466AA009F6B1C /* ReverseENS.swift in Sources */,
 				274AEBCD278A289900BE6E55 /* CircleImageView.swift in Sources */,
 				273E325E27C34D1C009F6B1C /* QRCodeGenerator.swift in Sources */,
-				2763CCD627A899F6002660F5 /* SettingsViewModel.swift in Sources */,
 				2771DB4427CB25800069323A /* BlurView.swift in Sources */,
 				2771DB4327CB25800069323A /* AlertToast.swift in Sources */,
 				2793F72B278BC0BE00F85363 /* Token.swift in Sources */,

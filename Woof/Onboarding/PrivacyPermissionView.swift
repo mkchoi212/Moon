@@ -9,11 +9,15 @@ import Foundation
 import SwiftUI
 import LocalAuthentication
 
-// TODO: merge the old auth stuff with this
-final class LocalAuthViewModel: ObservableObject {
+final class LocalAuthModel: ObservableObject {
+    @Published var isAuthenticated = false
+    @Published var isWaitingAuthentication = false
+    @Published var isBiometricsEnabled: Bool
     
     var biometricsType: String
     var biometricsIconName: String
+    
+    let context = LAContext()
     
     init() {
         switch LAContext().biometryType {
@@ -24,38 +28,53 @@ final class LocalAuthViewModel: ObservableObject {
                 biometricsIconName = "touchid"
                 biometricsType = "Touch ID"
             case .none:
-                biometricsIconName = "touchid"
-                biometricsType = "Touch ID"
+                biometricsIconName = ""
+                biometricsType = ""
             @unknown default:
                 biometricsType = ""
                 biometricsIconName = "questionmark"
         }
+        
+        isBiometricsEnabled = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
     
-    func askForPermission(completion: @escaping (Bool) -> ()) {
+    func authenticate(completion: ((Bool) -> ())? = nil) {
         let context = LAContext()
         var error: NSError?
         
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Secure your wallet with biometrics"
+            isWaitingAuthentication = false
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { ok, _ in
                 DispatchQueue.main.async {
-                    completion(ok)
+                    self.isAuthenticated = ok
+                    
+                    if !ok {
+                        self.isWaitingAuthentication = true
+                    }
+                   
+                    self.evaluateBiometricsAvailability()
+                    completion?(ok)
                 }
             }
         } else {
             DispatchQueue.main.async {
-                completion(false)
+                self.evaluateBiometricsAvailability()
+                completion?(false)
             }
         }
+    }
+    
+    func evaluateBiometricsAvailability() {
+        isBiometricsEnabled = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
 }
 
 struct PrivacyPermissionView: View {
     
     @State var goToNextView = false
-    @StateObject var authViewModel = LocalAuthViewModel()
+    @EnvironmentObject var authViewModel: LocalAuthModel
     @AppStorage("did.complete.onboarding") var didCompleteOnboarding = false
     
     var body: some View {
@@ -77,14 +96,13 @@ struct PrivacyPermissionView: View {
                         .opacity(0.25)
                         .frame(width: 150, height: 150)
                     
-                    Image(systemName: authViewModel.biometricsIconName)
-                        .resizable()
-                        .frame(width: 70, height: 70)
+                    Image(systemName: "lock.shield.fill")
+                        .font(.system(size: 80, weight: .regular))
                         .foregroundColor(.blue)
                 }
                 .padding(.bottom, 20)
                 
-                Text("Secure your wallet with \(authViewModel.biometricsType)")
+                Text("Secure your wallet with biometrics")
                     .font(.system(size: 22, weight: .semibold))
                     .multilineTextAlignment(.center)
                 
@@ -96,18 +114,18 @@ struct PrivacyPermissionView: View {
                 Spacer()
                 
                 Button {
-                    authViewModel.askForPermission { ok in
-                        didCompleteOnboarding = ok
+                    authViewModel.authenticate { ok in
+                        didCompleteOnboarding = true
                     }
                 } label: {
-                    Text("Use \(authViewModel.biometricsType)")
+                    Text("Secure your wallet")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(Color(uiColor: .systemBackground))
                         .modifier(PrimaryButtonModifier(backgroundColor: .label))
                 }
                 
                 Button {
-                    didCompleteOnboarding = true
+//                    didCompleteOnboarding = true
                 } label: {
                     Text("Don't secure my wallet")
                         .font(.system(size: 18, weight: .medium))

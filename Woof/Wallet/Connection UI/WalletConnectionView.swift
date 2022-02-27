@@ -34,6 +34,7 @@ struct WalletConnectionContentView: View {
                 .padding(.bottom)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
+                .textContentType(nil)
             
             addWalletButton
             

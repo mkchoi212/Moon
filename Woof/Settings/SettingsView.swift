@@ -132,17 +132,16 @@ struct SettingsExtraSection: View {
         }
         .sheet(isPresented: $showAboutModal) {
         }
-        
     }
 }
 
 struct SettingsView: View {
-    @AppStorage("biometrics.enabled") var biometricsEnabled = false
     @Environment(\.presentationMode) var presentationMode
     
     @State var showToast = false
     @State var toastPayload: ToastPayload?
-    @StateObject var viewModel = SettingsViewModel()
+    @State var biometricsEnabled = false
+    @EnvironmentObject var authModel: LocalAuthModel
     
     var body: some View {
         NavigationView {
@@ -185,18 +184,23 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
         }
-        .onChange(of: biometricsEnabled) { biometricsEnabled in
-            viewModel.authenticate { ok in
-                if !ok {
-                    self.biometricsEnabled.toggle()
-                }
-            }
+        .onAppear {
+            biometricsEnabled = authModel.isBiometricsEnabled
         }
         .toast(isPresenting: $showToast) {
             AlertToast(displayMode: .hud, type: .regular, title: toastPayload?.message)
         }
         .onChange(of: toastPayload) { _ in
             showToast = true
+        }
+        .onChange(of: biometricsEnabled) { biometricsEnabled in
+            if !authModel.isBiometricsEnabled || (!biometricsEnabled && authModel.isBiometricsEnabled) {
+                authModel.authenticate { ok in
+                    if !ok {
+                        self.biometricsEnabled.toggle()
+                    }
+                }
+            }
         }
     }
 }

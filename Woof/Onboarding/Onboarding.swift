@@ -64,13 +64,13 @@ struct OnboardingView: View {
     @ViewBuilder var buttons: some View {
         HStack {
             Button {
-                
+               // TODO
             } label: {
                 Text("Create Wallet")
-                    .foregroundColor(.black)
+                    .foregroundColor(.label)
                     .font(.system(size: 15, weight: .semibold, design: .monospaced))
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(.white))
+                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(Color(uiColor: .systemBackground)))
             }
             
             Spacer()
@@ -79,10 +79,10 @@ struct OnboardingView: View {
                 showWalletConnect = true
             } label: {
                 Text("Connect Wallet")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(uiColor: .systemBackground))
                     .font(.system(size: 15, weight: .semibold, design: .monospaced))
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(Color(uiColor: .systemBackground)))
+                    .background(RoundedRectangle(cornerRadius: 12).foregroundColor(.primary))
             }
         }
     }

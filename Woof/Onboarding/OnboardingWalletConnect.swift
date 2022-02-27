@@ -11,13 +11,14 @@ struct OnboardingWalletConnect: View {
     @State var goToNextView = false
     @State var showSuccessToast = false
     @EnvironmentObject var connectionViewModel: WalletConnectionViewModel
+    @EnvironmentObject var authModel: LocalAuthModel
     
     let haptic = UINotificationFeedbackGenerator()
     
     var body: some View {
         ScrollView {
             ZStack {
-                NavigationLink(destination: PrivacyPermissionView(), isActive: $goToNextView) {
+                NavigationLink(destination: PrivacyPermissionView().environmentObject(authModel), isActive: $goToNextView) {
                     EmptyView()
                 }.hidden()
                 

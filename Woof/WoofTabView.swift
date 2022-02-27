@@ -16,45 +16,38 @@ struct ToastPayload: Identifiable, Equatable {
 struct WoofTabView: View {
     @StateObject var wallet = WalletModel()
     @StateObject var openSea = OpenSea()
-    @StateObject var connectionViewModel = WalletConnectionViewModel()
     
     @State var presentWalletSelector = false
     @State var presentNFTModal = false
     
+    @EnvironmentObject var connectionViewModel: WalletConnectionViewModel
     @EnvironmentObject var sheetManager: PartialSheetManager
-    @AppStorage("did.complete.onboarding") var didCompleteOnboarding = false
+    @EnvironmentObject var authModel: LocalAuthModel
     
     var body: some View {
-        Group {
-            if !didCompleteOnboarding {
-                OnboardingView()
-                    .environmentObject(connectionViewModel)
-            } else {
-                TabView {
-                    CoinView()
-                        .environmentObject(wallet)
-                        .environmentObject(sheetManager)
-                        .environmentObject(connectionViewModel)
-                        .tabItem {
-                            Label("Coins", systemImage: "moon.fill")
-                        }
-                    
-                    CollectiblesView()
-                        .environmentObject(openSea)
-                        .tabItem {
-                            Label("Collectibles", systemImage: "square")
-                        }
-                    
-                    SettingsView()
-                        .tabItem {
-                            Label("Settings", systemImage: "person")
-                        }
+        TabView {
+            CoinView()
+                .environmentObject(wallet)
+                .environmentObject(sheetManager)
+                .environmentObject(connectionViewModel)
+                .tabItem {
+                    Label("Coins", systemImage: "moon.fill")
                 }
-                .tint(.accentColor)
-                .addPartialSheet()
-            }
+            
+            CollectiblesView()
+                .environmentObject(openSea)
+                .tabItem {
+                    Label("Collectibles", systemImage: "square")
+                }
+            
+            SettingsView()
+                .environmentObject(authModel)
+                .tabItem {
+                    Label("Settings", systemImage: "person")
+                }
         }
-        .animation(.easeIn(duration: 0.25), value: didCompleteOnboarding)
+        .tint(.accentColor)
+        .addPartialSheet()
     }
 }
 
